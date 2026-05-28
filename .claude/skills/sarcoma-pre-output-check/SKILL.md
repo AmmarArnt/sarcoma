@@ -1,6 +1,6 @@
 ---
 name: sarcoma-pre-output-check
-description: Pre-flight self-audit a sub-agent or vector lead runs BEFORE finalizing its output in the CIC-rearranged sarcoma simulation. Walks through 8 failure modes (citation fabrication, concentration-mismatch, dose invention, etc.) and 6 mandatory-include items. Catches errors before they reach the orchestrator. Invoke as the second-to-last step of any agent task, immediately before writing the output file.
+description: Pre-flight self-audit a sub-agent or vector lead runs BEFORE finalizing its output in the CIC-rearranged sarcoma simulation. Walks through 8 failure modes (citation fabrication, concentration-mismatch, dose invention, etc.) and 8 mandatory-include items. Catches errors before they reach the orchestrator. Invoke as the second-to-last step of any agent task, immediately before writing the output file.
 ---
 
 # Pre-Output Self-Audit
@@ -27,21 +27,25 @@ These are the failure modes most likely from a Sonnet-tier model. Guard your own
 
 8. **Padding for length.** A shorter output that is well-grounded beats a long padded one. Did I remove entries I cannot defend? When in doubt, **exclude** rather than include.
 
-## Part B — 6 Mandatory-Include Items
+## Part B — 8 Mandatory-Include Items
 
-Every output must have all six. Scan and confirm.
+Every output must have all eight. Scan and confirm.
 
 1. **One-line summary** at the top stating what this output covers AND what it deliberately excludes.
 
 2. **Confidence line** — "Confidence: high / medium / low — [1 sentence why]."
 
-3. **Per-entry evidence tier** using the vocabulary from `/sarcoma-contract` (Established · Clinical-Trial · Preclinical-Animal · Preclinical-Cell · Mechanistic · Dietary-Observational · Theoretical).
+3. **Per-entry evidence tier** using the vocabulary from `/sarcoma-contract` (Established · Clinical-Trial · Preclinical-Animal · Preclinical-Cell · Mechanistic · Dietary-Observational · Theoretical). For Established-tier entries, FDA and EMA status are both cited where they differ; where only one authority has acted, that fact is stated explicitly.
 
 4. **Per-entry mechanism statement** — molecular, not analogical. ("Inhibits BRD4 BD1 binding to acetylated H3K27" — not "throttles the amplifier".)
 
 5. **Per-entry "evidence in CIC-DUX4 specifically?"** — usually `None direct`; say so.
 
 6. **A "What I Could Not Establish" section** — gaps, unresolved questions, weaknesses the orchestrator should know about. The point of this simulation is calibrated honesty over completeness.
+
+7. **A "Forward Hypotheses" section** — at least **two** mechanistically defensible ideas not yet in the literature. Each entry labeled `[Forward Hypothesis]` with: hypothesis statement, mechanistic basis, what experiment or study design would test it, and (if known) why it has not yet been tested. The simulation's primary purpose is to *simulate forward*, not to restate existing findings — an output without this section is incomplete.
+
+8. **Atypical-case note where relevant.** For any recommendation that critically depends on the CIC-DUX4 (or CIC-NUTM1, CIC-FOXO4) fusion protein being present — ASO design, junction-specific neoantigen vaccines, fusion-junction CAR-T — flag that ~5% of clinically and histologically similar cases will not have a confirmed fusion on genomic testing and the recommendation will not apply to them. For fusion-agnostic recommendations (general epigenetic reprogramming, immune checkpoint approaches), note that they may apply to atypical cases as well.
 
 ## Part C — Role-Specific Mandatory Sections
 

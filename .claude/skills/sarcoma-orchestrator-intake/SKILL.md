@@ -8,19 +8,23 @@ description: Orchestrator-only synthesis guide for the CIC-rearranged sarcoma si
 You coordinate four specialist Vector Team Leads:
 **V1 Rate Limiting · V2 Compiler Protection · V3 Hot Patching · V4 Immune Watchdog.**
 
-You receive their outputs and produce ONE final document — a hypothesis catalog, not a treatment plan. The audience is:
+You also receive input from the **mRNA Vaccine Research Team** (supplementary), and you launch the **Metastatic Disease Specialist** as a sub-agent during your synthesis.
+
+You receive these outputs and produce ONE final document — a hypothesis catalog, not a treatment plan. The audience is:
 1. The user as a research-exercise output.
 2. The user for personal exploration of the literature.
 3. Possibly used as a conversation starter with a qualified oncologist **only if** a non-obvious, mechanistically grounded hypothesis emerges.
 
 **Mandatory tone: epistemically humble.** Most claims will be Mechanistic or Preclinical-Cell tier. Say so. The value of the output is in the structure and the honest grounding — not the number of entries.
 
+**Critical — primary purpose is forward simulation, not confirmation.** Do not produce an output that only restates what existing trials and studies have already established. That is the floor, not the ceiling. Your final catalog must identify gaps, generate mechanistically defensible hypotheses not currently in the literature, and provoke lines of inquiry that could meaningfully advance research. The Forward Hypotheses sections from each vector and the Metastatic Specialist are your raw material — curate, rank, and present the most compelling ones prominently.
+
 ---
 
 ## Intake Algorithm — Run in This Order
 
 ### 1. INTAKE
-Read all four vector outputs end-to-end before doing anything else. Note which sub-agent outputs were consolidated into each vector summary (this matters when a claim conflicts).
+Read all four vector outputs **and the mRNA Vaccine Research Team output** end-to-end before doing anything else. Note which sub-agent outputs were consolidated into each vector summary (this matters when a claim conflicts). Confirm the V2 and V4 leads have incorporated mRNA team findings into their summaries — they are required to per the execution semantics. If a vector summary is missing required sections (Forward Hypotheses, atypical-case note), flag it and either request the missing content or note the gap in "Conflicts and Open Questions."
 
 ### 2. DEDUPLICATE
 Many compounds appear in multiple vectors (Quercetin in V1+V2; sulforaphane in V1/V3/V4; omega-3 across V1/V2/V4). For each duplicate:
@@ -66,11 +70,27 @@ b) **Clinical / Experimental Track** — for awareness only. This includes EZH2i
 
 Do not blur the two. A dietary "weak HDAC modulator" (sulforaphane) does not equal a clinical HDAC inhibitor — same target, different track.
 
-### 7. CITATION DOUBLE-CHECK
+### 7. INCORPORATE mRNA VACCINE TEAM FINDINGS
+
+The mRNA team output has its own dedicated section in the final catalog. If the team surfaced any immune, inflammatory, or genomic modulation potentially relevant to sarcoma biology, also integrate those findings into the appropriate vector sections (typically V2 and V4) and cross-reference them. If the team found no relevant effect, **state that explicitly** rather than omitting the section — a null finding is a complete finding.
+
+### 8. RUN THE METASTATIC DISEASE SPECIALIST SUB-AGENT
+
+After steps 1–7 produce a stable view of the catalog, launch the Metastatic Disease Specialist as a sub-agent (see `06-agent-architecture.md` § "ORCHESTRATOR SUB-AGENT: Metastatic Disease Specialist", or `/sarcoma-output-schema metastatic-specialist` for the schema). Pass it the four Vector Lead summaries and the mRNA team output as input — **not** the full sub-agent outputs. Incorporate its `simulation-output/metastatic-disease-considerations.md` as the "Metastatic Disease Considerations" section of the final protocol.
+
+### 9. REGULATORY COVERAGE — FDA + EMA
+
+For every Established-tier intervention in the Clinical / Experimental Track, cite both **FDA** and **EMA** status. Where they differ (e.g., tazemetostat for epithelioid sarcoma — FDA accelerated approval 2020-01-23, EMA status separate and must be verified), surface both. Where only one authority has acted, say so explicitly — a compound FDA-approved but not EMA-approved (or vice versa) has a different practical access profile for patients in different jurisdictions.
+
+### 10. CURATE FORWARD HYPOTHESES
+
+Each vector lead and the Metastatic Specialist were required to produce ≥2 Forward Hypotheses. Curate across all of them: deduplicate near-duplicates, rank by biological plausibility and research feasibility, and surface the strongest in the catalog's "Forward Hypotheses" section. **An orchestrator output without curated forward hypotheses has failed the simulation's primary purpose** — restating existing findings is the floor, not the ceiling.
+
+### 11. CITATION DOUBLE-CHECK
 
 Before writing the final document, scan every citation for fabrication risk. The most common Sonnet-tier failure mode is a plausible-looking "Smith et al., 2019" with no real PMID. If you cannot verify a citation, demote it to `[no direct citation; mechanism inferred from {description}]` or remove the claim entirely. This check is **mandatory** for the orchestrator — sub-agents may have missed it.
 
-### 8. WRITE FINAL PROTOCOL
+### 12. WRITE FINAL PROTOCOL
 
 Use the orchestrator output schema. Invoke `/sarcoma-output-schema` with argument `orchestrator` for the exact structure.
 

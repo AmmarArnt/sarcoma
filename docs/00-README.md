@@ -40,16 +40,29 @@ Two **supplementary research teams** run in parallel to the vectors and feed the
 
 ```
 sarcoma/
-├── 00-README.md                          ← This file. Project framing + agent overview.
-├── 01-general-sarcoma-knowledge.md       ← Soft-tissue sarcoma fundamentals
-├── 02-cic-sarcoma-knowledge.md           ← CIC-DUX4 specific deep dive
-├── 03-dna-genome-protein-interactions.md ← How translocations happen; why this one recurs
-├── 04-biology-engineering-analogy.md     ← Software/hardware mapping (explicitly an analogy)
-├── 05-attack-vectors.md                  ← Four vectors + cross-vector interaction map
-├── 06-agent-architecture.md              ← Agent definitions, prompts, output schemas
-├── 07-openmed-models.md                  ← OpenMed NER model assignments per agent team (grounding step)
-└── cic_sarcoma_simulation.html           ← Optional interactive diagram (illustrative only)
-└── todo.md                               ← Thoughts, notes and TODOs from the human driving this AI exercise
+├── docs/
+│   ├── 00-README.md                          ← This file. Project framing + agent overview.
+│   ├── 01-general-sarcoma-knowledge.md       ← Soft-tissue sarcoma fundamentals
+│   ├── 02-cic-sarcoma-knowledge.md           ← CIC-DUX4 specific deep dive
+│   ├── 03-dna-genome-protein-interactions.md ← How translocations happen; why this one recurs
+│   ├── 04-biology-engineering-analogy.md     ← Software/hardware mapping (explicitly an analogy)
+│   ├── 05-attack-vectors.md                  ← Four vectors + cross-vector interaction map
+│   ├── 06-agent-architecture.md              ← Agent definitions, prompts, output schemas
+│   ├── 07-openmed-models.md                  ← OpenMed NER model assignments per agent team
+│   ├── cic_sarcoma_simulation.html           ← Optional interactive diagram (illustrative only)
+│   └── todo.md                               ← Thoughts, notes and TODOs
+├── scripts/
+│   ├── dispatch.py                           ← Wave-plan + prerequisite + gate checker (run first)
+│   └── openmed_ner.py                        ← OpenMed NER grounding CLI (per-team)
+├── .claude/skills/                           ← Project-scoped skills (sarcoma-contract, etc.)
+└── simulation-output/                        ← Per-agent outputs land here
+    ├── mrna-vaccine-research/
+    ├── v1-rate-limiting/
+    ├── v2-compiler-protection/
+    ├── v3-hot-patching/
+    ├── v4-immune-watchdog/
+    ├── metastatic-disease-considerations.md  ← Metastatic Specialist sub-agent output
+    └── protocol-v1.md                        ← Orchestrator's final catalog
 ```
 
 Files 01–04 are background knowledge. Files 05 and 06 are operational. File 07 documents the OpenMed NER models each agent should call to ground biomedical entity names before finalising its draft — see `scripts/openmed_ner.py` for the CLI.
@@ -109,10 +122,14 @@ Vector 4 has an explicit dependency on Vector 3's epigenetic priming step (MHC-I
 ## Execution Semantics
 
 1. **Load shared context.** Every agent gets `00-README.md` plus its listed context files. No agent gets context it doesn't need — small models drift when over-stuffed.
-2. **Run vector leads and the mRNA Vaccine Research Team in parallel.** They are independent research tracks. The mRNA team's output must be available to V2 and V4 leads before those leads finalize.
-3. **Sub-agents within a vector run in parallel; the Vector Lead reconciles their outputs.** Where the same compound appears in multiple sub-agent outputs, the Lead merges entries and preserves the strongest evidence tier — this prevents the orchestrator from receiving duplicate or contradicting claims about the same compound.
-4. **Orchestrator runs last.** It receives all four vector outputs plus the mRNA team output, runs the Metastatic Disease Specialist sub-agent, then produces the final ranked protocol.
-5. **Final output**: `simulation-output/protocol-v1.md` — see `06-agent-architecture.md` for the schema.
+2. **First wave — run in parallel:** mRNA Vaccine Research Team, V1 Rate Limiting Lead, V3 Hot Patching Lead. V1 and V3 do not depend on the mRNA team. V2 and V4 do not start in this wave.
+3. **Gate before second wave:** the mRNA team's output must be complete and on disk before V2 or V4 start, because V2 incorporates its inflammatory-context findings and V4 incorporates its immune-modulation findings. This is a strict dependency, not best-effort. V4 additionally consumes V3's MHC-I Upregulation Candidates section, which V3 publishes at the top of its summary; V4 may begin once both V3's MHC-I section and the mRNA team output are available.
+4. **Second wave — run in parallel:** V2 Compiler Protection Lead, V4 Immune Watchdog Lead.
+5. **Sub-agents within a vector run in parallel; the Vector Lead reconciles their outputs.** Where the same compound appears in multiple sub-agent outputs, the Lead merges entries and preserves the strongest evidence tier — this prevents the orchestrator from receiving duplicate or contradicting claims about the same compound.
+6. **Orchestrator runs last.** It receives all four vector outputs plus the mRNA team output, runs the Metastatic Disease Specialist sub-agent, then produces the final ranked protocol.
+7. **Final output**: `simulation-output/protocol-v1.md` — see `06-agent-architecture.md` for the schema.
+
+A dispatcher script (`scripts/dispatch.py`) prints the strict wave plan and validates prerequisites (venv, output tree, openmed import). Run it once before kicking off agent tasks.
 
 ---
 

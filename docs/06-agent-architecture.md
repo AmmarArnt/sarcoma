@@ -28,13 +28,13 @@
     └────────────────────────────────────────────┘
 ```
 
-Vector leads and the mRNA Vaccine Research Team run in parallel. The orchestrator runs last. Within a vector, sub-agents may run in parallel UNLESS noted otherwise.
+Execution runs in two strict waves. **Wave 1 (parallel):** mRNA Vaccine Research Team, V1 Lead, V3 Lead. **Wave 2 (parallel, after wave-1 gate clears):** V2 Lead, V4 Lead — V2/V4 must not start until the mRNA team output is on disk, and V4 additionally requires V3's MHC-I Upregulation Candidates section. The orchestrator runs last. Within a vector, sub-agents may run in parallel UNLESS noted otherwise.
 
 Every agent — orchestrator, vector lead, sub-agent — has access to an OpenMed NER model (or small ensemble of models) appropriate to its domain. See `07-openmed-models.md` for the team→model mapping and the `scripts/openmed_ner.py --team <team-id>` CLI. The NER step is for **grounding** (confirming that the genes/drugs/compounds an agent names are recognised biomedical entities) — not for evidence tiering, mechanism reasoning, or citation discipline, which remain the agent's responsibility per the constraints in `00-README.md`.
 
-The **V3 → V4 bridge** (epigenetic priming restores MHC-I) is an information dependency, not an execution dependency: V3 and V4 can run in parallel, but the V3 lead must surface MHC-I-relevant findings in a clearly-tagged section that the V4 lead and orchestrator will consume.
+The **V3 → V4 bridge** (epigenetic priming restores MHC-I) is an execution dependency on a *section*, not the full summary: V3 publishes its `MHC-I Upregulation Candidates` section at the top of its summary as soon as the V3 Epigenetic Therapy Specialist completes. V4 may begin once that section is on disk and the mRNA team output is complete.
 
-The **mRNA Vaccine Research Team → V2 / V4 bridge** is also an information dependency: the mRNA team's output should be available to the V2 and V4 leads before they finalize, in case it surfaces relevant immune or genomic context. If running V2/V4 truly in parallel with the mRNA team, the V2/V4 leads should note any gaps the mRNA output might fill for the orchestrator to reconcile.
+The **mRNA Vaccine Research Team → V2 / V4 bridge** is a **strict execution dependency**, not best-effort: V2 and V4 must not start until the mRNA team output is on disk under `simulation-output/mrna-vaccine-research/`. V2 incorporates the mRNA team's inflammatory-context findings; V4 incorporates its immune-modulation findings. Wave 1 (mRNA team, V1, V3) runs in parallel; wave 2 (V2, V4) runs only after the wave-1 gate clears. The dispatcher (`scripts/dispatch.py`) prints the wave plan and validates prerequisites — invoke it once before launching agent tasks.
 
 ---
 
@@ -941,10 +941,12 @@ Output: simulation-output/mrna-vaccine-research/oncogenic-risk.md
 
 ### For Claude Code / Cowork (recommended)
 
-1. Create one task per Vector Lead and one task for the mRNA Vaccine Research Team. Assign the context files listed above. Do not over-assign — small models drift when over-stuffed.
+Run `python scripts/dispatch.py` first — it validates the venv, the output tree, and OpenMed grounding, then prints the strict wave plan.
+
+1. **Wave 1 — parallel:** create one task each for the mRNA Vaccine Research Team Lead, V1 Lead, V3 Lead. Assign each its listed context files. Do not over-assign — small models drift when over-stuffed.
 2. Each Vector Lead spawns its sub-agents as parallel tasks (except where noted, e.g., synthesis happens after sub-agents complete).
-3. Set the V3 → V4 information flow: the V3 Epigenetic Therapy Specialist's output (specifically the MHC-I upregulation section) must be accessible to the V4 Lead before V4 finalizes.
-4. Make the mRNA Vaccine Research Team output available to V2 and V4 leads. If running truly in parallel, the V2/V4 leads should flag any gaps that the mRNA output might address.
+3. **Gate:** the V3 Epigenetic Therapy Specialist's MHC-I Upregulation Candidates section is published at the top of the V3 summary as soon as that sub-agent completes — V4 reads from there. The mRNA Vaccine Research Team's output file must be complete on disk.
+4. **Wave 2 — parallel:** create one task each for V2 Lead, V4 Lead. Both consume the mRNA team output; V4 additionally consumes V3's MHC-I section. Wave 2 must not start before the wave-1 gate clears.
 5. The Orchestrator task is BLOCKED BY all four Vector Lead outputs AND the mRNA Vaccine Research Team output.
 6. The Orchestrator launches the Metastatic Disease Specialist as a sub-agent, then writes the final `simulation-output/protocol-v1.md`.
 
