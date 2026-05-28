@@ -18,6 +18,8 @@ This is not medical advice. No agent in this simulation may produce specific hum
 
 Identify and rank candidate interventions across four complementary attack vectors against CIC-rearranged sarcoma. The hypothesis being tested is that **no single vector is sufficient** — a useful intervention strategy would need to act on multiple layers of the oncogenic program at once.
 
+**Critical framing — this simulation must go beyond confirmation.** The goal is not merely to catalogue what existing studies and trials have already established and stop there. The simulation is expected to *simulate forward*: to generate novel, mechanistically grounded hypotheses that the current literature has not yet tested, to identify gaps where the science should go next, to surface unexpected cross-vector synergies, and to provoke lines of inquiry that a researcher or oncologist could act on. A final output that only restates published findings has failed the primary purpose of the exercise. Each vector output and the orchestrator's final catalog must include a dedicated **"Forward Hypotheses"** section — ideas that are not yet in the literature but are mechanistically defensible given what we know.
+
 The four vectors:
 
 - **V1 Rate Limiting** — reduce how fast the oncogenic loop executes and how loud its output is
@@ -26,6 +28,11 @@ The four vectors:
 - **V4 Immune Watchdog** — make fusion-carrying cells visible to and clearable by the immune system
 
 Vectors are designed to be partially independent (so they can be researched in parallel) but interact (so the orchestrator must reconcile them).
+
+Two **supplementary research teams** run in parallel to the vectors and feed their findings to the orchestrator and relevant vector leads:
+
+- **mRNA Vaccine Research Team** — explores whether Pfizer/BioNTech mRNA COVID-19 vaccination modulates the immune, inflammatory, or genomic context in ways relevant to sarcoma development or progression. This team does not attack the tumor directly; it produces findings that the vector leads (especially V2 and V4) may incorporate.
+- **Metastatic Disease Specialist** (sub-agent to the Orchestrator) — examines whether the four core attack vectors apply equally to distant metastases, or whether metastatic biology requires modifications to the recommendations.
 
 ---
 
@@ -70,8 +77,9 @@ Full prompts and output schemas are in `06-agent-architecture.md`. High-level sh
 
 ```
 ORCHESTRATOR
-│   Context: all 6 knowledge files
+│   Context: all 6 knowledge files + supplementary team outputs
 │   Synthesizes vector outputs; ranks; resolves conflicts; writes final protocol.
+│   Sub-agent: Metastatic Disease Specialist
 │
 ├── VECTOR 1 LEAD — Rate Limiting
 │   Context: 02, 04, 05
@@ -85,9 +93,13 @@ ORCHESTRATOR
 │   Context: 01, 02, 04, 05
 │   Sub-agents: Epigenetic Therapy · Differentiation Therapy · PROTAC/ASO (clinical track) · Synthetic Lethality
 │
-└── VECTOR 4 LEAD — Immune Watchdog
-    Context: 01, 02, 05
-    Sub-agents: Checkpoint/T-cell · NK Cell · Microbiome-Immune · Neoantigen Vaccine (clinical track)
+├── VECTOR 4 LEAD — Immune Watchdog
+│   Context: 01, 02, 05
+│   Sub-agents: Checkpoint/T-cell · NK Cell · Microbiome-Immune · Neoantigen Vaccine (clinical track)
+│
+└── mRNA VACCINE RESEARCH TEAM (supplementary)
+    Context: 00, 01, 02
+    Output feeds V2 Lead and V4 Lead before they finalize; also feeds Orchestrator.
 ```
 
 Vector 4 has an explicit dependency on Vector 3's epigenetic priming step (MHC-I restoration). The orchestrator must respect that ordering — see "Execution semantics" below.
@@ -97,9 +109,9 @@ Vector 4 has an explicit dependency on Vector 3's epigenetic priming step (MHC-I
 ## Execution Semantics
 
 1. **Load shared context.** Every agent gets `00-README.md` plus its listed context files. No agent gets context it doesn't need — small models drift when over-stuffed.
-2. **Run vector leads in parallel.** They are independent research tracks.
+2. **Run vector leads and the mRNA Vaccine Research Team in parallel.** They are independent research tracks. The mRNA team's output must be available to V2 and V4 leads before those leads finalize.
 3. **Sub-agents within a vector run in parallel; the Vector Lead reconciles their outputs.** Where the same compound appears in multiple sub-agent outputs, the Lead merges entries and preserves the strongest evidence tier — this prevents the orchestrator from receiving duplicate or contradicting claims about the same compound.
-4. **Orchestrator runs last.** It receives all four vector outputs and produces the final ranked protocol.
+4. **Orchestrator runs last.** It receives all four vector outputs plus the mRNA team output, runs the Metastatic Disease Specialist sub-agent, then produces the final ranked protocol.
 5. **Final output**: `simulation-output/protocol-v1.md` — see `06-agent-architecture.md` for the schema.
 
 ---
@@ -111,7 +123,7 @@ These are mandatory. A sub-agent on a smaller model should refuse to violate any
 1. **Mechanism before recommendation.** Every entry must cite a specific molecular mechanism (e.g., "EGCG → inhibits BRD4 bromodomain BD1 binding to acetylated H3K27 → reduces super-enhancer P-TEFb recruitment"). "Antioxidant properties" is not a mechanism.
 
 2. **Evidence tier required on every claim.** Use the tiers in `06-agent-architecture.md`:
-   - **Established** — FDA-approved or guideline-supported in this disease or a closely related fusion sarcoma
+   - **Established** — FDA- or EMA-approved, or guideline-supported (NCCN, ESMO) in this disease or a closely related fusion sarcoma
    - **Clinical trial** — currently in human trials for sarcoma
    - **Preclinical** — cell lines or animal models; specify which
    - **Mechanistic / Theoretical** — pathway-level plausibility; no direct evidence in CIC-DUX4
@@ -128,6 +140,8 @@ These are mandatory. A sub-agent on a smaller model should refuse to violate any
 7. **Naturally achievable ≠ unlimited supplementation.** "Naturally achievable" means: realistically obtainable from food at culinary doses, or from supplements at doses with established safety data. Megadosing is not naturally achievable.
 
 8. **When in doubt, exclude rather than include.** A short list of well-grounded hypotheses is far more useful than a long list padded with weak ones.
+
+9. **Account for the ~5% atypical cases.** Not all tumors that present clinically and histologically like CIC-DUX4 sarcoma will have a confirmed CIC-DUX4 (or CIC-NUTM1, CIC-FOXO4, etc.) fusion on genomic testing. Agents should note, where relevant, whether a recommendation applies specifically to fusion-confirmed cases or whether it may generalize to this genomically uncharacterized subgroup.
 
 ---
 

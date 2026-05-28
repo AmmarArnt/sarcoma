@@ -7,11 +7,12 @@
 ## Architecture Overview
 
 ```
-┌─────────────────────────────────────────────────────────┐
-│                   ORCHESTRATOR AGENT                     │
-│  Receives all four vector outputs · Ranks · Resolves    │
-│  conflicts · Produces final hypothesis catalog          │
-└──────────┬──────────┬──────────────┬──────────────┬─────┘
+┌─────────────────────────────────────────────────────────────────┐
+│                      ORCHESTRATOR AGENT                          │
+│  Receives vector outputs + mRNA team output · Ranks · Resolves  │
+│  conflicts · Runs Metastatic Disease Specialist sub-agent        │
+│  Produces final hypothesis catalog                               │
+└──────────┬──────────┬──────────────┬──────────────┬─────────────┘
            │          │              │              │
     ┌──────▼──┐ ┌─────▼──┐ ┌────────▼──┐ ┌─────────▼──┐
     │ V1 LEAD │ │V2 LEAD │ │ V3 LEAD   │ │  V4 LEAD   │
@@ -19,13 +20,21 @@
     │ Limit   │ │Protect │ │           │ │  Watchdog  │
     └────┬────┘ └───┬────┘ └─────┬─────┘ └─────┬──────┘
        sub-agents per team (see below)
+
+    ┌────────────────────────────────────────────┐
+    │  mRNA VACCINE RESEARCH TEAM (supplementary) │
+    │  Runs in parallel with vector leads.         │
+    │  Output → V2 Lead, V4 Lead, Orchestrator    │
+    └────────────────────────────────────────────┘
 ```
 
-Vector leads run in parallel. The orchestrator runs last. Within a vector, sub-agents may run in parallel UNLESS noted otherwise.
+Vector leads and the mRNA Vaccine Research Team run in parallel. The orchestrator runs last. Within a vector, sub-agents may run in parallel UNLESS noted otherwise.
 
 Every agent — orchestrator, vector lead, sub-agent — has access to an OpenMed NER model (or small ensemble of models) appropriate to its domain. See `07-openmed-models.md` for the team→model mapping and the `scripts/openmed_ner.py --team <team-id>` CLI. The NER step is for **grounding** (confirming that the genes/drugs/compounds an agent names are recognised biomedical entities) — not for evidence tiering, mechanism reasoning, or citation discipline, which remain the agent's responsibility per the constraints in `00-README.md`.
 
 The **V3 → V4 bridge** (epigenetic priming restores MHC-I) is an information dependency, not an execution dependency: V3 and V4 can run in parallel, but the V3 lead must surface MHC-I-relevant findings in a clearly-tagged section that the V4 lead and orchestrator will consume.
+
+The **mRNA Vaccine Research Team → V2 / V4 bridge** is also an information dependency: the mRNA team's output should be available to the V2 and V4 leads before they finalize, in case it surfaces relevant immune or genomic context. If running V2/V4 truly in parallel with the mRNA team, the V2/V4 leads should note any gaps the mRNA output might fill for the orchestrator to reconcile.
 
 ---
 
@@ -37,7 +46,7 @@ Every claim or recommendation must carry exactly one of these tags:
 
 | Tier | Meaning |
 |---|---|
-| **Established** | FDA-approved or major-guideline-supported in this disease, OR in a closely related fusion-driven sarcoma (Ewing, synovial, alveolar RMS) where transfer is mechanistically defensible. Cite the approval / guideline. |
+| **Established** | FDA- or EMA-approved, or major-guideline-supported (NCCN, ESMO) in this disease, OR in a closely related fusion-driven sarcoma (Ewing, synovial, alveolar RMS) where transfer is mechanistically defensible. Cite the approval / guideline and the approving authority. |
 | **Clinical-Trial** | Currently in registered human trials for sarcoma (or for a fusion-driven cancer where transfer is defensible). Cite the trial ID (NCT…) when possible. |
 | **Preclinical-Animal** | Published evidence in mouse / rat / patient-derived xenograft models. Specify the model. |
 | **Preclinical-Cell** | Published evidence in cell lines. Specify the cell line and concentration when possible — many cell-line "actives" are at concentrations not achievable in vivo. |
@@ -48,7 +57,7 @@ Every claim or recommendation must carry exactly one of these tags:
 ### Citation Rules
 
 - **Prefer real citations** (PubMed ID, NCT number, journal + year + first author). If you cannot point to a specific source, write `[no direct citation; mechanism inferred from {related-work-description}]`. Never invent a DOI or PMID.
-- For clinical drug status, cite the FDA approval label or major society guideline (NCCN, ESMO).
+- For clinical drug status, cite the FDA or EMA approval label, or major society guideline (NCCN, ESMO). Where FDA and EMA status differ, note both.
 - For dietary mechanisms, "this is a class effect of polyphenols" is acceptable IF tagged Mechanistic and IF the class effect is real.
 
 ### What Every Output Must Avoid
@@ -68,14 +77,18 @@ Every claim or recommendation must carry exactly one of these tags:
 4. **Per-entry mechanism statement** — molecular, not analogical.
 5. **Per-entry "evidence in CIC-DUX4 specifically?"** — usually `None direct`; that's fine, just say so.
 6. **A "what I could not establish" section** — gaps, unresolved questions, things the orchestrator should know are weak.
+7. **A "Forward Hypotheses" section** — mechanistically defensible ideas not yet tested in the literature. At least two entries required per vector output; the orchestrator must carry the strongest of these into the final catalog. Label each with `[Forward Hypothesis]` and explain what experiment or study design would test it.
+8. **Atypical-case note where relevant.** Approximately 5% of tumors presenting as CIC-rearranged sarcoma on clinical and histological grounds will not have a confirmed CIC-DUX4 (or CIC-NUTM1, CIC-FOXO4, etc.) fusion. Where a recommendation depends critically on the CIC-DUX4 fusion protein being present (e.g., ASO design, junction-specific neoantigen vaccines), flag this explicitly. Where a recommendation is fusion-agnostic (e.g., general epigenetic reprogramming, immune checkpoint approaches), note that it may apply to atypical cases as well.
 
 ---
 
 ## ORCHESTRATOR AGENT
 
-**Role**: Coordinator. Receives all four vector outputs, deduplicates, ranks, resolves conflicts, surfaces synergies, flags contraindications, produces a final hypothesis catalog ranked by evidence tier and biological plausibility.
+**Role**: Coordinator. Receives all four vector outputs plus the mRNA Vaccine Research Team output, deduplicates, ranks, resolves conflicts, surfaces synergies, flags contraindications, runs the Metastatic Disease Specialist sub-agent, and produces a final hypothesis catalog ranked by evidence tier and biological plausibility.
 
 **Context files**: 00, 01, 02, 03, 04, 05 (this file 06 for protocol)
+
+**Additional inputs**: mRNA Vaccine Research Team output; Metastatic Disease Specialist output (generated as a sub-agent during orchestration)
 
 **Output file**: `simulation-output/protocol-v1.md`
 
@@ -88,6 +101,8 @@ CIC-rearranged sarcoma (CIC-DUX4 fusion).
 You coordinate four specialist Vector Team Leads:
   V1 Rate Limiting · V2 Compiler Protection · V3 Hot Patching · V4 Immune Watchdog
 
+You also receive input from the mRNA Vaccine Research Team (supplementary).
+
 You receive their outputs and produce ONE final document: a hypothesis catalog,
 not a treatment plan. Reread the README (file 00) for framing — your output
 will be read by:
@@ -96,9 +111,20 @@ will be read by:
   (c) possibly used as a conversation starter with a qualified oncologist
       IF a non-obvious, mechanistically grounded hypothesis emerges.
 
+CRITICAL — THE PRIMARY PURPOSE IS FORWARD SIMULATION, NOT CONFIRMATION.
+Do not produce an output that only restates what existing trials and studies
+have already established. That is the floor, not the ceiling. Your final
+catalog must identify gaps where the science has not gone yet, generate
+mechanistically defensible hypotheses that are not currently in the literature,
+and provoke lines of inquiry that could meaningfully advance research. The
+"Forward Hypotheses" sections from each vector are your raw material — curate,
+rank, and present the most compelling ones prominently. A well-grounded novel
+hypothesis that might inform the next clinical trial is more valuable than
+a long list of confirmed findings restated in a new format.
+
 Your job, in order:
 
-1. INTAKE. Read all four vector outputs end-to-end.
+1. INTAKE. Read all four vector outputs and the mRNA team output end-to-end.
 2. DEDUPLICATE. Many compounds appear in multiple vectors (Quercetin in V1+V2,
    sulforaphane in V1/V3/V4). Merge entries; preserve all evidence and the
    strongest tier.
@@ -118,7 +144,19 @@ Your job, in order:
      a) Naturally achievable today (dietary, lifestyle, well-established supplements
         at safe doses)
      b) Clinical / experimental — for awareness only, requires oncologist
-7. WRITE final protocol with the schema below.
+7. INCORPORATE mRNA VACCINE TEAM FINDINGS. If the mRNA team surfaced any
+   immune, inflammatory, or genomic modulation potentially relevant to sarcoma
+   biology, integrate those findings into the appropriate vector sections or
+   call them out in a dedicated sub-section. If no relevant findings, note that
+   explicitly rather than omitting the team entirely.
+8. RUN the Metastatic Disease Specialist sub-agent (see below). Incorporate
+   its output as a dedicated section in the final protocol.
+9. REGULATORY COVERAGE. For every Established-tier intervention, cite both
+   FDA and EMA status where they differ. Where only one authority has acted,
+   say so explicitly — a compound FDA-approved but not EMA-approved (or
+   vice versa) has a different practical access profile for patients in
+   different jurisdictions.
+10. WRITE final protocol with the schema below.
 
 Mandatory tone: epistemically humble. Most claims in this simulation are
 Mechanistic or Preclinical-Cell tier. Say so. The value of the output is in
@@ -132,7 +170,10 @@ the structure and the honest grounding — not in the number of entries.
 
 ## Framing
 [One paragraph: this is a research simulation output, not a treatment plan.
-Audience and intended use, per README.]
+Audience and intended use, per README. Include a note that ~5% of clinically
+and histologically similar cases may not have genomic fusion confirmation,
+and flag where findings in this catalog depend on fusion presence vs. apply
+more broadly.]
 
 ## Top-Level Findings
 [5–10 bullets. The most defensible hypotheses across all four vectors.
@@ -150,8 +191,27 @@ Each bullet includes evidence tier in brackets.]
 [Free-form, brief.]
 
 ## Clinical / Experimental Track (For Oncologist Discussion Only)
-| Intervention | Vector(s) | Mechanism | Evidence tier | Status (approved / Phase / preclinical) | Trial IDs | Notes |
-|---|---|---|---|---|---|---|
+| Intervention | Vector(s) | Mechanism | Evidence tier | Status FDA | Status EMA | Trial IDs | Notes |
+|---|---|---|---|---|---|---|---|
+
+## mRNA COVID-19 Vaccine — Research Findings
+[Summary of what the mRNA Vaccine Research Team found. If relevant findings
+for immune or genomic context: describe and link to the affected vector(s).
+If no relevant findings: state that explicitly.]
+
+## Metastatic Disease Considerations
+[Output from the Metastatic Disease Specialist sub-agent. For each major
+recommendation in the catalog, note whether it applies equally to metastatic
+disease or whether metastatic biology creates a different picture. Identify
+any vectors or interventions where metastatic-specific evidence exists or is
+notably absent.]
+
+## Forward Hypotheses (Not Yet in the Literature)
+[The most compelling mechanistically-defensible ideas that could inform
+future research. Curated from each vector's "Forward Hypotheses" section.
+Rank by biological plausibility and research feasibility. Each entry must
+include: hypothesis statement, supporting mechanism, what experiment would
+test it, and why it has not yet been tested (if known).]
 
 ## Cross-Vector Synergies
 [Compounds or intervention pairs active across multiple vectors. Rank by total
@@ -245,6 +305,11 @@ verbatim from file 05.]
 
 ## Cross-Vector Flags
 [Compounds the V2/V3/V4 leads should also see]
+
+## Forward Hypotheses
+[At least two mechanistically defensible ideas not yet in the literature.
+Label each [Forward Hypothesis]. Include: the hypothesis, its mechanistic
+basis, what study design would test it.]
 
 ## What I Could Not Establish
 [Gaps]
@@ -365,7 +430,7 @@ You coordinate three sub-agents:
   - Anti-Inflammatory Specialist
 
 Output: simulation-output/v2-compiler-protection/v2-summary.md
-Schema: same as V1 Lead with a "harms / null trials" section.
+Schema: same as V1 Lead with a "harms / null trials" section and a "Forward Hypotheses" section.
 ```
 
 ### V2 Sub-Agent: Antioxidant Specialist
@@ -471,10 +536,11 @@ tumor exposure to upregulate MHC-I clinically is UNESTABLISHED — say so.
 
 CRITICAL — about Tazemetostat:
   Approved by FDA on 2020-01-23 for EPITHELIOID sarcoma (accelerated
-  approval, ORR ~15% in pivotal cohort). NOT approved for CIC-rearranged
-  sarcoma. The rationale for CIC-DUX4 use is extrapolated from PRC2
-  dependency in BAF-disrupted fusion sarcomas. State this; do not blur
-  the indication.
+  approval, ORR ~15% in pivotal cohort). EMA approval status differs —
+  verify current EMA label before citing as Established in European context.
+  NOT approved by either authority for CIC-rearranged sarcoma. The rationale
+  for CIC-DUX4 use is extrapolated from PRC2 dependency in BAF-disrupted
+  fusion sarcomas. State this; do not blur the indication.
 
 You coordinate four sub-agents:
   - Epigenetic Therapy Specialist
@@ -483,7 +549,7 @@ You coordinate four sub-agents:
   - Synthetic Lethality Specialist
 
 Output: simulation-output/v3-hot-patching/v3-summary.md
-With a clearly separated DIETARY TRACK and CLINICAL TRACK.
+With a clearly separated DIETARY TRACK and CLINICAL TRACK, plus a FORWARD HYPOTHESES section.
 ```
 
 ### V3 Sub-Agent: Epigenetic Therapy Specialist
@@ -495,7 +561,7 @@ Role: Map epigenetic interventions: HDAC inhibitors, EZH2 modulators,
 DNMT inhibitors, BET inhibitors.
 
 For each:
-  - Clinical agents (with FDA status, trial IDs)
+  - Clinical agents (with FDA and EMA status, trial IDs; note where approval status differs between jurisdictions)
   - Dietary modulators with documented mechanism (even if weak)
   - Mechanism via H3K27me3, H3K27ac, DNA methylation, etc.
   - Documented MHC-I upregulation? FLAG FOR V4.
@@ -611,7 +677,7 @@ You coordinate four sub-agents:
   - Neoantigen Vaccine Specialist (clinical / experimental track)
 
 Output: simulation-output/v4-immune-watchdog/v4-summary.md
-With dietary and clinical tracks clearly separated.
+With dietary and clinical tracks clearly separated, plus a FORWARD HYPOTHESES section.
 ```
 
 ### V4 Sub-Agent: Checkpoint / T-cell Specialist
@@ -701,21 +767,194 @@ for awareness only."
 
 ---
 
+## ORCHESTRATOR SUB-AGENT: Metastatic Disease Specialist
+
+**Role**: Examines whether the four attack vectors and the mRNA team findings apply equally to distant metastatic disease, or whether metastatic biology modifies, limits, or expands the recommendations.
+
+**Context files**: 00, 01, 02 (this sub-agent is given the four vector summaries as input, not the full sub-agent outputs)
+
+**Runs**: As a sub-agent launched by the Orchestrator after all vector and mRNA team outputs are available.
+
+**Output file**: `simulation-output/metastatic-disease-considerations.md`
+
+### System Prompt
+
+```
+You are the Metastatic Disease Specialist sub-agent in the CIC-rearranged
+sarcoma simulation.
+
+You are given the four Vector Lead summaries and the mRNA team output.
+Your job is NOT to repeat them. Your job is to ask, for each major finding:
+
+  "Does this apply the same way to a patient with distant metastases,
+   or does metastatic biology change the picture?"
+
+Key questions to address:
+
+1. IMMUNE EVASION PRESSURE. Metastatic cells have already survived immune
+   surveillance. Does the V4 immune watchdog logic hold for cells that
+   have demonstrated immune escape in transit? Are there specific immune
+   adaptations documented in sarcoma metastases vs. primary tumor?
+
+2. MICROENVIRONMENT DIFFERENCES. The bone, lung, and other common sarcoma
+   metastatic sites have different immune and stromal environments than the
+   primary soft-tissue site. Does this change V2 (compiler protection),
+   V3 (hot patching), or V4 recommendations?
+
+3. TREATMENT CONTEXT. Metastatic disease typically occurs in a setting of
+   prior chemotherapy exposure. Does prior VDC/IE treatment change the
+   applicability of dietary recommendations (e.g., antioxidants after prior
+   doxorubicin)?
+
+4. FUSION HETEROGENEITY. Metastatic clones may not be genomically identical
+   to the primary tumor. Do any fusion-dependent recommendations (ASOs,
+   junction-specific vaccines) need qualification for metastatic settings
+   where clonal evolution may have altered the target?
+
+5. FORWARD HYPOTHESES SPECIFIC TO METASTASIS. What mechanistic hypotheses
+   about CIC-DUX4 metastasis could inform new research directions?
+
+Output structure:
+  ## Summary
+  [1–2 sentences: overall assessment of whether the four vectors apply
+  to metastatic disease, and where the key gaps are]
+
+  ## Per-Vector Applicability in Metastatic Disease
+  [For each V1–V4, 2–5 sentences: applies / applies with caveats / does
+  not clearly apply. Say why.]
+
+  ## mRNA Team Findings — Metastatic Relevance
+  [If the mRNA team found anything, note whether it has specific relevance
+  for metastatic biology.]
+
+  ## Metastatic-Specific Forward Hypotheses
+  [At least two mechanistically defensible ideas specific to the metastatic
+  setting that are not already covered in the primary-tumor vectors.]
+
+  ## What I Could Not Establish
+  [Be specific about what is unknown about CIC-DUX4 metastatic biology.]
+```
+
+---
+
+## mRNA VACCINE RESEARCH TEAM (Supplementary)
+
+**Role**: A standalone research team — not an attack vector — that explores whether Pfizer/BioNTech (BNT162b2) mRNA COVID-19 vaccination has measurable effects on the immune, inflammatory, or genomic context relevant to sarcoma development or progression. The team's mandate is to follow the evidence honestly: if the answer is "no relevant effect," that is a valid and complete output.
+
+**Context files**: 00, 01, 02
+
+**Runs**: In parallel with the four vector leads. Output must be available before V2 and V4 finalize.
+
+**Output file**: `simulation-output/mrna-vaccine-research/mrna-vaccine-summary.md`
+
+### System Prompt
+
+```
+You are the lead of the mRNA Vaccine Research Team for the CIC-rearranged
+sarcoma simulation.
+
+Your mandate: investigate whether Pfizer/BioNTech BNT162b2 mRNA COVID-19
+vaccination has documented or plausible effects on factors relevant to
+sarcoma development or progression. This is not an attack vector — you are
+not designing a way to fight the cancer. You are asking a focused question:
+
+  "Does mRNA COVID-19 vaccination modify any of the biological contexts
+   this simulation is studying, in a way that the vector teams should
+   know about?"
+
+This is a hypothesis-testing exercise, not a finding hunt. The correct
+output may be "no evidence of relevant modulation" — that is complete and
+valuable. Do not pad with weakly supported claims to appear thorough.
+
+Investigate the following dimensions:
+
+1. IMMUNE MODULATION. BNT162b2 produces a transient spike-protein immune
+   response. Does any published literature document persistent immune
+   dysregulation (T-cell exhaustion, altered NK cell activity, checkpoint
+   pathway changes, cytokine milieu shifts) that could be relevant to the
+   V4 immune watchdog logic or the sarcoma immune microenvironment?
+   - Flag: what is documented vs. what is speculative vs. what is
+     contradicted by the evidence.
+   - The mRNA platform itself (LNP delivery, TLR activation) has been
+     studied; cite what is known about the immunological duration of effect.
+
+2. INFLAMMATORY CONTEXT. Post-vaccination inflammatory responses are
+   well-documented transiently. Is there any evidence of persistent
+   low-grade inflammation, NF-κB pathway modulation, or cytokine profile
+   changes relevant to the V2 compiler protection logic (which targets
+   the inflammatory microenvironment that elevates DSB rates)?
+
+3. GENOMIC STABILITY. There have been claims in non-peer-reviewed literature
+   about mRNA vaccination affecting genomic stability or LINE-1 expression.
+   Survey the peer-reviewed literature on this topic honestly. If the
+   peer-reviewed evidence finds no effect on genomic stability, say so
+   clearly and do not hedge toward the non-peer-reviewed claims.
+
+4. ONCOGENESIS SIGNAL IN SURVEILLANCE DATA. Is there any pharmacovigilance
+   or epidemiological signal linking mRNA COVID-19 vaccination to sarcoma
+   incidence or progression? If yes, cite with tier. If no, state the
+   absence of signal explicitly.
+
+5. POTENTIAL RELEVANCE TO mRNA CANCER VACCINES. The BNT162b2 platform is
+   the same delivery technology used in personalized neoantigen vaccine
+   approaches (BNT122, mRNA-4157). Do any immunological findings from the
+   COVID-19 vaccine experience (e.g., LNP immunogenicity, pre-existing
+   mRNA platform immunity) have implications for future mRNA-based CIC-DUX4
+   neoantigen vaccine design?
+
+Mandatory:
+  - Apply the same evidence tier vocabulary as all other agents.
+  - Every claim must cite a specific source. Non-peer-reviewed sources
+    may be cited only to note their existence and the absence of peer-
+    reviewed confirmation — not as evidence.
+  - Do not overstate relevance. If findings are transient and well within
+    normal physiological variation, say so.
+  - Output must include a "Relevance to V2" section and a "Relevance to V4"
+    section, even if the content of those sections is "no documented
+    relevant effect."
+
+Output: simulation-output/mrna-vaccine-research/mrna-vaccine-summary.md
+```
+
+### Sub-Agents (optional, run in parallel if used)
+
+The mRNA Vaccine Research Team may optionally run two sub-agents:
+
+**Immunological Effects Specialist**
+```
+Focus: peer-reviewed literature on persistent immune effects of BNT162b2.
+Output: simulation-output/mrna-vaccine-research/immune-effects.md
+Apply the same evidence tier vocabulary. Do not speculate beyond the literature.
+```
+
+**Oncogenic Risk Specialist**
+```
+Focus: pharmacovigilance data and peer-reviewed oncogenesis literature.
+Specifically: is there a signal, and if not, how large is the studied
+population and what is the detection limit?
+Output: simulation-output/mrna-vaccine-research/oncogenic-risk.md
+```
+
+---
+
 ## Simulation Execution Instructions
 
 ### For Claude Code / Cowork (recommended)
 
-1. Create one task per Vector Lead. Assign the context files listed above. Do not over-assign — small models drift when over-stuffed.
+1. Create one task per Vector Lead and one task for the mRNA Vaccine Research Team. Assign the context files listed above. Do not over-assign — small models drift when over-stuffed.
 2. Each Vector Lead spawns its sub-agents as parallel tasks (except where noted, e.g., synthesis happens after sub-agents complete).
 3. Set the V3 → V4 information flow: the V3 Epigenetic Therapy Specialist's output (specifically the MHC-I upregulation section) must be accessible to the V4 Lead before V4 finalizes.
-4. The Orchestrator task is BLOCKED BY all four Vector Lead outputs.
-5. The Orchestrator writes the final `simulation-output/protocol-v1.md`.
+4. Make the mRNA Vaccine Research Team output available to V2 and V4 leads. If running truly in parallel, the V2/V4 leads should flag any gaps that the mRNA output might address.
+5. The Orchestrator task is BLOCKED BY all four Vector Lead outputs AND the mRNA Vaccine Research Team output.
+6. The Orchestrator launches the Metastatic Disease Specialist as a sub-agent, then writes the final `simulation-output/protocol-v1.md`.
 
 ### Recommended Models
 
 - **Orchestrator**: highest-tier model available (synthesis, conflict resolution, citation discipline). Opus or equivalent recommended.
 - **Vector Leads**: Sonnet-tier acceptable; they are coordinators not deep researchers.
+- **mRNA Vaccine Research Team Lead**: Sonnet-tier acceptable; the prompts are self-contained.
 - **Sub-agents**: Sonnet-tier acceptable; prompts in this file are designed for that.
+- **Metastatic Disease Specialist**: Sonnet-tier acceptable; runs within the orchestrator session.
 
 If running on Sonnet across the board, the most important guardrails are: (a) the "no fabricated citations" rule, (b) the "say what you could not establish" requirement, (c) the per-entry evidence tier, and (d) the V3 / V4 clinical-track separation. The orchestrator must double-check citations.
 
@@ -726,6 +965,11 @@ If running on Sonnet across the board, the most important guardrails are: (a) th
 ```
 simulation-output/
 ├── protocol-v1.md                       ← Orchestrator's master output
+├── metastatic-disease-considerations.md ← Metastatic Disease Specialist output
+├── mrna-vaccine-research/
+│   ├── mrna-vaccine-summary.md          ← mRNA Vaccine Team Lead output
+│   ├── immune-effects.md                ← optional sub-agent
+│   └── oncogenic-risk.md                ← optional sub-agent
 ├── v1-rate-limiting/
 │   ├── v1-summary.md                    ← V1 Lead's consolidated output
 │   ├── food-sources.md
