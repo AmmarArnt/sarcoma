@@ -155,7 +155,7 @@ Vector 3 is where the highest-impact interventions live, but also where the diet
 - Tier: Theoretical / Preclinical at best for CIC-DUX4 specifically.
 
 **3c. EZH2 inhibitors (clinical)**
-- Tazemetostat: FDA accelerated approval (2020-01-23) for epithelioid sarcoma; not approved for CIC-rearranged sarcoma.
+- Tazemetostat: FDA accelerated approval (2020-01-23) for epithelioid sarcoma; EMA approval status should be verified as it may differ. Not approved for CIC-rearranged sarcoma by either authority.
 - Mechanistic rationale extrapolates from PRC2 dependency in BAF-disrupted sarcomas; direct CIC-DUX4 efficacy data is limited.
 - Tier: Established (epithelioid sarcoma) / Clinical-Trial (other sarcomas).
 
@@ -165,7 +165,7 @@ Vector 3 is where the highest-impact interventions live, but also where the diet
 - Tier: Clinical-Trial.
 
 **3e. CDK4/6 inhibitors (clinical)**
-- Palbociclib, ribociclib, abemaciclib — FDA-approved for HR+ breast cancer.
+- Palbociclib, ribociclib, abemaciclib — FDA- and EMA-approved for HR+ breast cancer (specific approved indications and labeling vary by jurisdiction; verify current status).
 - Sarcoma trials are smaller and more mixed; rationale (CCND1/CDK4 dependency in CIC-DUX4) is solid.
 - Tier: Established (breast) / Clinical-Trial (sarcoma).
 
