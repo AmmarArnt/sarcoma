@@ -28,7 +28,12 @@ This work is intentionally positioned as an evolving thesis. As it matures, the 
 ## Repository layout
 - `docs/00-README.md` — full project framing and constraints
 - `docs/01-06*.md` — domain knowledge, analogy model, attack vectors, and agent architecture
+- `docs/todo.md` — active ideas, open questions, and near-term research priorities from the project maintainer
 - `docs/cic_sarcoma_simulation.html` — optional interactive visualization
+
+## Contributor orientation
+- Start with `docs/00-README.md` for framing, constraints, and execution semantics.
+- Review `docs/todo.md` early to understand current thinking and where contributions can be most useful.
 
 ## Scope and safety
 - This repository is for research and hypothesis generation only.
