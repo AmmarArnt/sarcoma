@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;700&family=Syne:wght@400;600;800&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #080c14; color: #e2e8f0; font-family: 'JetBrains Mono', monospace; min-height: 100vh; }
+  .app { max-width: 1200px; margin: 0 auto; padding: 24px 20px; }
+  .header { text-align: center; margin-bottom: 28px; }
+  .header h1 { font-family: 'Syne', sans-serif; font-size: 1.5rem; font-weight: 800; color: #f1f5f9; letter-spacing: -0.02em; margin-bottom: 6px; }
+  .header p { font-size: 0.72rem; color: #64748b; letter-spacing: 0.08em; text-transform: uppercase; }
+  .tabs { display: flex; gap: 4px; margin-bottom: 24px; background: #0f1623; padding: 4px; border-radius: 10px; border: 1px solid #1e293b; }
+  .tab { flex: 1; padding: 10px 16px; background: transparent; border: none; color: #475569; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; font-weight: 600; cursor: pointer; border-radius: 7px; transition: all 0.25s ease; letter-spacing: 0.04em; text-transform: uppercase; }
+  .tab.active { background: #1e293b; color: #e2e8f0; }
+  .tab:hover:not(.active) { color: #94a3b8; }
+  .panel { display: none; }
+  .panel.active { display: block; }
+  .diagram-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .diagram-col { background: #0d1421; border: 1px solid #1e293b; border-radius: 12px; padding: 20px; position: relative; overflow: hidden; }
+  .diagram-col::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; border-radius: 12px 12px 0 0; }
+  .col-normal::before { background: linear-gradient(90deg, #22c55e, #16a34a); }
+  .col-broken::before { background: linear-gradient(90deg, #ef4444, #dc2626); }
+  .col-title { font-family: 'Syne', sans-serif; font-size: 0.85rem; font-weight: 700; margin-bottom: 4px; letter-spacing: 0.02em; }
+  .col-normal .col-title { color: #4ade80; }
+  .col-broken .col-title { color: #f87171; }
+  .col-subtitle { font-size: 0.65rem; color: #475569; margin-bottom: 18px; letter-spacing: 0.05em; text-transform: uppercase; }
+  .node { background: #131e2e; border: 1px solid #253347; border-radius: 8px; padding: 10px 14px; margin-bottom: 6px; display: flex; flex-direction: column; gap: 2px; }
+  .node-label { font-size: 0.7rem; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.08em; }
+  .node-name { font-size: 0.82rem; font-weight: 700; color: #e2e8f0; }
+  .node-desc { font-size: 0.67rem; color: #475569; margin-top: 2px; line-height: 1.4; }
+  .node-tag { display: inline-block; padding: 2px 7px; border-radius: 4px; font-size: 0.6rem; font-weight: 600; letter-spacing: 0.06em; margin-top: 4px; align-self: flex-start; }
+  .tag-signal { background: #1a3a5c; color: #60a5fa; }
+  .tag-kinase { background: #1a2f4a; color: #7dd3fc; }
+  .tag-repressor { background: #1a3b2a; color: #4ade80; }
+  .tag-suppressed { background: #1a2e1a; color: #86efac; }
+  .tag-broken { background: #3b1a1a; color: #fca5a5; }
+  .tag-activator { background: #3b2010; color: #fdba74; }
+  .tag-oncogene { background: #3b1a2a; color: #f9a8d4; }
+  .arrow { display: flex; align-items: center; justify-content: center; height: 22px; position: relative; }
+  .arrow-line { width: 2px; height: 100%; position: absolute; }
+  .arrow-normal .arrow-line { background: #22c55e; }
+  .arrow-broken .arrow-line { background: #ef4444; }
+  .arrow-icon { font-size: 14px; z-index: 1; background: #0d1421; padding: 0 4px; }
+  .arrow-normal .arrow-icon { color: #22c55e; }
+  .arrow-broken .arrow-icon { color: #ef4444; }
+  .arrow-label { font-size: 0.6rem; position: absolute; right: 0; color: #475569; letter-spacing: 0.04em; white-space: nowrap; }
+  .loop-box { border: 1.5px dashed #22c55e; border-radius: 8px; padding: 10px; margin-top: 8px; position: relative; }
+  .loop-box-broken { border-color: #ef4444; background: rgba(239,68,68,0.04); }
+  .loop-label { position: absolute; top: -9px; left: 10px; background: #0d1421; padding: 0 6px; font-size: 0.6rem; color: #22c55e; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+  .loop-label-broken { color: #ef4444; }
+  .break-node { background: #0a1f12; border: 1px solid #166534; border-radius: 6px; padding: 8px 12px; margin-top: 6px; font-size: 0.68rem; color: #4ade80; font-weight: 600; }
+  .break-node-missing { background: #1f0a0a; border: 1px dashed #991b1b; border-radius: 6px; padding: 8px 12px; margin-top: 6px; font-size: 0.68rem; color: #ef4444; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+  .strikethrough { text-decoration: line-through; opacity: 0.5; }
+  .fusion-badge { background: linear-gradient(135deg, #7c2d12, #1e1b4b); border: 1px solid #c2410c; border-radius: 8px; padding: 12px; margin: 8px 0; text-align: center; }
+  .fusion-badge .fusion-name { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 800; color: #fed7aa; letter-spacing: 0.02em; }
+  .fusion-badge .fusion-sub { font-size: 0.62rem; color: #92400e; margin-top: 2px; text-transform: uppercase; letter-spacing: 0.08em; }
+  .infinite-pulse { background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.3); border-radius: 8px; padding: 10px; text-align: center; animation: pulse-red 2s infinite; }
+  @keyframes pulse-red { 0%, 100% { border-color: rgba(239,68,68,0.3); background: rgba(239,68,68,0.05); } 50% { border-color: rgba(239,68,68,0.7); background: rgba(239,68,68,0.12); } }
+  .infinite-text { font-family: 'Syne', sans-serif; font-size: 0.85rem; font-weight: 800; color: #ef4444; letter-spacing: 0.02em; }
+  .code-block { background: #060d18; border: 1px solid #1e293b; border-radius: 8px; padding: 12px 14px; font-size: 0.67rem; color: #94a3b8; line-height: 1.7; margin-top: 10px; font-family: 'JetBrains Mono', monospace; }
+  .code-green { color: #4ade80; }
+  .code-red { color: #f87171; }
+  .code-blue { color: #60a5fa; }
+  .code-orange { color: #fb923c; }
+  .code-dim { color: #334155; }
+  .code-yellow { color: #fbbf24; }
+  .intervention-layout { display: grid; grid-template-columns: 1.1fr 1fr; gap: 16px; }
+  .pathway-col { background: #0d1421; border: 1px solid #1e293b; border-radius: 12px; padding: 20px; }
+  .intervention-col { display: flex; flex-direction: column; gap: 12px; }
+  .intervention-card { background: #0d1421; border: 1px solid #1e293b; border-radius: 10px; padding: 14px 16px; position: relative; overflow: hidden; }
+  .intervention-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; border-radius: 10px 0 0 10px; }
+  .int-a::before { background: #3b82f6; }
+  .int-b::before { background: #f59e0b; }
+  .int-c::before { background: #8b5cf6; }
+  .int-d::before { background: #10b981; }
+  .int-point { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px; }
+  .int-a .int-point { color: #3b82f6; }
+  .int-b .int-point { color: #f59e0b; }
+  .int-c .int-point { color: #8b5cf6; }
+  .int-d .int-point { color: #10b981; }
+  .int-title { font-family: 'Syne', sans-serif; font-size: 0.82rem; font-weight: 700; color: #e2e8f0; margin-bottom: 6px; }
+  .food-pills { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 7px; }
+  .food-pill { padding: 3px 9px; border-radius: 20px; font-size: 0.62rem; font-weight: 600; border: 1px solid; }
+  .int-a .food-pill { background: rgba(59,130,246,0.12); border-color: rgba(59,130,246,0.3); color: #93c5fd; }
+  .int-b .food-pill { background: rgba(245,158,11,0.12); border-color: rgba(245,158,11,0.3); color: #fcd34d; }
+  .int-c .food-pill { background: rgba(139,92,246,0.12); border-color: rgba(139,92,246,0.3); color: #c4b5fd; }
+  .int-d .food-pill { background: rgba(16,185,129,0.12); border-color: rgba(16,185,129,0.3); color: #6ee7b7; }
+  .mechanism-text { font-size: 0.65rem; color: #475569; line-height: 1.5; margin-top: 5px; }
+  .pnode { background: #131e2e; border: 1px solid #253347; border-radius: 6px; padding: 8px 12px; margin-bottom: 4px; display: flex; justify-content: space-between; align-items: center; position: relative; }
+  .pnode-left { display: flex; flex-direction: column; }
+  .pnode-name { font-size: 0.76rem; font-weight: 700; color: #cbd5e1; }
+  .pnode-role { font-size: 0.6rem; color: #475569; margin-top: 1px; }
+  .pnode-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .dot-active { background: #ef4444; box-shadow: 0 0 8px rgba(239,68,68,0.6); animation: blink 1.5s infinite; }
+  .dot-neutral { background: #475569; }
+  .dot-target { background: #f59e0b; box-shadow: 0 0 8px rgba(245,158,11,0.4); }
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+  .pnode-wrap { position: relative; padding-right: 18px; margin-bottom: 4px; }
+  .pnode-intervention { position: absolute; right: 0; top: 50%; transform: translateY(-50%); width: 14px; height: 14px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.55rem; font-weight: 800; z-index: 2; }
+  .pint-a { background: #3b82f6; color: white; }
+  .pint-b { background: #f59e0b; color: black; }
+  .pint-c { background: #8b5cf6; color: white; }
+  .pint-d { background: #10b981; color: black; }
+  .p-arrow { text-align: center; height: 16px; font-size: 10px; color: #334155; line-height: 16px; }
+  .section-title { font-family: 'Syne', sans-serif; font-size: 0.78rem; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid #1e293b; }
+  .legend { background: #0a1018; border: 1px solid #1e293b; border-radius: 8px; padding: 10px 14px; margin-bottom: 12px; display: flex; gap: 14px; flex-wrap: wrap; }
+  .legend-item { display: flex; align-items: center; gap: 5px; font-size: 0.62rem; color: #64748b; }
+  .legend-dot { width: 8px; height: 8px; border-radius: 50%; }
+  .disclaimer { background: #0d1624; border: 1px solid #1e3a5f; border-radius: 8px; padding: 10px 14px; font-size: 0.63rem; color: #475569; line-height: 1.5; margin-top: 12px; }
+  .disclaimer strong { color: #60a5fa; }
+  .scroll-hint { text-align: center; font-size: 0.6rem; color: #1e293b; margin-top: 16px; letter-spacing: 0.08em; text-transform: uppercase; }
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="header">
+    <h1>CIC-Rearranged Sarcoma // Molecular Simulation</h1>
+    <p>Systems-level mapping of signal failure &amp; intervention vectors</p>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('t1',this)">① The Break — Infinite Loop Failure</button>
+    <button class="tab" onclick="switchTab('t2',this)">② Signal Injection — Dietary Interventions</button>
+  </div>
+
+  <!-- TAB 1 -->
+  <div id="t1" class="panel active">
+    <div class="diagram-grid">
+      <!-- NORMAL -->
+      <div class="diagram-col col-normal">
+        <div class="col-title">NORMAL CELL</div>
+        <div class="col-subtitle">CIC intact — proper loop termination</div>
+        <div class="node">
+          <div class="node-label">input</div>
+          <div class="node-name">Growth Signal</div>
+          <div class="node-desc">EGF / FGF binds surface receptor — external proliferation command received</div>
+          <span class="node-tag tag-signal">External Input</span>
+        </div>
+        <div class="arrow arrow-normal"><div class="arrow-line"></div><div class="arrow-icon">↓</div><div class="arrow-label">receptor activation</div></div>
+        <div class="node">
+          <div class="node-label">signaling cascade</div>
+          <div class="node-name">RAS → RAF → MEK → ERK</div>
+          <div class="node-desc">MAPK kinase cascade — the interrupt handler. Phosphorylation chain amplifies signal inward to the nucleus</div>
+          <span class="node-tag tag-kinase">Kinase Cascade</span>
+        </div>
+        <div class="arrow arrow-normal"><div class="arrow-line"></div><div class="arrow-icon">↓</div><div class="arrow-label">ERK phosphorylates CIC</div></div>
+        <div class="node">
+          <div class="node-label">the terminator</div>
+          <div class="node-name">CIC (Capicua)</div>
+          <div class="node-desc">Temporarily inactivated by ERK phosphorylation — releases ETS targets briefly, allowing one controlled growth cycle</div>
+          <span class="node-tag tag-repressor">Transcriptional Repressor</span>
+        </div>
+        <div class="arrow arrow-normal"><div class="arrow-line"></div><div class="arrow-icon">↓</div><div class="arrow-label">brief activation window</div></div>
+        <div class="node">
+          <div class="node-label">ETS targets</div>
+          <div class="node-name">ETV4 / ETV5 / ETV1</div>
+          <div class="node-desc">Briefly expressed → cell grows once. Then signal clears → ERK drops → CIC reactivates → ETS genes silenced</div>
+          <span class="node-tag tag-suppressed">Transiently Active</span>
+        </div>
+        <div class="loop-box">
+          <div class="loop-label">FEEDBACK LOOP</div>
+          <div class="break-node">
+            ✓ &nbsp;<span class="code-green">if CIC_active: break</span>
+            <div style="font-size:0.6rem;color:#16a34a;margin-top:4px;font-weight:400;">Signal cleared → ERK drops → CIC reasserts repression → ETS OFF → loop exits cleanly</div>
+          </div>
+        </div>
+        <div class="code-block">
+<span class="code-dim">// Normal cell loop</span>
+<span class="code-blue">while</span> growth_signal_present:
+  ERK.<span class="code-green">activate()</span>
+  CIC.<span class="code-yellow">phosphorylate()</span>  <span class="code-dim"># temp OFF</span>
+  ETV4.<span class="code-green">express()</span>        <span class="code-dim"># one cycle</span>
+  cell.<span class="code-blue">divide()</span>
+  <span class="code-blue">if</span> signal_gone:
+    CIC.<span class="code-green">reactivate()</span>
+    ETV4.<span class="code-red">silence()</span>
+    <span class="code-green">break</span>            <span class="code-dim"># loop exits ✓</span>
+        </div>
+      </div>
+
+      <!-- BROKEN -->
+      <div class="diagram-col col-broken">
+        <div class="col-title">CIC-DUX4 SARCOMA CELL</div>
+        <div class="col-subtitle">Translocation t(4;19) — break condition deleted</div>
+        <div class="node">
+          <div class="node-label">input</div>
+          <div class="node-name">Growth Signal</div>
+          <div class="node-desc">Same input. The problem is NOT upstream — it is structural, in the termination logic itself</div>
+          <span class="node-tag tag-signal">External Input</span>
+        </div>
+        <div class="arrow arrow-broken"><div class="arrow-line"></div><div class="arrow-icon">↓</div></div>
+        <div class="node">
+          <div class="node-label">signaling cascade</div>
+          <div class="node-name">RAS → RAF → MEK → ERK</div>
+          <div class="node-desc">Same cascade fires — but what ERK encounters downstream is fundamentally broken. Phosphorylation of the fusion protein is irrelevant.</div>
+          <span class="node-tag tag-kinase">Kinase Cascade</span>
+        </div>
+        <div class="arrow arrow-broken"><div class="arrow-line"></div><div class="arrow-icon">↓</div><div class="arrow-label">chromosomal translocation t(4;19)</div></div>
+        <div class="fusion-badge">
+          <div class="fusion-name">CIC ——— DUX4</div>
+          <div class="fusion-sub">Franken-function · Rogue Module · Repressor converted to Activator</div>
+        </div>
+        <div class="node" style="border-color:#7f1d1d;">
+          <div class="node-label">what happened at the molecular level</div>
+          <div class="node-name">CIC repressor domain: destroyed</div>
+          <div class="node-desc">DUX4 fuses its strong transactivation domain onto CIC's DNA-binding domain. CIC still finds its genomic targets — but instead of silencing them, now AMPLIFIES them. Opposite behavior. Complete logic inversion.</div>
+          <span class="node-tag tag-broken">Repressor → Activator</span>
+          <span class="node-tag tag-activator">DUX4 transactivation domain grafted on</span>
+        </div>
+        <div class="arrow arrow-broken"><div class="arrow-line"></div><div class="arrow-icon">↓</div><div class="arrow-label">constitutive, signal-independent activation</div></div>
+        <div class="node" style="border-color:#7f1d1d;">
+          <div class="node-label">ETS targets — now permanent oncogenes</div>
+          <div class="node-name">ETV4 / ETV5 / ETV1</div>
+          <div class="node-desc">Permanently and constitutively ON. Drive CCND1 (cyclin D1), CDK4, MYC, CCNE1 — the entire cell cycle accelerator pedal, held down permanently</div>
+          <span class="node-tag tag-oncogene">Constitutively Active — No OFF state</span>
+        </div>
+        <div class="loop-box loop-box-broken">
+          <div class="loop-label loop-label-broken">INFINITE LOOP — NO EXIT CONDITION</div>
+          <div class="break-node-missing">
+            <span style="font-size:1.1rem;">∅</span>
+            <div>
+              <span class="strikethrough code-dim">if CIC_active: break</span>
+              <div style="font-size:0.6rem;color:#991b1b;margin-top:3px;">Break condition structurally removed. CIC_active flag cannot be set by any physiological signal. ERK phosphorylation is architecturally irrelevant — the domain it targets no longer exists.</div>
+            </div>
+          </div>
+        </div>
+        <div class="infinite-pulse" style="margin-top:8px;">
+          <div class="infinite-text">⟳ &nbsp; while True: &nbsp; cell.divide()</div>
+          <div style="font-size:0.62rem;color:#7f1d1d;margin-top:4px;">No growth signal required. No termination possible. Loop is structural — written into the genome.</div>
+        </div>
+        <div class="code-block">
+<span class="code-dim">// CIC-DUX4 sarcoma cell</span>
+<span class="code-red">while True:</span>  <span class="code-dim"># growth signal irrelevant</span>
+  CIC_DUX4.<span class="code-red">activate_ETV4()</span>  <span class="code-dim"># was repress()</span>
+  CIC_DUX4.<span class="code-red">activate_ETV5()</span>  <span class="code-dim"># was repress()</span>
+  ETV4.<span class="code-red">drive_CCND1()</span>  <span class="code-dim"># cyclin D1 ON</span>
+  ETV4.<span class="code-red">drive_MYC()</span>    <span class="code-dim"># proliferation ON</span>
+  cell.<span class="code-red">divide()</span>
+  <span class="code-dim"># if CIC_active: break  ← DELETED</span>
+  <span class="code-dim"># ERK phosphorylation:  IRRELEVANT</span>
+  <span class="code-dim"># CIC_active flag:       INACCESSIBLE</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 2 -->
+  <div id="t2" class="panel">
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot" style="background:#3b82f6"></div>Point A — Dampen RAS/ERK upstream</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#f59e0b"></div>Point B — Impair BRD4 / super-enhancer</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#8b5cf6"></div>Point C — Chromatin rebalancing / HDAC</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#10b981"></div>Point D — ETS targets &amp; cell cycle downstream</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#ef4444;animation:blink 1.5s infinite;"></div>Constitutively active (sarcoma state)</div>
+    </div>
+    <div class="intervention-layout">
+      <!-- PATHWAY -->
+      <div class="pathway-col">
+        <div class="section-title">Broken pathway — intervention nodes mapped</div>
+        <div class="pnode-wrap">
+          <div class="pnode"><div class="pnode-left"><div class="pnode-name">Growth Factor Receptor</div><div class="pnode-role">EGF-R / FGFR — membrane input</div></div><div class="pnode-dot dot-neutral"></div></div>
+          <div class="pnode-intervention pint-a">A</div>
+        </div>
+        <div class="p-arrow">↓</div>
+        <div class="pnode-wrap">
+          <div class="pnode"><div class="pnode-left"><div class="pnode-name">RAS GTPase</div><div class="pnode-role">Signal switch — activates kinase cascade</div></div><div class="pnode-dot dot-active"></div></div>
+          <div class="pnode-intervention pint-a">A</div>
+        </div>
+        <div class="p-arrow">↓</div>
+        <div class="pnode-wrap">
+          <div class="pnode"><div class="pnode-left"><div class="pnode-name">RAF → MEK → ERK</div><div class="pnode-role">Kinase cascade — interrupt handler</div></div><div class="pnode-dot dot-active"></div></div>
+          <div class="pnode-intervention pint-a">A</div>
+        </div>
+        <div class="p-arrow" style="color:#ef4444;">↓</div>
+        <div class="pnode" style="border-color:#7f1d1d;background:#1a0808;margin-bottom:4px;">
+          <div class="pnode-left"><div class="pnode-name" style="color:#f87171;">CIC-DUX4 Fusion Protein</div><div class="pnode-role" style="color:#7f1d1d;">Rogue activator — structurally unfixable by dietary means</div></div>
+          <div class="pnode-dot dot-active"></div>
+        </div>
+        <div class="p-arrow" style="color:#ef4444;">↓</div>
+        <div class="pnode-wrap">
+          <div class="pnode" style="border-color:#7f1d1d;"><div class="pnode-left"><div class="pnode-name">BRD4 recruited to super-enhancers</div><div class="pnode-role">Reads H3K27ac — amplifies ETS transcription 10–100×</div></div><div class="pnode-dot dot-target"></div></div>
+          <div class="pnode-intervention pint-b">B</div>
+        </div>
+        <div class="p-arrow">↓</div>
+        <div class="pnode-wrap">
+          <div class="pnode" style="border-color:#7f1d1d;"><div class="pnode-left"><div class="pnode-name">ETV4 / ETV5 / ETV1</div><div class="pnode-role">ETS transcription factors — constitutively ON</div></div><div class="pnode-dot dot-active"></div></div>
+          <div class="pnode-intervention pint-d">D</div>
+        </div>
+        <div class="p-arrow">↓</div>
+        <div class="pnode-wrap">
+          <div class="pnode" style="border-color:#7f1d1d;"><div class="pnode-left"><div class="pnode-name">CCND1 · CDK4 · MYC · CCNE1</div><div class="pnode-role">Cell cycle accelerators — all driving uncontrolled division</div></div><div class="pnode-dot dot-active"></div></div>
+          <div class="pnode-intervention pint-d">D</div>
+        </div>
+        <div class="p-arrow">↓</div>
+        <div class="pnode-wrap">
+          <div class="pnode"><div class="pnode-left"><div class="pnode-name">HDAC / Chromatin compaction</div><div class="pnode-role">Tumor suppressor loci silenced — locked chromatin</div></div><div class="pnode-dot dot-target"></div></div>
+          <div class="pnode-intervention pint-c">C</div>
+        </div>
+        <div class="p-arrow" style="color:#ef4444;">↓</div>
+        <div class="pnode" style="border-color:#7f1d1d;background:#1a0808;margin-bottom:0;">
+          <div class="pnode-left"><div class="pnode-name" style="color:#f87171;">⟳ Uncontrolled Proliferation</div><div class="pnode-role" style="color:#7f1d1d;">No apoptosis. No differentiation. Infinite loop running.</div></div>
+          <div class="pnode-dot dot-active"></div>
+        </div>
+        <div class="disclaimer">
+          <strong>Key constraint:</strong> CIC-DUX4 itself cannot be neutralized by dietary means — it is a structural genomic event. Food-based compounds work on the <strong>amplification context around it</strong>: reducing super-enhancer gain, rebalancing chromatin, and supporting apoptotic thresholds — not fixing the fusion. Think of it as reducing the loop's execution speed, not terminating the loop.
+        </div>
+      </div>
+
+      <!-- INTERVENTION CARDS -->
+      <div class="intervention-col">
+        <div class="intervention-card int-a">
+          <div class="int-point">Point A — Upstream RAS/ERK Dampening</div>
+          <div class="int-title">Reduce the signal feeding the loop</div>
+          <div class="mechanism-text">Can't fix CIC-DUX4 structurally, but reducing upstream ERK amplitude lowers co-activator and BRD4 recruitment to super-enhancers. Less signal input = less loop amplification. Slows execution speed.</div>
+          <div class="food-pills">
+            <span class="food-pill">Quercetin</span>
+            <span class="food-pill">Resveratrol</span>
+            <span class="food-pill">Omega-3 EPA/DHA</span>
+            <span class="food-pill">Lycopene</span>
+            <span class="food-pill">Berberine</span>
+          </div>
+          <div class="mechanism-text" style="margin-top:8px;">
+            <strong style="color:#93c5fd;">Quercetin</strong> (onions, capers): inhibits RAS activation &amp; RTK signaling. <strong style="color:#93c5fd;">Omega-3</strong>: disrupts membrane lipid raft clustering needed for RAS assembly. <strong style="color:#93c5fd;">Berberine</strong>: AMPK activator, broadly suppresses MAPK amplitude. <strong style="color:#93c5fd;">Lycopene</strong> (tomatoes): downregulates RAS/ERK pathway activity in multiple models.
+          </div>
+        </div>
+
+        <div class="intervention-card int-b">
+          <div class="int-point">Point B — BRD4 / Super-Enhancer Disruption</div>
+          <div class="int-title">Throttle the transcription factory</div>
+          <div class="mechanism-text">CIC-DUX4 drives ETS targets by recruiting BRD4 to super-enhancers. Compounds with BET inhibitor-like activity displace BRD4 from acetylated histones, collapsing the 10–100× amplification layer sitting on top of the fusion's output.</div>
+          <div class="food-pills">
+            <span class="food-pill">EGCG (green tea)</span>
+            <span class="food-pill">Curcumin</span>
+            <span class="food-pill">Apigenin</span>
+            <span class="food-pill">Kaempferol</span>
+          </div>
+          <div class="mechanism-text" style="margin-top:8px;">
+            <strong style="color:#fcd34d;">EGCG</strong>: documented BRD4 inhibitory activity — reduces super-enhancer-driven MYC. <strong style="color:#fcd34d;">Curcumin</strong>: disrupts BRD4 binding to acetylated chromatin, affects H3K27ac deposition. <strong style="color:#fcd34d;">Apigenin</strong> (parsley, chamomile): shown to reduce ETS factor expression in multiple cancer models.
+          </div>
+        </div>
+
+        <div class="intervention-card int-c">
+          <div class="int-point">Point C — Chromatin Rebalancing / HDAC Axis</div>
+          <div class="int-title">Reopen silenced tumor suppressor code</div>
+          <div class="mechanism-text">Sarcoma cells silence differentiation and apoptosis genes via HDAC-mediated chromatin compaction. Natural HDAC inhibitors partially reopen this chromatin — think of it as partially restoring read-access to locked files. Reactivates some apoptosis &amp; differentiation pathways that oppose the loop.</div>
+          <div class="food-pills">
+            <span class="food-pill">Sulforaphane</span>
+            <span class="food-pill">DIM (cruciferous)</span>
+            <span class="food-pill">Butyrate (fiber)</span>
+            <span class="food-pill">Allicin (garlic)</span>
+          </div>
+          <div class="mechanism-text" style="margin-top:8px;">
+            <strong style="color:#c4b5fd;">Sulforaphane</strong> (broccoli sprouts): HDAC inhibitor &amp; NRF2 activator — most studied dietary epigenetic modulator. <strong style="color:#c4b5fd;">Butyrate</strong>: produced by gut fermentation of fiber — validated HDAC inhibitor, promotes apoptosis. <strong style="color:#c4b5fd;">DIM</strong>: modulates H3 acetylation broadly, supports differentiation signaling.
+          </div>
+        </div>
+
+        <div class="intervention-card int-d">
+          <div class="int-point">Point D — ETS Targets &amp; Cell Cycle Downstream</div>
+          <div class="int-title">Pressure the output, not the source</div>
+          <div class="mechanism-text">Even if the loop structurally can't be stopped, slowing CDK4/CCND1 velocity and reactivating apoptosis thresholds downstream creates counterpressure. Reduces how fast the loop executes per unit time. Not a fix — a friction layer.</div>
+          <div class="food-pills">
+            <span class="food-pill">Genistein (soy)</span>
+            <span class="food-pill">Fisetin (strawberries)</span>
+            <span class="food-pill">Luteolin (celery)</span>
+            <span class="food-pill">Selenium</span>
+            <span class="food-pill">Zinc</span>
+          </div>
+          <div class="mechanism-text" style="margin-top:8px;">
+            <strong style="color:#6ee7b7;">Genistein</strong>: inhibits CDK activity, promotes G2/M cell cycle arrest. <strong style="color:#6ee7b7;">Fisetin</strong> (strawberries, apples): ETS factor inhibition, CDK4 suppression documented. <strong style="color:#6ee7b7;">Selenium</strong>: required for selenoproteins modulating redox balance &amp; apoptosis thresholds — deficiency directly reduces apoptotic efficiency in cancer cells.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">conceptual simulation · not clinical advice · for educational purposes</div>
+</div>
+<script>
+  function switchTab(id, btn) {
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+  }
+</script>
+</body>
+</html>

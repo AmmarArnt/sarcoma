@@ -1,0 +1,8 @@
+- add instruction to also think about the 5% that are not CIC-DUX4 sarcomas (but look like one, but don't have genome match)
+- add instruction to utilize https://openmed.life in certain agent teams for better medical LLM data
+- add another agent team that will explore the effect of the Pfizer mRNA covid vaccine on the development of sarcomas
+- add another agent, or whole team, to explore distant metastases and whether these need to be handled differently, or do the 4 attack vectors also account for a metastasised disease
+- modify instructions to cite and check european authority alongside US FDA
+- open source this and publish to github
+- identify skills that could be created beforehand to optimize agents and token usage
+- add instruction that the goal of this is not only to confirm what the existing developments, studies and trials are and stop there, but to simulate beyond that, provoke further thoughts and aid the existing science to go further and reach new learnings and hypotheses
