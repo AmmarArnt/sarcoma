@@ -1,3 +1,1 @@
-- add instruction to utilize https://openmed.life in certain agent teams for better medical LLM data. make this setup a pre-requisite before running anything else.
-- identify skills that could be created beforehand to optimize agents and token usage
 - add my own story and case study. a separate run with findings should be executed for that specific case in a simulation setup
