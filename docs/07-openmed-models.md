@@ -129,6 +129,20 @@ Restoring immune visibility and clearance. Depends on V3 for the MHC-I upregulat
 - **V4 Microbiome-Immune Specialist**: `species_detection_bioclinical` + `chemical_detection_pubmed` (Akkermansia, Bifidobacterium, SCFAs)
 - **V4 Neoantigen Vaccine Specialist** (clinical): `pharma_detection_superclinical` + `protein_detection_pubmed` + `oncology_detection_superclinical` (BNT122, mRNA-4157, CAR-T)
 
+### mRNA Vaccine Research Team (supplementary)
+
+Investigates whether BNT162b2 modulates immune, inflammatory, or genomic context relevant to sarcoma. Mostly disease + pharma + immune entities; oncology coverage needed for pharmacovigilance signal-checking.
+
+- **mRNA Vaccine Team Lead** (`mrna-vaccine-lead`): `disease_detection_superclinical` + `pharma_detection_superclinical` + `oncology_detection_superclinical`
+- **mRNA Immunological Effects Specialist** (`mrna-immune-effects`): `disease_detection_superclinical` + `protein_detection_pubmed` + `anatomy_detection_electramed` (T-cell, NK, cytokines, lymphoid tissue)
+- **mRNA Oncogenic Risk Specialist** (`mrna-oncogenic-risk`): `oncology_detection_superclinical` + `disease_detection_superclinical` + `pharma_detection_superclinical` (pharmacovigilance signal review)
+
+### Metastatic Disease Specialist (orchestrator sub-agent)
+
+Examines whether the four vectors apply equally to distant metastases. Multi-organ disease biology; needs oncology + anatomy + disease coverage to handle bone/lung/liver/CNS metastatic sites and their stromal/immune environments.
+
+- **Metastatic Disease Specialist** (`metastatic-specialist`): `oncology_detection_superclinical` + `anatomy_detection_electramed` + `disease_detection_superclinical`
+
 ---
 
 ## How to use the models inside the agent workflow

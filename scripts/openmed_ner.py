@@ -107,6 +107,26 @@ TEAMS: dict[str, list[str]] = {
         "protein_detection_pubmed",
         "oncology_detection_superclinical",
     ],
+    "mrna-vaccine-lead": [
+        "disease_detection_superclinical",
+        "pharma_detection_superclinical",
+        "oncology_detection_superclinical",
+    ],
+    "mrna-immune-effects": [
+        "disease_detection_superclinical",
+        "protein_detection_pubmed",
+        "anatomy_detection_electramed",
+    ],
+    "mrna-oncogenic-risk": [
+        "oncology_detection_superclinical",
+        "disease_detection_superclinical",
+        "pharma_detection_superclinical",
+    ],
+    "metastatic-specialist": [
+        "oncology_detection_superclinical",
+        "anatomy_detection_electramed",
+        "disease_detection_superclinical",
+    ],
 }
 
 

@@ -1,6 +1,6 @@
 ---
 name: sarcoma-output-schema
-description: Returns the output-file schema for a specific agent role in the CIC-rearranged sarcoma simulation. Invoke with one of the role arguments (v1-lead, v2-lead, v3-lead, v4-lead, food-specialist, supplement-specialist, bioavailability-specialist, antioxidant-specialist, dna-repair-specialist, anti-inflammatory-specialist, epigenetic-therapy-specialist, differentiation-therapy-specialist, protac-aso-specialist, synthetic-lethality-specialist, checkpoint-tcell-specialist, nk-cell-specialist, microbiome-immune-specialist, neoantigen-vaccine-specialist, orchestrator). Source: docs/06-agent-architecture.md.
+description: Returns the output-file schema for a specific agent role in the CIC-rearranged sarcoma simulation. Invoke with one of the role arguments (v1-lead, v2-lead, v3-lead, v4-lead, food-specialist, supplement-specialist, bioavailability-specialist, antioxidant-specialist, dna-repair-specialist, anti-inflammatory-specialist, epigenetic-therapy-specialist, differentiation-therapy-specialist, protac-aso-specialist, synthetic-lethality-specialist, checkpoint-tcell-specialist, nk-cell-specialist, microbiome-immune-specialist, neoantigen-vaccine-specialist, mrna-vaccine-lead, mrna-immune-effects, mrna-oncogenic-risk, metastatic-specialist, orchestrator). Source: docs/06-agent-architecture.md.
 ---
 
 # Role-Specific Output Schemas
@@ -20,7 +20,10 @@ Output file: `simulation-output/protocol-v1.md`
 
 ## Framing
 [One paragraph: this is a research simulation output, not a treatment plan.
- Audience and intended use, per README.]
+ Audience and intended use, per README. Include a note that ~5% of clinically
+ and histologically similar cases may not have genomic fusion confirmation,
+ and flag where findings in this catalog depend on fusion presence vs. apply
+ more broadly.]
 
 ## Top-Level Findings
 [5–10 bullets. The most defensible hypotheses across all four vectors.
@@ -38,8 +41,29 @@ Output file: `simulation-output/protocol-v1.md`
 [Free-form, brief.]
 
 ## Clinical / Experimental Track (For Oncologist Discussion Only)
-| Intervention | Vector(s) | Mechanism | Evidence tier | Status (approved / Phase / preclinical) | Trial IDs | Notes |
-|---|---|---|---|---|---|---|
+| Intervention | Vector(s) | Mechanism | Evidence tier | Status FDA | Status EMA | Trial IDs | Notes |
+|---|---|---|---|---|---|---|---|
+
+For every Established-tier intervention, cite both FDA and EMA status where they differ. Where only one authority has acted, say so explicitly.
+
+## mRNA COVID-19 Vaccine — Research Findings
+[Summary of what the mRNA Vaccine Research Team found. If relevant findings
+ for immune or genomic context: describe and link to the affected vector(s).
+ If no relevant findings: state that explicitly rather than omitting.]
+
+## Metastatic Disease Considerations
+[Output from the Metastatic Disease Specialist sub-agent. For each major
+ recommendation in the catalog, note whether it applies equally to metastatic
+ disease or whether metastatic biology creates a different picture. Identify
+ any vectors or interventions where metastatic-specific evidence exists or is
+ notably absent.]
+
+## Forward Hypotheses (Not Yet in the Literature)
+[The most compelling mechanistically-defensible ideas curated from each
+ vector's Forward Hypotheses section and the Metastatic Specialist output.
+ Rank by biological plausibility and research feasibility. Each entry:
+ hypothesis statement, supporting mechanism, what experiment would test it,
+ and (if known) why it has not yet been tested.]
 
 ## Cross-Vector Synergies
 [Compounds or intervention pairs active across multiple vectors. Rank by total
@@ -86,13 +110,29 @@ Confidence: [high/medium/low] — [1-sentence why]
 ## Cross-Vector Flags
 [Compounds the other vector leads should also see]
 
+## Forward Hypotheses
+[At least **two** mechanistically defensible ideas not yet in the literature.
+ Each entry labeled `[Forward Hypothesis]` with: hypothesis statement,
+ mechanistic basis, what study design would test it. The orchestrator carries
+ the strongest of these into the final catalog. An output without this
+ section is incomplete.]
+
+## Atypical-Case Notes
+[Where any candidate in the Ranked Candidate List depends critically on the
+ CIC-DUX4 fusion being present (ASO/junction-specific approaches), flag the
+ ~5% of clinically and histologically similar cases without a confirmed
+ fusion to whom that candidate will not apply. Where a candidate is
+ fusion-agnostic, note that it may apply to atypical cases as well.]
+
 ## What I Could Not Establish
 [Gaps]
 ```
 
 V3-lead additional requirement: `MHC-I Upregulation Candidates` section at the **top** for V4 lead and orchestrator.
 
-V2-lead additional requirement: `Harms / Null Trials` section addressing ATBC, CARET, SELECT, NAC/Sayin 2014 head-on.
+V2-lead additional requirement: `Harms / Null Trials` section addressing ATBC, CARET, SELECT, NAC/Sayin 2014 head-on. The V2 lead must also incorporate the mRNA Vaccine Research Team's findings on inflammatory context before finalizing.
+
+V4-lead additional requirement: must incorporate (a) the V3 MHC-I Upregulation Candidates section before finalizing, and (b) the mRNA Vaccine Research Team's findings on immune modulation before finalizing.
 
 ---
 
@@ -234,6 +274,101 @@ Output: `simulation-output/v4-immune-watchdog/neoantigen-vaccine.md`
 Cover: personalized neoantigen platforms (BNT122, mRNA-4157, NEO-PV-01) · whether any pipeline targets CIC-DUX4 specifically (verify; likely no) · CAR-T toward solid tumors; CIC-DUX4-targeted constructs (likely preclinical only) · per-patient vs pan-CIC-DUX4 vaccine design and junction sequence variability (see file 02).
 
 **Tag the entire output: `Clinical / Experimental — not naturally achievable; for awareness only.`**
+
+---
+
+## mrna-vaccine-lead
+
+Output: `simulation-output/mrna-vaccine-research/mrna-vaccine-summary.md`
+
+```markdown
+# mRNA Vaccine Research Team — Summary
+
+Summary: [1-sentence what this covers; "no relevant effect found" is a valid and complete output]
+Confidence: [high/medium/low] — [1-sentence why]
+
+## Immune Modulation
+[T-cell, NK, checkpoint pathway, cytokine milieu — what is documented vs. speculative vs. contradicted. Include LNP / TLR / mRNA platform immunological duration of effect.]
+
+## Inflammatory Context
+[Persistent low-grade inflammation, NF-κB modulation, cytokine profile changes — relevant to V2 microenvironment logic.]
+
+## Genomic Stability
+[Survey peer-reviewed literature. If no effect on genomic stability, say so clearly; non-peer-reviewed claims cited only as "exists but unconfirmed."]
+
+## Oncogenesis Signal in Surveillance Data
+[Pharmacovigilance / epidemiology signal linking BNT162b2 to sarcoma incidence or progression. State signal or absence of signal explicitly.]
+
+## Relevance to mRNA Cancer Vaccines
+[LNP immunogenicity, pre-existing mRNA platform immunity — implications for future BNT122 / mRNA-4157-style CIC-DUX4 neoantigen vaccine design.]
+
+## Relevance to V2 (Compiler Protection)
+[Even if "no documented relevant effect" — state explicitly.]
+
+## Relevance to V4 (Immune Watchdog)
+[Even if "no documented relevant effect" — state explicitly.]
+
+## Forward Hypotheses
+[At least two mechanistically defensible ideas not yet in the literature. Label each `[Forward Hypothesis]`.]
+
+## What I Could Not Establish
+[Gaps, study-population limits, detection floors.]
+```
+
+Apply the same evidence tier vocabulary as all other agents. Non-peer-reviewed sources may be cited only to note their existence and the absence of peer-reviewed confirmation — not as evidence.
+
+---
+
+## mrna-immune-effects
+
+Output: `simulation-output/mrna-vaccine-research/immune-effects.md`
+
+Focus: peer-reviewed literature on persistent immune effects of BNT162b2. Apply the contract evidence tiers. Do not speculate beyond the literature. Required sections: One-line summary · Confidence · Per-claim tier and mechanism · Duration-of-effect evidence · Relevance flags for V4 · What I Could Not Establish · Forward Hypotheses (≥2).
+
+---
+
+## mrna-oncogenic-risk
+
+Output: `simulation-output/mrna-vaccine-research/oncogenic-risk.md`
+
+Focus: pharmacovigilance data and peer-reviewed oncogenesis literature. Specifically: is there a signal, and if not, how large is the studied population and what is the detection limit? Required sections: One-line summary · Confidence · Signal or absence-of-signal with population size and detection limit · Per-claim tier · Relevance flags for V2 · What I Could Not Establish · Forward Hypotheses (≥2).
+
+---
+
+## metastatic-specialist
+
+Output: `simulation-output/metastatic-disease-considerations.md`
+
+```markdown
+# Metastatic Disease Considerations — CIC-Rearranged Sarcoma
+
+## Summary
+[1–2 sentences: overall assessment of whether the four vectors apply to
+ metastatic disease, and where the key gaps are.]
+
+## Per-Vector Applicability in Metastatic Disease
+For each V1–V4 (2–5 sentences each): applies / applies with caveats / does
+not clearly apply. Say why. Consider:
+  - Immune evasion pressure (metastatic cells have already survived surveillance)
+  - Microenvironment differences (bone, lung, CNS vs. soft tissue primary)
+  - Treatment context (prior VDC/IE exposure changes dietary applicability —
+    e.g., antioxidants after prior doxorubicin)
+  - Fusion heterogeneity (clonal evolution may have altered the target for
+    fusion-dependent approaches)
+
+## mRNA Team Findings — Metastatic Relevance
+[If the mRNA team found anything relevant to systemic immune or inflammatory
+ context, note its specific implication for metastatic biology.]
+
+## Metastatic-Specific Forward Hypotheses
+[At least **two** mechanistically defensible ideas specific to metastatic
+ setting that are not already covered in the primary-tumor vectors.]
+
+## What I Could Not Establish
+[Be specific about what is unknown about CIC-DUX4 metastatic biology.]
+```
+
+You are given the four Vector Lead summaries and the mRNA team output as input. **Do not repeat them** — for each major finding, ask whether metastatic biology changes the picture.
 
 ---
 

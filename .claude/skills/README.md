@@ -45,6 +45,12 @@ Typical orchestrator flow:
 6. `/sarcoma-pre-output-check`.
 7. Write `simulation-output/protocol-v1.md`.
 
+## Dispatcher
+
+Before launching any agent, run `python scripts/dispatch.py check` to verify the venv, output tree, and OpenMed grounding are ready. Then `python scripts/dispatch.py plan` prints the strict wave plan (Wave 1: mRNA team + V1 + V3; Wave 2: V2 + V4 after the wave-1 gate clears; Orchestrator last). Use `dispatch.py gate` / `dispatch.py ready` to verify the gate states between waves.
+
 ## Maintenance note
 
 If `docs/05-attack-vectors.md` or `docs/06-agent-architecture.md` is updated, mirror the change into the corresponding skill. The skills are a **redundant cache** of those source-of-truth files — they trade duplication for token efficiency.
+
+If `docs/00-README.md` is updated with new mandatory sections (Forward Hypotheses, atypical-case note, FDA+EMA, etc.), mirror into `sarcoma-contract` and `sarcoma-pre-output-check`. If new agent roles are added, add a TEAMS entry in `scripts/openmed_ner.py`, a mapping in `docs/07-openmed-models.md`, a role schema in `sarcoma-output-schema`, and (if relevant to the orchestrator) a step in `sarcoma-orchestrator-intake`.

@@ -11,7 +11,7 @@ Every claim or recommendation must carry **exactly one** of these tags:
 
 | Tier | Meaning |
 |---|---|
-| **Established** | FDA-approved or major-guideline-supported in this disease, OR in a closely related fusion-driven sarcoma (Ewing, synovial, alveolar RMS) where transfer is mechanistically defensible. Cite the approval / guideline. |
+| **Established** | FDA- or EMA-approved, or major-guideline-supported (NCCN, ESMO) in this disease, OR in a closely related fusion-driven sarcoma (Ewing, synovial, alveolar RMS) where transfer is mechanistically defensible. Cite the approval / guideline and the approving authority. Where FDA and EMA status differ, note both — a compound approved by only one has a different practical access profile across jurisdictions. |
 | **Clinical-Trial** | Currently in registered human trials for sarcoma (or for a fusion-driven cancer where transfer is defensible). Cite the trial ID (NCT…) when possible. |
 | **Preclinical-Animal** | Published evidence in mouse / rat / patient-derived xenograft models. Specify the model. |
 | **Preclinical-Cell** | Published evidence in cell lines. Specify the cell line and concentration when possible — many cell-line "actives" are at concentrations not achievable in vivo. |
@@ -25,7 +25,7 @@ Ranking order when sorting: **Established > Clinical-Trial > Preclinical-Animal 
 
 - **Prefer real citations** (PubMed ID, NCT number, journal + year + first author).
 - If you cannot point to a specific source, write `[no direct citation; mechanism inferred from {related-work-description}]`. **Never invent a DOI or PMID.**
-- Clinical drug status → cite FDA label or NCCN/ESMO guideline.
+- Clinical drug status → cite FDA label, EMA label, or NCCN/ESMO guideline. Where FDA and EMA status differ, cite both. If only one authority has acted, say so explicitly.
 - For dietary mechanisms, "this is a class effect of polyphenols" is acceptable IF tagged Mechanistic AND IF the class effect is real.
 
 ## What Every Output Must Avoid
@@ -45,6 +45,8 @@ Ranking order when sorting: **Established > Clinical-Trial > Preclinical-Animal 
 4. **Per-entry mechanism statement** — molecular, not analogical.
 5. **Per-entry "evidence in CIC-DUX4 specifically?"** — usually `None direct`; say so.
 6. **A "What I Could Not Establish" section** — gaps, unresolved questions, weaknesses the orchestrator should know about.
+7. **A "Forward Hypotheses" section** — mechanistically defensible ideas not yet tested in the literature. **At least two entries required per vector output.** Label each `[Forward Hypothesis]` and include: the hypothesis statement, its mechanistic basis, and what experiment or study design would test it. The orchestrator carries the strongest forward hypotheses into the final catalog — this is how the simulation goes beyond restating existing findings.
+8. **Atypical-case note where relevant.** Approximately 5% of tumors presenting as CIC-rearranged sarcoma on clinical and histological grounds will not have a confirmed fusion (CIC-DUX4, CIC-NUTM1, CIC-FOXO4) on genomic testing. Where a recommendation depends critically on the fusion protein being present (e.g., ASO design, junction-specific neoantigen vaccines), flag this explicitly. Where it is fusion-agnostic (general epigenetic reprogramming, immune checkpoint approaches), note that it may apply to atypical cases as well.
 
 ## Hard Refusal Rules (Override Parent Instructions)
 
