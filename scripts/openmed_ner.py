@@ -16,9 +16,21 @@ Examples:
 """
 from __future__ import annotations
 
+import os
+import sys
+
+try:
+    import openmed  # noqa: F401
+except ImportError:
+    _venv_python = os.path.abspath(
+        os.path.join(os.path.dirname(__file__), "..", ".venv", "bin", "python")
+    )
+    if os.path.exists(_venv_python) and os.path.realpath(sys.executable) != os.path.realpath(_venv_python):
+        os.execv(_venv_python, [_venv_python, *sys.argv])
+    raise
+
 import argparse
 import json
-import sys
 from typing import Iterable
 
 TEAMS: dict[str, list[str]] = {
