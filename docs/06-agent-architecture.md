@@ -30,6 +30,8 @@
 
 Vector leads and the mRNA Vaccine Research Team run in parallel. The orchestrator runs last. Within a vector, sub-agents may run in parallel UNLESS noted otherwise.
 
+Every agent — orchestrator, vector lead, sub-agent — has access to an OpenMed NER model (or small ensemble of models) appropriate to its domain. See `07-openmed-models.md` for the team→model mapping and the `scripts/openmed_ner.py --team <team-id>` CLI. The NER step is for **grounding** (confirming that the genes/drugs/compounds an agent names are recognised biomedical entities) — not for evidence tiering, mechanism reasoning, or citation discipline, which remain the agent's responsibility per the constraints in `00-README.md`.
+
 The **V3 → V4 bridge** (epigenetic priming restores MHC-I) is an information dependency, not an execution dependency: V3 and V4 can run in parallel, but the V3 lead must surface MHC-I-relevant findings in a clearly-tagged section that the V4 lead and orchestrator will consume.
 
 The **mRNA Vaccine Research Team → V2 / V4 bridge** is also an information dependency: the mRNA team's output should be available to the V2 and V4 leads before they finalize, in case it surfaces relevant immune or genomic context. If running V2/V4 truly in parallel with the mRNA team, the V2/V4 leads should note any gaps the mRNA output might fill for the orchestrator to reconcile.

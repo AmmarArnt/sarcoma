@@ -47,11 +47,12 @@ sarcoma/
 ├── 04-biology-engineering-analogy.md     ← Software/hardware mapping (explicitly an analogy)
 ├── 05-attack-vectors.md                  ← Four vectors + cross-vector interaction map
 ├── 06-agent-architecture.md              ← Agent definitions, prompts, output schemas
+├── 07-openmed-models.md                  ← OpenMed NER model assignments per agent team (grounding step)
 └── cic_sarcoma_simulation.html           ← Optional interactive diagram (illustrative only)
 └── todo.md                               ← Thoughts, notes and TODOs from the human driving this AI exercise
 ```
 
-Files 01–04 are background knowledge. Files 05 and 06 are operational.
+Files 01–04 are background knowledge. Files 05 and 06 are operational. File 07 documents the OpenMed NER models each agent should call to ground biomedical entity names before finalising its draft — see `scripts/openmed_ner.py` for the CLI.
 
 ---
 
