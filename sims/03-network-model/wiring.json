@@ -1,0 +1,19 @@
+{
+  "RAS": "IGF1R_in",
+  "MEK": "RAS",
+  "ERK": "MEK and not DUSP",
+  "DUSP": "ERK",
+  "CIC": "not ERK",
+  "ETV": "Fusion or (not CIC)",
+  "SE": "ETV and BRD4",
+  "FB": "ETV and (not BRD4)",
+  "D": "SE or FB",
+  "CCND": "D",
+  "CDK4": "CCND",
+  "CCNE": "E2F or D",
+  "CDK2": "CCNE",
+  "RB": "not (CDK4 or CDK2)",
+  "E2F": "not RB",
+  "Prolif": "E2F and D",
+  "Viab": "Prolif and not (Damage and not WEE1)"
+}
