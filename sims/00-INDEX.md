@@ -13,6 +13,7 @@ Run from the project venv: `/Users/ammararnautovic/code/sarcoma/.venv/bin/python
 | 1 | Signature reversal | GEO **GSE60740** (IB120 CIC-DUX4 on/off) | L1000CDS2 API | Top reversers = **IGF1R→PI3K/AKT/mTOR, CDK4/6, MEK** |
 | 2 | Dependency mining | **DepMap 24Q4** CRISPR (Ewing proxy, n=27) | Chronos gene-effect | **EZH2 not a dependency**; CDK4 selective; IGF1R enriched; WEE1 pan-essential |
 | 3 | Network dynamics | docs/02 + cited biology | Boolean + ODE | Only **WEE1 + ifosfamide** robustly collapses viability |
+| 4 | Immune-state / selective clearance | Sim-1 immune-gene data + cited biology | Boolean (nectins + immune markers) | **DNA-damage-free clearance reachable**; minimal route **CDK4/6i + αTIGIT** (NK/senescence); "strangle only" ≠ cleared. See `04-immune-state-model/STATES.md` |
 
 ## Convergence (the point of running three orthogonal methods)
 | Target | Sim 1 transcriptomic | Sim 2 genetic dependency | Sim 3 dynamical | Net read |
