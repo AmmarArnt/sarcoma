@@ -1,0 +1,92 @@
+[
+  {
+    "host": "healthy host (NK fit, B2M intact)",
+    "strategy": "S1 checkpoint-only (brakes off, nothing else)",
+    "cleared_step": -1,
+    "route": "none"
+  },
+  {
+    "host": "healthy host (NK fit, B2M intact)",
+    "strategy": "S2 prime-first -> release",
+    "cleared_step": 5,
+    "route": "NK"
+  },
+  {
+    "host": "healthy host (NK fit, B2M intact)",
+    "strategy": "S3 NK-first (strangle+nectin-release+arm)",
+    "cleared_step": 1,
+    "route": "NK"
+  },
+  {
+    "host": "healthy host (NK fit, B2M intact)",
+    "strategy": "S4 strangle-only (no immune)",
+    "cleared_step": -1,
+    "route": "none"
+  },
+  {
+    "host": "healthy host (NK fit, B2M intact)",
+    "strategy": "S5 sequenced: NK-first then open T-arm",
+    "cleared_step": 1,
+    "route": "NK"
+  },
+  {
+    "host": "B2M LOST (antigen presentation off)",
+    "strategy": "S1 checkpoint-only (brakes off, nothing else)",
+    "cleared_step": -1,
+    "route": "none"
+  },
+  {
+    "host": "B2M LOST (antigen presentation off)",
+    "strategy": "S2 prime-first -> release",
+    "cleared_step": 5,
+    "route": "NK"
+  },
+  {
+    "host": "B2M LOST (antigen presentation off)",
+    "strategy": "S3 NK-first (strangle+nectin-release+arm)",
+    "cleared_step": 1,
+    "route": "NK"
+  },
+  {
+    "host": "B2M LOST (antigen presentation off)",
+    "strategy": "S4 strangle-only (no immune)",
+    "cleared_step": -1,
+    "route": "none"
+  },
+  {
+    "host": "B2M LOST (antigen presentation off)",
+    "strategy": "S5 sequenced: NK-first then open T-arm",
+    "cleared_step": 1,
+    "route": "NK"
+  },
+  {
+    "host": "hostile host (NK unfit, no arming)",
+    "strategy": "S1 checkpoint-only (brakes off, nothing else)",
+    "cleared_step": -1,
+    "route": "none"
+  },
+  {
+    "host": "hostile host (NK unfit, no arming)",
+    "strategy": "S2 prime-first -> release",
+    "cleared_step": 8,
+    "route": "T-cell"
+  },
+  {
+    "host": "hostile host (NK unfit, no arming)",
+    "strategy": "S3 NK-first (strangle+nectin-release+arm)",
+    "cleared_step": 1,
+    "route": "NK"
+  },
+  {
+    "host": "hostile host (NK unfit, no arming)",
+    "strategy": "S4 strangle-only (no immune)",
+    "cleared_step": -1,
+    "route": "none"
+  },
+  {
+    "host": "hostile host (NK unfit, no arming)",
+    "strategy": "S5 sequenced: NK-first then open T-arm",
+    "cleared_step": 1,
+    "route": "NK"
+  }
+]

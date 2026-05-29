@@ -1,0 +1,16 @@
+host,strategy,cleared_step,route
+"healthy host (NK fit, B2M intact)","S1 checkpoint-only (brakes off, nothing else)",-1,none
+"healthy host (NK fit, B2M intact)",S2 prime-first -> release,5,NK
+"healthy host (NK fit, B2M intact)",S3 NK-first (strangle+nectin-release+arm),1,NK
+"healthy host (NK fit, B2M intact)",S4 strangle-only (no immune),-1,none
+"healthy host (NK fit, B2M intact)",S5 sequenced: NK-first then open T-arm,1,NK
+B2M LOST (antigen presentation off),"S1 checkpoint-only (brakes off, nothing else)",-1,none
+B2M LOST (antigen presentation off),S2 prime-first -> release,5,NK
+B2M LOST (antigen presentation off),S3 NK-first (strangle+nectin-release+arm),1,NK
+B2M LOST (antigen presentation off),S4 strangle-only (no immune),-1,none
+B2M LOST (antigen presentation off),S5 sequenced: NK-first then open T-arm,1,NK
+"hostile host (NK unfit, no arming)","S1 checkpoint-only (brakes off, nothing else)",-1,none
+"hostile host (NK unfit, no arming)",S2 prime-first -> release,8,T-cell
+"hostile host (NK unfit, no arming)",S3 NK-first (strangle+nectin-release+arm),1,NK
+"hostile host (NK unfit, no arming)",S4 strangle-only (no immune),-1,none
+"hostile host (NK unfit, no arming)",S5 sequenced: NK-first then open T-arm,1,NK
