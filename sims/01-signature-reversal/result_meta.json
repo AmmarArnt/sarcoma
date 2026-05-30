@@ -1,0 +1,89 @@
+{
+  "shareId": "6a195149d52166005c9cebc2",
+  "n_hits": 50,
+  "class_hits": {
+    "PI3K/mTOR/AKT": [
+      "MK-2206",
+      "torin-2",
+      "wortmannin"
+    ],
+    "TopoII/anthracycline": [
+      "4-Demethoxydaunorubicin hydrochloride (65)",
+      "mitoxantrone"
+    ],
+    "CDK": [
+      "PHA-793887",
+      "palbociclib"
+    ],
+    "IGF1R": [
+      "BMS-754807"
+    ],
+    "MEK/ERK": [
+      "trametinib"
+    ]
+  },
+  "up_top": [
+    "DIO3",
+    "ANGPT2",
+    "HCRTR2",
+    "GALNT16",
+    "POLE",
+    "SAPCD2",
+    "PIMREG",
+    "LINC00473",
+    "PCSK1",
+    "IL18R1",
+    "CALB2",
+    "BLM",
+    "CDC20",
+    "ETV4",
+    "RRM2",
+    "SPP1",
+    "DTL",
+    "PRIM1",
+    "CRH",
+    "KIF20A",
+    "HMMR",
+    "KIF4A",
+    "POLQ",
+    "CDC6",
+    "NCAPH",
+    "CENPE",
+    "MCM10",
+    "FOS",
+    "SPAG5",
+    "CCNE2"
+  ],
+  "dn_top": [
+    "KRTAP2-3",
+    "EDN1",
+    "CEMIP",
+    "IGFBP7",
+    "OXTR",
+    "CLDN1",
+    "HTR2B",
+    "SERPINE1",
+    "PLAU",
+    "TMEM40",
+    "MSTN",
+    "COLEC12",
+    "AOX1",
+    "NOG",
+    "ARL4C",
+    "PLA2G4C",
+    "COXFA4L3",
+    "TNFRSF11B",
+    "FILIP1L",
+    "MAP3K7CL",
+    "IGFBP3",
+    "GAPLINC",
+    "CD274",
+    "TMEM200A",
+    "PSG5",
+    "ANKRD1",
+    "TGFBI",
+    "ACTG2",
+    "SULF1",
+    "PSG4"
+  ]
+}

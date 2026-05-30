@@ -1,0 +1,115 @@
+model	label	text	confidence	start	end
+chemical_detection_pubmed	CHEM	Ingenol 3, 20-dibenzoate	0.942	3	27
+chemical_detection_pubmed	CHEM	3,5-dichloro-2-hydroxy-N-(2-methoxy-5-phenylphenyl)benzenesulfonamide	0.945	32	101
+chemical_detection_pubmed	CHEM	4-Demethoxydaunorubicin hydrochloride	0.944	103	140
+chemical_detection_pubmed	CHEM	BMS-536924	0.948	217	227
+chemical_detection_pubmed	CHEM	BMS-754807	0.951	229	239
+chemical_detection_pubmed	CHEM	MK-0591	0.868	490	497
+chemical_detection_pubmed	CHEM	MK-2206	0.791	499	506
+chemical_detection_pubmed	CHEM	Nutlin-3	0.952	538	546
+chemical_detection_pubmed	CHEM	QUINACRINE HYDROCHLORIDE	0.947	623	647
+chemical_detection_pubmed	CHEM	dovitinib	0.939	729	738
+chemical_detection_pubmed	CHEM	mitoxantrone	0.943	740	752
+chemical_detection_pubmed	CHEM	palbociclib	0.935	754	765
+chemical_detection_pubmed	CHEM	torin-2	0.952	767	774
+chemical_detection_pubmed	CHEM	wortmannin	0.938	776	786
+pharma_detection_superclinical	CHEM	Ingenol 3, 20-dibenzoate"	0.917	3	28
+pharma_detection_superclinical	CHEM	3,5-dichloro-2-hydroxy-N-(2-methoxy-5-phenylphenyl)benzenesulfonamide	0.962	32	101
+pharma_detection_superclinical	CHEM	4-Demethoxydaunorubicin hydrochloride	0.963	103	140
+pharma_detection_superclinical	CHEM	AG-879	0.948	154	160
+pharma_detection_superclinical	CHEM	AZD8055	0.950	191	198
+pharma_detection_superclinical	CHEM	BMS-536924	0.913	217	227
+pharma_detection_superclinical	CHEM	BMS-754807	0.910	229	239
+pharma_detection_superclinical	CHEM	2	0.519	245	246
+pharma_detection_superclinical	CHEM	CCNE2	0.839	248	253
+pharma_detection_superclinical	CHEM	CD274	0.911	255	260
+pharma_detection_superclinical	CHEM	CDC20	0.922	262	267
+pharma_detection_superclinical	CHEM	CRH	0.942	315	318
+pharma_detection_superclinical	CHEM	DG-041	0.889	320	326
+pharma_detection_superclinical	CHEM	DL-PDMP	0.943	334	341
+pharma_detection_superclinical	CHEM	FOS	0.819	369	372
+pharma_detection_superclinical	CHEM	GALNT16	0.906	374	381
+pharma_detection_superclinical	CHEM	MK-2206	0.939	499	506
+pharma_detection_superclinical	CHEM	NVP-BEZ235	0.947	526	536
+pharma_detection_superclinical	CHEM	Nutlin-3	0.692	538	546
+pharma_detection_superclinical	CHEM	POLQ	0.522	590	594
+pharma_detection_superclinical	CHEM	PP-110	0.843	596	602
+pharma_detection_superclinical	CHEM	QUINACRINE HYDROCHLORIDE	0.924	623	647
+pharma_detection_superclinical	CHEM	TMEM40	0.741	710	716
+pharma_detection_superclinical	CHEM	dovitinib	0.947	729	738
+pharma_detection_superclinical	CHEM	mitoxantrone	0.945	740	752
+pharma_detection_superclinical	CHEM	palbociclib	0.951	754	765
+pharma_detection_superclinical	CHEM	wortmannin	0.939	776	786
+oncology_detection_superclinical	Simple_chemical	Ingenol 3, 20-dibenzoate"""	0.888	3	30
+oncology_detection_superclinical	Simple_chemical	3	0.931	32	33
+oncology_detection_superclinical	Simple_chemical	5	0.910	34	35
+oncology_detection_superclinical	Simple_chemical	dichloro-2-hydroxy-N-(2-methoxy-5-phenylphenyl)benzenesulfonamide. 4	0.806	36	104
+oncology_detection_superclinical	Simple_chemical	Demethoxydaunorubicin hydrochloride (65)	0.798	105	145
+oncology_detection_superclinical	Gene_or_gene_product	ACTG2	0.944	147	152
+oncology_detection_superclinical	Simple_chemical	AG-879	0.701	154	160
+oncology_detection_superclinical	Gene_or_gene_product	ANGPT2	0.931	162	168
+oncology_detection_superclinical	Gene_or_gene_product	ANKRD1	0.957	170	176
+oncology_detection_superclinical	Gene_or_gene_product	AOX1	0.957	178	182
+oncology_detection_superclinical	Gene_or_gene_product	ARL4C	0.947	184	189
+oncology_detection_superclinical	Simple_chemical	AZD8055	0.801	191	198
+oncology_detection_superclinical	Gene_or_gene_product	BJM-ctd2-9	0.750	200	210
+oncology_detection_superclinical	Simple_chemical	BLM	0.260	212	215
+oncology_detection_superclinical	Gene_or_gene_product	CALB2	0.951	241	246
+oncology_detection_superclinical	Gene_or_gene_product	CCNE2	0.464	248	253
+oncology_detection_superclinical	Gene_or_gene_product	CD274	0.945	255	260
+oncology_detection_superclinical	Cell	CDC20	0.309	262	267
+oncology_detection_superclinical	Gene_or_gene_product	CDC6	0.533	269	273
+oncology_detection_superclinical	Gene_or_gene_product	CLDN1	0.929	289	294
+oncology_detection_superclinical	Gene_or_gene_product	COLEC12	0.859	296	303
+oncology_detection_superclinical	Gene_or_gene_product	COXFA4L3	0.950	305	313
+oncology_detection_superclinical	Gene_or_gene_product	CRH	0.802	315	318
+oncology_detection_superclinical	Organism	DG-041	0.278	320	326
+oncology_detection_superclinical	Gene_or_gene_product	DIO3	0.954	328	332
+oncology_detection_superclinical	Gene_or_gene_product	DL-PDMP	0.919	334	341
+oncology_detection_superclinical	Gene_or_gene_product	DTL	0.486	343	346
+oncology_detection_superclinical	Gene_or_gene_product	EDN1	0.952	348	352
+oncology_detection_superclinical	Organism	ETV4	0.823	354	358
+oncology_detection_superclinical	Gene_or_gene_product	FILIP1L	0.945	360	367
+oncology_detection_superclinical	Gene_or_gene_product	FOS	0.822	369	372
+oncology_detection_superclinical	Gene_or_gene_product	GALNT16	0.934	374	381
+oncology_detection_superclinical	Gene_or_gene_product	GAPLINC	0.888	383	390
+oncology_detection_superclinical	Gene_or_gene_product	HCRTR2	0.947	392	398
+oncology_detection_superclinical	Gene_or_gene_product	HMMR	0.934	400	404
+oncology_detection_superclinical	Gene_or_gene_product	HTR2B	0.951	406	411
+oncology_detection_superclinical	Gene_or_gene_product	IGFBP3	0.951	413	419
+oncology_detection_superclinical	Gene_or_gene_product	IGFBP7	0.952	421	427
+oncology_detection_superclinical	Gene_or_gene_product	IL18R1	0.948	429	435
+oncology_detection_superclinical	Gene_or_gene_product	KIF20A	0.943	437	443
+oncology_detection_superclinical	Gene_or_gene_product	KIF4A	0.955	445	450
+oncology_detection_superclinical	Gene_or_gene_product	KRTAP2	0.956	452	458
+oncology_detection_superclinical	Gene_or_gene_product	3	0.950	459	460
+oncology_detection_superclinical	Gene_or_gene_product	LINC00473	0.558	462	471
+oncology_detection_superclinical	Gene_or_gene_product	MAP3K7CL	0.953	473	481
+oncology_detection_superclinical	Gene_or_gene_product	MCM10	0.936	483	488
+oncology_detection_superclinical	Gene_or_gene_product	MK-2206	0.401	499	506
+oncology_detection_superclinical	Organism	NVP-BEZ235	0.427	526	536
+oncology_detection_superclinical	Gene_or_gene_product	Nutlin-3	0.671	538	546
+oncology_detection_superclinical	Gene_or_gene_product	OXTR	0.949	548	552
+oncology_detection_superclinical	Gene_or_gene_product	PCSK1	0.910	554	559
+oncology_detection_superclinical	Gene_or_gene_product	PIMREG	0.901	561	567
+oncology_detection_superclinical	Gene_or_gene_product	PLA2G4C	0.940	569	576
+oncology_detection_superclinical	Gene_or_gene_product	PLAU	0.486	578	582
+oncology_detection_superclinical	Gene_or_gene_product	POLE	0.367	584	588
+oncology_detection_superclinical	Gene_or_gene_product	PSG4	0.427	611	615
+oncology_detection_superclinical	Gene_or_gene_product	PSG5	0.483	617	621
+oncology_detection_superclinical	Simple_chemical	QUINACRINE HYDROCHLORIDE.	0.896	623	648
+oncology_detection_superclinical	Gene_or_gene_product	RRM2	0.942	649	653
+oncology_detection_superclinical	Gene_or_gene_product	SAPCD2	0.948	655	661
+oncology_detection_superclinical	Gene_or_gene_product	SERPINE1	0.957	663	671
+oncology_detection_superclinical	Gene_or_gene_product	SPAG5	0.947	673	678
+oncology_detection_superclinical	Gene_or_gene_product	SPP1	0.941	680	684
+oncology_detection_superclinical	Gene_or_gene_product	SULF1	0.952	686	691
+oncology_detection_superclinical	Gene_or_gene_product	TGFBI	0.940	693	698
+oncology_detection_superclinical	Gene_or_gene_product	TMEM200A	0.929	700	708
+oncology_detection_superclinical	Gene_or_gene_product	TMEM40	0.941	710	716
+oncology_detection_superclinical	Gene_or_gene_product	TNFRSF11B	0.948	718	727
+oncology_detection_superclinical	Simple_chemical	dovitinib	0.962	729	738
+oncology_detection_superclinical	Simple_chemical	mitoxantrone	0.966	740	752
+oncology_detection_superclinical	Simple_chemical	palbociclib	0.961	754	765
+oncology_detection_superclinical	Gene_or_gene_product	torin-2	0.934	767	774
+oncology_detection_superclinical	Simple_chemical	wortmannin	0.880	776	786

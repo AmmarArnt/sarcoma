@@ -1,0 +1,129 @@
+scenario,damage,intervention,Prolif,Viab,collapses
+escape_ON (FB+CCNE),0,none,1.0,1.0,False
+escape_ON (FB+CCNE),0,BETi,1.0,1.0,False
+escape_ON (FB+CCNE),0,CDK46i,1.0,1.0,False
+escape_ON (FB+CCNE),0,WEE1i,1.0,1.0,False
+escape_ON (FB+CCNE),0,MEKi,1.0,1.0,False
+escape_ON (FB+CCNE),0,IGF1Ri,1.0,1.0,False
+escape_ON (FB+CCNE),0,BETi+CDK46i,1.0,1.0,False
+escape_ON (FB+CCNE),0,BETi+WEE1i,1.0,1.0,False
+escape_ON (FB+CCNE),0,BETi+MEKi,1.0,1.0,False
+escape_ON (FB+CCNE),0,BETi+IGF1Ri,1.0,1.0,False
+escape_ON (FB+CCNE),0,CDK46i+WEE1i,1.0,1.0,False
+escape_ON (FB+CCNE),0,CDK46i+MEKi,1.0,1.0,False
+escape_ON (FB+CCNE),0,CDK46i+IGF1Ri,1.0,1.0,False
+escape_ON (FB+CCNE),0,WEE1i+MEKi,1.0,1.0,False
+escape_ON (FB+CCNE),0,WEE1i+IGF1Ri,1.0,1.0,False
+escape_ON (FB+CCNE),0,MEKi+IGF1Ri,1.0,1.0,False
+escape_ON (FB+CCNE),1,none,1.0,1.0,False
+escape_ON (FB+CCNE),1,BETi,1.0,1.0,False
+escape_ON (FB+CCNE),1,CDK46i,1.0,1.0,False
+escape_ON (FB+CCNE),1,WEE1i,1.0,0.0,True
+escape_ON (FB+CCNE),1,MEKi,1.0,1.0,False
+escape_ON (FB+CCNE),1,IGF1Ri,1.0,1.0,False
+escape_ON (FB+CCNE),1,BETi+CDK46i,1.0,1.0,False
+escape_ON (FB+CCNE),1,BETi+WEE1i,1.0,0.0,True
+escape_ON (FB+CCNE),1,BETi+MEKi,1.0,1.0,False
+escape_ON (FB+CCNE),1,BETi+IGF1Ri,1.0,1.0,False
+escape_ON (FB+CCNE),1,CDK46i+WEE1i,1.0,0.0,True
+escape_ON (FB+CCNE),1,CDK46i+MEKi,1.0,1.0,False
+escape_ON (FB+CCNE),1,CDK46i+IGF1Ri,1.0,1.0,False
+escape_ON (FB+CCNE),1,WEE1i+MEKi,1.0,0.0,True
+escape_ON (FB+CCNE),1,WEE1i+IGF1Ri,1.0,0.0,True
+escape_ON (FB+CCNE),1,MEKi+IGF1Ri,1.0,1.0,False
+FB_only,0,none,1.0,1.0,False
+FB_only,0,BETi,1.0,1.0,False
+FB_only,0,CDK46i,0.0,0.0,True
+FB_only,0,WEE1i,1.0,1.0,False
+FB_only,0,MEKi,1.0,1.0,False
+FB_only,0,IGF1Ri,1.0,1.0,False
+FB_only,0,BETi+CDK46i,0.0,0.0,True
+FB_only,0,BETi+WEE1i,1.0,1.0,False
+FB_only,0,BETi+MEKi,1.0,1.0,False
+FB_only,0,BETi+IGF1Ri,1.0,1.0,False
+FB_only,0,CDK46i+WEE1i,0.0,0.0,True
+FB_only,0,CDK46i+MEKi,0.0,0.0,True
+FB_only,0,CDK46i+IGF1Ri,0.0,0.0,True
+FB_only,0,WEE1i+MEKi,1.0,1.0,False
+FB_only,0,WEE1i+IGF1Ri,1.0,1.0,False
+FB_only,0,MEKi+IGF1Ri,1.0,1.0,False
+FB_only,1,none,1.0,1.0,False
+FB_only,1,BETi,1.0,1.0,False
+FB_only,1,CDK46i,0.0,0.0,True
+FB_only,1,WEE1i,1.0,0.0,True
+FB_only,1,MEKi,1.0,1.0,False
+FB_only,1,IGF1Ri,1.0,1.0,False
+FB_only,1,BETi+CDK46i,0.0,0.0,True
+FB_only,1,BETi+WEE1i,1.0,0.0,True
+FB_only,1,BETi+MEKi,1.0,1.0,False
+FB_only,1,BETi+IGF1Ri,1.0,1.0,False
+FB_only,1,CDK46i+WEE1i,0.0,0.0,True
+FB_only,1,CDK46i+MEKi,0.0,0.0,True
+FB_only,1,CDK46i+IGF1Ri,0.0,0.0,True
+FB_only,1,WEE1i+MEKi,1.0,0.0,True
+FB_only,1,WEE1i+IGF1Ri,1.0,0.0,True
+FB_only,1,MEKi+IGF1Ri,1.0,1.0,False
+CCNE_only,0,none,1.0,1.0,False
+CCNE_only,0,BETi,0.0,0.0,True
+CCNE_only,0,CDK46i,1.0,1.0,False
+CCNE_only,0,WEE1i,1.0,1.0,False
+CCNE_only,0,MEKi,1.0,1.0,False
+CCNE_only,0,IGF1Ri,1.0,1.0,False
+CCNE_only,0,BETi+CDK46i,0.0,0.0,True
+CCNE_only,0,BETi+WEE1i,0.0,0.0,True
+CCNE_only,0,BETi+MEKi,0.0,0.0,True
+CCNE_only,0,BETi+IGF1Ri,0.0,0.0,True
+CCNE_only,0,CDK46i+WEE1i,1.0,1.0,False
+CCNE_only,0,CDK46i+MEKi,1.0,1.0,False
+CCNE_only,0,CDK46i+IGF1Ri,1.0,1.0,False
+CCNE_only,0,WEE1i+MEKi,1.0,1.0,False
+CCNE_only,0,WEE1i+IGF1Ri,1.0,1.0,False
+CCNE_only,0,MEKi+IGF1Ri,1.0,1.0,False
+CCNE_only,1,none,1.0,1.0,False
+CCNE_only,1,BETi,0.0,0.0,True
+CCNE_only,1,CDK46i,1.0,1.0,False
+CCNE_only,1,WEE1i,1.0,0.0,True
+CCNE_only,1,MEKi,1.0,1.0,False
+CCNE_only,1,IGF1Ri,1.0,1.0,False
+CCNE_only,1,BETi+CDK46i,0.0,0.0,True
+CCNE_only,1,BETi+WEE1i,0.0,0.0,True
+CCNE_only,1,BETi+MEKi,0.0,0.0,True
+CCNE_only,1,BETi+IGF1Ri,0.0,0.0,True
+CCNE_only,1,CDK46i+WEE1i,1.0,0.0,True
+CCNE_only,1,CDK46i+MEKi,1.0,1.0,False
+CCNE_only,1,CDK46i+IGF1Ri,1.0,1.0,False
+CCNE_only,1,WEE1i+MEKi,1.0,0.0,True
+CCNE_only,1,WEE1i+IGF1Ri,1.0,0.0,True
+CCNE_only,1,MEKi+IGF1Ri,1.0,1.0,False
+escape_OFF (neither),0,none,1.0,1.0,False
+escape_OFF (neither),0,BETi,0.0,0.0,True
+escape_OFF (neither),0,CDK46i,0.0,0.0,True
+escape_OFF (neither),0,WEE1i,1.0,1.0,False
+escape_OFF (neither),0,MEKi,1.0,1.0,False
+escape_OFF (neither),0,IGF1Ri,1.0,1.0,False
+escape_OFF (neither),0,BETi+CDK46i,0.0,0.0,True
+escape_OFF (neither),0,BETi+WEE1i,0.0,0.0,True
+escape_OFF (neither),0,BETi+MEKi,0.0,0.0,True
+escape_OFF (neither),0,BETi+IGF1Ri,0.0,0.0,True
+escape_OFF (neither),0,CDK46i+WEE1i,0.0,0.0,True
+escape_OFF (neither),0,CDK46i+MEKi,0.0,0.0,True
+escape_OFF (neither),0,CDK46i+IGF1Ri,0.0,0.0,True
+escape_OFF (neither),0,WEE1i+MEKi,1.0,1.0,False
+escape_OFF (neither),0,WEE1i+IGF1Ri,1.0,1.0,False
+escape_OFF (neither),0,MEKi+IGF1Ri,1.0,1.0,False
+escape_OFF (neither),1,none,1.0,1.0,False
+escape_OFF (neither),1,BETi,0.0,0.0,True
+escape_OFF (neither),1,CDK46i,0.0,0.0,True
+escape_OFF (neither),1,WEE1i,1.0,0.0,True
+escape_OFF (neither),1,MEKi,1.0,1.0,False
+escape_OFF (neither),1,IGF1Ri,1.0,1.0,False
+escape_OFF (neither),1,BETi+CDK46i,0.0,0.0,True
+escape_OFF (neither),1,BETi+WEE1i,0.0,0.0,True
+escape_OFF (neither),1,BETi+MEKi,0.0,0.0,True
+escape_OFF (neither),1,BETi+IGF1Ri,0.0,0.0,True
+escape_OFF (neither),1,CDK46i+WEE1i,0.0,0.0,True
+escape_OFF (neither),1,CDK46i+MEKi,0.0,0.0,True
+escape_OFF (neither),1,CDK46i+IGF1Ri,0.0,0.0,True
+escape_OFF (neither),1,WEE1i+MEKi,1.0,0.0,True
+escape_OFF (neither),1,WEE1i+IGF1Ri,1.0,0.0,True
+escape_OFF (neither),1,MEKi+IGF1Ri,1.0,1.0,False

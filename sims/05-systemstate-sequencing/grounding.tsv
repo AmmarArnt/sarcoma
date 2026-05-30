@@ -1,0 +1,27 @@
+model	label	text	confidence	start	end
+disease_detection_superclinical	DISEASE	senescence	0.867	175	185
+oncology_detection_superclinical	Gene_or_gene_product	CIC-DUX4	0.585	0	8
+oncology_detection_superclinical	Gene_or_gene_product	NLRC5	0.953	10	15
+oncology_detection_superclinical	Gene_or_gene_product	CD8	0.919	35	38
+oncology_detection_superclinical	Cell	T cell	0.854	39	45
+oncology_detection_superclinical	Cell	natural killer cell	0.853	47	66
+oncology_detection_superclinical	Cell	regulatory T cell	0.939	68	85
+oncology_detection_superclinical	Gene_or_gene_product	NKG2D	0.951	87	92
+oncology_detection_superclinical	Gene_or_gene_product	MICA	0.930	94	98
+oncology_detection_superclinical	Gene_or_gene_product	ULBP2	0.953	100	105
+oncology_detection_superclinical	Gene_or_gene_product	TIGIT	0.955	107	112
+oncology_detection_superclinical	Gene_or_gene_product	CD226	0.942	114	119
+oncology_detection_superclinical	Gene_or_gene_product	DNAM-1	0.951	121	127
+oncology_detection_superclinical	Gene_or_gene_product	CD155	0.937	129	134
+oncology_detection_superclinical	Gene_or_gene_product	CD112	0.941	136	141
+oncology_detection_superclinical	Gene_or_gene_product	PD-1	0.956	143	147
+oncology_detection_superclinical	Gene_or_gene_product	PD-L1	0.960	149	154
+oncology_detection_superclinical	Gene_or_gene_product	HLA-E	0.952	156	161
+oncology_detection_superclinical	Gene_or_gene_product	CDK4	0.949	163	167
+oncology_detection_superclinical	Gene_or_gene_product	CDK6	0.951	169	173
+oncology_detection_superclinical	Gene_or_gene_product	interferon	0.938	187	197
+oncology_detection_superclinical	Gene_or_gene_product	IL-15	0.951	199	204
+anatomy_detection_electramed	Anatomy	I. B2M. CD8 T cell	0.922	27	45
+anatomy_detection_electramed	Anatomy	natural killer cell	0.933	47	66
+anatomy_detection_electramed	Anatomy	regulatory T cell	0.854	68	85
+anatomy_detection_electramed	Anatomy	NKG2D	0.620	87	92

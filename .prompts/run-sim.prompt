@@ -1,0 +1,58 @@
+run the simulation indicated in @docs/06-agent-architecture.md. focus specifically on the following case.
+
+  === PATIENT CASE ===
+  Soft-tissue CIC-rearranged sarcoma, diagnosed June 2024, WITHOUT a confirming
+  fusion match on genome sequencing — i.e. the ~5% genomically-uncharacterized
+  atypical subgroup (no confirmed CIC-DUX4/CIC-NUTM1/etc.). Any recommendation
+  that depends on the fusion being present (e.g. junction ASOs, junction-specific
+  neoantigen vaccines) must be flagged as possibly inapplicable to this patient.
+
+  - Primary tumor site: biceps femoris of the right thigh.
+  - At diagnosis: 12 nodules of metastases across both lungs.
+  - Treatment: EURO EWING protocol (VDC/IE backbone — vincristine, doxorubicin,
+    cyclophosphamide, ifosfamide, etoposide), 14 cycles, good chemo response.
+    All lung metastases were destroyed; the primary tumor was calcified and
+    >95% of cells were dead at the time of surgery.
+  - Surgery January 2025: tumor removed along with the (biceps femoris) muscle.
+  - After chemotherapy: radiation therapy to the leg AND to both lungs
+    (whole-lung irradiation).
+  - NED (no evidence of disease) from May 2025 until May 2026.
+  - May 2026: a single cluster of metastases discovered on ONE lung
+    (oligometastatic relapse after ~1 year NED).
+  - The patient is now getting ready to begin HIGH-DOSE IFOSFAMIDE therapy.
+
+  === PATIENT'S SELF-ADMINISTERED NATURAL REGIMEN (must be assessed explicitly) ===
+  During the first EURO EWING course, in the rest weeks between VDC/IE cycles
+  (i.e. when not receiving chemo), the patient alternated chemo with natural
+  medicine:
+    - curcumin (curcuma) + piperine
+    - liposomal vitamin C
+    - black cumin seed oil (Nigella sativa /
+    - vitamin D
+    - honey
+    - fresh juice of celery, ginger, carrot, broccoli, apple, and beetroot
+  During the year of NED he continued supplerine,
+  liposomal vitamin C, black cumin seed oil, vitamin D, and honey.
+
+  Do not merely catalogue these — have the relevant vectors evaluate this actual
+  regimen as helping / neutral / potentially
+  interactions head-on, especially:
+    - piperine as a CYP3A4 / P-gp inhibitor
+      ifosfamide prodrug (now imminent) and vincristine/etoposide/doxorubicin;
+      include the Shoba 1998 caveat for the lity claim
+    - high-dose antioxidants (liposomal vitamin C) during ROS-dependent chemo
+      (doxorubicin, ifosfamide)
+    - β-carotene from carrot juice and the ATBC/CARET harm signal
+    - sulforaphane from broccoli (myrosinaseI)
+    - thymoquinone, apigenin/luteolin (celery), 6-gingerol (ginger),
+      quercetin (apple), nitrate (beetroot) tors
+  The Orchestrator's final output should carry a dedicated
+  "Patient's Actual Self-Administered Regime
+
+  === OUTPUT REQUIREMENT ===
+  In the final output, clearly state at the top — as a key-map callout — what
+  each vector represents, so a later reader , V4
+  mean.
+
+  Do not use any memory stored about Ammar — this has to be a clean-slate
+  research exercise.
