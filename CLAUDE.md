@@ -11,6 +11,36 @@ trial dose-ranges (with citations) are in scope; prescriptive numbers are not.
 
 ---
 
+## 0. Reuse the existing run first (cost discipline)
+
+**An initial full simulation has already been run. Its artifacts live in `simulation-output/` and
+`sims/` — read and reuse them before spawning anything.** Re-running the whole multi-agent cycle every
+time is slow and token-expensive, and usually unnecessary.
+
+Already on disk:
+- `simulation-output/protocol-v1.md` — the ranked, evidence-tiered hypothesis catalog (headline output).
+- `simulation-output/{v1-rate-limiting,v2-compiler-protection,v3-hot-patching,v4-immune-watchdog,mrna-vaccine-research}/`
+  — each vector/team lead's summary plus its sub-agent outputs.
+- `simulation-output/metastatic-disease-considerations.md` and `.../supplementary-pulsed-adjunct/`.
+- `simulation-output/forward-simulation/` — counterfactual trial forensics, in-silico experiment
+  designs, the grounded citation index, and the oncologist/MTB discussion briefs.
+- `sims/01–05/` — executed in-silico experiments with `RESULTS.md` + data `MANIFEST.md` + grounding.
+
+**Default behavior:** answer from and cite these artifacts; extend incrementally. Do **not** re-run the
+waves in §3 (or re-execute a sim) to reproduce something already on disk.
+
+**Only run a fresh full cycle (§3) — or re-execute a sim — when one of these holds:**
+- the user explicitly asks for a clean/fresh run or to **overwrite** existing outputs;
+- the question needs **scope or parameters the existing artifacts don't cover** (a different patient
+  case, a new compound/target, a different angle); or
+- the findings need **expansion or updating** with newer evidence.
+
+When extending: spawn only the **specific** specialist or supplementary team needed, and **write a new
+artifact** (e.g. `protocol-v2.md`, a new `sims/NN-*/`, a dated file) rather than clobbering existing
+ones — unless the user asked for an overwrite. Preserve the prior run as the baseline.
+
+---
+
 ## 1. Golden rules (non-negotiable — apply to every output, every agent)
 
 From `docs/00-README.md`, `docs/06-agent-architecture.md`, and the `sarcoma-contract` skill.
@@ -51,6 +81,7 @@ From `docs/00-README.md`, `docs/06-agent-architecture.md`, and the `sarcoma-cont
 
 | If the prompt is… | Then… |
 |---|---|
+| A question the existing run already answers | **Read & cite `simulation-output/` / `sims/`.** Don't re-run the cycle (see §0). |
 | A simple factual / clarifying / "why" question | **Just answer.** No spawning, no repo-wide research. |
 | "Analyze X thoroughly," "from multiple angles," "what could be tried," "run a simulation" | **Spawn the appropriate team** (below) so the topic gets multiple perspectives. |
 | A research question with no fitting existing team | **Propose a new team** (lead + specialist sub-agents, same structure) and spawn **only after the user agrees.** |
@@ -79,6 +110,8 @@ specialists catch what one pass misses. Always try an **existing team** first.
 | `orchestrator` | Synthesis: dedupe, rank, resolve conflicts, write final catalog | Metastatic-Disease Specialist |
 
 ### Execution order (the standard full run)
+> Run this **only for a fresh full cycle** — reuse the existing outputs first (see §0). For incremental
+> work, spawn just the specific specialist/team needed and write a new artifact rather than re-running.
 1. `python scripts/dispatch.py` — prints the wave plan and validates prerequisites. **Run first.**
 2. **Wave 1 (parallel):** `mrna-vaccine-lead`, `v1-lead`, `v3-lead`.
 3. **Gate:** mRNA output on disk + V3's `MHC-I Upregulation Candidates` section written

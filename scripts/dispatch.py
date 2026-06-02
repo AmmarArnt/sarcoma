@@ -188,6 +188,12 @@ def check_orchestrator_ready() -> int:
 
 def print_plan() -> int:
     _heading("Sarcoma simulation — wave plan")
+    if ORCH_OUTPUT.exists():
+        print("NOTE: an initial full run already exists "
+              f"({ORCH_OUTPUT} + per-vector outputs in simulation-output/, plus sims/).\n"
+              "      REUSE those artifacts. Do NOT re-run the full cycle below unless you intend a\n"
+              "      fresh/overwrite run, need parameters the existing outputs don't cover, or are\n"
+              "      expanding the findings. See CLAUDE.md section 0 (\"Reuse the existing run first\").\n")
     print("""
 Wave 1 (parallel): mRNA team, V1 Lead, V3 Lead.
 Wave-1 gate:       mRNA output written; V3 MHC-I Upregulation Candidates section written.
@@ -214,6 +220,9 @@ Orchestrator:      runs after all four vector summaries + mRNA output exist;
     print(f"    note:           {note}")
 
     _heading("Next steps")
+    print("Reuse first: if simulation-output/ already has the outputs you need, read & cite them")
+    print("            instead of re-running (see CLAUDE.md section 0). The steps below are for a")
+    print("            deliberate fresh/full-cycle run only.")
     print("Run:  python scripts/dispatch.py check     # prerequisite checks")
     print("Then dispatch wave-1 agents via Claude Code Task tool.")
     print("Once wave 1 lands, run:  python scripts/dispatch.py gate")
