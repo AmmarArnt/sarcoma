@@ -1,0 +1,169 @@
+{
+  "case_baseline_regimen": "CDK46i+aTIGIT",
+  "case_baseline_route": "NK",
+  "ranking": [
+    {
+      "biomarker": "DNAM1L",
+      "assay": "Nectin CD155 / CD112 (DNAM-1 ligand) tumor expression",
+      "vector": "V4 (nectin/TIGIT gate)",
+      "issue_example": "Nectin/TIGIT axis markers",
+      "decision_flip_freq": 0.625,
+      "route_flip_freq": 0.625,
+      "reachability_flip_freq": 0.625,
+      "n_backgrounds": 64
+    },
+    {
+      "biomarker": "HLA_E",
+      "assay": "HLA-E (NK/CD8 inhibitory ligand) tumor expression",
+      "vector": "V4 (NK)",
+      "issue_example": "NK-cell related markers",
+      "decision_flip_freq": 0.5,
+      "route_flip_freq": 0.453,
+      "reachability_flip_freq": 0.375,
+      "n_backgrounds": 64
+    },
+    {
+      "biomarker": "Treg_high",
+      "assay": "Treg / immunosuppressive TME burden (FoxP3 IHC)",
+      "vector": "V4 (T-cell + NK)",
+      "issue_example": "Tumor immune infiltration patterns",
+      "decision_flip_freq": 0.312,
+      "route_flip_freq": 0.016,
+      "reachability_flip_freq": 0.0,
+      "n_backgrounds": 64
+    },
+    {
+      "biomarker": "TIGIT_high",
+      "assay": "TIGIT / exhaustion-axis expression in TME",
+      "vector": "V4 (nectin/TIGIT gate)",
+      "issue_example": "Nectin/TIGIT axis markers",
+      "decision_flip_freq": 0.312,
+      "route_flip_freq": 0.016,
+      "reachability_flip_freq": 0.0,
+      "n_backgrounds": 64
+    },
+    {
+      "biomarker": "NKeff_present",
+      "assay": "NK-cell functional reserve / count (post-chemo, post-WLI)",
+      "vector": "V4 (NK)",
+      "issue_example": "NK-cell related markers",
+      "decision_flip_freq": 0.25,
+      "route_flip_freq": 0.047,
+      "reachability_flip_freq": 0.0,
+      "n_backgrounds": 64
+    },
+    {
+      "biomarker": "B2M_intact",
+      "assay": "MHC-I / B2M / TAP1 antigen-presentation integrity (IHC + sequencing)",
+      "vector": "V3->V4 (T-cell)",
+      "issue_example": "MHC-I expression status",
+      "decision_flip_freq": 0.188,
+      "route_flip_freq": 0.172,
+      "reachability_flip_freq": 0.125,
+      "n_backgrounds": 64
+    },
+    {
+      "biomarker": "Teff_present",
+      "assay": "CD8+ tumor-infiltrating lymphocytes present (IHC / multiplex)",
+      "vector": "V4 (T-cell)",
+      "issue_example": "Tumor immune infiltration patterns",
+      "decision_flip_freq": 0.188,
+      "route_flip_freq": 0.172,
+      "reachability_flip_freq": 0.125,
+      "n_backgrounds": 64
+    }
+  ],
+  "oat": [
+    {
+      "biomarker": "B2M_intact",
+      "assay": "MHC-I / B2M / TAP1 antigen-presentation integrity (IHC + sequencing)",
+      "vector": "V3->V4 (T-cell)",
+      "assumed_value": 1,
+      "alt_value": 0,
+      "regimen_if_assumed": "CDK46i+aTIGIT",
+      "route_if_assumed": "NK",
+      "regimen_if_alt": "CDK46i+aTIGIT",
+      "route_if_alt": "NK",
+      "decision_flips": 0,
+      "route_changes": 0
+    },
+    {
+      "biomarker": "Teff_present",
+      "assay": "CD8+ tumor-infiltrating lymphocytes present (IHC / multiplex)",
+      "vector": "V4 (T-cell)",
+      "assumed_value": 1,
+      "alt_value": 0,
+      "regimen_if_assumed": "CDK46i+aTIGIT",
+      "route_if_assumed": "NK",
+      "regimen_if_alt": "CDK46i+aTIGIT",
+      "route_if_alt": "NK",
+      "decision_flips": 0,
+      "route_changes": 0
+    },
+    {
+      "biomarker": "Treg_high",
+      "assay": "Treg / immunosuppressive TME burden (FoxP3 IHC)",
+      "vector": "V4 (T-cell + NK)",
+      "assumed_value": 1,
+      "alt_value": 0,
+      "regimen_if_assumed": "CDK46i+aTIGIT",
+      "route_if_assumed": "NK",
+      "regimen_if_alt": "BETi+aTIGIT | CDK46i+aTIGIT | Diff+aTIGIT",
+      "route_if_alt": "NK",
+      "decision_flips": 1,
+      "route_changes": 0
+    },
+    {
+      "biomarker": "TIGIT_high",
+      "assay": "TIGIT / exhaustion-axis expression in TME",
+      "vector": "V4 (nectin/TIGIT gate)",
+      "assumed_value": 1,
+      "alt_value": 0,
+      "regimen_if_assumed": "CDK46i+aTIGIT",
+      "route_if_assumed": "NK",
+      "regimen_if_alt": "CDK46i",
+      "route_if_alt": "NK",
+      "decision_flips": 1,
+      "route_changes": 0
+    },
+    {
+      "biomarker": "DNAM1L",
+      "assay": "Nectin CD155 / CD112 (DNAM-1 ligand) tumor expression",
+      "vector": "V4 (nectin/TIGIT gate)",
+      "assumed_value": 1,
+      "alt_value": 0,
+      "regimen_if_assumed": "CDK46i+aTIGIT",
+      "route_if_assumed": "NK",
+      "regimen_if_alt": "(none \u2014 clearance unreachable)",
+      "route_if_alt": "UNREACHABLE",
+      "decision_flips": 1,
+      "route_changes": 1
+    },
+    {
+      "biomarker": "HLA_E",
+      "assay": "HLA-E (NK/CD8 inhibitory ligand) tumor expression",
+      "vector": "V4 (NK)",
+      "assumed_value": 0,
+      "alt_value": 1,
+      "regimen_if_assumed": "CDK46i+aTIGIT",
+      "route_if_assumed": "NK",
+      "regimen_if_alt": "CDK46i+aPD1+aTIGIT",
+      "route_if_alt": "T-cell",
+      "decision_flips": 1,
+      "route_changes": 1
+    },
+    {
+      "biomarker": "NKeff_present",
+      "assay": "NK-cell functional reserve / count (post-chemo, post-WLI)",
+      "vector": "V4 (NK)",
+      "assumed_value": 1,
+      "alt_value": 0,
+      "regimen_if_assumed": "CDK46i+aTIGIT",
+      "route_if_assumed": "NK",
+      "regimen_if_alt": "CDK46i+NKarm+aTIGIT | CDK46i+aPD1+aTIGIT",
+      "route_if_alt": "T-cell",
+      "decision_flips": 1,
+      "route_changes": 1
+    }
+  ]
+}

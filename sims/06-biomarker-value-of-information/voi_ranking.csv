@@ -1,0 +1,8 @@
+biomarker,assay,vector,issue_example,decision_flip_freq,route_flip_freq,reachability_flip_freq,n_backgrounds
+DNAM1L,Nectin CD155 / CD112 (DNAM-1 ligand) tumor expression,V4 (nectin/TIGIT gate),Nectin/TIGIT axis markers,0.625,0.625,0.625,64
+HLA_E,HLA-E (NK/CD8 inhibitory ligand) tumor expression,V4 (NK),NK-cell related markers,0.5,0.453,0.375,64
+Treg_high,Treg / immunosuppressive TME burden (FoxP3 IHC),V4 (T-cell + NK),Tumor immune infiltration patterns,0.312,0.016,0.0,64
+TIGIT_high,TIGIT / exhaustion-axis expression in TME,V4 (nectin/TIGIT gate),Nectin/TIGIT axis markers,0.312,0.016,0.0,64
+NKeff_present,"NK-cell functional reserve / count (post-chemo, post-WLI)",V4 (NK),NK-cell related markers,0.25,0.047,0.0,64
+B2M_intact,MHC-I / B2M / TAP1 antigen-presentation integrity (IHC + sequencing),V3->V4 (T-cell),MHC-I expression status,0.188,0.172,0.125,64
+Teff_present,CD8+ tumor-infiltrating lymphocytes present (IHC / multiplex),V4 (T-cell),Tumor immune infiltration patterns,0.188,0.172,0.125,64
