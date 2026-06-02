@@ -109,9 +109,9 @@ exercise, do **not** use stored personal memory. Always honor the atypical fusio
 
 ## 4. Running the Python simulations
 
-Interpreter: the repo venv at `.venv/bin/python` (absolute on the maintainer's machine:
-`/Users/ammararnautovic/code/sarcoma/.venv/bin/python`). It has pandas, numpy, scipy, networkx,
-requests, GEOparse, and `openmed` (mlx backend). `scripts/openmed_ner.py` self-bootstraps into the venv.
+Interpreter: the repo venv at `.venv/bin/python` (relative to the repo root). It has pandas, numpy,
+scipy, networkx, requests, GEOparse, and `openmed` (mlx backend). `scripts/openmed_ner.py`
+self-bootstraps into the venv.
 
 ```bash
 # Orchestration helper — prints wave plan; subcommands validate state
