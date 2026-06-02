@@ -27,6 +27,11 @@ Already on disk:
 - `simulation-output/biomarker-voi-stratification.md` — three-tier missing-data taxonomy
   (Known / Missing-decision-relevant / Missing-low-impact) + value-of-information ranking of unknown
   biomarkers (from Sim 6). Reuse this for "what's unknown / what would change the recommendation" questions.
+- `simulation-output/translational-feasibility-layer.md` — five-band feasibility scheme (F1 Accessible-now
+  … F5 Concept-only) applied to every Clinical/Experimental entry in `protocol-v1.md`, with live-verified,
+  date-stamped regulatory/trial status (from issue #9 / ADR-0003). Reuse for "is it approved / in a trial /
+  discontinued / how soon could a patient reach it" questions — **re-verify before external use; bands are
+  perishable** (e.g. tazemetostat was withdrawn from US indications 2026-03-09).
 - `sims/01–06/` — executed in-silico experiments with `RESULTS.md` + data `MANIFEST.md` + grounding.
 
 **Default behavior:** answer from and cite these artifacts; extend incrementally. Do **not** re-run the
@@ -90,6 +95,7 @@ From `docs/00-README.md`, `docs/06-agent-architecture.md`, and the `sarcoma-cont
 | A research question with no fitting existing team | **Propose a new team** (lead + specialist sub-agents, same structure) and spawn **only after the user agrees.** |
 | A coding/repo task (run a sim, fix a script, write a doc) | Do it directly; spawn only if it genuinely needs parallel research. |
 | A question about which unknown/unmeasured biomarkers matter, "what should we measure," or stratifying a new case | **Reuse the VoI layer** (`simulation-output/biomarker-voi-stratification.md` / Sim 6); extend it rather than re-deriving. |
+| A question about whether a candidate is approved / in a recruiting trial / discontinued / on hold, its FDA-vs-EMA status, repurposing path, or "how soon could a patient access it" | **Reuse the feasibility layer** (`simulation-output/translational-feasibility-layer.md` / ADR-0003); **re-verify the regulatory/trial facts live** before relying on them — bands are date-stamped and perishable. |
 
 Default to teams for analysis/research/simulation; default to a direct answer for everything else.
 A "thorough"-sounding multi-part question is not automatically a spawn — judge whether real

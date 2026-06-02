@@ -34,6 +34,7 @@ or amending an artifact. Those are just commits.
 |---|---|---|---|---|
 | [0001](0001-missing-data-taxonomy-and-voi-layer.md) | Missing-data taxonomy + biomarker value-of-information layer | 2026-06-02 | Accepted | Issue #7 / PR #15 |
 | [0002](0002-github-issue-runner-skill.md) | GitHub issue-runner skill (sequential, one-issue-per-run) | 2026-06-02 | Accepted | Maintainer request |
+| [0003](0003-translational-feasibility-layer.md) | Translational feasibility layer (clinical-trial & regulatory awareness) | 2026-06-02 | Accepted | Issue #9 / PR |
 
 ## Template
 
