@@ -74,4 +74,4 @@ sequencing decisions belong to the oncologist/molecular tumor board.
 IL-15, CDK4/6, plus NK cell / CD8 T cell / regulatory T cell / senescence / interferon recognized.
 
 ## Reproduce
-`/Users/ammararnautovic/code/sarcoma/.venv/bin/python system_state_sequencing.py`
+`.venv/bin/python sims/05-systemstate-sequencing/system_state_sequencing.py`

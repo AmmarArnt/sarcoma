@@ -57,5 +57,5 @@ Full list: `l1000_reversers.csv`. Class tally among named hits: PI3K/AKT/mTOR (5
 `grounding.tsv`: 115 entity spans — 56 Gene_or_gene_product, 41 CHEM, 13 Simple_chemical, 3 Organism. High-confidence recognition of drugs (palbociclib 0.961, dovitinib 0.962, mitoxantrone 0.966, torin-2 0.952) and signature genes (ETV4, POLE, SERPINE1, IGFBP7, IGFBP3). Unrecognized spans were limited to synthetic catalog codes (e.g., BJM-ctd2-9, DG-041) — expected, as these are not in biomedical NER vocabularies.
 
 ## Reproduce
-`/Users/ammararnautovic/code/sarcoma/.venv/bin/python run_signature_reversal.py`
+`.venv/bin/python sims/01-signature-reversal/run_signature_reversal.py`
 Outputs: `cic_dux4_signature.csv`, `l1000_reversers.csv`, `result_meta.json`, `entities.txt`, `grounding.tsv`, `MANIFEST.md`.

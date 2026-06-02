@@ -60,5 +60,5 @@ Full table: `dependency_table.csv`. Empty per-line CIC-DUX4 table: `cic_dux4_lin
 `grounding.tsv`: all 14 target genes recognized as GENE/PROTEIN at 0.91–0.96 (ETV1/ETV4 lower at 0.57/0.67 in one model but confirmed by a second model at 0.94/0.93); **"CIC-DUX4 sarcoma" (0.91)** and **"Ewing sarcoma" (0.95)** recognized as Cancer entities. No unrecognized target entities.
 
 ## Reproduce
-`/Users/ammararnautovic/code/sarcoma/.venv/bin/python run_dependency_mining.py`
+`.venv/bin/python sims/02-dependency-mining/run_dependency_mining.py`
 Outputs: `dependency_table.csv`, `ewing_lines.csv`, `cic_dux4_line_dependencies.csv`, `entities.txt`, `grounding.tsv`, `MANIFEST.md`.
