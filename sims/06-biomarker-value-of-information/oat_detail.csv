@@ -1,0 +1,8 @@
+biomarker,assay,vector,assumed_value,alt_value,regimen_if_assumed,route_if_assumed,regimen_if_alt,route_if_alt,decision_flips,route_changes
+B2M_intact,MHC-I / B2M / TAP1 antigen-presentation integrity (IHC + sequencing),V3->V4 (T-cell),1,0,CDK46i+aTIGIT,NK,CDK46i+aTIGIT,NK,0,0
+Teff_present,CD8+ tumor-infiltrating lymphocytes present (IHC / multiplex),V4 (T-cell),1,0,CDK46i+aTIGIT,NK,CDK46i+aTIGIT,NK,0,0
+Treg_high,Treg / immunosuppressive TME burden (FoxP3 IHC),V4 (T-cell + NK),1,0,CDK46i+aTIGIT,NK,BETi+aTIGIT | CDK46i+aTIGIT | Diff+aTIGIT,NK,1,0
+TIGIT_high,TIGIT / exhaustion-axis expression in TME,V4 (nectin/TIGIT gate),1,0,CDK46i+aTIGIT,NK,CDK46i,NK,1,0
+DNAM1L,Nectin CD155 / CD112 (DNAM-1 ligand) tumor expression,V4 (nectin/TIGIT gate),1,0,CDK46i+aTIGIT,NK,(none — clearance unreachable),UNREACHABLE,1,1
+HLA_E,HLA-E (NK/CD8 inhibitory ligand) tumor expression,V4 (NK),0,1,CDK46i+aTIGIT,NK,CDK46i+aPD1+aTIGIT,T-cell,1,1
+NKeff_present,"NK-cell functional reserve / count (post-chemo, post-WLI)",V4 (NK),1,0,CDK46i+aTIGIT,NK,CDK46i+NKarm+aTIGIT | CDK46i+aPD1+aTIGIT,T-cell,1,1

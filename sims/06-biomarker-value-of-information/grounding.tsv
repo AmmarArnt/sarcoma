@@ -1,0 +1,30 @@
+model	label	text	confidence	start	end
+oncology_detection_superclinical	Gene_or_gene_product	B2M	0.935	0	3
+oncology_detection_superclinical	Gene_or_gene_product	TAP1	0.945	5	9
+oncology_detection_superclinical	Gene_or_gene_product	HLA-A	0.949	11	16
+oncology_detection_superclinical	Gene_or_gene_product	HLA-E	0.951	18	23
+oncology_detection_superclinical	Gene_or_gene_product	NLRC5	0.955	25	30
+oncology_detection_superclinical	Gene_or_gene_product	CD274	0.943	32	37
+oncology_detection_superclinical	Gene_or_gene_product	PD-L1	0.956	39	44
+oncology_detection_superclinical	Gene_or_gene_product	PVR	0.941	46	49
+oncology_detection_superclinical	Gene_or_gene_product	CD155	0.940	51	56
+oncology_detection_superclinical	Gene_or_gene_product	NECTIN2	0.954	58	65
+oncology_detection_superclinical	Gene_or_gene_product	CD112	0.949	67	72
+oncology_detection_superclinical	Gene_or_gene_product	TIGIT	0.954	74	79
+oncology_detection_superclinical	Gene_or_gene_product	CD226	0.940	81	86
+oncology_detection_superclinical	Gene_or_gene_product	DNAM-1	0.955	88	94
+oncology_detection_superclinical	Gene_or_gene_product	MICA	0.939	96	100
+oncology_detection_superclinical	Gene_or_gene_product	ULBP2	0.952	102	107
+oncology_detection_superclinical	Gene_or_gene_product	CDK4	0.948	109	113
+oncology_detection_superclinical	Gene_or_gene_product	CDK6	0.944	115	119
+oncology_detection_superclinical	Gene_or_gene_product	FOXP3	0.953	121	126
+oncology_detection_superclinical	Cell	natural killer cell	0.904	128	147
+oncology_detection_superclinical	Gene_or_gene_product	CD8	0.940	149	152
+oncology_detection_superclinical	Gene_or_gene_product	positive	0.919	153	161
+oncology_detection_superclinical	Cell	T cell	0.923	162	168
+oncology_detection_superclinical	Cell	regulatory T cell	0.947	170	187
+oncology_detection_superclinical	Cell	CIC-DUX4	0.675	189	197
+anatomy_detection_electramed	Anatomy	3	0.460	125	126
+anatomy_detection_electramed	Anatomy	natural killer cell	0.880	128	147
+anatomy_detection_electramed	Anatomy	CD8-positive T cell	0.917	149	168
+anatomy_detection_electramed	Anatomy	regulatory T cell	0.780	170	187
