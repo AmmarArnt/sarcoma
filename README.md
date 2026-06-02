@@ -56,6 +56,9 @@ it on four complementary layers (the working bet is that **no single layer is en
 - `docs/` — the full framing (`00-README.md`), domain knowledge, the engineering analogy, the four
   vectors, and the agent architecture.
 
+> A completed first run already populates `simulation-output/` and `sims/`. **Start by reading those** —
+> the pipeline rarely needs to be re-run from scratch; new work usually builds on what's there.
+
 ---
 
 ## Contribute — the Issues tab is the front door
