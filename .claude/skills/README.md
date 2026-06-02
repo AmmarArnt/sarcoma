@@ -10,6 +10,7 @@ These skills are invocable by any agent operating in this repository. They exist
 | `/sarcoma-chemo-interactions` | Scaffolding for screening candidates against VDC/IE chemo (does not pre-encode interactions) | Any agent recommending a dietary or supplement compound |
 | `/sarcoma-output-schema [role]` | Returns the exact output schema for one role (orchestrator, v1-lead, food-specialist, …) | Every agent |
 | `/sarcoma-orchestrator-intake` | Intake algorithm · deduplication rule · ranking order · conflict resolution | Orchestrator only |
+| `/github-issue-runner` | Workflow: process the single oldest unclaimed GitHub issue end-to-end (label `running` → work in an isolated worktree → PR → reply → label `responded`), one per run | Maintainer, manually (see ADR-0002) |
 
 ## Why these exist (the token math)
 
