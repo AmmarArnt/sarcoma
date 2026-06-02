@@ -24,7 +24,10 @@ Already on disk:
 - `simulation-output/metastatic-disease-considerations.md` and `.../supplementary-pulsed-adjunct/`.
 - `simulation-output/forward-simulation/` — counterfactual trial forensics, in-silico experiment
   designs, the grounded citation index, and the oncologist/MTB discussion briefs.
-- `sims/01–05/` — executed in-silico experiments with `RESULTS.md` + data `MANIFEST.md` + grounding.
+- `simulation-output/biomarker-voi-stratification.md` — three-tier missing-data taxonomy
+  (Known / Missing-decision-relevant / Missing-low-impact) + value-of-information ranking of unknown
+  biomarkers (from Sim 6). Reuse this for "what's unknown / what would change the recommendation" questions.
+- `sims/01–06/` — executed in-silico experiments with `RESULTS.md` + data `MANIFEST.md` + grounding.
 
 **Default behavior:** answer from and cite these artifacts; extend incrementally. Do **not** re-run the
 waves in §3 (or re-execute a sim) to reproduce something already on disk.
@@ -86,6 +89,7 @@ From `docs/00-README.md`, `docs/06-agent-architecture.md`, and the `sarcoma-cont
 | "Analyze X thoroughly," "from multiple angles," "what could be tried," "run a simulation" | **Spawn the appropriate team** (below) so the topic gets multiple perspectives. |
 | A research question with no fitting existing team | **Propose a new team** (lead + specialist sub-agents, same structure) and spawn **only after the user agrees.** |
 | A coding/repo task (run a sim, fix a script, write a doc) | Do it directly; spawn only if it genuinely needs parallel research. |
+| A question about which unknown/unmeasured biomarkers matter, "what should we measure," or stratifying a new case | **Reuse the VoI layer** (`simulation-output/biomarker-voi-stratification.md` / Sim 6); extend it rather than re-deriving. |
 
 Default to teams for analysis/research/simulation; default to a direct answer for everything else.
 A "thorough"-sounding multi-part question is not automatically a spawn — judge whether real
@@ -159,6 +163,7 @@ python scripts/dispatch.py ready      # orchestrator preconditions
 .venv/bin/python sims/03-network-model/boolean_model.py                 # + ode_model.py
 .venv/bin/python sims/04-immune-state-model/immune_state_model.py       # nectins + immune markers
 .venv/bin/python sims/05-systemstate-sequencing/system_state_sequencing.py
+.venv/bin/python sims/06-biomarker-value-of-information/run_voi.py        # missing-biomarker value-of-information
 ```
 
 **Simulation conventions (follow these when adding a sim):**
@@ -213,14 +218,15 @@ docs/00-README.md        framing + constraints + execution semantics (read first
 docs/01–05               domain knowledge, analogy model, the four attack vectors
 docs/06-agent-architecture.md   full agent prompts + output schemas
 docs/07-openmed-models.md       team -> NER model map
+docs/adr/                       Architecture Decision Records — framework-evolution timeline (read README first)
 scripts/dispatch.py      wave plan + prerequisite/gate checker
 scripts/openmed_ner.py   OpenMed NER grounding CLI (--team)
 .claude/agents/          the 6 lead agents
 .claude/skills/          the 6 sarcoma-* skills
 sims/00-INDEX.md         the in-silico simulations + convergent findings
-sims/01–05/              reproducible simulations (script + RESULTS.md + MANIFEST.md + grounding.tsv)
-simulation-output/       protocol-v1.md (catalog), forward-simulation/, per-vector outputs,
-                         and oncologist/MTB discussion briefs
+sims/01–06/              reproducible simulations (script + RESULTS.md + MANIFEST.md + grounding.tsv)
+simulation-output/       protocol-v1.md (catalog), forward-simulation/, biomarker-voi-stratification.md,
+                         per-vector outputs, and oncologist/MTB discussion briefs
 ```
 
 ---
@@ -243,3 +249,21 @@ that skill. Use `gh` for GitHub operations.
 - **Commits:** end messages with `Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>`.
 - **Don't pollute a state the user likes** — branch/worktree first.
 - **Honesty over completeness**, always. When in doubt, exclude rather than pad.
+
+---
+
+## 10. Architecture Decision Records (`docs/adr/`)
+
+The framework evolves — new analytical layers, new teams, contract changes, conventions. Each such
+**framework-level decision is recorded as a dated, numbered ADR** in `docs/adr/`, so the project carries
+an honest historical timeline rather than silently mutating. CLAUDE.md holds the *current* rules; the
+ADR log holds *why and when* they changed. Keep the log in `docs/adr/`, **not** inline here.
+
+- **Read** `docs/adr/README.md` (the index) when you need the rationale or history behind a rule, or
+  before proposing a change that may contradict a past decision.
+- **Append** a new ADR (copy the template in the README, next number, status `Accepted`) when a change
+  is **framework-level**: a new standing deliverable/sim *type*, a new team or agent, a change to the
+  golden rules / contract / conventions, or a notable methodology choice. Link the originating issue/PR.
+  Then update CLAUDE.md's current-state rules to match and cross-reference the ADR number.
+- **Don't** write an ADR for routine work (answering a question, running an existing sim, a bug fix) —
+  only for decisions that change how the framework itself operates.

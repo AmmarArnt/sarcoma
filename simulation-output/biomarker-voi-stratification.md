@@ -120,3 +120,6 @@ patient.
 `voi_ranking.csv`, `oat_detail.csv`, `voi_summary.json`, `MANIFEST.md`). Built on the validated Sim 4
 immune-clearance model and the Sim 1 GSE60740 real-data baseline. No new biology, no fabricated
 citations. Not medical advice.
+
+*Decision record:* this layer was adopted via [ADR-0001](../docs/adr/0001-missing-data-taxonomy-and-voi-layer.md)
+(issue #7 / PR #15).
