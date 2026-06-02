@@ -65,4 +65,4 @@ NLRC5, B2M, HLA-A, HLA-E, MICA, ULBP2, PD-L1/CD274, plus NK cell & regulatory T 
 senescence. No unrecognized targets.
 
 ## Reproduce
-`/Users/ammararnautovic/code/sarcoma/.venv/bin/python immune_state_model.py`
+`.venv/bin/python sims/04-immune-state-model/immune_state_model.py`

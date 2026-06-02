@@ -60,5 +60,5 @@ The **WEE1 + ifosfamide** hypothesis is the one idea supported (or at least not 
 `grounding.tsv`: all 18 model nodes recognized (BRD4, CCND1/2, CCNE1, CDK2/4/6, CIC, CIC-DUX4, E2F, ERK, ETV4/5, IGF1R, MYC, RAS, RB1, WEE1). No unrecognized entities.
 
 ## Reproduce
-`/Users/ammararnautovic/code/sarcoma/.venv/bin/python boolean_model.py`
-`/Users/ammararnautovic/code/sarcoma/.venv/bin/python ode_model.py`
+`.venv/bin/python sims/03-network-model/boolean_model.py`
+`.venv/bin/python sims/03-network-model/ode_model.py`

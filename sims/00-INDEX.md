@@ -5,7 +5,7 @@ Three computational simulations of the CIC-DUX4 forward hypotheses, run on **rea
 access date), and **OpenMed NER grounding** of named entities. No fabrication: every number traces
 to executed code on downloaded data or a live API; where data was unavailable it is reported as such.
 
-Run from the project venv: `/Users/ammararnautovic/code/sarcoma/.venv/bin/python`
+Run from the repo root with the project venv: `.venv/bin/python`
 (Raw downloads are cached under each sim's `data/` and are gitignored; scripts re-download on demand.)
 
 | # | Simulation | Real input | Engine | Headline result |
