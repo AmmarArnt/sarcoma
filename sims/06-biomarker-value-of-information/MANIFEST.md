@@ -12,7 +12,9 @@ computed entirely from a model already in this repository.
 | Mechanism citations | Goel *Nature* 2017 (PMID 28813415); Aging 2016 (PMID 26878797); Nat Commun 2019 (s41467-019-10335-5); PNAS 2016 (PMID 27162338) | Inherited from Sim 4; not re-derived here. |
 
 No new accession, gene-effect value, drug, or dataset is introduced. No network access is required to
-reproduce. If a future run wants OpenMed NER grounding, install the project venv per `CLAUDE.md §4`.
+reproduce the VoI computation. OpenMed NER grounding **was run** on the project venv (team `v4-lead`,
+matching Sim 4) — see `grounding.tsv` and RESULTS "Grounding"; the model download from HuggingFace is
+the only step that touches the network.
 
 ## Outputs (written by `run_voi.py`)
 
@@ -22,6 +24,7 @@ reproduce. If a future run wants OpenMed NER grounding, install the project venv
 | `oat_detail.csv` | One-at-a-time effect at the case baseline (regimen + route under assumed vs alternative value). |
 | `voi_summary.json` | Case baseline regimen + full ranking + OAT, machine-readable. |
 | `entities.txt` | Entity list (subset of Sim 4's grounded set; see RESULTS "Grounding"). |
+| `grounding.tsv` | OpenMed NER output (team `v4-lead`); all 24 entities recognized, incl. FOXP3 + CD8-positive T cell. |
 
 ## Provenance / integrity
 

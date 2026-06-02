@@ -120,21 +120,36 @@ route** — reproduces Sim 4 exactly.
 - **Equal-weight background prior.** The total-effect metric weights all 64 backgrounds equally; it is
   a sensitivity index, not a posterior-weighted expected-value-of-information.
 
-## Grounding (OpenMed NER)
+## Grounding (OpenMed NER, team `v4-lead`)
 
-The OpenMed NER backend (mlx + HuggingFace models) was **not installable in this ephemeral container**
-(no project venv, `openmed` absent) — reported honestly rather than fabricated. Sim 6 introduces **no
-new biomedical entities**: its `entities.txt` is a subset of Sim 4's already-grounded entity set
-(`../04-immune-state-model/grounding.tsv`), where B2M, TAP1, HLA-A/E, NLRC5, CD274/PD-L1, PVR, CD155,
-NECTIN2, CD112, TIGIT, CD226, DNAM-1, MICA, ULBP2, CDK4/6, natural-killer cell and regulatory-T-cell
-were all NER-recognized. Two entities here are *not* in the Sim-4 file and remain ungrounded pending a
-working NER backend: **FOXP3** and **CD8-positive T cell**.
+Grounding was **run locally on the project venv** (`scripts/openmed_ner.py --team v4-lead`, matching
+Sim 4) and written to `grounding.tsv`. The earlier PR-#15 note that the NER backend "was not installable
+in the ephemeral container" no longer applies — it ran here against the real HuggingFace models.
+
+**All 24 entities in `entities.txt` are NER-recognized.** The two entities Sim 6 adds beyond Sim 4's
+grounded set are now both confirmed: **FOXP3** (`Gene_or_gene_product`, conf 0.953) and **CD8-positive
+T cell** (`Anatomy`, conf 0.917 — the `anatomy_detection_electramed` model captures the full span).
+The remaining markers reproduce Sim 4's result: B2M, TAP1, HLA-A/E, NLRC5, CD274/PD-L1, PVR, CD155,
+NECTIN2, CD112, TIGIT, CD226, DNAM-1, MICA, ULBP2, CDK4/6 (all `Gene_or_gene_product`, conf 0.94–0.96),
+plus natural-killer cell and regulatory-T-cell (`Cell`/`Anatomy`).
+
+Two honest caveats on the raw output: (i) the `oncology_detection_superclinical` model tokenizes
+"CD8-positive T cell" into `CD8` + `positive` + `T cell`, so the whole-span recognition comes from the
+`anatomy_detection_electramed` model; (ii) **CIC-DUX4** is grounded as `Gene_or_gene_product` in Sim 4
+but the oncology model here labels it `Cell` at lower confidence (0.675) — a known label-ambiguity for
+the fusion string, not a grounding failure. Grounding confirms the named entities are recognized
+biomedical terms; it does not bear on evidence tier, mechanism, or VoI magnitude.
 
 ## Reproduce
 
 ```bash
 python3 sims/06-biomarker-value-of-information/run_voi.py   # needs pandas (Sim 4 import); no network
+
+# Grounding (project venv; downloads OpenMed models from HuggingFace on first use):
+.venv/bin/python scripts/openmed_ner.py --team v4-lead \
+    --text-file sims/06-biomarker-value-of-information/entities.txt --format tsv \
+    > sims/06-biomarker-value-of-information/grounding.tsv
 ```
 
-Outputs: `voi_ranking.csv`, `oat_detail.csv`, `voi_summary.json`, `entities.txt`.
+Outputs: `voi_ranking.csv`, `oat_detail.csv`, `voi_summary.json`, `entities.txt`, `grounding.tsv`.
 All results are research-simulation hypotheses, not medical advice.
