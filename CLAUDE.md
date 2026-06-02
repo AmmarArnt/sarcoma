@@ -222,7 +222,7 @@ docs/adr/                       Architecture Decision Records — framework-evol
 scripts/dispatch.py      wave plan + prerequisite/gate checker
 scripts/openmed_ner.py   OpenMed NER grounding CLI (--team)
 .claude/agents/          the 6 lead agents
-.claude/skills/          the 6 sarcoma-* skills
+.claude/skills/          the 6 sarcoma-* content skills + github-issue-runner (workflow; ADR-0002)
 sims/00-INDEX.md         the in-silico simulations + convergent findings
 sims/01–06/              reproducible simulations (script + RESULTS.md + MANIFEST.md + grounding.tsv)
 simulation-output/       protocol-v1.md (catalog), forward-simulation/, biomarker-voi-stratification.md,
@@ -234,11 +234,16 @@ simulation-output/       protocol-v1.md (catalog), forward-simulation/, biomarke
 ## 8. GitHub Issues (light note — a dedicated skill will own this)
 
 The repo is hosted on GitHub and the **Issues** section is the collaboration surface: people post
-grounded thoughts/questions there. The intended workflow is **retrieve issues → apply labels → have
-Claude Code respond**, and some responses require team/sub-agent research using the same structure
-above. A dedicated **GitHub-issues skill** (in progress) will handle this; it may later run on a
-schedule. For now it's invoked manually — don't build issue automation into general sessions; defer to
-that skill. Use `gh` for GitHub operations.
+grounded thoughts/questions there. The workflow is **retrieve issue → apply labels → have Claude Code
+respond**, and some responses require team/sub-agent research using the same structure above.
+
+This is owned by the **`github-issue-runner` skill** (`.claude/skills/github-issue-runner`; see
+ADR-0002). Invoke it **manually** — it processes **one** issue per run (the oldest open issue labeled
+neither `running` nor `responded`), labels it `running`, does the work in an isolated worktree off
+latest `main`, opens a PR assigned to the maintainer, posts a findings comment, then relabels the issue
+`responded`. Run it again for the next issue (sequential, user-paced). Labels are lowercase
+(`running` / `responded`). Don't improvise issue handling in general sessions or build scheduled
+automation — defer to the skill. Use `gh` for GitHub operations.
 
 ---
 
