@@ -1,0 +1,8 @@
+model	label	text	confidence	start	end
+disease_detection_superclinical	DISEASE	sarcoma	0.942	231	238
+oncology_detection_superclinical	Gene_or_gene_product	Calreticulin HMGB1 ATP P2RX7 NLRP3 HSP70 HSP90 STING cGAS DNAM-1 CD226 TIGIT CD96 PVRIG PVR CD155 Nectin-2 NKG2D MICA MICB ULBP NKG2A HLA-E	0.896	0	139
+oncology_detection_superclinical	Simple_chemical	tiragolumab tazemetostat doxorubicin pembrolizumab	0.899	148	198
+oncology_detection_superclinical	Cell	cell	0.928	211	215
+oncology_detection_superclinical	Cancer	CIC-DUX4 sarcoma	0.788	222	238
+anatomy_detection_electramed	Anatomy	cell	0.949	211	215
+anatomy_detection_electramed	Anatomy	CIC-DUX4 sarcoma	0.923	222	238
