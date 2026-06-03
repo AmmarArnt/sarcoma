@@ -32,6 +32,12 @@ Already on disk:
   date-stamped regulatory/trial status (from issue #9 / ADR-0003). Reuse for "is it approved / in a trial /
   discontinued / how soon could a patient reach it" questions — **re-verify before external use; bands are
   perishable** (e.g. tazemetostat was withdrawn from US indications 2026-03-09).
+- `simulation-output/host-biology-modifier-layer.md` — cross-cutting **host-biology modifier layer**
+  (gut microbiome/SCFA, systemic inflammation/NLR/mGPS, metabolic/sarcopenia, nutrition, physical
+  activity, sleep/circadian, autonomic/β-adrenergic, PNEI, placebo-nocebo, perioperative conditioning).
+  Not a fifth vector — it conditions V4 and SOC tolerability and is weighted via the existing three axes
+  (confidence/transfer does the down-weighting). Reuse for host-level / lifestyle / "does host biology
+  explain variability or tolerance" questions (from issue #10 / ADR-0005).
 - `sims/01–06/` — executed in-silico experiments with `RESULTS.md` + data `MANIFEST.md` + grounding.
 
 **Default behavior:** answer from and cite these artifacts; extend incrementally. Do **not** re-run the
@@ -100,6 +106,7 @@ From `docs/00-README.md`, `docs/06-agent-architecture.md`, and the `sarcoma-cont
 | A coding/repo task (run a sim, fix a script, write a doc) | Do it directly; spawn only if it genuinely needs parallel research. |
 | A question about which unknown/unmeasured biomarkers matter, "what should we measure," or stratifying a new case | **Reuse the VoI layer** (`simulation-output/biomarker-voi-stratification.md` / Sim 6); extend it rather than re-deriving. |
 | A question about whether a candidate is approved / in a recruiting trial / discontinued / on hold, its FDA-vs-EMA status, repurposing path, or "how soon could a patient access it" | **Reuse the feasibility layer** (`simulation-output/translational-feasibility-layer.md` / ADR-0003); **re-verify the regulatory/trial facts live** before relying on them — bands are date-stamped and perishable. |
+| A host-level / lifestyle question (microbiome, inflammation, metabolic/sarcopenia, nutrition, exercise, sleep/circadian, autonomic/stress/PNEI, placebo-nocebo, perioperative conditioning) — "does host biology explain variability / tolerance / immune competence," "should it be its own layer" | **Reuse the host-biology modifier layer** (`simulation-output/host-biology-modifier-layer.md` / ADR-0005); extend it rather than re-deriving. It is a cross-cutting modifier (conditions V4 + SOC), **not a fifth vector**, weighted via the existing three axes. |
 
 Default to teams for analysis/research/simulation; default to a direct answer for everything else.
 A "thorough"-sounding multi-part question is not automatically a spawn — judge whether real

@@ -36,6 +36,7 @@ or amending an artifact. Those are just commits.
 | [0002](0002-github-issue-runner-skill.md) | GitHub issue-runner skill (sequential, one-issue-per-run) | 2026-06-02 | Accepted | Maintainer request |
 | [0003](0003-translational-feasibility-layer.md) | Translational feasibility layer (clinical-trial & regulatory awareness) | 2026-06-02 | Accepted | Issue #9 / PR |
 | [0004](0004-scoring-axes-and-verification-sources-wiring.md) | Wire scoring axes + verification-source registry into the contract | 2026-06-03 | Accepted | Maintainer request (post #8/#9) |
+| [0005](0005-host-biology-modifier-layer.md) | Host-biology treatment-response modifier layer (cross-cutting, not a 5th vector) | 2026-06-03 | Accepted | Issue #10 / PR |
 
 ## Template
 
