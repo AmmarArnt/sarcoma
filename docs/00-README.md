@@ -152,13 +152,15 @@ These are mandatory. A sub-agent on a smaller model should refuse to violate any
 
 5. **Flag contraindications.** Especially with standard-of-care chemotherapy (vincristine/doxorubicin/ifosfamide/etoposide regimens used in sarcoma), high-dose antioxidants may interfere. The orchestrator must surface these.
 
-6. **No fabricated citations.** If you cannot point to a real paper, write "no direct citation; mechanism inferred from [related work]." Smaller models are prone to plausible-looking fake DOIs — this is the single biggest failure mode to guard against.
+6. **No fabricated citations.** If you cannot point to a real paper, write "no direct citation; mechanism inferred from [related work]." Smaller models are prone to plausible-looking fake DOIs — this is the single biggest failure mode to guard against. Regulatory/trial/safety status is **perishable** — verify it live and tag `[VERIFY]` if unconfirmed (operative rule + source registry: `/sarcoma-contract`, `docs/09-verification-sources.md`).
 
 7. **Naturally achievable ≠ unlimited supplementation.** "Naturally achievable" means: realistically obtainable from food at culinary doses, or from supplements at doses with established safety data. Megadosing is not naturally achievable.
 
 8. **When in doubt, exclude rather than include.** A short list of well-grounded hypotheses is far more useful than a long list padded with weak ones.
 
 9. **Account for the ~5% atypical cases.** Not all tumors that present clinically and histologically like CIC-DUX4 sarcoma will have a confirmed CIC-DUX4 (or CIC-NUTM1, CIC-FOXO4, etc.) fusion on genomic testing. Agents should note, where relevant, whether a recommendation applies specifically to fusion-confirmed cases or whether it may generalize to this genomically uncharacterized subgroup.
+
+10. **Tier is one of three orthogonal axes** (tier / confidence / feasibility). Where they apply, also carry confidence and translational-feasibility reads; full framing, the two-lane rule, and method-doc pointers live in `/sarcoma-contract` (see ADR-0004).
 
 ---
 

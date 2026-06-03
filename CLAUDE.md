@@ -56,9 +56,13 @@ From `docs/00-README.md`, `docs/06-agent-architecture.md`, and the `sarcoma-cont
 1. **No fabricated citations. Ever.** If you can't point to a real PMID / NCT / DOI / dataset, write
    `[no direct citation; mechanism inferred from {what}]`. Plausible-looking fake references are the
    single worst failure mode. **Verify accessions/PMIDs against live sources when you can** (WebSearch/
-   WebFetch); if you can't verify, label it `[VERIFY]` rather than asserting it.
+   WebFetch); if you can't verify, label it `[VERIFY]` rather than asserting it. Regulatory/trial/safety
+   status is **perishable** — verify it live and never carry it across sessions unchecked (operative rule +
+   source registry: `sarcoma-contract` and `docs/09-verification-sources.md`).
 2. **Evidence tier on every claim.** Use exactly one: `Established` › `Clinical-Trial` ›
    `Preclinical-Animal` › `Preclinical-Cell` › `Mechanistic` › `Dietary-Observational` › `Theoretical`.
+   Tier is the first of three orthogonal axes (tier / confidence / feasibility) — see `sarcoma-contract`
+   for when to also carry confidence and translational-feasibility reads.
 3. **Mechanism before recommendation.** State the molecular mechanism, not an analogy and not
    "antioxidant properties." The engineering analogy (docs/04) is shorthand — always translate it back
    to biology.
@@ -202,17 +206,23 @@ Pick the `--team` whose model set fits the entity types (genes/proteins → `v3-
 drugs+genes → `v1-lead`; immune → `v4-lead`). Note any entity NER did **not** recognize. Models
 download from HuggingFace on first use. See `docs/07-openmed-models.md`.
 
+**Entity grounding (this) is not fact-checking.** OpenMed NER confirms a *name* is a recognized
+biomedical term; it cannot tell you a drug was withdrawn or a trial closed. For verifying any
+**status / approval / trial / safety / citation** *claim*, use the authoritative registries in
+**`docs/09-verification-sources.md`** (the standing source list from issue #9) and date-stamp what you read.
+
 ---
 
 ## 6. Skills (`.claude/skills/`)
 
 Invoke these instead of re-deriving the rules:
-- **`sarcoma-contract`** — evidence-tier vocabulary, citation rules, avoid/include lists. Load at the
-  start of any vector-lead / sub-agent / orchestrator task.
+- **`sarcoma-contract`** — evidence-tier vocabulary, the three scoring axes (tier / confidence /
+  feasibility), citation + live-verification rules (incl. the perishable-status rule → `docs/09`),
+  avoid/include lists. Load at the start of any vector-lead / sub-agent / orchestrator task.
 - **`sarcoma-vector-context`** (`v1`|`v2`|`v3`|`v4`) — one vector's compound list, targets, caveats.
 - **`sarcoma-chemo-interactions`** — screen any dietary/supplement candidate against VDC/IE.
 - **`sarcoma-output-schema`** `<role>` — the output-file schema for a given agent role.
-- **`sarcoma-pre-output-check`** — 8-failure-mode + 8-mandatory-include self-audit; run before writing.
+- **`sarcoma-pre-output-check`** — 9-failure-mode + 9-mandatory-include self-audit; run before writing.
 - **`sarcoma-orchestrator-intake`** — orchestrator-only intake/dedupe/rank/conflict protocol.
 
 ---
@@ -223,7 +233,9 @@ Invoke these instead of re-deriving the rules:
 docs/00-README.md        framing + constraints + execution semantics (read first)
 docs/01–05               domain knowledge, analogy model, the four attack vectors
 docs/06-agent-architecture.md   full agent prompts + output schemas
-docs/07-openmed-models.md       team -> NER model map
+docs/07-openmed-models.md       team -> NER model map (entity grounding)
+docs/08-evidence-confidence-scoring.md   confidence axis: 7-tier↔A–E crosswalk, 4-axis rubric, weak-signal register
+docs/09-verification-sources.md authoritative trial/regulatory/safety registries for live fact-checking (issue #9)
 docs/adr/                       Architecture Decision Records — framework-evolution timeline (read README first)
 scripts/dispatch.py      wave plan + prerequisite/gate checker
 scripts/openmed_ner.py   OpenMed NER grounding CLI (--team)

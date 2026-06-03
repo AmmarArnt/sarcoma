@@ -4,9 +4,9 @@ These skills are invocable by any agent operating in this repository. They exist
 
 | Skill | Purpose | Who invokes it |
 |---|---|---|
-| `/sarcoma-contract` | Evidence tier vocabulary · citation rules · avoid/include lists · hard refusals | Every agent (start of task) |
+| `/sarcoma-contract` | Evidence tier vocabulary · three scoring axes (tier/confidence/feasibility) · citation + live-verification rules · avoid/include lists · hard refusals | Every agent (start of task) |
 | `/sarcoma-vector-context [v1\|v2\|v3\|v4]` | Returns one vector's compound list, mechanism targets, food sources, and caveats | Vector lead + that vector's sub-agents |
-| `/sarcoma-pre-output-check` | 8 failure-mode checklist + 6 mandatory-include items | Every agent (before writing output) |
+| `/sarcoma-pre-output-check` | 9 failure-mode checklist + 9 mandatory-include items | Every agent (before writing output) |
 | `/sarcoma-chemo-interactions` | Scaffolding for screening candidates against VDC/IE chemo (does not pre-encode interactions) | Any agent recommending a dietary or supplement compound |
 | `/sarcoma-output-schema [role]` | Returns the exact output schema for one role (orchestrator, v1-lead, food-specialist, …) | Every agent |
 | `/sarcoma-orchestrator-intake` | Intake algorithm · deduplication rule · ranking order · conflict resolution | Orchestrator only |
@@ -52,6 +52,9 @@ Before launching any agent, run `python scripts/dispatch.py check` to verify the
 
 ## Maintenance note
 
-If `docs/05-attack-vectors.md` or `docs/06-agent-architecture.md` is updated, mirror the change into the corresponding skill. The skills are a **redundant cache** of those source-of-truth files — they trade duplication for token efficiency.
+**Two different ownership models — keep them straight (ADR-0004):**
 
-If `docs/00-README.md` is updated with new mandatory sections (Forward Hypotheses, atypical-case note, FDA+EMA, etc.), mirror into `sarcoma-contract` and `sarcoma-pre-output-check`. If new agent roles are added, add a TEAMS entry in `scripts/openmed_ner.py`, a mapping in `docs/07-openmed-models.md`, a role schema in `sarcoma-output-schema`, and (if relevant to the orchestrator) a step in `sarcoma-orchestrator-intake`.
+- **Large content slices** (`docs/05-attack-vectors.md`; the per-role prompts/schemas in `docs/06-agent-architecture.md`) → **doc is source-of-truth, skill is a redundant cache** for token efficiency. If the doc changes, mirror into `sarcoma-vector-context` / `sarcoma-output-schema`.
+- **The behavioral contract** (evidence-tier vocabulary, the three scoring axes, citation + live-verification rules, failure modes, mandatory-include items, hard refusals) → **the skill is canonical** (`sarcoma-contract`, `sarcoma-pre-output-check`). This is the surface every agent loads to *produce output*, so it must be authoritative and contradiction-free. `docs/00-README.md` and `docs/06`'s constraint/failure-mode lists carry the **rationale + a one-line pointer**, not a copy — author contract changes in the skill and do **not** restate them in the docs (single-sourcing avoids drift and keeps loaded context lean).
+
+If new agent roles are added, add a TEAMS entry in `scripts/openmed_ner.py`, a mapping in `docs/07-openmed-models.md`, a role schema in `sarcoma-output-schema`, and (if relevant to the orchestrator) a step in `sarcoma-orchestrator-intake`.
