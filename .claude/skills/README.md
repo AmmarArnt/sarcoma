@@ -4,9 +4,9 @@ These skills are invocable by any agent operating in this repository. They exist
 
 | Skill | Purpose | Who invokes it |
 |---|---|---|
-| `/sarcoma-contract` | Evidence tier vocabulary · citation rules · avoid/include lists · hard refusals | Every agent (start of task) |
+| `/sarcoma-contract` | Evidence tier vocabulary · three scoring axes (tier/confidence/feasibility) · citation + live-verification rules · avoid/include lists · hard refusals | Every agent (start of task) |
 | `/sarcoma-vector-context [v1\|v2\|v3\|v4]` | Returns one vector's compound list, mechanism targets, food sources, and caveats | Vector lead + that vector's sub-agents |
-| `/sarcoma-pre-output-check` | 8 failure-mode checklist + 6 mandatory-include items | Every agent (before writing output) |
+| `/sarcoma-pre-output-check` | 9 failure-mode checklist + 9 mandatory-include items | Every agent (before writing output) |
 | `/sarcoma-chemo-interactions` | Scaffolding for screening candidates against VDC/IE chemo (does not pre-encode interactions) | Any agent recommending a dietary or supplement compound |
 | `/sarcoma-output-schema [role]` | Returns the exact output schema for one role (orchestrator, v1-lead, food-specialist, …) | Every agent |
 | `/sarcoma-orchestrator-intake` | Intake algorithm · deduplication rule · ranking order · conflict resolution | Orchestrator only |
@@ -54,4 +54,4 @@ Before launching any agent, run `python scripts/dispatch.py check` to verify the
 
 If `docs/05-attack-vectors.md` or `docs/06-agent-architecture.md` is updated, mirror the change into the corresponding skill. The skills are a **redundant cache** of those source-of-truth files — they trade duplication for token efficiency.
 
-If `docs/00-README.md` is updated with new mandatory sections (Forward Hypotheses, atypical-case note, FDA+EMA, etc.), mirror into `sarcoma-contract` and `sarcoma-pre-output-check`. If new agent roles are added, add a TEAMS entry in `scripts/openmed_ner.py`, a mapping in `docs/07-openmed-models.md`, a role schema in `sarcoma-output-schema`, and (if relevant to the orchestrator) a step in `sarcoma-orchestrator-intake`.
+If `docs/00-README.md` is updated with new mandatory sections (Forward Hypotheses, atypical-case note, FDA+EMA, etc.), mirror into `sarcoma-contract` and `sarcoma-pre-output-check`. The **three scoring axes** (tier/confidence/feasibility), the **perishable-status / live-verification rule**, and their method/source docs (`docs/08-evidence-confidence-scoring.md`, `docs/09-verification-sources.md`, `simulation-output/translational-feasibility-layer.md`) are part of that contract surface — keep `docs/00`, `docs/06`, `sarcoma-contract`, and `sarcoma-pre-output-check` in sync (see ADR-0004). If new agent roles are added, add a TEAMS entry in `scripts/openmed_ner.py`, a mapping in `docs/07-openmed-models.md`, a role schema in `sarcoma-output-schema`, and (if relevant to the orchestrator) a step in `sarcoma-orchestrator-intake`.

@@ -1,13 +1,13 @@
 ---
 name: sarcoma-pre-output-check
-description: Pre-flight self-audit a sub-agent or vector lead runs BEFORE finalizing its output in the CIC-rearranged sarcoma simulation. Walks through 8 failure modes (citation fabrication, concentration-mismatch, dose invention, etc.) and 8 mandatory-include items. Catches errors before they reach the orchestrator. Invoke as the second-to-last step of any agent task, immediately before writing the output file.
+description: Pre-flight self-audit a sub-agent or vector lead runs BEFORE finalizing its output in the CIC-rearranged sarcoma simulation. Walks through 9 failure modes (citation fabrication, concentration-mismatch, dose invention, stale regulatory status, etc.) and 9 mandatory-include items. Catches errors before they reach the orchestrator. Invoke as the second-to-last step of any agent task, immediately before writing the output file.
 ---
 
 # Pre-Output Self-Audit
 
 Walk through every numbered check below. For each one, answer **yes/no/N-A** in your internal scratchpad. If any answer is **no**, fix the output before writing it. **Do not skip this skill** — the orchestrator depends on it.
 
-## Part A — 8 Failure Modes to Guard Against
+## Part A — 9 Failure Modes to Guard Against
 
 These are the failure modes most likely from a Sonnet-tier model. Guard your own output and flag them when reviewing others' outputs.
 
@@ -27,9 +27,11 @@ These are the failure modes most likely from a Sonnet-tier model. Guard your own
 
 8. **Padding for length.** A shorter output that is well-grounded beats a long padded one. Did I remove entries I cannot defend? When in doubt, **exclude** rather than include.
 
-## Part B — 8 Mandatory-Include Items
+9. **Stale regulatory / trial / feasibility status.** For every "approved / recruiting / discontinued / on-hold / withdrawn" claim, did I verify it **live this session** against the authoritative registries in `docs/09-verification-sources.md` (ClinicalTrials.gov, EU CTIS, Drugs@FDA, EMA, PMDA), record the source + access date, and check the right jurisdiction (FDA ≠ EMA ≠ PMDA)? A status carried over from an older artifact or a prior session without re-checking is a fabrication risk — approvals get withdrawn and trials close without any change in biology. If I could not confirm, did I tag `[VERIFY]` instead of asserting it?
 
-Every output must have all eight. Scan and confirm.
+## Part B — 9 Mandatory-Include Items
+
+Every output must have all nine. Scan and confirm.
 
 1. **One-line summary** at the top stating what this output covers AND what it deliberately excludes.
 
@@ -46,6 +48,8 @@ Every output must have all eight. Scan and confirm.
 7. **A "Forward Hypotheses" section** — at least **two** mechanistically defensible ideas not yet in the literature. Each entry labeled `[Forward Hypothesis]` with: hypothesis statement, mechanistic basis, what experiment or study design would test it, and (if known) why it has not yet been tested. The simulation's primary purpose is to *simulate forward*, not to restate existing findings — an output without this section is incomplete.
 
 8. **Atypical-case note where relevant.** For any recommendation that critically depends on the CIC-DUX4 (or CIC-NUTM1, CIC-FOXO4) fusion protein being present — ASO design, junction-specific neoantigen vaccines, fusion-junction CAR-T — flag that ~5% of clinically and histologically similar cases will not have a confirmed fusion on genomic testing and the recommendation will not apply to them. For fusion-agnostic recommendations (general epigenetic reprogramming, immune checkpoint approaches), note that they may apply to atypical cases as well.
+
+9. **Scoring axes beyond tier, where they apply.** Tier alone is not sufficient (see `/sarcoma-contract` → "Three Scoring Axes"). Did I add a **confidence** read (Directness / in-vivo Achievability / Reproducibility / conflict — `docs/08-evidence-confidence-scoring.md`) where a tier could mislead, and a **feasibility band** (F1–F5; `simulation-output/translational-feasibility-layer.md`) on any **clinical/experimental** entry whose practical access matters? And did I keep the **two-lane rule** — these axes annotate the confirmatory lane but never prune the Forward-Hypotheses lane (golden rule #5)?
 
 ## Part C — Role-Specific Mandatory Sections
 

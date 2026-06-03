@@ -152,13 +152,15 @@ These are mandatory. A sub-agent on a smaller model should refuse to violate any
 
 5. **Flag contraindications.** Especially with standard-of-care chemotherapy (vincristine/doxorubicin/ifosfamide/etoposide regimens used in sarcoma), high-dose antioxidants may interfere. The orchestrator must surface these.
 
-6. **No fabricated citations.** If you cannot point to a real paper, write "no direct citation; mechanism inferred from [related work]." Smaller models are prone to plausible-looking fake DOIs — this is the single biggest failure mode to guard against.
+6. **No fabricated citations.** If you cannot point to a real paper, write "no direct citation; mechanism inferred from [related work]." Smaller models are prone to plausible-looking fake DOIs — this is the single biggest failure mode to guard against. **Regulatory/trial/safety status is perishable** — re-verify any "approved / recruiting / discontinued / on-hold / withdrawn" claim live against the registries in `docs/09-verification-sources.md` (ClinicalTrials.gov, EU CTIS, Drugs@FDA, EMA, PMDA), record source + access date, and tag `[VERIFY]` if unconfirmed; never carry a status fact across sessions unchecked.
 
 7. **Naturally achievable ≠ unlimited supplementation.** "Naturally achievable" means: realistically obtainable from food at culinary doses, or from supplements at doses with established safety data. Megadosing is not naturally achievable.
 
 8. **When in doubt, exclude rather than include.** A short list of well-grounded hypotheses is far more useful than a long list padded with weak ones.
 
 9. **Account for the ~5% atypical cases.** Not all tumors that present clinically and histologically like CIC-DUX4 sarcoma will have a confirmed CIC-DUX4 (or CIC-NUTM1, CIC-FOXO4, etc.) fusion on genomic testing. Agents should note, where relevant, whether a recommendation applies specifically to fusion-confirmed cases or whether it may generalize to this genomically uncharacterized subgroup.
+
+10. **Tier is one of three orthogonal axes.** Evidence tier ("what kind of evidence") is necessary but not sufficient. Where they apply, also carry **confidence** ("how much should I believe this transfers to CIC-DUX4 in vivo" — `docs/08-evidence-confidence-scoring.md`) and **translational feasibility** ("could a patient access it — approved / in a recruiting trial / discontinued / on hold", F1–F5 — `simulation-output/translational-feasibility-layer.md`). Do not average them into one score, and keep the two-lane rule: these axes annotate the confirmatory lane but never prune the Forward-Hypotheses lane (see ADR-0004; full framing in `/sarcoma-contract`).
 
 ---
 
