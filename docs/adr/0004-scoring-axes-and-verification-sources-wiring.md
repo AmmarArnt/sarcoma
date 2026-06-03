@@ -52,15 +52,31 @@ path), keeping the heavy *methods* in their docs (the rule-vs-reference split). 
    NER (entity grounding ≠ fact verification). This is the reusable resource the maintainer asked for —
    for all future analysis/sims/research, not the one feasibility run.
 
-4. **CLAUDE.md** — golden rule #1 now names the perishable-status rule + `docs/09`; rule #2 names the
-   three axes; §5 distinguishes entity grounding (OpenMed) from fact-checking (`docs/09`); §6 updates the
-   `sarcoma-contract` and `sarcoma-pre-output-check` descriptions; §7 repo map adds `docs/08` and `docs/09`.
+4. **Single-source ownership for the behavioral contract (the load-discipline decision).** The skill is
+   **canonical** for the contract surface (tier vocabulary, the three axes, citation/live-verification
+   rules, failure modes, mandatory-includes, hard refusals); `docs/00`, `docs/06`, and `CLAUDE.md` carry
+   **rationale + a one-line pointer, not a copy.** This inverts the prior "skills are a redundant cache of
+   the docs" model *for the contract surface only* — the large content slices (`docs/05`; the per-role
+   prompts/schemas in `docs/06`) keep the doc-as-source / skill-as-cache model via `sarcoma-vector-context`
+   and `sarcoma-output-schema`. Rationale: the contract is what every agent loads to *produce output*, so a
+   single authoritative copy (no drift, no contradictory instructions) matters more than redundancy, and it
+   keeps the always-loaded surface lean. `.claude/skills/README.md` records the two ownership models.
+
+5. **CLAUDE.md stays pointer-thin** (it is the only always-on surface in a main-thread session): golden
+   rule #1 names the perishable-status rule + `docs/09` in one line; rule #2 points to the three axes in
+   `sarcoma-contract`; §5 distinguishes entity grounding (OpenMed) from fact-checking (`docs/09`); §6
+   updates the skill descriptions; §7 repo map adds `docs/08` and `docs/09`. No rule text is restated.
 
 ## Consequences
 
 - **Sub-agents now inherit all three axes + the verification discipline by default**, because the mandates
   live in the two skills every agent loads — closing the propagation gap. The full methods remain
   single-sourced in their docs.
+- **One canonical copy per contract rule → less drift and a leaner loaded context.** A future rule change
+  edits the skill only; the docs/CLAUDE.md pointers don't move. This was a deliberate choice over mirroring
+  the rules across all surfaces (which maximizes redundancy but multiplies drift risk and the always-on
+  token tax — the failure mode being avoided is *contradictory* instructions, which degrade LLM output).
+  Per-agent slicing is preserved: axes are carried "where they apply," not forced into every agent's load.
 - **A new standing obligation:** any load-bearing status claim must be live-verified against `docs/09` and
   date-stamped; pre-output-check enforces it. Existing artifacts' status facts carry their access date and
   should be re-checked when old and load-bearing (the feasibility layer is explicitly perishable).
@@ -84,3 +100,10 @@ path), keeping the heavy *methods* in their docs (the rule-vs-reference split). 
 - **Put the verification sources only in the feasibility layer.** Rejected: the maintainer asked for a
   reusable, framework-wide resource; a top-level `docs/09` referenced from the contract reaches every task,
   not just feasibility questions.
+- **Mirror the contract rules in full across docs + skills + CLAUDE.md (maximal redundancy).** Considered
+  (and initially drafted) so any file read in isolation is self-complete. Rejected on the maintainer's
+  load-discipline concern: redundancy multiplies drift/contradiction risk and inflates the always-on
+  context, both of which *degrade* output — the opposite of the goal. Single-sourcing (skill canonical +
+  pointers) gives maximal consistency with minimal juggling. *(Note: pre-existing duplication of the older
+  constraints between `docs/00`/`docs/06` and the contract skill is left untouched here; collapsing it to
+  the same single-source model is a sensible follow-up cleanup, not part of this PR.)*

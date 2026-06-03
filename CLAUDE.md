@@ -56,17 +56,13 @@ From `docs/00-README.md`, `docs/06-agent-architecture.md`, and the `sarcoma-cont
 1. **No fabricated citations. Ever.** If you can't point to a real PMID / NCT / DOI / dataset, write
    `[no direct citation; mechanism inferred from {what}]`. Plausible-looking fake references are the
    single worst failure mode. **Verify accessions/PMIDs against live sources when you can** (WebSearch/
-   WebFetch); if you can't verify, label it `[VERIFY]` rather than asserting it. **Regulatory/trial/safety
-   status is perishable — re-verify it live against the authoritative registries in
-   `docs/09-verification-sources.md` (ClinicalTrials.gov, EU CTIS, Drugs@FDA, EMA, PMDA, …), record source
-   + access date, and never carry a status fact across sessions unchecked** (e.g. tazemetostat was
-   withdrawn from US indications 2026-03-09).
+   WebFetch); if you can't verify, label it `[VERIFY]` rather than asserting it. Regulatory/trial/safety
+   status is **perishable** — verify it live and never carry it across sessions unchecked (operative rule +
+   source registry: `sarcoma-contract` and `docs/09-verification-sources.md`).
 2. **Evidence tier on every claim.** Use exactly one: `Established` › `Clinical-Trial` ›
    `Preclinical-Animal` › `Preclinical-Cell` › `Mechanistic` › `Dietary-Observational` › `Theoretical`.
-   Tier is the **first of three orthogonal axes** (tier / confidence / feasibility) — carry the other two
-   where they apply: **confidence** (`docs/08-evidence-confidence-scoring.md`) and **translational
-   feasibility** F1–F5 (`simulation-output/translational-feasibility-layer.md`). They annotate the
-   confirmatory lane, never prune the Forward-Hypotheses lane (rule #5). Full framing in `sarcoma-contract`.
+   Tier is the first of three orthogonal axes (tier / confidence / feasibility) — see `sarcoma-contract`
+   for when to also carry confidence and translational-feasibility reads.
 3. **Mechanism before recommendation.** State the molecular mechanism, not an analogy and not
    "antioxidant properties." The engineering analogy (docs/04) is shorthand — always translate it back
    to biology.
