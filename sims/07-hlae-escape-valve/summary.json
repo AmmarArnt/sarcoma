@@ -1,0 +1,9 @@
+{
+  "parity_pass": true,
+  "targetstate_coupling_off": 176,
+  "targetstate_coupling_on": 100,
+  "routes_lost_to_brake": 76,
+  "surviving_routes_with_aNKG2A": 88,
+  "surviving_routes_total": 100,
+  "b2mloss_active_brakes": 0
+}

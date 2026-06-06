@@ -16,6 +16,7 @@ Run from the repo root with the project venv: `.venv/bin/python`
 | 4 | Immune-state / selective clearance | Sim-1 immune-gene data + cited biology | Boolean (nectins + immune markers) | **DNA-damage-free clearance reachable**; minimal route **CDK4/6i + αTIGIT** (NK/senescence); "strangle only" ≠ cleared. See `04-immune-state-model/STATES.md` |
 | 5 | Whole-body system-state + sequencing | Sim-4 model + cited biology | Boolean + delays (5 compartments, temporal) | **Order matters: NK-first** clears fastest; checkpoint-first never; **host state must be repaired** (IL-15) in unfit-NK hosts. Reveals the "MHC-I restoration gap." |
 | 6 | Biomarker value-of-information | Sim-4 model (context params as biomarkers) | Boolean decision-sensitivity | **Nectin CD155/CD112 is the highest-VoI missing biomarker** (not MHC-I — NK fallback covers antigen loss); HLA-E + NK-fitness select the route; PD-L1 baseline is low-VoI (adaptive). Answers issue #7; three-tier missing-data taxonomy. |
+| 7 | HLA-E/NKG2A escape valve (extends Sim 4) | Sim-4 model + cited HLA-E/NKG2A biology | Boolean (HLA-E made dynamic) | Tests **V4 FH-3**: if epigenetic MHC-I restoration co-induces HLA-E, **anti-NKG2A (monalizumab) is load-bearing** (88% of surviving clearance routes need it); MHC-I-restoration self-blocks without it; **NK-first wins only while IFN-cold**; B2M-loss control nulls the brake. Parity with Sim 4 verified. |
 
 ## Convergence (the point of running three orthogonal methods)
 | Target | Sim 1 transcriptomic | Sim 2 genetic dependency | Sim 3 dynamical | Net read |
