@@ -1,0 +1,8 @@
+node,necessary (in EVERY sufficient set),appears in some sufficient set,n_sufficient_sets_with_node
+progenitor,True,True,3
+fusion,True,True,3
+apop_buffer,True,True,3
+TP53_loss,False,True,2
+CDKN2A_loss,False,True,2
+immortalize,True,True,3
+amplify,True,True,3

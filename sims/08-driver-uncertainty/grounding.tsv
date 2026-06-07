@@ -1,0 +1,24 @@
+## OpenMed NER grounding for Sim 8
+## STATUS: NOT RUN — huggingface.co blocked (HTTP 403) by this environment's egress
+## allow-list (verified 2026-06-07); OpenMed model weights could not be downloaded.
+## Per the no-fabrication rule, no grounding scores are invented. Entities (entities.txt)
+## are standard biomedical terms already grounded GENE/PROTEIN/Cancer in prior sims
+## (see sims/02 and sims/04 grounding.tsv). To complete when egress allows:
+##   python scripts/openmed_ner.py --team v1-lead \
+##       --text-file sims/08-driver-uncertainty/entities.txt --format tsv > grounding.tsv
+entity	type	score	source
+CIC-DUX4	(pending)	NA	huggingface blocked
+CIC	(pending)	NA	huggingface blocked
+DUX4	(pending)	NA	huggingface blocked
+CIC-NUTM1	(pending)	NA	huggingface blocked
+CIC-FOXO4	(pending)	NA	huggingface blocked
+CIC-LEUTX	(pending)	NA	huggingface blocked
+BCOR	(pending)	NA	huggingface blocked
+EWSR1	(pending)	NA	huggingface blocked
+ETV4	(pending)	NA	huggingface blocked
+MCL1	(pending)	NA	huggingface blocked
+EZH2	(pending)	NA	huggingface blocked
+BRD4	(pending)	NA	huggingface blocked
+CDK4	(pending)	NA	huggingface blocked
+DNA methylation	(pending)	NA	huggingface blocked
+CIC-rearranged sarcoma	(pending)	NA	huggingface blocked

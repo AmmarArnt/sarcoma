@@ -1,0 +1,8 @@
+intervention,expected_on_target_prob,value,regret_penalty,class,robust_or_contingent
+BRD4_BETi,0.811,2.0,0.3,throttle,robust
+CDK4_CCND1_i,0.784,2.0,0.3,cell-cycle,robust
+immune_NK_checkpt,0.7,1.5,0.3,host/driver-agnostic,robust
+EZH2i_MHCI_prime,0.651,1.5,0.5,epigenetic/immune-bridge,robust
+p300_CBP_i,0.64,2.0,0.8,writer,robust
+junction_ASO_vax,0.513,3.0,2.5,junction-specific (contingent),CONTINGENT
+MCL1i_reArm_DUX4,0.389,3.0,2.0,DUX4-fragility (contingent),CONTINGENT

@@ -1,0 +1,4 @@
+test,EVSI_decision_value,expected_posterior_entropy_bits,entropy_reduction_bits
+longread_WGS_RNAseq,1.8647,1.042,1.023
+DUX4_IHC,1.678,1.272,0.793
+methylation_array,1.0493,1.556,0.508

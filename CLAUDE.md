@@ -45,7 +45,24 @@ Already on disk:
   tumor-promoting inflammation vs. anti-tumor activation vs. treatment-related toxicity). Inside V4 — not a
   fifth vector (from issue #11 / ADR-0006). Reuse for immune-visibility / danger-signaling / ICD /
   Nectin-axis / NK-surveillance questions.
-- `sims/01–06/` — executed in-silico experiments with `RESULTS.md` + data `MANIFEST.md` + grounding.
+- `simulation-output/tumorigenesis-reverse-engineering/` — the **forward / "steps to reproduce" build
+  recipe** (the INVERSE of the four attack vectors): how a normal mesenchymal progenitor *becomes* a
+  CIC-DUX4 cell, reverse-engineered into intervention points. Lead `tumorigenesis-build-recipe.md`
+  (headline) + four specialist briefs (cell-of-origin, driver-engineering, cooperating-lesions,
+  epigenetic-permissiveness). A supplementary team, **not a fifth vector**. Reuse for cell-of-origin /
+  pathogenesis / "how/why does the cell get into this state" / "reverse-engineer the construction" /
+  minimal-transformation-set questions (from ADR-0007).
+- `simulation-output/tumorigenesis-reverse-engineering/driver-uncertainty-specialist.md` + `sims/08-driver-uncertainty/`
+  — the **fusion-unconfirmed / "unknown driver" decision model** (ADR-0008). Treats the driver of the ~5%
+  fusion-unconfirmed patient as a latent variable (D1 cryptic CIC-DUX4 … D5 orphan), marginalizes the
+  catalog over a literature-anchored prior (robustness), computes the **value of resolving the driver**
+  (EVSI: long-read WGS+RNA-seq > DUX4 IHC > methylation array), and sweeps the prior. Reuse for
+  fusion-unconfirmed / atypical-case / "unknown driver" / "what should we test first / value of resolving
+  the diagnosis" questions. Key result: throttle/cell-cycle/immune vectors are driver-robust; the
+  **DUX4/MCL1 "re-arm" hypothesis is driver-contingent** (hold until resolved).
+- `sims/01–08/` — executed in-silico experiments with `RESULTS.md` + data `MANIFEST.md` + grounding.
+  (Sim 7 = Boolean **transformation-trajectory** behind the build recipe; Sim 8 = the **driver-uncertainty**
+  decision model above.)
 
 **Default behavior:** answer from and cite these artifacts; extend incrementally. Do **not** re-run the
 waves in §3 (or re-execute a sim) to reproduce something already on disk.
@@ -115,6 +132,8 @@ From `docs/00-README.md`, `docs/06-agent-architecture.md`, and the `sarcoma-cont
 | A question about whether a candidate is approved / in a recruiting trial / discontinued / on hold, its FDA-vs-EMA status, repurposing path, or "how soon could a patient access it" | **Reuse the feasibility layer** (`simulation-output/translational-feasibility-layer.md` / ADR-0003); **re-verify the regulatory/trial facts live** before relying on them — bands are date-stamped and perishable. |
 | A host-level / lifestyle question (microbiome, inflammation, metabolic/sarcopenia, nutrition, exercise, sleep/circadian, autonomic/stress/PNEI, placebo-nocebo, perioperative conditioning) — "does host biology explain variability / tolerance / immune competence," "should it be its own layer" | **Reuse the host-biology modifier layer** (`simulation-output/host-biology-modifier-layer.md` / ADR-0005); extend it rather than re-deriving. It is a cross-cutting modifier (conditions V4 + SOC), **not a fifth vector**, weighted via the existing three axes. |
 | A V4 immune-visibility / danger-signaling / ICD / DAMP / Nectin-TIGIT / NK-surveillance question, or "should the framework distinguish tumor-promoting inflammation vs. anti-tumor activation vs. treatment toxicity" | **Reuse the V4 expansion** (`simulation-output/v4-immune-watchdog/immune-watchdog-expansion.md` / ADR-0006) and the four V4 sub-agent files; extend rather than re-deriving. It is *inside* V4 — **not a fifth vector**; apply the inflammation-state lens (lowering inflammation ≠ improving anti-tumor immunity). |
+| A cell-of-origin / pathogenesis / tumorigenesis question — "how/why does the cell get *into* this state," "what would you do to a stem cell to make this tumor," "reverse-engineer the construction," minimal-transformation-set / which build steps are necessary | **Reuse the tumorigenesis reverse-engineering layer** (`simulation-output/tumorigenesis-reverse-engineering/` + `sims/07-tumorigenesis-trajectory/` / ADR-0007); extend rather than re-deriving. It is the **forward/inverse** of V1–V4 (a build recipe mapped back onto the vectors), a supplementary team, **not a fifth vector**. |
+| A fusion-unconfirmed / atypical-case / "unknown driver" question — "the patient has no confirmed fusion," "which options are safe given we don't know the driver," "what should we test first / is it worth resolving the diagnosis" | **Reuse the driver-uncertainty decision model** (`simulation-output/tumorigenesis-reverse-engineering/driver-uncertainty-specialist.md` + `sims/08-driver-uncertainty/` / ADR-0008). Treats the driver as a latent variable, marginalizes for robustness, and computes EVSI of resolving it; re-condition the prior on any real testing the patient already had. **Not a diagnosis.** |
 
 Default to teams for analysis/research/simulation; default to a direct answer for everything else.
 A "thorough"-sounding multi-part question is not automatically a spawn — judge whether real
@@ -137,6 +156,11 @@ specialists catch what one pass misses. Always try an **existing team** first.
 | `v4-lead` | V4 Immune Watchdog (visibility + clearance) | Checkpoint/T-cell, NK, Microbiome-Immune, Neoantigen-Vaccine |
 | `mrna-vaccine-lead` | Supplementary: BNT162b2 immune/inflammatory/genomic relevance | mrna-immune-effects, mrna-oncogenic-risk (optional) |
 | `orchestrator` | Synthesis: dedupe, rank, resolve conflicts, write final catalog | Metastatic-Disease Specialist |
+
+**Supplementary teams (ad-hoc, no committed `.claude/agents/` file — reuse the written artifacts first):**
+| Team | Role | Spawned specialists (parallel) | Output |
+|---|---|---|---|
+| Tumorigenesis / Cell-of-Origin Reverse-Engineering (ADR-0007) | **Forward/inverse** of V1–V4: the "build recipe" for how a progenitor becomes a CIC-DUX4 cell, mapped back onto the vectors | Cell-of-Origin, Driver-Engineering, Cooperating-Lesions, Epigenetic-Permissiveness | `simulation-output/tumorigenesis-reverse-engineering/` + `sims/07-tumorigenesis-trajectory/` |
 
 ### Execution order (the standard full run)
 > Run this **only for a fresh full cycle** — reuse the existing outputs first (see §0). For incremental

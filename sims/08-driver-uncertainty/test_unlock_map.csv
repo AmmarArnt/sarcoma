@@ -1,0 +1,8 @@
+test,outcome,p_outcome,pursue_set,newly_unlocked
+DUX4_IHC,DUX4+,0.455,BRD4_BETi; p300_CBP_i; CDK4_CCND1_i; EZH2i_MHCI_prime; immune_NK_checkpt; MCL1i_reArm_DUX4; junction_ASO_vax,MCL1i_reArm_DUX4
+DUX4_IHC,DUX4-,0.545,BRD4_BETi; p300_CBP_i; CDK4_CCND1_i; EZH2i_MHCI_prime; immune_NK_checkpt,(none)
+methylation_array,CICclass,0.719,BRD4_BETi; p300_CBP_i; CDK4_CCND1_i; EZH2i_MHCI_prime; immune_NK_checkpt; MCL1i_reArm_DUX4; junction_ASO_vax,MCL1i_reArm_DUX4
+methylation_array,notCIC,0.281,BRD4_BETi; p300_CBP_i; CDK4_CCND1_i; EZH2i_MHCI_prime; immune_NK_checkpt,(none)
+longread_WGS_RNAseq,junction_DUX4,0.421,BRD4_BETi; p300_CBP_i; CDK4_CCND1_i; EZH2i_MHCI_prime; immune_NK_checkpt; MCL1i_reArm_DUX4; junction_ASO_vax,MCL1i_reArm_DUX4
+longread_WGS_RNAseq,junction_nonDUX4,0.139,BRD4_BETi; p300_CBP_i; CDK4_CCND1_i; EZH2i_MHCI_prime; immune_NK_checkpt; junction_ASO_vax,(none)
+longread_WGS_RNAseq,no_junction,0.441,BRD4_BETi; p300_CBP_i; CDK4_CCND1_i; EZH2i_MHCI_prime; immune_NK_checkpt,(none)

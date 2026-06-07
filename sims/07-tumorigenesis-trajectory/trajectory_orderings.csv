@@ -1,0 +1,721 @@
+order,viable_route,aborted_at_step,failure_mode
+CDKN2A_loss -> amplify -> apop_buffer -> fusion -> immortalize -> progenitor,True,,
+CDKN2A_loss -> amplify -> apop_buffer -> fusion -> progenitor -> immortalize,True,,
+CDKN2A_loss -> amplify -> apop_buffer -> immortalize -> fusion -> progenitor,True,,
+CDKN2A_loss -> amplify -> apop_buffer -> immortalize -> progenitor -> fusion,True,,
+CDKN2A_loss -> amplify -> apop_buffer -> progenitor -> fusion -> immortalize,True,,
+CDKN2A_loss -> amplify -> apop_buffer -> progenitor -> immortalize -> fusion,True,,
+CDKN2A_loss -> amplify -> fusion -> apop_buffer -> immortalize -> progenitor,True,,
+CDKN2A_loss -> amplify -> fusion -> apop_buffer -> progenitor -> immortalize,True,,
+CDKN2A_loss -> amplify -> fusion -> immortalize -> apop_buffer -> progenitor,True,,
+CDKN2A_loss -> amplify -> fusion -> immortalize -> progenitor -> apop_buffer,False,5,"death (DUX4/oncogene apoptosis, unbuffered)"
+CDKN2A_loss -> amplify -> fusion -> progenitor -> apop_buffer -> immortalize,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+CDKN2A_loss -> amplify -> fusion -> progenitor -> immortalize -> apop_buffer,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+CDKN2A_loss -> amplify -> immortalize -> apop_buffer -> fusion -> progenitor,True,,
+CDKN2A_loss -> amplify -> immortalize -> apop_buffer -> progenitor -> fusion,True,,
+CDKN2A_loss -> amplify -> immortalize -> fusion -> apop_buffer -> progenitor,True,,
+CDKN2A_loss -> amplify -> immortalize -> fusion -> progenitor -> apop_buffer,False,5,"death (DUX4/oncogene apoptosis, unbuffered)"
+CDKN2A_loss -> amplify -> immortalize -> progenitor -> apop_buffer -> fusion,True,,
+CDKN2A_loss -> amplify -> immortalize -> progenitor -> fusion -> apop_buffer,False,5,"death (DUX4/oncogene apoptosis, unbuffered)"
+CDKN2A_loss -> amplify -> progenitor -> apop_buffer -> fusion -> immortalize,True,,
+CDKN2A_loss -> amplify -> progenitor -> apop_buffer -> immortalize -> fusion,True,,
+CDKN2A_loss -> amplify -> progenitor -> fusion -> apop_buffer -> immortalize,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+CDKN2A_loss -> amplify -> progenitor -> fusion -> immortalize -> apop_buffer,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+CDKN2A_loss -> amplify -> progenitor -> immortalize -> apop_buffer -> fusion,True,,
+CDKN2A_loss -> amplify -> progenitor -> immortalize -> fusion -> apop_buffer,False,5,"death (DUX4/oncogene apoptosis, unbuffered)"
+CDKN2A_loss -> apop_buffer -> amplify -> fusion -> immortalize -> progenitor,True,,
+CDKN2A_loss -> apop_buffer -> amplify -> fusion -> progenitor -> immortalize,True,,
+CDKN2A_loss -> apop_buffer -> amplify -> immortalize -> fusion -> progenitor,True,,
+CDKN2A_loss -> apop_buffer -> amplify -> immortalize -> progenitor -> fusion,True,,
+CDKN2A_loss -> apop_buffer -> amplify -> progenitor -> fusion -> immortalize,True,,
+CDKN2A_loss -> apop_buffer -> amplify -> progenitor -> immortalize -> fusion,True,,
+CDKN2A_loss -> apop_buffer -> fusion -> amplify -> immortalize -> progenitor,True,,
+CDKN2A_loss -> apop_buffer -> fusion -> amplify -> progenitor -> immortalize,True,,
+CDKN2A_loss -> apop_buffer -> fusion -> immortalize -> amplify -> progenitor,True,,
+CDKN2A_loss -> apop_buffer -> fusion -> immortalize -> progenitor -> amplify,True,,
+CDKN2A_loss -> apop_buffer -> fusion -> progenitor -> amplify -> immortalize,True,,
+CDKN2A_loss -> apop_buffer -> fusion -> progenitor -> immortalize -> amplify,True,,
+CDKN2A_loss -> apop_buffer -> immortalize -> amplify -> fusion -> progenitor,True,,
+CDKN2A_loss -> apop_buffer -> immortalize -> amplify -> progenitor -> fusion,True,,
+CDKN2A_loss -> apop_buffer -> immortalize -> fusion -> amplify -> progenitor,True,,
+CDKN2A_loss -> apop_buffer -> immortalize -> fusion -> progenitor -> amplify,True,,
+CDKN2A_loss -> apop_buffer -> immortalize -> progenitor -> amplify -> fusion,True,,
+CDKN2A_loss -> apop_buffer -> immortalize -> progenitor -> fusion -> amplify,True,,
+CDKN2A_loss -> apop_buffer -> progenitor -> amplify -> fusion -> immortalize,True,,
+CDKN2A_loss -> apop_buffer -> progenitor -> amplify -> immortalize -> fusion,True,,
+CDKN2A_loss -> apop_buffer -> progenitor -> fusion -> amplify -> immortalize,True,,
+CDKN2A_loss -> apop_buffer -> progenitor -> fusion -> immortalize -> amplify,True,,
+CDKN2A_loss -> apop_buffer -> progenitor -> immortalize -> amplify -> fusion,True,,
+CDKN2A_loss -> apop_buffer -> progenitor -> immortalize -> fusion -> amplify,True,,
+CDKN2A_loss -> fusion -> amplify -> apop_buffer -> immortalize -> progenitor,True,,
+CDKN2A_loss -> fusion -> amplify -> apop_buffer -> progenitor -> immortalize,True,,
+CDKN2A_loss -> fusion -> amplify -> immortalize -> apop_buffer -> progenitor,True,,
+CDKN2A_loss -> fusion -> amplify -> immortalize -> progenitor -> apop_buffer,False,5,"death (DUX4/oncogene apoptosis, unbuffered)"
+CDKN2A_loss -> fusion -> amplify -> progenitor -> apop_buffer -> immortalize,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+CDKN2A_loss -> fusion -> amplify -> progenitor -> immortalize -> apop_buffer,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+CDKN2A_loss -> fusion -> apop_buffer -> amplify -> immortalize -> progenitor,True,,
+CDKN2A_loss -> fusion -> apop_buffer -> amplify -> progenitor -> immortalize,True,,
+CDKN2A_loss -> fusion -> apop_buffer -> immortalize -> amplify -> progenitor,True,,
+CDKN2A_loss -> fusion -> apop_buffer -> immortalize -> progenitor -> amplify,True,,
+CDKN2A_loss -> fusion -> apop_buffer -> progenitor -> amplify -> immortalize,True,,
+CDKN2A_loss -> fusion -> apop_buffer -> progenitor -> immortalize -> amplify,True,,
+CDKN2A_loss -> fusion -> immortalize -> amplify -> apop_buffer -> progenitor,True,,
+CDKN2A_loss -> fusion -> immortalize -> amplify -> progenitor -> apop_buffer,False,5,"death (DUX4/oncogene apoptosis, unbuffered)"
+CDKN2A_loss -> fusion -> immortalize -> apop_buffer -> amplify -> progenitor,True,,
+CDKN2A_loss -> fusion -> immortalize -> apop_buffer -> progenitor -> amplify,True,,
+CDKN2A_loss -> fusion -> immortalize -> progenitor -> amplify -> apop_buffer,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+CDKN2A_loss -> fusion -> immortalize -> progenitor -> apop_buffer -> amplify,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+CDKN2A_loss -> fusion -> progenitor -> amplify -> apop_buffer -> immortalize,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+CDKN2A_loss -> fusion -> progenitor -> amplify -> immortalize -> apop_buffer,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+CDKN2A_loss -> fusion -> progenitor -> apop_buffer -> amplify -> immortalize,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+CDKN2A_loss -> fusion -> progenitor -> apop_buffer -> immortalize -> amplify,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+CDKN2A_loss -> fusion -> progenitor -> immortalize -> amplify -> apop_buffer,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+CDKN2A_loss -> fusion -> progenitor -> immortalize -> apop_buffer -> amplify,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+CDKN2A_loss -> immortalize -> amplify -> apop_buffer -> fusion -> progenitor,True,,
+CDKN2A_loss -> immortalize -> amplify -> apop_buffer -> progenitor -> fusion,True,,
+CDKN2A_loss -> immortalize -> amplify -> fusion -> apop_buffer -> progenitor,True,,
+CDKN2A_loss -> immortalize -> amplify -> fusion -> progenitor -> apop_buffer,False,5,"death (DUX4/oncogene apoptosis, unbuffered)"
+CDKN2A_loss -> immortalize -> amplify -> progenitor -> apop_buffer -> fusion,True,,
+CDKN2A_loss -> immortalize -> amplify -> progenitor -> fusion -> apop_buffer,False,5,"death (DUX4/oncogene apoptosis, unbuffered)"
+CDKN2A_loss -> immortalize -> apop_buffer -> amplify -> fusion -> progenitor,True,,
+CDKN2A_loss -> immortalize -> apop_buffer -> amplify -> progenitor -> fusion,True,,
+CDKN2A_loss -> immortalize -> apop_buffer -> fusion -> amplify -> progenitor,True,,
+CDKN2A_loss -> immortalize -> apop_buffer -> fusion -> progenitor -> amplify,True,,
+CDKN2A_loss -> immortalize -> apop_buffer -> progenitor -> amplify -> fusion,True,,
+CDKN2A_loss -> immortalize -> apop_buffer -> progenitor -> fusion -> amplify,True,,
+CDKN2A_loss -> immortalize -> fusion -> amplify -> apop_buffer -> progenitor,True,,
+CDKN2A_loss -> immortalize -> fusion -> amplify -> progenitor -> apop_buffer,False,5,"death (DUX4/oncogene apoptosis, unbuffered)"
+CDKN2A_loss -> immortalize -> fusion -> apop_buffer -> amplify -> progenitor,True,,
+CDKN2A_loss -> immortalize -> fusion -> apop_buffer -> progenitor -> amplify,True,,
+CDKN2A_loss -> immortalize -> fusion -> progenitor -> amplify -> apop_buffer,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+CDKN2A_loss -> immortalize -> fusion -> progenitor -> apop_buffer -> amplify,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+CDKN2A_loss -> immortalize -> progenitor -> amplify -> apop_buffer -> fusion,True,,
+CDKN2A_loss -> immortalize -> progenitor -> amplify -> fusion -> apop_buffer,False,5,"death (DUX4/oncogene apoptosis, unbuffered)"
+CDKN2A_loss -> immortalize -> progenitor -> apop_buffer -> amplify -> fusion,True,,
+CDKN2A_loss -> immortalize -> progenitor -> apop_buffer -> fusion -> amplify,True,,
+CDKN2A_loss -> immortalize -> progenitor -> fusion -> amplify -> apop_buffer,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+CDKN2A_loss -> immortalize -> progenitor -> fusion -> apop_buffer -> amplify,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+CDKN2A_loss -> progenitor -> amplify -> apop_buffer -> fusion -> immortalize,True,,
+CDKN2A_loss -> progenitor -> amplify -> apop_buffer -> immortalize -> fusion,True,,
+CDKN2A_loss -> progenitor -> amplify -> fusion -> apop_buffer -> immortalize,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+CDKN2A_loss -> progenitor -> amplify -> fusion -> immortalize -> apop_buffer,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+CDKN2A_loss -> progenitor -> amplify -> immortalize -> apop_buffer -> fusion,True,,
+CDKN2A_loss -> progenitor -> amplify -> immortalize -> fusion -> apop_buffer,False,5,"death (DUX4/oncogene apoptosis, unbuffered)"
+CDKN2A_loss -> progenitor -> apop_buffer -> amplify -> fusion -> immortalize,True,,
+CDKN2A_loss -> progenitor -> apop_buffer -> amplify -> immortalize -> fusion,True,,
+CDKN2A_loss -> progenitor -> apop_buffer -> fusion -> amplify -> immortalize,True,,
+CDKN2A_loss -> progenitor -> apop_buffer -> fusion -> immortalize -> amplify,True,,
+CDKN2A_loss -> progenitor -> apop_buffer -> immortalize -> amplify -> fusion,True,,
+CDKN2A_loss -> progenitor -> apop_buffer -> immortalize -> fusion -> amplify,True,,
+CDKN2A_loss -> progenitor -> fusion -> amplify -> apop_buffer -> immortalize,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+CDKN2A_loss -> progenitor -> fusion -> amplify -> immortalize -> apop_buffer,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+CDKN2A_loss -> progenitor -> fusion -> apop_buffer -> amplify -> immortalize,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+CDKN2A_loss -> progenitor -> fusion -> apop_buffer -> immortalize -> amplify,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+CDKN2A_loss -> progenitor -> fusion -> immortalize -> amplify -> apop_buffer,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+CDKN2A_loss -> progenitor -> fusion -> immortalize -> apop_buffer -> amplify,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+CDKN2A_loss -> progenitor -> immortalize -> amplify -> apop_buffer -> fusion,True,,
+CDKN2A_loss -> progenitor -> immortalize -> amplify -> fusion -> apop_buffer,False,5,"death (DUX4/oncogene apoptosis, unbuffered)"
+CDKN2A_loss -> progenitor -> immortalize -> apop_buffer -> amplify -> fusion,True,,
+CDKN2A_loss -> progenitor -> immortalize -> apop_buffer -> fusion -> amplify,True,,
+CDKN2A_loss -> progenitor -> immortalize -> fusion -> amplify -> apop_buffer,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+CDKN2A_loss -> progenitor -> immortalize -> fusion -> apop_buffer -> amplify,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+amplify -> CDKN2A_loss -> apop_buffer -> fusion -> immortalize -> progenitor,True,,
+amplify -> CDKN2A_loss -> apop_buffer -> fusion -> progenitor -> immortalize,True,,
+amplify -> CDKN2A_loss -> apop_buffer -> immortalize -> fusion -> progenitor,True,,
+amplify -> CDKN2A_loss -> apop_buffer -> immortalize -> progenitor -> fusion,True,,
+amplify -> CDKN2A_loss -> apop_buffer -> progenitor -> fusion -> immortalize,True,,
+amplify -> CDKN2A_loss -> apop_buffer -> progenitor -> immortalize -> fusion,True,,
+amplify -> CDKN2A_loss -> fusion -> apop_buffer -> immortalize -> progenitor,True,,
+amplify -> CDKN2A_loss -> fusion -> apop_buffer -> progenitor -> immortalize,True,,
+amplify -> CDKN2A_loss -> fusion -> immortalize -> apop_buffer -> progenitor,True,,
+amplify -> CDKN2A_loss -> fusion -> immortalize -> progenitor -> apop_buffer,False,5,"death (DUX4/oncogene apoptosis, unbuffered)"
+amplify -> CDKN2A_loss -> fusion -> progenitor -> apop_buffer -> immortalize,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+amplify -> CDKN2A_loss -> fusion -> progenitor -> immortalize -> apop_buffer,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+amplify -> CDKN2A_loss -> immortalize -> apop_buffer -> fusion -> progenitor,True,,
+amplify -> CDKN2A_loss -> immortalize -> apop_buffer -> progenitor -> fusion,True,,
+amplify -> CDKN2A_loss -> immortalize -> fusion -> apop_buffer -> progenitor,True,,
+amplify -> CDKN2A_loss -> immortalize -> fusion -> progenitor -> apop_buffer,False,5,"death (DUX4/oncogene apoptosis, unbuffered)"
+amplify -> CDKN2A_loss -> immortalize -> progenitor -> apop_buffer -> fusion,True,,
+amplify -> CDKN2A_loss -> immortalize -> progenitor -> fusion -> apop_buffer,False,5,"death (DUX4/oncogene apoptosis, unbuffered)"
+amplify -> CDKN2A_loss -> progenitor -> apop_buffer -> fusion -> immortalize,True,,
+amplify -> CDKN2A_loss -> progenitor -> apop_buffer -> immortalize -> fusion,True,,
+amplify -> CDKN2A_loss -> progenitor -> fusion -> apop_buffer -> immortalize,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+amplify -> CDKN2A_loss -> progenitor -> fusion -> immortalize -> apop_buffer,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+amplify -> CDKN2A_loss -> progenitor -> immortalize -> apop_buffer -> fusion,True,,
+amplify -> CDKN2A_loss -> progenitor -> immortalize -> fusion -> apop_buffer,False,5,"death (DUX4/oncogene apoptosis, unbuffered)"
+amplify -> apop_buffer -> CDKN2A_loss -> fusion -> immortalize -> progenitor,True,,
+amplify -> apop_buffer -> CDKN2A_loss -> fusion -> progenitor -> immortalize,True,,
+amplify -> apop_buffer -> CDKN2A_loss -> immortalize -> fusion -> progenitor,True,,
+amplify -> apop_buffer -> CDKN2A_loss -> immortalize -> progenitor -> fusion,True,,
+amplify -> apop_buffer -> CDKN2A_loss -> progenitor -> fusion -> immortalize,True,,
+amplify -> apop_buffer -> CDKN2A_loss -> progenitor -> immortalize -> fusion,True,,
+amplify -> apop_buffer -> fusion -> CDKN2A_loss -> immortalize -> progenitor,True,,
+amplify -> apop_buffer -> fusion -> CDKN2A_loss -> progenitor -> immortalize,True,,
+amplify -> apop_buffer -> fusion -> immortalize -> CDKN2A_loss -> progenitor,True,,
+amplify -> apop_buffer -> fusion -> immortalize -> progenitor -> CDKN2A_loss,True,,
+amplify -> apop_buffer -> fusion -> progenitor -> CDKN2A_loss -> immortalize,True,,
+amplify -> apop_buffer -> fusion -> progenitor -> immortalize -> CDKN2A_loss,True,,
+amplify -> apop_buffer -> immortalize -> CDKN2A_loss -> fusion -> progenitor,True,,
+amplify -> apop_buffer -> immortalize -> CDKN2A_loss -> progenitor -> fusion,True,,
+amplify -> apop_buffer -> immortalize -> fusion -> CDKN2A_loss -> progenitor,True,,
+amplify -> apop_buffer -> immortalize -> fusion -> progenitor -> CDKN2A_loss,True,,
+amplify -> apop_buffer -> immortalize -> progenitor -> CDKN2A_loss -> fusion,True,,
+amplify -> apop_buffer -> immortalize -> progenitor -> fusion -> CDKN2A_loss,True,,
+amplify -> apop_buffer -> progenitor -> CDKN2A_loss -> fusion -> immortalize,True,,
+amplify -> apop_buffer -> progenitor -> CDKN2A_loss -> immortalize -> fusion,True,,
+amplify -> apop_buffer -> progenitor -> fusion -> CDKN2A_loss -> immortalize,True,,
+amplify -> apop_buffer -> progenitor -> fusion -> immortalize -> CDKN2A_loss,True,,
+amplify -> apop_buffer -> progenitor -> immortalize -> CDKN2A_loss -> fusion,True,,
+amplify -> apop_buffer -> progenitor -> immortalize -> fusion -> CDKN2A_loss,True,,
+amplify -> fusion -> CDKN2A_loss -> apop_buffer -> immortalize -> progenitor,True,,
+amplify -> fusion -> CDKN2A_loss -> apop_buffer -> progenitor -> immortalize,True,,
+amplify -> fusion -> CDKN2A_loss -> immortalize -> apop_buffer -> progenitor,True,,
+amplify -> fusion -> CDKN2A_loss -> immortalize -> progenitor -> apop_buffer,False,5,"death (DUX4/oncogene apoptosis, unbuffered)"
+amplify -> fusion -> CDKN2A_loss -> progenitor -> apop_buffer -> immortalize,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+amplify -> fusion -> CDKN2A_loss -> progenitor -> immortalize -> apop_buffer,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+amplify -> fusion -> apop_buffer -> CDKN2A_loss -> immortalize -> progenitor,True,,
+amplify -> fusion -> apop_buffer -> CDKN2A_loss -> progenitor -> immortalize,True,,
+amplify -> fusion -> apop_buffer -> immortalize -> CDKN2A_loss -> progenitor,True,,
+amplify -> fusion -> apop_buffer -> immortalize -> progenitor -> CDKN2A_loss,True,,
+amplify -> fusion -> apop_buffer -> progenitor -> CDKN2A_loss -> immortalize,True,,
+amplify -> fusion -> apop_buffer -> progenitor -> immortalize -> CDKN2A_loss,True,,
+amplify -> fusion -> immortalize -> CDKN2A_loss -> apop_buffer -> progenitor,True,,
+amplify -> fusion -> immortalize -> CDKN2A_loss -> progenitor -> apop_buffer,False,5,"death (DUX4/oncogene apoptosis, unbuffered)"
+amplify -> fusion -> immortalize -> apop_buffer -> CDKN2A_loss -> progenitor,True,,
+amplify -> fusion -> immortalize -> apop_buffer -> progenitor -> CDKN2A_loss,True,,
+amplify -> fusion -> immortalize -> progenitor -> CDKN2A_loss -> apop_buffer,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+amplify -> fusion -> immortalize -> progenitor -> apop_buffer -> CDKN2A_loss,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+amplify -> fusion -> progenitor -> CDKN2A_loss -> apop_buffer -> immortalize,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+amplify -> fusion -> progenitor -> CDKN2A_loss -> immortalize -> apop_buffer,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+amplify -> fusion -> progenitor -> apop_buffer -> CDKN2A_loss -> immortalize,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+amplify -> fusion -> progenitor -> apop_buffer -> immortalize -> CDKN2A_loss,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+amplify -> fusion -> progenitor -> immortalize -> CDKN2A_loss -> apop_buffer,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+amplify -> fusion -> progenitor -> immortalize -> apop_buffer -> CDKN2A_loss,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+amplify -> immortalize -> CDKN2A_loss -> apop_buffer -> fusion -> progenitor,True,,
+amplify -> immortalize -> CDKN2A_loss -> apop_buffer -> progenitor -> fusion,True,,
+amplify -> immortalize -> CDKN2A_loss -> fusion -> apop_buffer -> progenitor,True,,
+amplify -> immortalize -> CDKN2A_loss -> fusion -> progenitor -> apop_buffer,False,5,"death (DUX4/oncogene apoptosis, unbuffered)"
+amplify -> immortalize -> CDKN2A_loss -> progenitor -> apop_buffer -> fusion,True,,
+amplify -> immortalize -> CDKN2A_loss -> progenitor -> fusion -> apop_buffer,False,5,"death (DUX4/oncogene apoptosis, unbuffered)"
+amplify -> immortalize -> apop_buffer -> CDKN2A_loss -> fusion -> progenitor,True,,
+amplify -> immortalize -> apop_buffer -> CDKN2A_loss -> progenitor -> fusion,True,,
+amplify -> immortalize -> apop_buffer -> fusion -> CDKN2A_loss -> progenitor,True,,
+amplify -> immortalize -> apop_buffer -> fusion -> progenitor -> CDKN2A_loss,True,,
+amplify -> immortalize -> apop_buffer -> progenitor -> CDKN2A_loss -> fusion,True,,
+amplify -> immortalize -> apop_buffer -> progenitor -> fusion -> CDKN2A_loss,True,,
+amplify -> immortalize -> fusion -> CDKN2A_loss -> apop_buffer -> progenitor,True,,
+amplify -> immortalize -> fusion -> CDKN2A_loss -> progenitor -> apop_buffer,False,5,"death (DUX4/oncogene apoptosis, unbuffered)"
+amplify -> immortalize -> fusion -> apop_buffer -> CDKN2A_loss -> progenitor,True,,
+amplify -> immortalize -> fusion -> apop_buffer -> progenitor -> CDKN2A_loss,True,,
+amplify -> immortalize -> fusion -> progenitor -> CDKN2A_loss -> apop_buffer,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+amplify -> immortalize -> fusion -> progenitor -> apop_buffer -> CDKN2A_loss,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+amplify -> immortalize -> progenitor -> CDKN2A_loss -> apop_buffer -> fusion,True,,
+amplify -> immortalize -> progenitor -> CDKN2A_loss -> fusion -> apop_buffer,False,5,"death (DUX4/oncogene apoptosis, unbuffered)"
+amplify -> immortalize -> progenitor -> apop_buffer -> CDKN2A_loss -> fusion,True,,
+amplify -> immortalize -> progenitor -> apop_buffer -> fusion -> CDKN2A_loss,True,,
+amplify -> immortalize -> progenitor -> fusion -> CDKN2A_loss -> apop_buffer,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+amplify -> immortalize -> progenitor -> fusion -> apop_buffer -> CDKN2A_loss,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+amplify -> progenitor -> CDKN2A_loss -> apop_buffer -> fusion -> immortalize,True,,
+amplify -> progenitor -> CDKN2A_loss -> apop_buffer -> immortalize -> fusion,True,,
+amplify -> progenitor -> CDKN2A_loss -> fusion -> apop_buffer -> immortalize,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+amplify -> progenitor -> CDKN2A_loss -> fusion -> immortalize -> apop_buffer,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+amplify -> progenitor -> CDKN2A_loss -> immortalize -> apop_buffer -> fusion,True,,
+amplify -> progenitor -> CDKN2A_loss -> immortalize -> fusion -> apop_buffer,False,5,"death (DUX4/oncogene apoptosis, unbuffered)"
+amplify -> progenitor -> apop_buffer -> CDKN2A_loss -> fusion -> immortalize,True,,
+amplify -> progenitor -> apop_buffer -> CDKN2A_loss -> immortalize -> fusion,True,,
+amplify -> progenitor -> apop_buffer -> fusion -> CDKN2A_loss -> immortalize,True,,
+amplify -> progenitor -> apop_buffer -> fusion -> immortalize -> CDKN2A_loss,True,,
+amplify -> progenitor -> apop_buffer -> immortalize -> CDKN2A_loss -> fusion,True,,
+amplify -> progenitor -> apop_buffer -> immortalize -> fusion -> CDKN2A_loss,True,,
+amplify -> progenitor -> fusion -> CDKN2A_loss -> apop_buffer -> immortalize,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+amplify -> progenitor -> fusion -> CDKN2A_loss -> immortalize -> apop_buffer,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+amplify -> progenitor -> fusion -> apop_buffer -> CDKN2A_loss -> immortalize,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+amplify -> progenitor -> fusion -> apop_buffer -> immortalize -> CDKN2A_loss,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+amplify -> progenitor -> fusion -> immortalize -> CDKN2A_loss -> apop_buffer,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+amplify -> progenitor -> fusion -> immortalize -> apop_buffer -> CDKN2A_loss,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+amplify -> progenitor -> immortalize -> CDKN2A_loss -> apop_buffer -> fusion,True,,
+amplify -> progenitor -> immortalize -> CDKN2A_loss -> fusion -> apop_buffer,False,5,"death (DUX4/oncogene apoptosis, unbuffered)"
+amplify -> progenitor -> immortalize -> apop_buffer -> CDKN2A_loss -> fusion,True,,
+amplify -> progenitor -> immortalize -> apop_buffer -> fusion -> CDKN2A_loss,True,,
+amplify -> progenitor -> immortalize -> fusion -> CDKN2A_loss -> apop_buffer,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+amplify -> progenitor -> immortalize -> fusion -> apop_buffer -> CDKN2A_loss,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+apop_buffer -> CDKN2A_loss -> amplify -> fusion -> immortalize -> progenitor,True,,
+apop_buffer -> CDKN2A_loss -> amplify -> fusion -> progenitor -> immortalize,True,,
+apop_buffer -> CDKN2A_loss -> amplify -> immortalize -> fusion -> progenitor,True,,
+apop_buffer -> CDKN2A_loss -> amplify -> immortalize -> progenitor -> fusion,True,,
+apop_buffer -> CDKN2A_loss -> amplify -> progenitor -> fusion -> immortalize,True,,
+apop_buffer -> CDKN2A_loss -> amplify -> progenitor -> immortalize -> fusion,True,,
+apop_buffer -> CDKN2A_loss -> fusion -> amplify -> immortalize -> progenitor,True,,
+apop_buffer -> CDKN2A_loss -> fusion -> amplify -> progenitor -> immortalize,True,,
+apop_buffer -> CDKN2A_loss -> fusion -> immortalize -> amplify -> progenitor,True,,
+apop_buffer -> CDKN2A_loss -> fusion -> immortalize -> progenitor -> amplify,True,,
+apop_buffer -> CDKN2A_loss -> fusion -> progenitor -> amplify -> immortalize,True,,
+apop_buffer -> CDKN2A_loss -> fusion -> progenitor -> immortalize -> amplify,True,,
+apop_buffer -> CDKN2A_loss -> immortalize -> amplify -> fusion -> progenitor,True,,
+apop_buffer -> CDKN2A_loss -> immortalize -> amplify -> progenitor -> fusion,True,,
+apop_buffer -> CDKN2A_loss -> immortalize -> fusion -> amplify -> progenitor,True,,
+apop_buffer -> CDKN2A_loss -> immortalize -> fusion -> progenitor -> amplify,True,,
+apop_buffer -> CDKN2A_loss -> immortalize -> progenitor -> amplify -> fusion,True,,
+apop_buffer -> CDKN2A_loss -> immortalize -> progenitor -> fusion -> amplify,True,,
+apop_buffer -> CDKN2A_loss -> progenitor -> amplify -> fusion -> immortalize,True,,
+apop_buffer -> CDKN2A_loss -> progenitor -> amplify -> immortalize -> fusion,True,,
+apop_buffer -> CDKN2A_loss -> progenitor -> fusion -> amplify -> immortalize,True,,
+apop_buffer -> CDKN2A_loss -> progenitor -> fusion -> immortalize -> amplify,True,,
+apop_buffer -> CDKN2A_loss -> progenitor -> immortalize -> amplify -> fusion,True,,
+apop_buffer -> CDKN2A_loss -> progenitor -> immortalize -> fusion -> amplify,True,,
+apop_buffer -> amplify -> CDKN2A_loss -> fusion -> immortalize -> progenitor,True,,
+apop_buffer -> amplify -> CDKN2A_loss -> fusion -> progenitor -> immortalize,True,,
+apop_buffer -> amplify -> CDKN2A_loss -> immortalize -> fusion -> progenitor,True,,
+apop_buffer -> amplify -> CDKN2A_loss -> immortalize -> progenitor -> fusion,True,,
+apop_buffer -> amplify -> CDKN2A_loss -> progenitor -> fusion -> immortalize,True,,
+apop_buffer -> amplify -> CDKN2A_loss -> progenitor -> immortalize -> fusion,True,,
+apop_buffer -> amplify -> fusion -> CDKN2A_loss -> immortalize -> progenitor,True,,
+apop_buffer -> amplify -> fusion -> CDKN2A_loss -> progenitor -> immortalize,True,,
+apop_buffer -> amplify -> fusion -> immortalize -> CDKN2A_loss -> progenitor,True,,
+apop_buffer -> amplify -> fusion -> immortalize -> progenitor -> CDKN2A_loss,True,,
+apop_buffer -> amplify -> fusion -> progenitor -> CDKN2A_loss -> immortalize,True,,
+apop_buffer -> amplify -> fusion -> progenitor -> immortalize -> CDKN2A_loss,True,,
+apop_buffer -> amplify -> immortalize -> CDKN2A_loss -> fusion -> progenitor,True,,
+apop_buffer -> amplify -> immortalize -> CDKN2A_loss -> progenitor -> fusion,True,,
+apop_buffer -> amplify -> immortalize -> fusion -> CDKN2A_loss -> progenitor,True,,
+apop_buffer -> amplify -> immortalize -> fusion -> progenitor -> CDKN2A_loss,True,,
+apop_buffer -> amplify -> immortalize -> progenitor -> CDKN2A_loss -> fusion,True,,
+apop_buffer -> amplify -> immortalize -> progenitor -> fusion -> CDKN2A_loss,True,,
+apop_buffer -> amplify -> progenitor -> CDKN2A_loss -> fusion -> immortalize,True,,
+apop_buffer -> amplify -> progenitor -> CDKN2A_loss -> immortalize -> fusion,True,,
+apop_buffer -> amplify -> progenitor -> fusion -> CDKN2A_loss -> immortalize,True,,
+apop_buffer -> amplify -> progenitor -> fusion -> immortalize -> CDKN2A_loss,True,,
+apop_buffer -> amplify -> progenitor -> immortalize -> CDKN2A_loss -> fusion,True,,
+apop_buffer -> amplify -> progenitor -> immortalize -> fusion -> CDKN2A_loss,True,,
+apop_buffer -> fusion -> CDKN2A_loss -> amplify -> immortalize -> progenitor,True,,
+apop_buffer -> fusion -> CDKN2A_loss -> amplify -> progenitor -> immortalize,True,,
+apop_buffer -> fusion -> CDKN2A_loss -> immortalize -> amplify -> progenitor,True,,
+apop_buffer -> fusion -> CDKN2A_loss -> immortalize -> progenitor -> amplify,True,,
+apop_buffer -> fusion -> CDKN2A_loss -> progenitor -> amplify -> immortalize,True,,
+apop_buffer -> fusion -> CDKN2A_loss -> progenitor -> immortalize -> amplify,True,,
+apop_buffer -> fusion -> amplify -> CDKN2A_loss -> immortalize -> progenitor,True,,
+apop_buffer -> fusion -> amplify -> CDKN2A_loss -> progenitor -> immortalize,True,,
+apop_buffer -> fusion -> amplify -> immortalize -> CDKN2A_loss -> progenitor,True,,
+apop_buffer -> fusion -> amplify -> immortalize -> progenitor -> CDKN2A_loss,True,,
+apop_buffer -> fusion -> amplify -> progenitor -> CDKN2A_loss -> immortalize,True,,
+apop_buffer -> fusion -> amplify -> progenitor -> immortalize -> CDKN2A_loss,True,,
+apop_buffer -> fusion -> immortalize -> CDKN2A_loss -> amplify -> progenitor,True,,
+apop_buffer -> fusion -> immortalize -> CDKN2A_loss -> progenitor -> amplify,True,,
+apop_buffer -> fusion -> immortalize -> amplify -> CDKN2A_loss -> progenitor,True,,
+apop_buffer -> fusion -> immortalize -> amplify -> progenitor -> CDKN2A_loss,True,,
+apop_buffer -> fusion -> immortalize -> progenitor -> CDKN2A_loss -> amplify,True,,
+apop_buffer -> fusion -> immortalize -> progenitor -> amplify -> CDKN2A_loss,True,,
+apop_buffer -> fusion -> progenitor -> CDKN2A_loss -> amplify -> immortalize,True,,
+apop_buffer -> fusion -> progenitor -> CDKN2A_loss -> immortalize -> amplify,True,,
+apop_buffer -> fusion -> progenitor -> amplify -> CDKN2A_loss -> immortalize,True,,
+apop_buffer -> fusion -> progenitor -> amplify -> immortalize -> CDKN2A_loss,True,,
+apop_buffer -> fusion -> progenitor -> immortalize -> CDKN2A_loss -> amplify,True,,
+apop_buffer -> fusion -> progenitor -> immortalize -> amplify -> CDKN2A_loss,True,,
+apop_buffer -> immortalize -> CDKN2A_loss -> amplify -> fusion -> progenitor,True,,
+apop_buffer -> immortalize -> CDKN2A_loss -> amplify -> progenitor -> fusion,True,,
+apop_buffer -> immortalize -> CDKN2A_loss -> fusion -> amplify -> progenitor,True,,
+apop_buffer -> immortalize -> CDKN2A_loss -> fusion -> progenitor -> amplify,True,,
+apop_buffer -> immortalize -> CDKN2A_loss -> progenitor -> amplify -> fusion,True,,
+apop_buffer -> immortalize -> CDKN2A_loss -> progenitor -> fusion -> amplify,True,,
+apop_buffer -> immortalize -> amplify -> CDKN2A_loss -> fusion -> progenitor,True,,
+apop_buffer -> immortalize -> amplify -> CDKN2A_loss -> progenitor -> fusion,True,,
+apop_buffer -> immortalize -> amplify -> fusion -> CDKN2A_loss -> progenitor,True,,
+apop_buffer -> immortalize -> amplify -> fusion -> progenitor -> CDKN2A_loss,True,,
+apop_buffer -> immortalize -> amplify -> progenitor -> CDKN2A_loss -> fusion,True,,
+apop_buffer -> immortalize -> amplify -> progenitor -> fusion -> CDKN2A_loss,True,,
+apop_buffer -> immortalize -> fusion -> CDKN2A_loss -> amplify -> progenitor,True,,
+apop_buffer -> immortalize -> fusion -> CDKN2A_loss -> progenitor -> amplify,True,,
+apop_buffer -> immortalize -> fusion -> amplify -> CDKN2A_loss -> progenitor,True,,
+apop_buffer -> immortalize -> fusion -> amplify -> progenitor -> CDKN2A_loss,True,,
+apop_buffer -> immortalize -> fusion -> progenitor -> CDKN2A_loss -> amplify,True,,
+apop_buffer -> immortalize -> fusion -> progenitor -> amplify -> CDKN2A_loss,True,,
+apop_buffer -> immortalize -> progenitor -> CDKN2A_loss -> amplify -> fusion,True,,
+apop_buffer -> immortalize -> progenitor -> CDKN2A_loss -> fusion -> amplify,True,,
+apop_buffer -> immortalize -> progenitor -> amplify -> CDKN2A_loss -> fusion,True,,
+apop_buffer -> immortalize -> progenitor -> amplify -> fusion -> CDKN2A_loss,True,,
+apop_buffer -> immortalize -> progenitor -> fusion -> CDKN2A_loss -> amplify,True,,
+apop_buffer -> immortalize -> progenitor -> fusion -> amplify -> CDKN2A_loss,True,,
+apop_buffer -> progenitor -> CDKN2A_loss -> amplify -> fusion -> immortalize,True,,
+apop_buffer -> progenitor -> CDKN2A_loss -> amplify -> immortalize -> fusion,True,,
+apop_buffer -> progenitor -> CDKN2A_loss -> fusion -> amplify -> immortalize,True,,
+apop_buffer -> progenitor -> CDKN2A_loss -> fusion -> immortalize -> amplify,True,,
+apop_buffer -> progenitor -> CDKN2A_loss -> immortalize -> amplify -> fusion,True,,
+apop_buffer -> progenitor -> CDKN2A_loss -> immortalize -> fusion -> amplify,True,,
+apop_buffer -> progenitor -> amplify -> CDKN2A_loss -> fusion -> immortalize,True,,
+apop_buffer -> progenitor -> amplify -> CDKN2A_loss -> immortalize -> fusion,True,,
+apop_buffer -> progenitor -> amplify -> fusion -> CDKN2A_loss -> immortalize,True,,
+apop_buffer -> progenitor -> amplify -> fusion -> immortalize -> CDKN2A_loss,True,,
+apop_buffer -> progenitor -> amplify -> immortalize -> CDKN2A_loss -> fusion,True,,
+apop_buffer -> progenitor -> amplify -> immortalize -> fusion -> CDKN2A_loss,True,,
+apop_buffer -> progenitor -> fusion -> CDKN2A_loss -> amplify -> immortalize,True,,
+apop_buffer -> progenitor -> fusion -> CDKN2A_loss -> immortalize -> amplify,True,,
+apop_buffer -> progenitor -> fusion -> amplify -> CDKN2A_loss -> immortalize,True,,
+apop_buffer -> progenitor -> fusion -> amplify -> immortalize -> CDKN2A_loss,True,,
+apop_buffer -> progenitor -> fusion -> immortalize -> CDKN2A_loss -> amplify,True,,
+apop_buffer -> progenitor -> fusion -> immortalize -> amplify -> CDKN2A_loss,True,,
+apop_buffer -> progenitor -> immortalize -> CDKN2A_loss -> amplify -> fusion,True,,
+apop_buffer -> progenitor -> immortalize -> CDKN2A_loss -> fusion -> amplify,True,,
+apop_buffer -> progenitor -> immortalize -> amplify -> CDKN2A_loss -> fusion,True,,
+apop_buffer -> progenitor -> immortalize -> amplify -> fusion -> CDKN2A_loss,True,,
+apop_buffer -> progenitor -> immortalize -> fusion -> CDKN2A_loss -> amplify,True,,
+apop_buffer -> progenitor -> immortalize -> fusion -> amplify -> CDKN2A_loss,True,,
+fusion -> CDKN2A_loss -> amplify -> apop_buffer -> immortalize -> progenitor,True,,
+fusion -> CDKN2A_loss -> amplify -> apop_buffer -> progenitor -> immortalize,True,,
+fusion -> CDKN2A_loss -> amplify -> immortalize -> apop_buffer -> progenitor,True,,
+fusion -> CDKN2A_loss -> amplify -> immortalize -> progenitor -> apop_buffer,False,5,"death (DUX4/oncogene apoptosis, unbuffered)"
+fusion -> CDKN2A_loss -> amplify -> progenitor -> apop_buffer -> immortalize,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+fusion -> CDKN2A_loss -> amplify -> progenitor -> immortalize -> apop_buffer,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+fusion -> CDKN2A_loss -> apop_buffer -> amplify -> immortalize -> progenitor,True,,
+fusion -> CDKN2A_loss -> apop_buffer -> amplify -> progenitor -> immortalize,True,,
+fusion -> CDKN2A_loss -> apop_buffer -> immortalize -> amplify -> progenitor,True,,
+fusion -> CDKN2A_loss -> apop_buffer -> immortalize -> progenitor -> amplify,True,,
+fusion -> CDKN2A_loss -> apop_buffer -> progenitor -> amplify -> immortalize,True,,
+fusion -> CDKN2A_loss -> apop_buffer -> progenitor -> immortalize -> amplify,True,,
+fusion -> CDKN2A_loss -> immortalize -> amplify -> apop_buffer -> progenitor,True,,
+fusion -> CDKN2A_loss -> immortalize -> amplify -> progenitor -> apop_buffer,False,5,"death (DUX4/oncogene apoptosis, unbuffered)"
+fusion -> CDKN2A_loss -> immortalize -> apop_buffer -> amplify -> progenitor,True,,
+fusion -> CDKN2A_loss -> immortalize -> apop_buffer -> progenitor -> amplify,True,,
+fusion -> CDKN2A_loss -> immortalize -> progenitor -> amplify -> apop_buffer,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+fusion -> CDKN2A_loss -> immortalize -> progenitor -> apop_buffer -> amplify,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+fusion -> CDKN2A_loss -> progenitor -> amplify -> apop_buffer -> immortalize,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+fusion -> CDKN2A_loss -> progenitor -> amplify -> immortalize -> apop_buffer,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+fusion -> CDKN2A_loss -> progenitor -> apop_buffer -> amplify -> immortalize,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+fusion -> CDKN2A_loss -> progenitor -> apop_buffer -> immortalize -> amplify,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+fusion -> CDKN2A_loss -> progenitor -> immortalize -> amplify -> apop_buffer,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+fusion -> CDKN2A_loss -> progenitor -> immortalize -> apop_buffer -> amplify,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+fusion -> amplify -> CDKN2A_loss -> apop_buffer -> immortalize -> progenitor,True,,
+fusion -> amplify -> CDKN2A_loss -> apop_buffer -> progenitor -> immortalize,True,,
+fusion -> amplify -> CDKN2A_loss -> immortalize -> apop_buffer -> progenitor,True,,
+fusion -> amplify -> CDKN2A_loss -> immortalize -> progenitor -> apop_buffer,False,5,"death (DUX4/oncogene apoptosis, unbuffered)"
+fusion -> amplify -> CDKN2A_loss -> progenitor -> apop_buffer -> immortalize,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+fusion -> amplify -> CDKN2A_loss -> progenitor -> immortalize -> apop_buffer,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+fusion -> amplify -> apop_buffer -> CDKN2A_loss -> immortalize -> progenitor,True,,
+fusion -> amplify -> apop_buffer -> CDKN2A_loss -> progenitor -> immortalize,True,,
+fusion -> amplify -> apop_buffer -> immortalize -> CDKN2A_loss -> progenitor,True,,
+fusion -> amplify -> apop_buffer -> immortalize -> progenitor -> CDKN2A_loss,True,,
+fusion -> amplify -> apop_buffer -> progenitor -> CDKN2A_loss -> immortalize,True,,
+fusion -> amplify -> apop_buffer -> progenitor -> immortalize -> CDKN2A_loss,True,,
+fusion -> amplify -> immortalize -> CDKN2A_loss -> apop_buffer -> progenitor,True,,
+fusion -> amplify -> immortalize -> CDKN2A_loss -> progenitor -> apop_buffer,False,5,"death (DUX4/oncogene apoptosis, unbuffered)"
+fusion -> amplify -> immortalize -> apop_buffer -> CDKN2A_loss -> progenitor,True,,
+fusion -> amplify -> immortalize -> apop_buffer -> progenitor -> CDKN2A_loss,True,,
+fusion -> amplify -> immortalize -> progenitor -> CDKN2A_loss -> apop_buffer,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+fusion -> amplify -> immortalize -> progenitor -> apop_buffer -> CDKN2A_loss,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+fusion -> amplify -> progenitor -> CDKN2A_loss -> apop_buffer -> immortalize,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+fusion -> amplify -> progenitor -> CDKN2A_loss -> immortalize -> apop_buffer,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+fusion -> amplify -> progenitor -> apop_buffer -> CDKN2A_loss -> immortalize,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+fusion -> amplify -> progenitor -> apop_buffer -> immortalize -> CDKN2A_loss,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+fusion -> amplify -> progenitor -> immortalize -> CDKN2A_loss -> apop_buffer,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+fusion -> amplify -> progenitor -> immortalize -> apop_buffer -> CDKN2A_loss,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+fusion -> apop_buffer -> CDKN2A_loss -> amplify -> immortalize -> progenitor,True,,
+fusion -> apop_buffer -> CDKN2A_loss -> amplify -> progenitor -> immortalize,True,,
+fusion -> apop_buffer -> CDKN2A_loss -> immortalize -> amplify -> progenitor,True,,
+fusion -> apop_buffer -> CDKN2A_loss -> immortalize -> progenitor -> amplify,True,,
+fusion -> apop_buffer -> CDKN2A_loss -> progenitor -> amplify -> immortalize,True,,
+fusion -> apop_buffer -> CDKN2A_loss -> progenitor -> immortalize -> amplify,True,,
+fusion -> apop_buffer -> amplify -> CDKN2A_loss -> immortalize -> progenitor,True,,
+fusion -> apop_buffer -> amplify -> CDKN2A_loss -> progenitor -> immortalize,True,,
+fusion -> apop_buffer -> amplify -> immortalize -> CDKN2A_loss -> progenitor,True,,
+fusion -> apop_buffer -> amplify -> immortalize -> progenitor -> CDKN2A_loss,True,,
+fusion -> apop_buffer -> amplify -> progenitor -> CDKN2A_loss -> immortalize,True,,
+fusion -> apop_buffer -> amplify -> progenitor -> immortalize -> CDKN2A_loss,True,,
+fusion -> apop_buffer -> immortalize -> CDKN2A_loss -> amplify -> progenitor,True,,
+fusion -> apop_buffer -> immortalize -> CDKN2A_loss -> progenitor -> amplify,True,,
+fusion -> apop_buffer -> immortalize -> amplify -> CDKN2A_loss -> progenitor,True,,
+fusion -> apop_buffer -> immortalize -> amplify -> progenitor -> CDKN2A_loss,True,,
+fusion -> apop_buffer -> immortalize -> progenitor -> CDKN2A_loss -> amplify,True,,
+fusion -> apop_buffer -> immortalize -> progenitor -> amplify -> CDKN2A_loss,True,,
+fusion -> apop_buffer -> progenitor -> CDKN2A_loss -> amplify -> immortalize,True,,
+fusion -> apop_buffer -> progenitor -> CDKN2A_loss -> immortalize -> amplify,True,,
+fusion -> apop_buffer -> progenitor -> amplify -> CDKN2A_loss -> immortalize,True,,
+fusion -> apop_buffer -> progenitor -> amplify -> immortalize -> CDKN2A_loss,True,,
+fusion -> apop_buffer -> progenitor -> immortalize -> CDKN2A_loss -> amplify,True,,
+fusion -> apop_buffer -> progenitor -> immortalize -> amplify -> CDKN2A_loss,True,,
+fusion -> immortalize -> CDKN2A_loss -> amplify -> apop_buffer -> progenitor,True,,
+fusion -> immortalize -> CDKN2A_loss -> amplify -> progenitor -> apop_buffer,False,5,"death (DUX4/oncogene apoptosis, unbuffered)"
+fusion -> immortalize -> CDKN2A_loss -> apop_buffer -> amplify -> progenitor,True,,
+fusion -> immortalize -> CDKN2A_loss -> apop_buffer -> progenitor -> amplify,True,,
+fusion -> immortalize -> CDKN2A_loss -> progenitor -> amplify -> apop_buffer,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+fusion -> immortalize -> CDKN2A_loss -> progenitor -> apop_buffer -> amplify,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+fusion -> immortalize -> amplify -> CDKN2A_loss -> apop_buffer -> progenitor,True,,
+fusion -> immortalize -> amplify -> CDKN2A_loss -> progenitor -> apop_buffer,False,5,"death (DUX4/oncogene apoptosis, unbuffered)"
+fusion -> immortalize -> amplify -> apop_buffer -> CDKN2A_loss -> progenitor,True,,
+fusion -> immortalize -> amplify -> apop_buffer -> progenitor -> CDKN2A_loss,True,,
+fusion -> immortalize -> amplify -> progenitor -> CDKN2A_loss -> apop_buffer,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+fusion -> immortalize -> amplify -> progenitor -> apop_buffer -> CDKN2A_loss,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+fusion -> immortalize -> apop_buffer -> CDKN2A_loss -> amplify -> progenitor,True,,
+fusion -> immortalize -> apop_buffer -> CDKN2A_loss -> progenitor -> amplify,True,,
+fusion -> immortalize -> apop_buffer -> amplify -> CDKN2A_loss -> progenitor,True,,
+fusion -> immortalize -> apop_buffer -> amplify -> progenitor -> CDKN2A_loss,True,,
+fusion -> immortalize -> apop_buffer -> progenitor -> CDKN2A_loss -> amplify,True,,
+fusion -> immortalize -> apop_buffer -> progenitor -> amplify -> CDKN2A_loss,True,,
+fusion -> immortalize -> progenitor -> CDKN2A_loss -> amplify -> apop_buffer,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+fusion -> immortalize -> progenitor -> CDKN2A_loss -> apop_buffer -> amplify,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+fusion -> immortalize -> progenitor -> amplify -> CDKN2A_loss -> apop_buffer,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+fusion -> immortalize -> progenitor -> amplify -> apop_buffer -> CDKN2A_loss,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+fusion -> immortalize -> progenitor -> apop_buffer -> CDKN2A_loss -> amplify,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+fusion -> immortalize -> progenitor -> apop_buffer -> amplify -> CDKN2A_loss,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+fusion -> progenitor -> CDKN2A_loss -> amplify -> apop_buffer -> immortalize,False,2,"death (DUX4/oncogene apoptosis, unbuffered)"
+fusion -> progenitor -> CDKN2A_loss -> amplify -> immortalize -> apop_buffer,False,2,"death (DUX4/oncogene apoptosis, unbuffered)"
+fusion -> progenitor -> CDKN2A_loss -> apop_buffer -> amplify -> immortalize,False,2,"death (DUX4/oncogene apoptosis, unbuffered)"
+fusion -> progenitor -> CDKN2A_loss -> apop_buffer -> immortalize -> amplify,False,2,"death (DUX4/oncogene apoptosis, unbuffered)"
+fusion -> progenitor -> CDKN2A_loss -> immortalize -> amplify -> apop_buffer,False,2,"death (DUX4/oncogene apoptosis, unbuffered)"
+fusion -> progenitor -> CDKN2A_loss -> immortalize -> apop_buffer -> amplify,False,2,"death (DUX4/oncogene apoptosis, unbuffered)"
+fusion -> progenitor -> amplify -> CDKN2A_loss -> apop_buffer -> immortalize,False,2,"death (DUX4/oncogene apoptosis, unbuffered)"
+fusion -> progenitor -> amplify -> CDKN2A_loss -> immortalize -> apop_buffer,False,2,"death (DUX4/oncogene apoptosis, unbuffered)"
+fusion -> progenitor -> amplify -> apop_buffer -> CDKN2A_loss -> immortalize,False,2,"death (DUX4/oncogene apoptosis, unbuffered)"
+fusion -> progenitor -> amplify -> apop_buffer -> immortalize -> CDKN2A_loss,False,2,"death (DUX4/oncogene apoptosis, unbuffered)"
+fusion -> progenitor -> amplify -> immortalize -> CDKN2A_loss -> apop_buffer,False,2,"death (DUX4/oncogene apoptosis, unbuffered)"
+fusion -> progenitor -> amplify -> immortalize -> apop_buffer -> CDKN2A_loss,False,2,"death (DUX4/oncogene apoptosis, unbuffered)"
+fusion -> progenitor -> apop_buffer -> CDKN2A_loss -> amplify -> immortalize,False,2,"death (DUX4/oncogene apoptosis, unbuffered)"
+fusion -> progenitor -> apop_buffer -> CDKN2A_loss -> immortalize -> amplify,False,2,"death (DUX4/oncogene apoptosis, unbuffered)"
+fusion -> progenitor -> apop_buffer -> amplify -> CDKN2A_loss -> immortalize,False,2,"death (DUX4/oncogene apoptosis, unbuffered)"
+fusion -> progenitor -> apop_buffer -> amplify -> immortalize -> CDKN2A_loss,False,2,"death (DUX4/oncogene apoptosis, unbuffered)"
+fusion -> progenitor -> apop_buffer -> immortalize -> CDKN2A_loss -> amplify,False,2,"death (DUX4/oncogene apoptosis, unbuffered)"
+fusion -> progenitor -> apop_buffer -> immortalize -> amplify -> CDKN2A_loss,False,2,"death (DUX4/oncogene apoptosis, unbuffered)"
+fusion -> progenitor -> immortalize -> CDKN2A_loss -> amplify -> apop_buffer,False,2,"death (DUX4/oncogene apoptosis, unbuffered)"
+fusion -> progenitor -> immortalize -> CDKN2A_loss -> apop_buffer -> amplify,False,2,"death (DUX4/oncogene apoptosis, unbuffered)"
+fusion -> progenitor -> immortalize -> amplify -> CDKN2A_loss -> apop_buffer,False,2,"death (DUX4/oncogene apoptosis, unbuffered)"
+fusion -> progenitor -> immortalize -> amplify -> apop_buffer -> CDKN2A_loss,False,2,"death (DUX4/oncogene apoptosis, unbuffered)"
+fusion -> progenitor -> immortalize -> apop_buffer -> CDKN2A_loss -> amplify,False,2,"death (DUX4/oncogene apoptosis, unbuffered)"
+fusion -> progenitor -> immortalize -> apop_buffer -> amplify -> CDKN2A_loss,False,2,"death (DUX4/oncogene apoptosis, unbuffered)"
+immortalize -> CDKN2A_loss -> amplify -> apop_buffer -> fusion -> progenitor,True,,
+immortalize -> CDKN2A_loss -> amplify -> apop_buffer -> progenitor -> fusion,True,,
+immortalize -> CDKN2A_loss -> amplify -> fusion -> apop_buffer -> progenitor,True,,
+immortalize -> CDKN2A_loss -> amplify -> fusion -> progenitor -> apop_buffer,False,5,"death (DUX4/oncogene apoptosis, unbuffered)"
+immortalize -> CDKN2A_loss -> amplify -> progenitor -> apop_buffer -> fusion,True,,
+immortalize -> CDKN2A_loss -> amplify -> progenitor -> fusion -> apop_buffer,False,5,"death (DUX4/oncogene apoptosis, unbuffered)"
+immortalize -> CDKN2A_loss -> apop_buffer -> amplify -> fusion -> progenitor,True,,
+immortalize -> CDKN2A_loss -> apop_buffer -> amplify -> progenitor -> fusion,True,,
+immortalize -> CDKN2A_loss -> apop_buffer -> fusion -> amplify -> progenitor,True,,
+immortalize -> CDKN2A_loss -> apop_buffer -> fusion -> progenitor -> amplify,True,,
+immortalize -> CDKN2A_loss -> apop_buffer -> progenitor -> amplify -> fusion,True,,
+immortalize -> CDKN2A_loss -> apop_buffer -> progenitor -> fusion -> amplify,True,,
+immortalize -> CDKN2A_loss -> fusion -> amplify -> apop_buffer -> progenitor,True,,
+immortalize -> CDKN2A_loss -> fusion -> amplify -> progenitor -> apop_buffer,False,5,"death (DUX4/oncogene apoptosis, unbuffered)"
+immortalize -> CDKN2A_loss -> fusion -> apop_buffer -> amplify -> progenitor,True,,
+immortalize -> CDKN2A_loss -> fusion -> apop_buffer -> progenitor -> amplify,True,,
+immortalize -> CDKN2A_loss -> fusion -> progenitor -> amplify -> apop_buffer,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+immortalize -> CDKN2A_loss -> fusion -> progenitor -> apop_buffer -> amplify,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+immortalize -> CDKN2A_loss -> progenitor -> amplify -> apop_buffer -> fusion,True,,
+immortalize -> CDKN2A_loss -> progenitor -> amplify -> fusion -> apop_buffer,False,5,"death (DUX4/oncogene apoptosis, unbuffered)"
+immortalize -> CDKN2A_loss -> progenitor -> apop_buffer -> amplify -> fusion,True,,
+immortalize -> CDKN2A_loss -> progenitor -> apop_buffer -> fusion -> amplify,True,,
+immortalize -> CDKN2A_loss -> progenitor -> fusion -> amplify -> apop_buffer,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+immortalize -> CDKN2A_loss -> progenitor -> fusion -> apop_buffer -> amplify,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+immortalize -> amplify -> CDKN2A_loss -> apop_buffer -> fusion -> progenitor,True,,
+immortalize -> amplify -> CDKN2A_loss -> apop_buffer -> progenitor -> fusion,True,,
+immortalize -> amplify -> CDKN2A_loss -> fusion -> apop_buffer -> progenitor,True,,
+immortalize -> amplify -> CDKN2A_loss -> fusion -> progenitor -> apop_buffer,False,5,"death (DUX4/oncogene apoptosis, unbuffered)"
+immortalize -> amplify -> CDKN2A_loss -> progenitor -> apop_buffer -> fusion,True,,
+immortalize -> amplify -> CDKN2A_loss -> progenitor -> fusion -> apop_buffer,False,5,"death (DUX4/oncogene apoptosis, unbuffered)"
+immortalize -> amplify -> apop_buffer -> CDKN2A_loss -> fusion -> progenitor,True,,
+immortalize -> amplify -> apop_buffer -> CDKN2A_loss -> progenitor -> fusion,True,,
+immortalize -> amplify -> apop_buffer -> fusion -> CDKN2A_loss -> progenitor,True,,
+immortalize -> amplify -> apop_buffer -> fusion -> progenitor -> CDKN2A_loss,True,,
+immortalize -> amplify -> apop_buffer -> progenitor -> CDKN2A_loss -> fusion,True,,
+immortalize -> amplify -> apop_buffer -> progenitor -> fusion -> CDKN2A_loss,True,,
+immortalize -> amplify -> fusion -> CDKN2A_loss -> apop_buffer -> progenitor,True,,
+immortalize -> amplify -> fusion -> CDKN2A_loss -> progenitor -> apop_buffer,False,5,"death (DUX4/oncogene apoptosis, unbuffered)"
+immortalize -> amplify -> fusion -> apop_buffer -> CDKN2A_loss -> progenitor,True,,
+immortalize -> amplify -> fusion -> apop_buffer -> progenitor -> CDKN2A_loss,True,,
+immortalize -> amplify -> fusion -> progenitor -> CDKN2A_loss -> apop_buffer,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+immortalize -> amplify -> fusion -> progenitor -> apop_buffer -> CDKN2A_loss,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+immortalize -> amplify -> progenitor -> CDKN2A_loss -> apop_buffer -> fusion,True,,
+immortalize -> amplify -> progenitor -> CDKN2A_loss -> fusion -> apop_buffer,False,5,"death (DUX4/oncogene apoptosis, unbuffered)"
+immortalize -> amplify -> progenitor -> apop_buffer -> CDKN2A_loss -> fusion,True,,
+immortalize -> amplify -> progenitor -> apop_buffer -> fusion -> CDKN2A_loss,True,,
+immortalize -> amplify -> progenitor -> fusion -> CDKN2A_loss -> apop_buffer,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+immortalize -> amplify -> progenitor -> fusion -> apop_buffer -> CDKN2A_loss,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+immortalize -> apop_buffer -> CDKN2A_loss -> amplify -> fusion -> progenitor,True,,
+immortalize -> apop_buffer -> CDKN2A_loss -> amplify -> progenitor -> fusion,True,,
+immortalize -> apop_buffer -> CDKN2A_loss -> fusion -> amplify -> progenitor,True,,
+immortalize -> apop_buffer -> CDKN2A_loss -> fusion -> progenitor -> amplify,True,,
+immortalize -> apop_buffer -> CDKN2A_loss -> progenitor -> amplify -> fusion,True,,
+immortalize -> apop_buffer -> CDKN2A_loss -> progenitor -> fusion -> amplify,True,,
+immortalize -> apop_buffer -> amplify -> CDKN2A_loss -> fusion -> progenitor,True,,
+immortalize -> apop_buffer -> amplify -> CDKN2A_loss -> progenitor -> fusion,True,,
+immortalize -> apop_buffer -> amplify -> fusion -> CDKN2A_loss -> progenitor,True,,
+immortalize -> apop_buffer -> amplify -> fusion -> progenitor -> CDKN2A_loss,True,,
+immortalize -> apop_buffer -> amplify -> progenitor -> CDKN2A_loss -> fusion,True,,
+immortalize -> apop_buffer -> amplify -> progenitor -> fusion -> CDKN2A_loss,True,,
+immortalize -> apop_buffer -> fusion -> CDKN2A_loss -> amplify -> progenitor,True,,
+immortalize -> apop_buffer -> fusion -> CDKN2A_loss -> progenitor -> amplify,True,,
+immortalize -> apop_buffer -> fusion -> amplify -> CDKN2A_loss -> progenitor,True,,
+immortalize -> apop_buffer -> fusion -> amplify -> progenitor -> CDKN2A_loss,True,,
+immortalize -> apop_buffer -> fusion -> progenitor -> CDKN2A_loss -> amplify,True,,
+immortalize -> apop_buffer -> fusion -> progenitor -> amplify -> CDKN2A_loss,True,,
+immortalize -> apop_buffer -> progenitor -> CDKN2A_loss -> amplify -> fusion,True,,
+immortalize -> apop_buffer -> progenitor -> CDKN2A_loss -> fusion -> amplify,True,,
+immortalize -> apop_buffer -> progenitor -> amplify -> CDKN2A_loss -> fusion,True,,
+immortalize -> apop_buffer -> progenitor -> amplify -> fusion -> CDKN2A_loss,True,,
+immortalize -> apop_buffer -> progenitor -> fusion -> CDKN2A_loss -> amplify,True,,
+immortalize -> apop_buffer -> progenitor -> fusion -> amplify -> CDKN2A_loss,True,,
+immortalize -> fusion -> CDKN2A_loss -> amplify -> apop_buffer -> progenitor,True,,
+immortalize -> fusion -> CDKN2A_loss -> amplify -> progenitor -> apop_buffer,False,5,"death (DUX4/oncogene apoptosis, unbuffered)"
+immortalize -> fusion -> CDKN2A_loss -> apop_buffer -> amplify -> progenitor,True,,
+immortalize -> fusion -> CDKN2A_loss -> apop_buffer -> progenitor -> amplify,True,,
+immortalize -> fusion -> CDKN2A_loss -> progenitor -> amplify -> apop_buffer,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+immortalize -> fusion -> CDKN2A_loss -> progenitor -> apop_buffer -> amplify,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+immortalize -> fusion -> amplify -> CDKN2A_loss -> apop_buffer -> progenitor,True,,
+immortalize -> fusion -> amplify -> CDKN2A_loss -> progenitor -> apop_buffer,False,5,"death (DUX4/oncogene apoptosis, unbuffered)"
+immortalize -> fusion -> amplify -> apop_buffer -> CDKN2A_loss -> progenitor,True,,
+immortalize -> fusion -> amplify -> apop_buffer -> progenitor -> CDKN2A_loss,True,,
+immortalize -> fusion -> amplify -> progenitor -> CDKN2A_loss -> apop_buffer,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+immortalize -> fusion -> amplify -> progenitor -> apop_buffer -> CDKN2A_loss,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+immortalize -> fusion -> apop_buffer -> CDKN2A_loss -> amplify -> progenitor,True,,
+immortalize -> fusion -> apop_buffer -> CDKN2A_loss -> progenitor -> amplify,True,,
+immortalize -> fusion -> apop_buffer -> amplify -> CDKN2A_loss -> progenitor,True,,
+immortalize -> fusion -> apop_buffer -> amplify -> progenitor -> CDKN2A_loss,True,,
+immortalize -> fusion -> apop_buffer -> progenitor -> CDKN2A_loss -> amplify,True,,
+immortalize -> fusion -> apop_buffer -> progenitor -> amplify -> CDKN2A_loss,True,,
+immortalize -> fusion -> progenitor -> CDKN2A_loss -> amplify -> apop_buffer,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+immortalize -> fusion -> progenitor -> CDKN2A_loss -> apop_buffer -> amplify,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+immortalize -> fusion -> progenitor -> amplify -> CDKN2A_loss -> apop_buffer,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+immortalize -> fusion -> progenitor -> amplify -> apop_buffer -> CDKN2A_loss,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+immortalize -> fusion -> progenitor -> apop_buffer -> CDKN2A_loss -> amplify,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+immortalize -> fusion -> progenitor -> apop_buffer -> amplify -> CDKN2A_loss,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+immortalize -> progenitor -> CDKN2A_loss -> amplify -> apop_buffer -> fusion,True,,
+immortalize -> progenitor -> CDKN2A_loss -> amplify -> fusion -> apop_buffer,False,5,"death (DUX4/oncogene apoptosis, unbuffered)"
+immortalize -> progenitor -> CDKN2A_loss -> apop_buffer -> amplify -> fusion,True,,
+immortalize -> progenitor -> CDKN2A_loss -> apop_buffer -> fusion -> amplify,True,,
+immortalize -> progenitor -> CDKN2A_loss -> fusion -> amplify -> apop_buffer,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+immortalize -> progenitor -> CDKN2A_loss -> fusion -> apop_buffer -> amplify,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+immortalize -> progenitor -> amplify -> CDKN2A_loss -> apop_buffer -> fusion,True,,
+immortalize -> progenitor -> amplify -> CDKN2A_loss -> fusion -> apop_buffer,False,5,"death (DUX4/oncogene apoptosis, unbuffered)"
+immortalize -> progenitor -> amplify -> apop_buffer -> CDKN2A_loss -> fusion,True,,
+immortalize -> progenitor -> amplify -> apop_buffer -> fusion -> CDKN2A_loss,True,,
+immortalize -> progenitor -> amplify -> fusion -> CDKN2A_loss -> apop_buffer,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+immortalize -> progenitor -> amplify -> fusion -> apop_buffer -> CDKN2A_loss,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+immortalize -> progenitor -> apop_buffer -> CDKN2A_loss -> amplify -> fusion,True,,
+immortalize -> progenitor -> apop_buffer -> CDKN2A_loss -> fusion -> amplify,True,,
+immortalize -> progenitor -> apop_buffer -> amplify -> CDKN2A_loss -> fusion,True,,
+immortalize -> progenitor -> apop_buffer -> amplify -> fusion -> CDKN2A_loss,True,,
+immortalize -> progenitor -> apop_buffer -> fusion -> CDKN2A_loss -> amplify,True,,
+immortalize -> progenitor -> apop_buffer -> fusion -> amplify -> CDKN2A_loss,True,,
+immortalize -> progenitor -> fusion -> CDKN2A_loss -> amplify -> apop_buffer,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+immortalize -> progenitor -> fusion -> CDKN2A_loss -> apop_buffer -> amplify,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+immortalize -> progenitor -> fusion -> amplify -> CDKN2A_loss -> apop_buffer,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+immortalize -> progenitor -> fusion -> amplify -> apop_buffer -> CDKN2A_loss,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+immortalize -> progenitor -> fusion -> apop_buffer -> CDKN2A_loss -> amplify,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+immortalize -> progenitor -> fusion -> apop_buffer -> amplify -> CDKN2A_loss,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> CDKN2A_loss -> amplify -> apop_buffer -> fusion -> immortalize,True,,
+progenitor -> CDKN2A_loss -> amplify -> apop_buffer -> immortalize -> fusion,True,,
+progenitor -> CDKN2A_loss -> amplify -> fusion -> apop_buffer -> immortalize,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> CDKN2A_loss -> amplify -> fusion -> immortalize -> apop_buffer,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> CDKN2A_loss -> amplify -> immortalize -> apop_buffer -> fusion,True,,
+progenitor -> CDKN2A_loss -> amplify -> immortalize -> fusion -> apop_buffer,False,5,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> CDKN2A_loss -> apop_buffer -> amplify -> fusion -> immortalize,True,,
+progenitor -> CDKN2A_loss -> apop_buffer -> amplify -> immortalize -> fusion,True,,
+progenitor -> CDKN2A_loss -> apop_buffer -> fusion -> amplify -> immortalize,True,,
+progenitor -> CDKN2A_loss -> apop_buffer -> fusion -> immortalize -> amplify,True,,
+progenitor -> CDKN2A_loss -> apop_buffer -> immortalize -> amplify -> fusion,True,,
+progenitor -> CDKN2A_loss -> apop_buffer -> immortalize -> fusion -> amplify,True,,
+progenitor -> CDKN2A_loss -> fusion -> amplify -> apop_buffer -> immortalize,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> CDKN2A_loss -> fusion -> amplify -> immortalize -> apop_buffer,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> CDKN2A_loss -> fusion -> apop_buffer -> amplify -> immortalize,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> CDKN2A_loss -> fusion -> apop_buffer -> immortalize -> amplify,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> CDKN2A_loss -> fusion -> immortalize -> amplify -> apop_buffer,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> CDKN2A_loss -> fusion -> immortalize -> apop_buffer -> amplify,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> CDKN2A_loss -> immortalize -> amplify -> apop_buffer -> fusion,True,,
+progenitor -> CDKN2A_loss -> immortalize -> amplify -> fusion -> apop_buffer,False,5,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> CDKN2A_loss -> immortalize -> apop_buffer -> amplify -> fusion,True,,
+progenitor -> CDKN2A_loss -> immortalize -> apop_buffer -> fusion -> amplify,True,,
+progenitor -> CDKN2A_loss -> immortalize -> fusion -> amplify -> apop_buffer,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> CDKN2A_loss -> immortalize -> fusion -> apop_buffer -> amplify,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> amplify -> CDKN2A_loss -> apop_buffer -> fusion -> immortalize,True,,
+progenitor -> amplify -> CDKN2A_loss -> apop_buffer -> immortalize -> fusion,True,,
+progenitor -> amplify -> CDKN2A_loss -> fusion -> apop_buffer -> immortalize,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> amplify -> CDKN2A_loss -> fusion -> immortalize -> apop_buffer,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> amplify -> CDKN2A_loss -> immortalize -> apop_buffer -> fusion,True,,
+progenitor -> amplify -> CDKN2A_loss -> immortalize -> fusion -> apop_buffer,False,5,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> amplify -> apop_buffer -> CDKN2A_loss -> fusion -> immortalize,True,,
+progenitor -> amplify -> apop_buffer -> CDKN2A_loss -> immortalize -> fusion,True,,
+progenitor -> amplify -> apop_buffer -> fusion -> CDKN2A_loss -> immortalize,True,,
+progenitor -> amplify -> apop_buffer -> fusion -> immortalize -> CDKN2A_loss,True,,
+progenitor -> amplify -> apop_buffer -> immortalize -> CDKN2A_loss -> fusion,True,,
+progenitor -> amplify -> apop_buffer -> immortalize -> fusion -> CDKN2A_loss,True,,
+progenitor -> amplify -> fusion -> CDKN2A_loss -> apop_buffer -> immortalize,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> amplify -> fusion -> CDKN2A_loss -> immortalize -> apop_buffer,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> amplify -> fusion -> apop_buffer -> CDKN2A_loss -> immortalize,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> amplify -> fusion -> apop_buffer -> immortalize -> CDKN2A_loss,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> amplify -> fusion -> immortalize -> CDKN2A_loss -> apop_buffer,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> amplify -> fusion -> immortalize -> apop_buffer -> CDKN2A_loss,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> amplify -> immortalize -> CDKN2A_loss -> apop_buffer -> fusion,True,,
+progenitor -> amplify -> immortalize -> CDKN2A_loss -> fusion -> apop_buffer,False,5,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> amplify -> immortalize -> apop_buffer -> CDKN2A_loss -> fusion,True,,
+progenitor -> amplify -> immortalize -> apop_buffer -> fusion -> CDKN2A_loss,True,,
+progenitor -> amplify -> immortalize -> fusion -> CDKN2A_loss -> apop_buffer,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> amplify -> immortalize -> fusion -> apop_buffer -> CDKN2A_loss,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> apop_buffer -> CDKN2A_loss -> amplify -> fusion -> immortalize,True,,
+progenitor -> apop_buffer -> CDKN2A_loss -> amplify -> immortalize -> fusion,True,,
+progenitor -> apop_buffer -> CDKN2A_loss -> fusion -> amplify -> immortalize,True,,
+progenitor -> apop_buffer -> CDKN2A_loss -> fusion -> immortalize -> amplify,True,,
+progenitor -> apop_buffer -> CDKN2A_loss -> immortalize -> amplify -> fusion,True,,
+progenitor -> apop_buffer -> CDKN2A_loss -> immortalize -> fusion -> amplify,True,,
+progenitor -> apop_buffer -> amplify -> CDKN2A_loss -> fusion -> immortalize,True,,
+progenitor -> apop_buffer -> amplify -> CDKN2A_loss -> immortalize -> fusion,True,,
+progenitor -> apop_buffer -> amplify -> fusion -> CDKN2A_loss -> immortalize,True,,
+progenitor -> apop_buffer -> amplify -> fusion -> immortalize -> CDKN2A_loss,True,,
+progenitor -> apop_buffer -> amplify -> immortalize -> CDKN2A_loss -> fusion,True,,
+progenitor -> apop_buffer -> amplify -> immortalize -> fusion -> CDKN2A_loss,True,,
+progenitor -> apop_buffer -> fusion -> CDKN2A_loss -> amplify -> immortalize,True,,
+progenitor -> apop_buffer -> fusion -> CDKN2A_loss -> immortalize -> amplify,True,,
+progenitor -> apop_buffer -> fusion -> amplify -> CDKN2A_loss -> immortalize,True,,
+progenitor -> apop_buffer -> fusion -> amplify -> immortalize -> CDKN2A_loss,True,,
+progenitor -> apop_buffer -> fusion -> immortalize -> CDKN2A_loss -> amplify,True,,
+progenitor -> apop_buffer -> fusion -> immortalize -> amplify -> CDKN2A_loss,True,,
+progenitor -> apop_buffer -> immortalize -> CDKN2A_loss -> amplify -> fusion,True,,
+progenitor -> apop_buffer -> immortalize -> CDKN2A_loss -> fusion -> amplify,True,,
+progenitor -> apop_buffer -> immortalize -> amplify -> CDKN2A_loss -> fusion,True,,
+progenitor -> apop_buffer -> immortalize -> amplify -> fusion -> CDKN2A_loss,True,,
+progenitor -> apop_buffer -> immortalize -> fusion -> CDKN2A_loss -> amplify,True,,
+progenitor -> apop_buffer -> immortalize -> fusion -> amplify -> CDKN2A_loss,True,,
+progenitor -> fusion -> CDKN2A_loss -> amplify -> apop_buffer -> immortalize,False,2,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> fusion -> CDKN2A_loss -> amplify -> immortalize -> apop_buffer,False,2,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> fusion -> CDKN2A_loss -> apop_buffer -> amplify -> immortalize,False,2,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> fusion -> CDKN2A_loss -> apop_buffer -> immortalize -> amplify,False,2,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> fusion -> CDKN2A_loss -> immortalize -> amplify -> apop_buffer,False,2,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> fusion -> CDKN2A_loss -> immortalize -> apop_buffer -> amplify,False,2,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> fusion -> amplify -> CDKN2A_loss -> apop_buffer -> immortalize,False,2,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> fusion -> amplify -> CDKN2A_loss -> immortalize -> apop_buffer,False,2,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> fusion -> amplify -> apop_buffer -> CDKN2A_loss -> immortalize,False,2,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> fusion -> amplify -> apop_buffer -> immortalize -> CDKN2A_loss,False,2,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> fusion -> amplify -> immortalize -> CDKN2A_loss -> apop_buffer,False,2,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> fusion -> amplify -> immortalize -> apop_buffer -> CDKN2A_loss,False,2,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> fusion -> apop_buffer -> CDKN2A_loss -> amplify -> immortalize,False,2,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> fusion -> apop_buffer -> CDKN2A_loss -> immortalize -> amplify,False,2,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> fusion -> apop_buffer -> amplify -> CDKN2A_loss -> immortalize,False,2,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> fusion -> apop_buffer -> amplify -> immortalize -> CDKN2A_loss,False,2,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> fusion -> apop_buffer -> immortalize -> CDKN2A_loss -> amplify,False,2,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> fusion -> apop_buffer -> immortalize -> amplify -> CDKN2A_loss,False,2,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> fusion -> immortalize -> CDKN2A_loss -> amplify -> apop_buffer,False,2,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> fusion -> immortalize -> CDKN2A_loss -> apop_buffer -> amplify,False,2,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> fusion -> immortalize -> amplify -> CDKN2A_loss -> apop_buffer,False,2,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> fusion -> immortalize -> amplify -> apop_buffer -> CDKN2A_loss,False,2,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> fusion -> immortalize -> apop_buffer -> CDKN2A_loss -> amplify,False,2,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> fusion -> immortalize -> apop_buffer -> amplify -> CDKN2A_loss,False,2,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> immortalize -> CDKN2A_loss -> amplify -> apop_buffer -> fusion,True,,
+progenitor -> immortalize -> CDKN2A_loss -> amplify -> fusion -> apop_buffer,False,5,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> immortalize -> CDKN2A_loss -> apop_buffer -> amplify -> fusion,True,,
+progenitor -> immortalize -> CDKN2A_loss -> apop_buffer -> fusion -> amplify,True,,
+progenitor -> immortalize -> CDKN2A_loss -> fusion -> amplify -> apop_buffer,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> immortalize -> CDKN2A_loss -> fusion -> apop_buffer -> amplify,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> immortalize -> amplify -> CDKN2A_loss -> apop_buffer -> fusion,True,,
+progenitor -> immortalize -> amplify -> CDKN2A_loss -> fusion -> apop_buffer,False,5,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> immortalize -> amplify -> apop_buffer -> CDKN2A_loss -> fusion,True,,
+progenitor -> immortalize -> amplify -> apop_buffer -> fusion -> CDKN2A_loss,True,,
+progenitor -> immortalize -> amplify -> fusion -> CDKN2A_loss -> apop_buffer,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> immortalize -> amplify -> fusion -> apop_buffer -> CDKN2A_loss,False,4,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> immortalize -> apop_buffer -> CDKN2A_loss -> amplify -> fusion,True,,
+progenitor -> immortalize -> apop_buffer -> CDKN2A_loss -> fusion -> amplify,True,,
+progenitor -> immortalize -> apop_buffer -> amplify -> CDKN2A_loss -> fusion,True,,
+progenitor -> immortalize -> apop_buffer -> amplify -> fusion -> CDKN2A_loss,True,,
+progenitor -> immortalize -> apop_buffer -> fusion -> CDKN2A_loss -> amplify,True,,
+progenitor -> immortalize -> apop_buffer -> fusion -> amplify -> CDKN2A_loss,True,,
+progenitor -> immortalize -> fusion -> CDKN2A_loss -> amplify -> apop_buffer,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> immortalize -> fusion -> CDKN2A_loss -> apop_buffer -> amplify,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> immortalize -> fusion -> amplify -> CDKN2A_loss -> apop_buffer,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> immortalize -> fusion -> amplify -> apop_buffer -> CDKN2A_loss,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> immortalize -> fusion -> apop_buffer -> CDKN2A_loss -> amplify,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
+progenitor -> immortalize -> fusion -> apop_buffer -> amplify -> CDKN2A_loss,False,3,"death (DUX4/oncogene apoptosis, unbuffered)"
