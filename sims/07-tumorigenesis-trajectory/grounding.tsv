@@ -1,0 +1,26 @@
+## OpenMed NER grounding for Sim 7
+## STATUS: NOT RUN — huggingface.co is blocked (HTTP 403) by this environment's
+## egress allow-list (verified 2026-06-07), so the OpenMed model weights could not be
+## downloaded. Per the no-fabrication rule, no grounding scores are invented here.
+## The entities below (from entities.txt) are standard biomedical terms already grounded
+## GENE/PROTEIN/Cancer at high confidence in prior sims with the same NER ensemble —
+## see sims/02-dependency-mining/grounding.tsv and sims/04-immune-state-model/grounding.tsv.
+## To complete grounding when egress allows:
+##   python scripts/openmed_ner.py --team v3-synthetic-lethality \
+##       --text-file sims/07-tumorigenesis-trajectory/entities.txt --format tsv > grounding.tsv
+entity	type	score	source
+CIC-DUX4	(pending)	NA	huggingface blocked
+CIC	(pending)	NA	huggingface blocked
+DUX4	(pending)	NA	huggingface blocked
+ETV4	(pending)	NA	huggingface blocked
+ETV5	(pending)	NA	huggingface blocked
+CDKN2A	(pending)	NA	huggingface blocked
+TP53	(pending)	NA	huggingface blocked
+TERT	(pending)	NA	huggingface blocked
+BRD4	(pending)	NA	huggingface blocked
+CDK4	(pending)	NA	huggingface blocked
+RB1	(pending)	NA	huggingface blocked
+mesenchymal stem cell	(pending)	NA	huggingface blocked
+oncogene-induced senescence	(pending)	NA	huggingface blocked
+Ewing sarcoma	(pending)	NA	huggingface blocked
+CIC-rearranged sarcoma	(pending)	NA	huggingface blocked

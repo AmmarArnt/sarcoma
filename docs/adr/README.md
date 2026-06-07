@@ -38,6 +38,7 @@ or amending an artifact. Those are just commits.
 | [0004](0004-scoring-axes-and-verification-sources-wiring.md) | Wire scoring axes + verification-source registry into the contract | 2026-06-03 | Accepted | Maintainer request (post #8/#9) |
 | [0005](0005-host-biology-modifier-layer.md) | Host-biology treatment-response modifier layer (cross-cutting, not a 5th vector) | 2026-06-03 | Accepted | Issue #10 / PR |
 | [0006](0006-immune-watchdog-danger-signaling-expansion.md) | V4 conceptual expansion: danger-signaling / ICD / Nectin-axis + inflammation-state lens | 2026-06-03 | Accepted | Issue #11 / PR |
+| [0007](0007-tumorigenesis-reverse-engineering-team.md) | Tumorigenesis / Cell-of-Origin reverse-engineering team + transformation-trajectory sim type | 2026-06-07 | Accepted | Maintainer request |
 
 ## Template
 

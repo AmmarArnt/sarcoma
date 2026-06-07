@@ -1,0 +1,129 @@
+progenitor,fusion,apop_buffer,TP53_loss,CDKN2A_loss,immortalize,amplify,n_inputs,chromatin_open,ets_on,apoptosis_blocked,senescence_blocked,dominant,immortal,outcome
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,no driver
+0,0,0,0,0,0,1,1,0,0,0,0,0,0,no driver
+0,0,0,0,0,1,0,1,0,0,0,0,0,1,no driver
+0,0,0,0,0,1,1,2,0,0,0,0,0,1,no driver
+0,0,0,0,1,0,0,1,0,0,0,1,0,0,no driver
+0,0,0,0,1,0,1,2,0,0,0,1,0,0,no driver
+0,0,0,0,1,1,0,2,0,0,0,1,0,1,no driver
+0,0,0,0,1,1,1,3,0,0,0,1,0,1,no driver
+0,0,0,1,0,0,0,1,0,0,0,1,0,0,no driver
+0,0,0,1,0,0,1,2,0,0,0,1,0,0,no driver
+0,0,0,1,0,1,0,2,0,0,0,1,0,1,no driver
+0,0,0,1,0,1,1,3,0,0,0,1,0,1,no driver
+0,0,0,1,1,0,0,2,0,0,0,1,0,0,no driver
+0,0,0,1,1,0,1,3,0,0,0,1,0,0,no driver
+0,0,0,1,1,1,0,3,0,0,0,1,0,1,no driver
+0,0,0,1,1,1,1,4,0,0,0,1,0,1,no driver
+0,0,1,0,0,0,0,1,0,0,1,0,0,0,no driver
+0,0,1,0,0,0,1,2,0,0,1,0,0,0,no driver
+0,0,1,0,0,1,0,2,0,0,1,0,0,1,no driver
+0,0,1,0,0,1,1,3,0,0,1,0,0,1,no driver
+0,0,1,0,1,0,0,2,0,0,1,1,0,0,no driver
+0,0,1,0,1,0,1,3,0,0,1,1,0,0,no driver
+0,0,1,0,1,1,0,3,0,0,1,1,0,1,no driver
+0,0,1,0,1,1,1,4,0,0,1,1,0,1,no driver
+0,0,1,1,0,0,0,2,0,0,1,1,0,0,no driver
+0,0,1,1,0,0,1,3,0,0,1,1,0,0,no driver
+0,0,1,1,0,1,0,3,0,0,1,1,0,1,no driver
+0,0,1,1,0,1,1,4,0,0,1,1,0,1,no driver
+0,0,1,1,1,0,0,3,0,0,1,1,0,0,no driver
+0,0,1,1,1,0,1,4,0,0,1,1,0,0,no driver
+0,0,1,1,1,1,0,4,0,0,1,1,0,1,no driver
+0,0,1,1,1,1,1,5,0,0,1,1,0,1,no driver
+0,1,0,0,0,0,0,1,0,0,0,0,0,0,no oncogenic program (no permissive substrate)
+0,1,0,0,0,0,1,2,0,0,0,0,0,0,no oncogenic program (no permissive substrate)
+0,1,0,0,0,1,0,2,0,0,0,0,0,1,no oncogenic program (no permissive substrate)
+0,1,0,0,0,1,1,3,0,0,0,0,0,1,no oncogenic program (no permissive substrate)
+0,1,0,0,1,0,0,2,0,0,0,1,0,0,no oncogenic program (no permissive substrate)
+0,1,0,0,1,0,1,3,0,0,0,1,0,0,no oncogenic program (no permissive substrate)
+0,1,0,0,1,1,0,3,0,0,0,1,0,1,no oncogenic program (no permissive substrate)
+0,1,0,0,1,1,1,4,0,0,0,1,0,1,no oncogenic program (no permissive substrate)
+0,1,0,1,0,0,0,2,0,0,0,1,0,0,no oncogenic program (no permissive substrate)
+0,1,0,1,0,0,1,3,0,0,0,1,0,0,no oncogenic program (no permissive substrate)
+0,1,0,1,0,1,0,3,0,0,0,1,0,1,no oncogenic program (no permissive substrate)
+0,1,0,1,0,1,1,4,0,0,0,1,0,1,no oncogenic program (no permissive substrate)
+0,1,0,1,1,0,0,3,0,0,0,1,0,0,no oncogenic program (no permissive substrate)
+0,1,0,1,1,0,1,4,0,0,0,1,0,0,no oncogenic program (no permissive substrate)
+0,1,0,1,1,1,0,4,0,0,0,1,0,1,no oncogenic program (no permissive substrate)
+0,1,0,1,1,1,1,5,0,0,0,1,0,1,no oncogenic program (no permissive substrate)
+0,1,1,0,0,0,0,2,0,0,1,0,0,0,no oncogenic program (no permissive substrate)
+0,1,1,0,0,0,1,3,0,0,1,0,0,0,no oncogenic program (no permissive substrate)
+0,1,1,0,0,1,0,3,0,0,1,0,0,1,no oncogenic program (no permissive substrate)
+0,1,1,0,0,1,1,4,0,0,1,0,0,1,no oncogenic program (no permissive substrate)
+0,1,1,0,1,0,0,3,0,0,1,1,0,0,no oncogenic program (no permissive substrate)
+0,1,1,0,1,0,1,4,0,0,1,1,0,0,no oncogenic program (no permissive substrate)
+0,1,1,0,1,1,0,4,0,0,1,1,0,1,no oncogenic program (no permissive substrate)
+0,1,1,0,1,1,1,5,0,0,1,1,0,1,no oncogenic program (no permissive substrate)
+0,1,1,1,0,0,0,3,0,0,1,1,0,0,no oncogenic program (no permissive substrate)
+0,1,1,1,0,0,1,4,0,0,1,1,0,0,no oncogenic program (no permissive substrate)
+0,1,1,1,0,1,0,4,0,0,1,1,0,1,no oncogenic program (no permissive substrate)
+0,1,1,1,0,1,1,5,0,0,1,1,0,1,no oncogenic program (no permissive substrate)
+0,1,1,1,1,0,0,4,0,0,1,1,0,0,no oncogenic program (no permissive substrate)
+0,1,1,1,1,0,1,5,0,0,1,1,0,0,no oncogenic program (no permissive substrate)
+0,1,1,1,1,1,0,5,0,0,1,1,0,1,no oncogenic program (no permissive substrate)
+0,1,1,1,1,1,1,6,0,0,1,1,0,1,no oncogenic program (no permissive substrate)
+1,0,0,0,0,0,0,1,1,0,0,0,0,0,no driver
+1,0,0,0,0,0,1,2,1,0,0,0,0,0,no driver
+1,0,0,0,0,1,0,2,1,0,0,0,0,1,no driver
+1,0,0,0,0,1,1,3,1,0,0,0,0,1,no driver
+1,0,0,0,1,0,0,2,1,0,0,1,0,0,no driver
+1,0,0,0,1,0,1,3,1,0,0,1,0,0,no driver
+1,0,0,0,1,1,0,3,1,0,0,1,0,1,no driver
+1,0,0,0,1,1,1,4,1,0,0,1,0,1,no driver
+1,0,0,1,0,0,0,2,1,0,0,1,0,0,no driver
+1,0,0,1,0,0,1,3,1,0,0,1,0,0,no driver
+1,0,0,1,0,1,0,3,1,0,0,1,0,1,no driver
+1,0,0,1,0,1,1,4,1,0,0,1,0,1,no driver
+1,0,0,1,1,0,0,3,1,0,0,1,0,0,no driver
+1,0,0,1,1,0,1,4,1,0,0,1,0,0,no driver
+1,0,0,1,1,1,0,4,1,0,0,1,0,1,no driver
+1,0,0,1,1,1,1,5,1,0,0,1,0,1,no driver
+1,0,1,0,0,0,0,2,1,0,1,0,0,0,no driver
+1,0,1,0,0,0,1,3,1,0,1,0,0,0,no driver
+1,0,1,0,0,1,0,3,1,0,1,0,0,1,no driver
+1,0,1,0,0,1,1,4,1,0,1,0,0,1,no driver
+1,0,1,0,1,0,0,3,1,0,1,1,0,0,no driver
+1,0,1,0,1,0,1,4,1,0,1,1,0,0,no driver
+1,0,1,0,1,1,0,4,1,0,1,1,0,1,no driver
+1,0,1,0,1,1,1,5,1,0,1,1,0,1,no driver
+1,0,1,1,0,0,0,3,1,0,1,1,0,0,no driver
+1,0,1,1,0,0,1,4,1,0,1,1,0,0,no driver
+1,0,1,1,0,1,0,4,1,0,1,1,0,1,no driver
+1,0,1,1,0,1,1,5,1,0,1,1,0,1,no driver
+1,0,1,1,1,0,0,4,1,0,1,1,0,0,no driver
+1,0,1,1,1,0,1,5,1,0,1,1,0,0,no driver
+1,0,1,1,1,1,0,5,1,0,1,1,0,1,no driver
+1,0,1,1,1,1,1,6,1,0,1,1,0,1,no driver
+1,1,0,0,0,0,0,2,1,1,0,0,0,0,"death (DUX4/oncogene apoptosis, unbuffered)"
+1,1,0,0,0,0,1,3,1,1,0,0,1,0,"death (DUX4/oncogene apoptosis, unbuffered)"
+1,1,0,0,0,1,0,3,1,1,0,0,0,1,"death (DUX4/oncogene apoptosis, unbuffered)"
+1,1,0,0,0,1,1,4,1,1,0,0,1,1,"death (DUX4/oncogene apoptosis, unbuffered)"
+1,1,0,0,1,0,0,3,1,1,0,1,0,0,"death (DUX4/oncogene apoptosis, unbuffered)"
+1,1,0,0,1,0,1,4,1,1,0,1,1,0,"death (DUX4/oncogene apoptosis, unbuffered)"
+1,1,0,0,1,1,0,4,1,1,0,1,0,1,"death (DUX4/oncogene apoptosis, unbuffered)"
+1,1,0,0,1,1,1,5,1,1,0,1,1,1,"death (DUX4/oncogene apoptosis, unbuffered)"
+1,1,0,1,0,0,0,3,1,1,0,1,0,0,"death (DUX4/oncogene apoptosis, unbuffered)"
+1,1,0,1,0,0,1,4,1,1,0,1,1,0,"death (DUX4/oncogene apoptosis, unbuffered)"
+1,1,0,1,0,1,0,4,1,1,0,1,0,1,"death (DUX4/oncogene apoptosis, unbuffered)"
+1,1,0,1,0,1,1,5,1,1,0,1,1,1,"death (DUX4/oncogene apoptosis, unbuffered)"
+1,1,0,1,1,0,0,4,1,1,0,1,0,0,"death (DUX4/oncogene apoptosis, unbuffered)"
+1,1,0,1,1,0,1,5,1,1,0,1,1,0,"death (DUX4/oncogene apoptosis, unbuffered)"
+1,1,0,1,1,1,0,5,1,1,0,1,0,1,"death (DUX4/oncogene apoptosis, unbuffered)"
+1,1,0,1,1,1,1,6,1,1,0,1,1,1,"death (DUX4/oncogene apoptosis, unbuffered)"
+1,1,1,0,0,0,0,3,1,1,1,0,0,0,oncogene-induced senescence / arrest
+1,1,1,0,0,0,1,4,1,1,1,0,1,0,oncogene-induced senescence / arrest
+1,1,1,0,0,1,0,4,1,1,1,0,0,1,oncogene-induced senescence / arrest
+1,1,1,0,0,1,1,5,1,1,1,0,1,1,oncogene-induced senescence / arrest
+1,1,1,0,1,0,0,4,1,1,1,1,0,0,proliferative but mortal (telomere crisis ahead)
+1,1,1,0,1,0,1,5,1,1,1,1,1,0,proliferative but mortal (telomere crisis ahead)
+1,1,1,0,1,1,0,5,1,1,1,1,0,1,transient / unstable hyperplasia (output not dominant)
+1,1,1,0,1,1,1,6,1,1,1,1,1,1,FULLY TRANSFORMED CIC-DUX4 sarcoma cell
+1,1,1,1,0,0,0,4,1,1,1,1,0,0,proliferative but mortal (telomere crisis ahead)
+1,1,1,1,0,0,1,5,1,1,1,1,1,0,proliferative but mortal (telomere crisis ahead)
+1,1,1,1,0,1,0,5,1,1,1,1,0,1,transient / unstable hyperplasia (output not dominant)
+1,1,1,1,0,1,1,6,1,1,1,1,1,1,FULLY TRANSFORMED CIC-DUX4 sarcoma cell
+1,1,1,1,1,0,0,5,1,1,1,1,0,0,proliferative but mortal (telomere crisis ahead)
+1,1,1,1,1,0,1,6,1,1,1,1,1,0,proliferative but mortal (telomere crisis ahead)
+1,1,1,1,1,1,0,6,1,1,1,1,0,1,transient / unstable hyperplasia (output not dominant)
+1,1,1,1,1,1,1,7,1,1,1,1,1,1,FULLY TRANSFORMED CIC-DUX4 sarcoma cell
