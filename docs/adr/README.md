@@ -40,6 +40,7 @@ or amending an artifact. Those are just commits.
 | [0006](0006-immune-watchdog-danger-signaling-expansion.md) | V4 conceptual expansion: danger-signaling / ICD / Nectin-axis + inflammation-state lens | 2026-06-03 | Accepted | Issue #11 / PR |
 | [0007](0007-tumorigenesis-reverse-engineering-team.md) | Tumorigenesis / Cell-of-Origin reverse-engineering team + transformation-trajectory sim type | 2026-06-07 | Accepted | Maintainer request |
 | [0008](0008-driver-uncertainty-decision-model.md) | Driver-uncertainty (latent-variable) decision-model sim type for fusion-unconfirmed cases | 2026-06-07 | Accepted | Maintainer request |
+| [0009](0009-findings-ranking-register.md) | Findings-ranking master register (standing deliverable + maintenance rule) | 2026-06-07 | Accepted | Maintainer request |
 
 ## Template
 

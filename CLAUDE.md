@@ -18,6 +18,12 @@ trial dose-ranges (with citations) are in scope; prescriptive numbers are not.
 time is slow and token-expensive, and usually unnecessary.
 
 Already on disk:
+- `simulation-output/findings-ranking.md` — **master register of every notable finding** across all sims/
+  teams/analyses, scored on the three axes (evidence tier / confidence / feasibility) with "top picks by
+  criterion." One place to compare results (ADR-0009). **MAINTAIN IT:** whenever a new sim, team output, or
+  analysis produces a result worth comparing against the others — or a perishable feasibility band changes —
+  **add/update its row in the same commit/PR** (the file's "Maintenance rule" has the steps). Do not promote
+  a logic/decision-model finding above a real-data finding on evidence strength.
 - `simulation-output/protocol-v1.md` — the ranked, evidence-tiered hypothesis catalog (headline output).
 - `simulation-output/{v1-rate-limiting,v2-compiler-protection,v3-hot-patching,v4-immune-watchdog,mrna-vaccine-research}/`
   — each vector/team lead's summary plus its sub-agent outputs.
@@ -222,6 +228,8 @@ python scripts/dispatch.py ready      # orchestrator preconditions
 - Each sim writes a `RESULTS.md` (real numbers + honest limitations), an `entities.txt`, and a
   `grounding.tsv` from OpenMed NER.
 - See `sims/00-INDEX.md` for the current set and their convergent findings.
+- **Update `simulation-output/findings-ranking.md`** in the same change when a sim produces a result worth
+  comparing against the others (the file's "Maintenance rule" + ADR-0009 have the steps).
 - **Isolate experimental runs in a git worktree** off the current good branch so the baseline state is
   not polluted (`git worktree add -b sim-<topic> ../sarcoma-<topic> <base>`). Branch names: `sim-*`.
 
