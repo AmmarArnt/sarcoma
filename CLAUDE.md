@@ -276,6 +276,17 @@ Invoke these instead of re-deriving the rules:
 
 ## 7. Repository map
 
+The tree is organized in four audience tiers. **Convention: dot-prefixed = Tier 4 (machine/config);
+plain names tiered by how human-facing. `scripts/` is the one un-dotted Tier-4 exception — it's a
+documented runnable entry point.** Don't add new dirs without assigning a tier (see §9).
+
+| Tier | Audience | Contents |
+|---|---|---|
+| **1 — Read first (human)** | Clinicians · patients · non-technical | `simulation-output/protocol-v2.md` (main catalog) · `simulation-output/findings-ranking.md` · `simulation-output/forward-simulation/*-brief.md` |
+| **2 — Hybrid** | Researchers · motivated readers | rest of `simulation-output/` (analytical layers + per-vector summaries) · `docs/00–05` |
+| **3 — Contributor / LLM** | Developers · AI agents | `docs/06–09` · `docs/adr/` · `sims/` · `CLAUDE.md` · `scripts/` |
+| **4 — Machine / tooling** | Script runner · configs · caches | `.claude/` · `.prompts/` · `.venv/` · `.gitignore` · gitignored `sims/*/data/` |
+
 ```
 docs/00-README.md        framing + constraints + execution semantics (read first)
 docs/01–05               domain knowledge, analogy model, the four attack vectors
@@ -289,9 +300,11 @@ scripts/openmed_ner.py   OpenMed NER grounding CLI (--team)
 .claude/agents/          the 6 lead agents
 .claude/skills/          the 6 sarcoma-* content skills + github-issue-runner (workflow; ADR-0002)
 sims/00-INDEX.md         the in-silico simulations + convergent findings
-sims/01–06/              reproducible simulations (script + RESULTS.md + MANIFEST.md + grounding.tsv)
-simulation-output/       protocol-v1.md (catalog), forward-simulation/, biomarker-voi-stratification.md,
-                         per-vector outputs, and oncologist/MTB discussion briefs
+sims/01–08/              reproducible simulations (script + RESULTS.md + MANIFEST.md + grounding.tsv)
+simulation-output/       protocol-v2.md (main catalog), findings-ranking.md (master register),
+                         forward-simulation/ (oncologist briefs), biomarker-voi-stratification.md,
+                         translational-feasibility-layer.md, host-biology-modifier-layer.md,
+                         tumorigenesis-reverse-engineering/, per-vector outputs
 ```
 
 ---
@@ -319,6 +332,24 @@ automation — defer to the skill. Use `gh` for GitHub operations.
 - **Commits:** end messages with `Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>`.
 - **Don't pollute a state the user likes** — branch/worktree first.
 - **Honesty over completeness**, always. When in doubt, exclude rather than pad.
+
+### Directory tiering — keep the tree streamlined
+
+Every new directory or top-level file gets a tier assignment before it lands on `main`. Use this table:
+
+| What you're adding | Tier | Where it goes | Extra step |
+|---|---|---|---|
+| Ranked catalog, oncologist brief, or master register (human deliverable) | **1** | `simulation-output/` (catalog/brief) or root (index) | **Link it** from the README "Where to start" block in the same PR |
+| Analytical layer, per-vector summary, domain output, biomarker/VoI file | **2** | `simulation-output/` | — |
+| In-silico sim, agent/architecture doc, ADR, dev doc, evidence reference | **3** | `sims/`, `docs/` | Add row to `sims/00-INDEX.md` or `docs/adr/` as appropriate |
+| Machine scratch, cache, config, secret, or purely-tool dir | **4** | **Dot-prefix it** (e.g. `.scratch/`) **or** add to `.gitignore` | Never drop machine scratch into a Tier 1/2 dir |
+
+**Rules:**
+- Never mass-rename existing core dirs to add dots — it breaks 130+ path references and
+  `scripts/dispatch.py`. The README is the navigation layer; the filesystem is secondary.
+- `scripts/` stays un-dotted — it's a documented, externally runnable entry point.
+- When in doubt, ask: "would a clinician or patient be confused to see this in the GitHub tree?"
+  If yes → Tier 3/4; hide it behind the README nav layer.
 
 ---
 
