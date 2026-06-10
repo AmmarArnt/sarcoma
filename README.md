@@ -15,6 +15,32 @@ tested yet, and small **computational experiments** anyone can re-run.
 
 ---
 
+## Where to start (pick your path)
+
+**I'm a clinician, patient, or non-technical reader — show me the findings:**
+
+| Document | What it is |
+|---|---|
+| [`simulation-output/protocol-v2.md`](simulation-output/protocol-v2.md) | The main deliverable — ranked, evidence-tiered hypothesis catalog (the full output of the simulation). Start here. |
+| [`simulation-output/findings-ranking.md`](simulation-output/findings-ranking.md) | One-page master register: every notable finding scored on three axes (evidence strength · confidence · real-world access). The honest summary and quick-scan table. |
+| [`simulation-output/forward-simulation/WEE1-ifosfamide-oncologist-brief.md`](simulation-output/forward-simulation/WEE1-ifosfamide-oncologist-brief.md) | Plain-language brief on the WEE1 + ifosfamide hypothesis — written to hand to an oncologist or molecular tumor board. |
+| [`simulation-output/forward-simulation/selective-clearance-oncologist-brief.md`](simulation-output/forward-simulation/selective-clearance-oncologist-brief.md) | Brief on selective immune clearance strategies — same format, same audience. |
+| [`simulation-output/forward-simulation/00-INDEX.md`](simulation-output/forward-simulation/00-INDEX.md) | Index of all forward hypotheses and discussion briefs. |
+
+**I'm a researcher or want to challenge the findings:**
+
+Start with [`docs/00-README.md`](docs/00-README.md) (full framing), then
+[`docs/02-cic-sarcoma-knowledge.md`](docs/02-cic-sarcoma-knowledge.md) and
+[`docs/05-attack-vectors.md`](docs/05-attack-vectors.md). The
+[Issues tab](../../issues) is the front door for grounded contributions.
+
+**I'm here to run the code or extend the simulation:**
+
+Read [`CLAUDE.md`](CLAUDE.md) first (how sessions and agent teams operate), then
+`scripts/dispatch.py` (wave plan) and `sims/00-INDEX.md` (what each experiment does).
+
+---
+
 ## The idea in 60 seconds
 
 The fusion gene acts like a `while True: divide()` loop whose "stop" condition was deleted. We attack
@@ -39,25 +65,29 @@ it on four complementary layers (the working bet is that **no single layer is en
   `Theoretical` — so a reader instantly sees what's solid and what's a stretch.
 - **No invented references.** If there's no real source, it says so. Findings are grounded against a
   biomedical entity recognizer (OpenMed NER) and, where possible, verified against live literature.
-- **Known research is the floor, not the ceiling.** The simulation is expected to ask *why* past
-  approaches fell short and to generate testable new ideas — not just restate what's known.
+- **Known research is the floor, not the ceiling.** The simulation asks *why* past approaches fell
+  short and generates testable new ideas — not just restatements of what's known.
 - **Some hypotheses become runnable code.** See `sims/` for in-silico experiments on real public data
   (gene-signature drug repurposing, CRISPR-dependency mining, network models of the loop, immune-state
   modeling) — each reproducible, with its data sources listed.
 
 ---
 
-## What's inside
+## Repository map (organized by audience)
 
-- `simulation-output/protocol-v1.md` — the ranked, evidence-tiered hypothesis catalog.
-- `simulation-output/forward-simulation/` — forward hypotheses, "why did it fail" analyses, and
-  plain-language **discussion briefs** written to hand to an oncologist or molecular tumor board.
-- `sims/` — five reproducible computational experiments (`sims/00-INDEX.md` summarizes them).
-- `docs/` — the full framing (`00-README.md`), domain knowledge, the engineering analogy, the four
-  vectors, and the agent architecture.
+The tree is arranged in four tiers. If you're not here to run code, you can ignore Tiers 3 and 4
+entirely.
 
-> A completed first run already populates `simulation-output/` and `sims/`. **Start by reading those** —
-> the pipeline rarely needs to be re-run from scratch; new work usually builds on what's there.
+| Tier | Audience | Directories / files |
+|---|---|---|
+| **1 — Read first** | Clinicians · patients · non-technical readers | `simulation-output/protocol-v2.md` (main catalog) · `simulation-output/findings-ranking.md` · `simulation-output/forward-simulation/*-brief.md` (plain-language discussion briefs) · this `README.md` |
+| **2 — Hybrid** | Researchers · motivated readers | rest of `simulation-output/` (analytical layers: biomarker VoI, feasibility, host-biology, metastatic, per-vector summaries, tumorigenesis reverse-engineering) · `docs/00–05` (framing + domain knowledge) |
+| **3 — Contributor / LLM** | Developers · AI agents | `docs/06–09` + `docs/adr/` (agent architecture, evidence-scoring, verification sources, ADRs) · `sims/` (reproducible in-silico experiments) · `CLAUDE.md` (session operating guide) · `scripts/` (orchestration + NER) |
+| **4 — Machine / tooling** | Script runner · configs · caches | `.claude/` · `.prompts/` · `.venv/` · `.gitignore` · gitignored `sims/*/data/` |
+
+> **Convention:** dot-prefixed directories are Tier 4 (machine/config). Everything else is plain-named
+> and tiered by how human-facing it is. `scripts/` is the one un-dotted Tier-4 exception because it's a
+> documented runnable entry point referenced throughout the docs.
 
 ---
 

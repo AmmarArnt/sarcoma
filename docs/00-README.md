@@ -38,34 +38,86 @@ Two **supplementary research teams** run in parallel to the vectors and feed the
 
 ## Repository Structure
 
+The tree is organized by audience tier (Tier 1 = human-first → Tier 4 = machine/tooling). See
+`CLAUDE.md §7` and `§9` for the full convention and the rule for placing new artifacts.
+
 ```
 sarcoma/
+│
+│  ── TIER 1: Read first (clinicians · patients · non-technical readers) ──────────
+│
+├── README.md                                 ← Front door. "Where to start" routing by audience.
+│
+└── simulation-output/
+    ├── protocol-v2.md                        ← MAIN DELIVERABLE: ranked, evidence-tiered catalog
+    ├── findings-ranking.md                   ← Master register: every finding on 3 axes (quick scan)
+    └── forward-simulation/
+        ├── WEE1-ifosfamide-oncologist-brief.md   ← Plain-language brief for oncologist/MTB
+        ├── selective-clearance-oncologist-brief.md
+        └── 00-INDEX.md                           ← Index of all briefs + forward hypotheses
+│
+│  ── TIER 2: Hybrid (researchers · motivated readers) ────────────────────────────
+│
 ├── docs/
-│   ├── 00-README.md                          ← This file. Project framing + agent overview.
+│   ├── 00-README.md                          ← This file. Full framing + execution semantics.
 │   ├── 01-general-sarcoma-knowledge.md       ← Soft-tissue sarcoma fundamentals
 │   ├── 02-cic-sarcoma-knowledge.md           ← CIC-DUX4 specific deep dive
 │   ├── 03-dna-genome-protein-interactions.md ← How translocations happen; why this one recurs
 │   ├── 04-biology-engineering-analogy.md     ← Software/hardware mapping (explicitly an analogy)
-│   ├── 05-attack-vectors.md                  ← Four vectors + cross-vector interaction map
-│   ├── 06-agent-architecture.md              ← Agent definitions, prompts, output schemas
-│   ├── 07-openmed-models.md                  ← OpenMed NER model assignments per agent team
-│   ├── cic_sarcoma_simulation.html           ← Optional interactive diagram (illustrative only)
-│   └── todo.md                               ← Thoughts, notes and TODOs
-├── scripts/
-│   ├── dispatch.py                           ← Wave-plan + prerequisite + gate checker (run first)
-│   └── openmed_ner.py                        ← OpenMed NER grounding CLI (per-team)
-├── .claude/skills/                           ← Project-scoped skills (sarcoma-contract, etc.)
-└── simulation-output/                        ← Per-agent outputs land here
-    ├── mrna-vaccine-research/
-    ├── v1-rate-limiting/
+│   └── 05-attack-vectors.md                  ← Four vectors + cross-vector interaction map
+│
+└── simulation-output/ (continued)
+    ├── protocol-v1.md                        ← Baseline catalog (v1); v2 is the current output
+    ├── biomarker-voi-stratification.md       ← Value-of-information ranking of unmeasured biomarkers
+    ├── translational-feasibility-layer.md    ← Five-band access/trial-status scheme (perishable)
+    ├── host-biology-modifier-layer.md        ← Host-biology cross-cutting modifier layer
+    ├── metastatic-disease-considerations-v2.md
+    ├── mrna-vaccine-research/                ← Supplementary mRNA vaccine team output
+    ├── v1-rate-limiting/                     ← V1 lead + sub-agent outputs
     ├── v2-compiler-protection/
     ├── v3-hot-patching/
-    ├── v4-immune-watchdog/
-    ├── metastatic-disease-considerations.md  ← Metastatic Specialist sub-agent output
-    └── protocol-v1.md                        ← Orchestrator's final catalog
+    ├── v4-immune-watchdog/                   ← incl. immune-watchdog-expansion.md (danger/Nectin/NK)
+    ├── supplementary-pulsed-adjunct/
+    └── tumorigenesis-reverse-engineering/    ← Build-recipe team + driver-uncertainty model (Sim 8)
+│
+│  ── TIER 3: Contributor / LLM (developers · AI agents) ──────────────────────────
+│
+├── docs/ (continued)
+│   ├── 06-agent-architecture.md             ← Agent definitions, prompts, output schemas
+│   ├── 07-openmed-models.md                 ← OpenMed NER model assignments per agent team
+│   ├── 08-evidence-confidence-scoring.md    ← Confidence axis: tier↔grade crosswalk + rubric
+│   ├── 09-verification-sources.md           ← Authoritative registries for live fact-checking
+│   ├── adr/                                 ← Architecture Decision Records (framework history)
+│   └── todo.md                              ← Thoughts, notes, and TODOs
+│
+├── sims/
+│   ├── 00-INDEX.md                          ← What each experiment does + convergent findings
+│   ├── 01-signature-reversal/               ← GSE60740 → L1000CDS2 drug repurposing
+│   ├── 02-dependency-mining/                ← DepMap 24Q4 CRISPR dependency mining
+│   ├── 03-network-model/                    ← Boolean + ODE network model
+│   ├── 04-immune-state-model/               ← Nectin + immune-marker state model
+│   ├── 05-systemstate-sequencing/           ← Immune-intervention sequencing
+│   ├── 06-biomarker-value-of-information/   ← Missing-biomarker VoI
+│   ├── 07-tumorigenesis-trajectory/         ← Boolean transformation-trajectory (build recipe)
+│   └── 08-driver-uncertainty/               ← Driver-unknown decision model + EVSI
+│
+├── scripts/
+│   ├── dispatch.py                          ← Wave-plan + prerequisite + gate checker (run first)
+│   └── openmed_ner.py                       ← OpenMed NER grounding CLI (--team)
+│
+└── CLAUDE.md                                ← Session operating guide for Claude Code
+│
+│  ── TIER 4: Machine / tooling (dot-prefixed; configs, caches, hidden from casual browse) ──
+│
+├── .claude/                                 ← Claude Code agents + skills
+├── .prompts/                                ← Run-sim prompt templates
+├── .venv/                                   ← Python virtual environment (gitignored)
+└── .gitignore
 ```
 
-Files 01–04 are background knowledge. Files 05 and 06 are operational. File 07 documents the OpenMed NER models each agent should call to ground biomedical entity names before finalising its draft — see `scripts/openmed_ner.py` for the CLI.
+> **Tier convention:** dot-prefixed = Tier 4. `scripts/` is the one un-dotted Tier-4 exception —
+> it's a documented runnable entry point referenced throughout the docs and CLAUDE.md. New artifacts
+> go in the tier that matches their audience (rule in `CLAUDE.md §9`).
 
 ---
 
