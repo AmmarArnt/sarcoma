@@ -953,11 +953,29 @@ Run `python scripts/dispatch.py` first — it validates the venv, the output tre
 
 ### Recommended Models
 
-- **Orchestrator**: highest-tier model available (synthesis, conflict resolution, citation discipline). Opus or equivalent recommended.
-- **Vector Leads**: Sonnet-tier acceptable; they are coordinators not deep researchers.
-- **mRNA Vaccine Research Team Lead**: Sonnet-tier acceptable; the prompts are self-contained.
-- **Sub-agents**: Sonnet-tier acceptable; prompts in this file are designed for that.
-- **Metastatic Disease Specialist**: Sonnet-tier acceptable; runs within the orchestrator session.
+The model tiers below match the committed agent frontmatter in `.claude/agents/`. The guiding principle:
+the deeper the synthesis and the higher the blast radius of an error, the higher the tier — and the more
+an agent fans out in parallel, the more cost discipline matters. See ADR-0010 for the rationale.
+
+- **Orchestrator**: highest-tier model available — **Fable** (frontmatter `model: fable`). This is the
+  capstone synthesis role: it dedupes and ranks across all four vectors plus the mRNA team, resolves
+  cross-team conflicts, ranks by evidence tier *and* biological plausibility, surfaces synergies, flags
+  chemo contraindications, and double-checks every citation in the headline deliverable
+  (`protocol-v1.md`). It runs **once per cycle** with no fan-out, so the higher per-token cost of Fable
+  is bounded — and this is exactly the "correctness matters more than cost" case. Opus is an acceptable
+  fallback if Fable is unavailable.
+- **Vector Leads**: Sonnet-tier (frontmatter `model: sonnet`); they are coordinators not deep
+  researchers, and up to three run **in parallel** per wave. Reconciliation (merge duplicates, preserve
+  the strongest evidence tier) is well within Sonnet 4.6's range; the orchestrator above is the
+  correctness backstop.
+- **mRNA Vaccine Research Team Lead**: Sonnet-tier; the prompts are self-contained.
+- **Sub-agents**: Sonnet-tier; prompts in this file are designed for that, and 3–4 run in parallel under
+  each lead — fan-out makes a lighter tier the cost-sensible default.
+- **Metastatic Disease Specialist**: Sonnet-tier; runs within the orchestrator session.
+
+Do **not** promote the Vector Leads or sub-agents to Fable as a blanket "more is better" move — they run
+in parallel fan-out where Sonnet is the right speed/intelligence/cost balance, and the orchestrator
+already re-checks their output. Reserve Fable for the single, serial, highest-stakes synthesis pass.
 
 If running on Sonnet across the board, the most important guardrails are: (a) the "no fabricated citations" rule, (b) the "say what you could not establish" requirement, (c) the per-entry evidence tier, and (d) the V3 / V4 clinical-track separation. The orchestrator must double-check citations.
 

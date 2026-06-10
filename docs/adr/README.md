@@ -41,6 +41,7 @@ or amending an artifact. Those are just commits.
 | [0007](0007-tumorigenesis-reverse-engineering-team.md) | Tumorigenesis / Cell-of-Origin reverse-engineering team + transformation-trajectory sim type | 2026-06-07 | Accepted | Maintainer request |
 | [0008](0008-driver-uncertainty-decision-model.md) | Driver-uncertainty (latent-variable) decision-model sim type for fusion-unconfirmed cases | 2026-06-07 | Accepted | Maintainer request |
 | [0009](0009-findings-ranking-register.md) | Findings-ranking master register (standing deliverable + maintenance rule) | 2026-06-07 | Accepted | Maintainer request |
+| [0010](0010-agent-model-tier-assignments.md) | Agent model-tier assignments (Orchestrator → Fable) | 2026-06-10 | Accepted | Maintainer request |
 
 ## Template
 

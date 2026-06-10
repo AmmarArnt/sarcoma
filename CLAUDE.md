@@ -163,6 +163,12 @@ specialists catch what one pass misses. Always try an **existing team** first.
 | `mrna-vaccine-lead` | Supplementary: BNT162b2 immune/inflammatory/genomic relevance | mrna-immune-effects, mrna-oncogenic-risk (optional) |
 | `orchestrator` | Synthesis: dedupe, rank, resolve conflicts, write final catalog | Metastatic-Disease Specialist |
 
+**Model tiers (ADR-0010):** the `orchestrator` runs on **Fable** (highest-tier — single serial
+capstone synthesis pass, correctness-critical, cost bounded); the four vector leads and `mrna-vaccine-lead`
+run on **Sonnet** (parallel coordinators), and sub-agents inherit Sonnet-tier. Don't blanket-promote
+leads/sub-agents to Fable — reserve it for the one serial synthesis pass. Rationale + full table:
+`docs/06-agent-architecture.md` § *Recommended Models* and ADR-0010.
+
 **Supplementary teams (ad-hoc, no committed `.claude/agents/` file — reuse the written artifacts first):**
 | Team | Role | Spawned specialists (parallel) | Output |
 |---|---|---|---|
