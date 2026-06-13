@@ -329,9 +329,11 @@ oldest open issue labeled neither `running`, `responded`, nor `needs attention`.
 maintainer, posts a findings comment, then relabels the issue `responded`. Run it again for the next
 issue (sequential, user-paced). Labels are lowercase (`running` / `responded` / `needs attention`).
 
-A nightly GitHub Action (`.github/workflows/issue-needs-attention.yml`, ADR-0010) is the **one**
-sanctioned piece of scheduled automation: it scans issues labeled `responded` for a newer non-bot
-comment (typically the original author replying) and swaps `responded` -> `needs attention` so the
+A nightly GitHub Action (`.github/workflows/issue-needs-attention.yml`, ADR-0010, heuristic refined in
+ADR-0012) is the **one** sanctioned piece of scheduled automation: it scans issues labeled `responded`
+for a newer comment **from someone other than the responder** — i.e. excluding both `github-actions[bot]`
+**and** the maintainer/repo-owner account (the skill and manual follow-ups post as that account, so
+counting them caused a false-positive requeue on #11) — and swaps `responded` -> `needs attention` so the
 skill re-queues it. It does **not** do any analysis, commenting, or PR work itself. Don't improvise
 issue handling in general sessions or build other scheduled automation — defer to the skill and this
 one Action. Use `gh` for GitHub operations.

@@ -43,6 +43,7 @@ or amending an artifact. Those are just commits.
 | [0009](0009-findings-ranking-register.md) | Findings-ranking master register (standing deliverable + maintenance rule) | 2026-06-07 | Accepted | Maintainer request |
 | [0010](0010-nightly-needs-attention-requeue.md) | Nightly `needs attention` requeue Action + skill follow-up handling | 2026-06-13 | Accepted | Maintainer request |
 | [0011](0011-voi-provenance-temporal-axis.md) | VoI acquisition-provenance & temporal-state axes (Tier-B refinement) | 2026-06-13 | Accepted | Issue #7 follow-up / PR |
+| [0012](0012-requeue-exclude-maintainer-comments.md) | Requeue heuristic excludes the maintainer/responder's own comments (refines ADR-0010) | 2026-06-13 | Accepted | Maintainer report (issue #11 false positive) / PR |
 
 ## Template
 
