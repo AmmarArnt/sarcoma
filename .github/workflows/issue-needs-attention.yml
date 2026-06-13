@@ -1,11 +1,18 @@
 name: Issue needs-attention requeue
 
-# Nightly housekeeping for the github-issue-runner skill (see ADR-0010).
+# Nightly housekeeping for the github-issue-runner skill (see ADR-0010; heuristic refined in ADR-0012).
 #
-# Finds issues labeled `responded` (Claude Code already answered) where someone — most likely the
-# original author — has posted a NEW comment since the `responded` label was applied. Those issues
-# get re-queued by swapping `responded` -> `needs attention`, so the next manual run of the
+# Finds issues labeled `responded` (Claude Code already answered) where SOMEONE OTHER THAN THE RESPONDER
+# — most likely the original author — has posted a NEW comment since the `responded` label was applied.
+# Those issues get re-queued by swapping `responded` -> `needs attention`, so the next manual run of the
 # github-issue-runner skill picks them up ahead of brand-new issues.
+#
+# IMPORTANT (ADR-0012): the "newer comment" test must exclude BOTH github-actions[bot] AND the maintainer/
+# responder's own account. The skill posts its findings reply — and any maintainer follow-up — as the
+# authenticated maintainer account (the repo owner), NOT as the bot. Counting those as "the author
+# replied" caused a false-positive requeue (issue #11). The intended trigger is a reply from a third
+# party (the author), so we exclude the repo owner ($OWNER). Assumes the responder is the repo owner; if
+# responses are ever posted by a different maintainer account, add it to the exclusion below.
 #
 # This workflow ONLY relabels. It never comments, opens PRs, or does any research/response work —
 # that remains the manually-invoked skill's job.
@@ -24,6 +31,7 @@ jobs:
     env:
       GH_TOKEN: ${{ github.token }}
       REPO: ${{ github.repository }}
+      OWNER: ${{ github.repository_owner }} # the maintainer/responder account, excluded from the reply test (ADR-0012)
     steps:
       - name: Ensure "needs attention" label exists
         run: |
@@ -31,7 +39,7 @@ jobs:
             --description "Author replied after Claude responded - re-process this issue" \
             --repo "$REPO" 2>/dev/null || true
 
-      - name: Re-queue responded issues with newer non-bot comments
+      - name: Re-queue responded issues with a newer comment from someone other than the responder
         run: |
           set -euo pipefail
 
@@ -56,13 +64,16 @@ jobs:
               continue
             fi
 
-            # Most recent comment from a non-bot user.
-            last_comment_at=$(gh api "repos/$REPO/issues/$n/comments" --paginate | jq -s -r '
-              [.[][] | select(.user.login != "github-actions[bot]") | .created_at]
+            # Most recent comment from someone OTHER than the bot and OTHER than the maintainer/responder
+            # (the repo owner). This is the key ADR-0012 fix: the skill's own findings reply and any
+            # maintainer follow-up are posted as $OWNER, not as the bot, so they must NOT count as "the
+            # author replied" — otherwise a maintainer comment after `responded` triggers a false requeue.
+            last_comment_at=$(gh api "repos/$REPO/issues/$n/comments" --paginate | jq -s -r --arg owner "$OWNER" '
+              [.[][] | select(.user.login != "github-actions[bot]" and .user.login != $owner) | .created_at]
               | sort | last // empty')
 
             if [ -z "$last_comment_at" ]; then
-              echo "Issue #$n: no non-bot comments, skipping."
+              echo "Issue #$n: no comments from anyone other than the bot/maintainer, skipping."
               continue
             fi
 
