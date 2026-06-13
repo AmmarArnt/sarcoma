@@ -150,6 +150,14 @@ it can be a strong **Forward Hypothesis**. This is the same principle ADR-0001 a
 uncertainty in an input attenuates how strongly the downstream recommendation is propagated, it does not
 delete the idea.
 
+> **Follow-up refinement (issue #10 follow-up / ADR-0014):** the "transfer distance" invoked above is now
+> scored on an explicit graded **biological-proximity ladder** — P0 CIC-DUX4 → P1 fusion round-cell family
+> → P2 sarcoma → P3 solid-tumour-with-named-mechanism → P4 pathway-only — see
+> `docs/10-evidence-transferability-hierarchy.md`. It confirms the commenter's point directly: broader
+> host-biology evidence (most of this layer is P2/P3) is **admitted at downgraded confidence, never
+> excluded on CIC-DUX4-rarity grounds** — only a missing mechanistic bridge excludes. §5's worked
+> examples (sarcopenia P2, microbiome→CPI P3) are scored against the ladder in that doc.
+
 **Three guardrails specific to host factors (where they most often go wrong):**
 - **Directionality is not assumed beneficial.** Systemic butyrate → Treg can be *pro*-tolerogenic;
   broad probiotics *reduced* anti-PD-1 response in a melanoma cohort. "Gut health = good" is not safe to

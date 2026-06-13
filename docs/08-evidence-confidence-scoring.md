@@ -112,6 +112,15 @@ the framework already tracks — so scoring is auditing existing fields, not new
 | **R — Reproducibility** | Do independent sources agree? | ≥2 independent concordant sources | Single source | Sources conflict |
 | **X — Conflict overhang** | Any unresolved SOC interaction or harm signal? | Clean | Manageable / monitorable | Unresolved SOC conflict or documented harm signal |
 
+> **D-axis refinement (ADR-0014, issue #10 follow-up):** the three-level Directness above is coarse — it
+> lumps "another fusion-driven round-cell sarcoma (Ewing)" with "a generic carcinoma." Use the graded
+> **biological-proximity ladder** in **`docs/10-evidence-transferability-hierarchy.md`** when scoring D:
+> **P0** index disease (CIC-DUX4) → **P1** same molecular family (Ewing/BCOR/DSRCT/EWSR1-non-ETS) →
+> **P2** sarcoma broadly → **P3** solid tumour *with a named conserved mechanism* → **P4** pathway-only
+> → **floor** (no mechanistic bridge → not admitted; route to §5 register). The operating rule: *rarity
+> moves a candidate down the ladder (lower confidence), it never excludes it* — only the absence of a
+> mechanistic bridge excludes. Proximity sets **D only**; A/R/X are unchanged.
+
 **Confidence label** (deterministic rubric — *bands, not false-precision numbers*):
 
 - **High** — tier is `Established`/`Clinical-Trial`, **and** ≥3 axes `+`, **and** no hard-minus.
