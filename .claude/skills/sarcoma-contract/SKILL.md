@@ -30,7 +30,7 @@ duplicated here):
 | Axis | Question it answers | Method doc |
 |---|---|---|
 | **1. Evidence tier** (above) | What *kind* of evidence is this? | this skill |
-| **2. Confidence** (Directness / Achievability-in-vivo / Reproducibility / conflict) | How much should I believe this *transfers to CIC-DUX4 in a living patient*? | `docs/08-evidence-confidence-scoring.md` |
+| **2. Confidence** (Directness / Achievability-in-vivo / Reproducibility / conflict) | How much should I believe this *transfers to CIC-DUX4 in a living patient*? | `docs/08-evidence-confidence-scoring.md`; score **Directness** on the graded proximity ladder (P0 CIC-DUX4 → P1 fusion round-cell family → P2 sarcoma → P3 solid-tumour-with-named-mechanism → P4 pathway-only) in `docs/10-evidence-transferability-hierarchy.md` (ADR-0014) — rarity lowers the rung, never excludes; only a missing mechanistic bridge excludes |
 | **3. Translational feasibility** (F1 Accessible-now … F5 Concept-only) | Could a patient actually *access* it, and how soon (approved / in a recruiting trial / discontinued / on hold)? | `simulation-output/translational-feasibility-layer.md` |
 
 Keep them **distinct** — never average them into one score. Note the easy collision: axis-2

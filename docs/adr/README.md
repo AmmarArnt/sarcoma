@@ -45,6 +45,7 @@ or amending an artifact. Those are just commits.
 | [0011](0011-voi-provenance-temporal-axis.md) | VoI acquisition-provenance & temporal-state axes (Tier-B refinement) | 2026-06-13 | Accepted | Issue #7 follow-up / PR |
 | [0012](0012-requeue-exclude-maintainer-comments.md) | Requeue heuristic excludes the maintainer/responder's own comments (refines ADR-0010) | 2026-06-13 | Accepted | Maintainer report (issue #11 false positive) / PR |
 | [0013](0013-feasibility-attrition-reason-annotation.md) | Feasibility-layer attrition-reason annotation (R0–R5: why a program closed) — refines ADR-0003 | 2026-06-13 | Accepted | Issue #9 follow-up / PR |
+| [0014](0014-evidence-transferability-hierarchy.md) | Evidence-transferability hierarchy (biological-proximity ladder P0–P4) — refines the confidence axis (ADR-0004) | 2026-06-13 | Accepted | Issue #10 follow-up / PR |
 
 ## Template
 
