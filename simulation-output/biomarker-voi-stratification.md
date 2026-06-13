@@ -3,6 +3,11 @@
 **In response to GitHub issue #7** — *"High-impact missing biomarkers and future stratification
 opportunities"* (@Cerimagic).
 
+> **See also:** [`biomarker-voi-provenance-extension.md`](biomarker-voi-provenance-extension.md)
+> ([ADR-0011](../docs/adr/0011-voi-provenance-temporal-axis.md)) extends Tier B below with two further
+> axes from the issue #7 follow-up — **acquisition provenance** (archived FFPE / fresh biopsy / liquid)
+> and **temporal state** (baseline / current / change-under-treatment).
+
 **Status:** framework-enhancement proposal + applied result for the current fusion-unconfirmed case.
 Research-simulation output, **not medical advice**, **not a recommendation to obtain any specific
 test**. The goal, exactly as the issue framed it, is to *make uncertainty explicit* — to document
