@@ -33,6 +33,11 @@ Already on disk:
 - `simulation-output/biomarker-voi-stratification.md` — three-tier missing-data taxonomy
   (Known / Missing-decision-relevant / Missing-low-impact) + value-of-information ranking of unknown
   biomarkers (from Sim 6). Reuse this for "what's unknown / what would change the recommendation" questions.
+  Extended by `simulation-output/biomarker-voi-provenance-extension.md` (issue #7 follow-up / ADR-0011),
+  which adds two axes inside Tier B — **acquisition provenance** (P1 archived FFPE / P2 fresh biopsy /
+  P3 liquid) and **temporal state** (T0 baseline / T1 current / TΔ change-under-treatment). Reuse it for
+  "where does the answer come from / archived vs fresh tissue / clonal evolution / did the marker change
+  under treatment / what's the cheapest source" questions.
 - `simulation-output/translational-feasibility-layer.md` — five-band feasibility scheme (F1 Accessible-now
   … F5 Concept-only) applied to every Clinical/Experimental entry in `protocol-v1.md`, with live-verified,
   date-stamped regulatory/trial status (from issue #9 / ADR-0003). Reuse for "is it approved / in a trial /
@@ -135,6 +140,7 @@ From `docs/00-README.md`, `docs/06-agent-architecture.md`, and the `sarcoma-cont
 | A research question with no fitting existing team | **Propose a new team** (lead + specialist sub-agents, same structure) and spawn **only after the user agrees.** |
 | A coding/repo task (run a sim, fix a script, write a doc) | Do it directly; spawn only if it genuinely needs parallel research. |
 | A question about which unknown/unmeasured biomarkers matter, "what should we measure," or stratifying a new case | **Reuse the VoI layer** (`simulation-output/biomarker-voi-stratification.md` / Sim 6); extend it rather than re-deriving. |
+| A question about **where** a missing biomarker's answer comes from / archived FFPE vs fresh biopsy vs liquid biopsy / clonal evolution / whether a marker **changed under treatment** / the cheapest source for a measurement | **Reuse the VoI provenance extension** (`simulation-output/biomarker-voi-provenance-extension.md` / ADR-0011): classify on **provenance** (P1 archived / P2 fresh / P3 liquid) and **temporal state** (T0 baseline / T1 current / TΔ change). Realizable VoI is bounded by recoverability from an accessible source; **not a testing recommendation**. |
 | A question about whether a candidate is approved / in a recruiting trial / discontinued / on hold, its FDA-vs-EMA status, repurposing path, or "how soon could a patient access it" | **Reuse the feasibility layer** (`simulation-output/translational-feasibility-layer.md` / ADR-0003); **re-verify the regulatory/trial facts live** before relying on them — bands are date-stamped and perishable. |
 | A host-level / lifestyle question (microbiome, inflammation, metabolic/sarcopenia, nutrition, exercise, sleep/circadian, autonomic/stress/PNEI, placebo-nocebo, perioperative conditioning) — "does host biology explain variability / tolerance / immune competence," "should it be its own layer" | **Reuse the host-biology modifier layer** (`simulation-output/host-biology-modifier-layer.md` / ADR-0005); extend it rather than re-deriving. It is a cross-cutting modifier (conditions V4 + SOC), **not a fifth vector**, weighted via the existing three axes. |
 | A V4 immune-visibility / danger-signaling / ICD / DAMP / Nectin-TIGIT / NK-surveillance question, or "should the framework distinguish tumor-promoting inflammation vs. anti-tumor activation vs. treatment toxicity" | **Reuse the V4 expansion** (`simulation-output/v4-immune-watchdog/immune-watchdog-expansion.md` / ADR-0006) and the four V4 sub-agent files; extend rather than re-deriving. It is *inside* V4 — **not a fifth vector**; apply the inflammation-state lens (lowering inflammation ≠ improving anti-tumor immunity). |
