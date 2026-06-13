@@ -1,13 +1,19 @@
 ---
 name: github-issue-runner
-description: Manually-invoked workflow that processes exactly ONE GitHub issue end-to-end for the CIC-rearranged sarcoma repo. Picks up the single oldest open issue not already labeled `running` or `responded`, labels it `running`, does the analysis/research/simulation the issue asks for (reusing existing artifacts and the sarcoma-* skills, spawning a team only when warranted), opens a PR with the artifacts assigned to the maintainer, posts the findings as an issue comment, then relabels the issue `responded`. Runs one issue per invocation and stops, so the user can drive the queue in sequence. All file work happens in an isolated git worktree off the latest `main`. Invoke when the user asks to "process / pick up / work the next GitHub issue."
+description: Manually-invoked workflow that processes exactly ONE GitHub issue end-to-end for the CIC-rearranged sarcoma repo. Picks up the oldest issue labeled `needs attention` (an author follow-up on something Claude already answered), or — if none — the oldest open issue not labeled `running`, `responded`, or `needs attention`. Labels it `running`, does the analysis/research/simulation the issue (and its full thread) asks for (reusing existing artifacts and the sarcoma-* skills, spawning a team only when warranted), opens a PR with the artifacts assigned to the maintainer, posts the findings as an issue comment, then relabels the issue `responded`. Runs one issue per invocation and stops, so the user can drive the queue in sequence. All file work happens in an isolated git worktree off the latest `main`. Invoke when the user asks to "process / pick up / work the next GitHub issue."
 ---
 
 # GitHub Issue Runner
 
 Process **one** issue, top to bottom, then **stop**. The user re-invokes this skill for the next issue,
 so the queue is drained in sequence under their control. This is the dedicated GitHub-issues workflow
-referenced in `CLAUDE.md §8`; see `docs/adr/0002-github-issue-runner-skill.md` for the rationale.
+referenced in `CLAUDE.md §8`; see `docs/adr/0002-github-issue-runner-skill.md` for the rationale and
+`docs/adr/0010-nightly-needs-attention-requeue.md` for the `needs attention` follow-up state.
+
+> A nightly GitHub Action (`.github/workflows/issue-needs-attention.yml`) scans `responded` issues for
+> new non-bot comments (typically the original author replying) and swaps `responded` ->
+> `needs attention`. This skill's Phase 1 treats `needs attention` issues as the **highest-priority**
+> pool — someone is waiting on a reply to something already answered.
 
 > **Non-negotiable:** every artifact you produce obeys the golden rules in `CLAUDE.md §1` and the
 > `sarcoma-contract` skill — no fabricated citations, evidence tier on every claim, mechanism before
@@ -27,45 +33,68 @@ referenced in `CLAUDE.md §8`; see `docs/adr/0002-github-issue-runner-skill.md` 
    ```bash
    gh api user --jq .login
    ```
-3. Ensure the two **lowercase** workflow labels exist (idempotent — ignore "already exists"):
+3. Ensure the three **lowercase** workflow labels exist (idempotent — ignore "already exists"):
    ```bash
-   gh label create running   --color fbca04 --description "Claude Code is actively working this issue" 2>/dev/null || true
-   gh label create responded --color 0e8a16 --description "Claude Code has acted and responded"        2>/dev/null || true
+   gh label create running         --color fbca04 --description "Claude Code is actively working this issue" 2>/dev/null || true
+   gh label create responded       --color 0e8a16 --description "Claude Code has acted and responded"        2>/dev/null || true
+   gh label create "needs attention" --color d93f0b --description "Author replied after Claude responded - re-process this issue" 2>/dev/null || true
    ```
-   The canonical labels are lowercase `running` / `responded`. If legacy capitalized variants
-   (`Running` / `Responded`) exist from earlier runs, treat them as equivalent for *selection* (Phase 1
-   excludes both cases) but only ever *apply* the lowercase ones.
+   The canonical labels are lowercase `running` / `responded` / `needs attention`. If legacy
+   capitalized variants (`Running` / `Responded`) exist from earlier runs, treat them as equivalent for
+   *selection* (Phase 1 excludes both cases) but only ever *apply* the lowercase ones.
 
 ---
 
-## Phase 1 — Select exactly one issue (oldest unclaimed)
+## Phase 1 — Select exactly one issue (needs-attention first, then oldest unclaimed)
 
-Pick the single **oldest open** issue whose labels include **neither** `running` nor `responded`
-(case-insensitive, so legacy capitalized labels and the already-done issue #8 are excluded):
+Two pools, checked **in order**. Stop at the first non-empty pool.
+
+**Pool A — follow-ups (`needs attention`), oldest first.** These are issues Claude already
+`responded` to, where the nightly requeue action (`docs/adr/0010`) detected a newer non-bot comment —
+most likely the original author replying to the answer:
+
+```bash
+gh issue list --state open --label "needs attention" --limit 200 --json number,title,createdAt --jq '
+  sort_by(.createdAt) | .[0] // empty'
+```
+
+**Pool B — brand-new, oldest first.** Only if Pool A is empty. The single **oldest open** issue whose
+labels include **none** of `running`, `responded`, `needs attention` (case-insensitive, so legacy
+capitalized labels and the already-done issue #8 are excluded):
 
 ```bash
 gh issue list --state open --limit 200 --json number,title,createdAt,labels --jq '
   map(select(
-    ([.labels[].name | ascii_downcase] | any(. == "running" or . == "responded")) | not
+    ([.labels[].name | ascii_downcase]
+      | any(. == "running" or . == "responded" or . == "needs attention")) | not
   )) | sort_by(.createdAt) | .[0] // empty'
 ```
 
-- **If the result is empty:** report "No unclaimed open issues — queue is clear." and **stop**. Do not
+- **If both pools are empty:** report "No unclaimed open issues — queue is clear." and **stop**. Do not
   create labels-only churn, branches, or PRs.
-- **Otherwise:** note the issue number `N`. Read it **completely**, including every comment — issue #8
-  carried its most important requirement in a follow-up comment, so never skip the thread:
+- **Otherwise:** note the issue number `N` and which pool it came from. Read it **completely**,
+  including every comment — issue #8 carried its most important requirement in a follow-up comment, so
+  never skip the thread:
   ```bash
   gh issue view N --json number,title,body,author,createdAt,labels,comments
   ```
+  For a **Pool A** issue, the newest comment(s) — typically from the original author — are the new
+  requirement to address; treat the original body + earlier responses as context, and the follow-up
+  comment as the actual ask for this run.
 
 ---
 
 ## Phase 2 — Claim it
 
-Apply the lock label immediately, so a second run (or a human) sees it is taken:
+Apply the lock label immediately, so a second run (or a human) sees it is taken. If the issue came from
+**Pool A**, also remove `needs attention` in the same edit (it's been picked up):
 
 ```bash
+# Pool B (brand-new):
 gh issue edit N --add-label running
+
+# Pool A (needs attention):
+gh issue edit N --remove-label "needs attention" --add-label running
 ```
 
 If anything later fails before you reach Phase 7, you must **release** the lock (see "Failure handling"
@@ -163,9 +192,12 @@ gh pr create --base main --head issue-N-$SLUG \
    ```bash
    gh issue comment N --body "<findings + PR link + honest limits>"
    ```
-2. Flip the labels (remove the lock, mark done):
+2. Flip the labels (remove the lock, mark done). Also strip `needs attention` if present (defensive —
+   it should already be gone from Phase 2, but `gh issue edit --remove-label` is a no-op if the label
+   isn't there, so this is safe either way) — this returns the issue to plain `responded`, which the
+   nightly requeue action (`docs/adr/0010`) can flag again the next time someone replies:
    ```bash
-   gh issue edit N --remove-label running --add-label responded
+   gh issue edit N --remove-label running --remove-label "needs attention" --add-label responded
    ```
 3. Report back to the user: issue number + title, the PR URL, the artifacts created, and the worktree
    path (`../sarcoma-issue-N`). Note the worktree/branch is preserved for any PR revisions and can be
@@ -180,13 +212,22 @@ Then **stop.** One issue per invocation. The user re-runs the skill for the next
 If you cannot complete the work after claiming it in Phase 2:
 
 - Post a comment on the issue explaining the blocker honestly (what you tried, what is missing).
-- **Remove the `running` label** so the issue returns to the queue (`gh issue edit N --remove-label running`).
+- **Remove the `running` label** so the issue returns to the queue
+  (`gh issue edit N --remove-label running`).
+- **If this issue came from Pool A** (`needs attention`), restore that label so it goes back to the
+  follow-up queue rather than becoming indistinguishable from a brand-new unlabeled issue:
+  `gh issue edit N --add-label "needs attention"`.
 - Do not apply `responded`. Do not open a half-baked PR.
 - Tell the user what blocked you. If a worktree was created, leave it and report its path so work can resume.
 
 ## Guardrails recap
 
-- One issue per run; oldest-first; `running`/`responded` are the queue state (lowercase canonical).
+- One issue per run. Queue state is four lowercase labels: unlabeled (new) / `needs attention`
+  (follow-up) / `running` (locked) / `responded` (done). Selection order: `needs attention`
+  (oldest first), then unlabeled (oldest first) — see Phase 1.
+- A nightly Action (`docs/adr/0010`, `.github/workflows/issue-needs-attention.yml`) is the only
+  sanctioned scheduled automation; it only swaps `responded` -> `needs attention` on issues with a
+  newer non-bot comment. It never does research, comments findings, or opens PRs.
 - Reuse existing artifacts before spawning anything; new team only with user consent.
 - Isolated worktree off latest `main`; never touch the tree you were invoked from.
 - No fabricated citations; verify accessions; evidence tier + mechanism + "could not establish" on all research.

@@ -1,0 +1,76 @@
+name: Issue needs-attention requeue
+
+# Nightly housekeeping for the github-issue-runner skill (see ADR-0010).
+#
+# Finds issues labeled `responded` (Claude Code already answered) where someone — most likely the
+# original author — has posted a NEW comment since the `responded` label was applied. Those issues
+# get re-queued by swapping `responded` -> `needs attention`, so the next manual run of the
+# github-issue-runner skill picks them up ahead of brand-new issues.
+#
+# This workflow ONLY relabels. It never comments, opens PRs, or does any research/response work —
+# that remains the manually-invoked skill's job.
+
+on:
+  schedule:
+    - cron: "0 6 * * *" # nightly, 06:00 UTC
+  workflow_dispatch: {} # allow manual runs for testing
+
+permissions:
+  issues: write
+
+jobs:
+  requeue:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      REPO: ${{ github.repository }}
+    steps:
+      - name: Ensure "needs attention" label exists
+        run: |
+          gh label create "needs attention" --color d93f0b \
+            --description "Author replied after Claude responded - re-process this issue" \
+            --repo "$REPO" 2>/dev/null || true
+
+      - name: Re-queue responded issues with newer non-bot comments
+        run: |
+          set -euo pipefail
+
+          issues=$(gh issue list --repo "$REPO" --state open --label responded --limit 200 \
+            --json number --jq '.[].number')
+
+          if [ -z "$issues" ]; then
+            echo "No open issues labeled 'responded'. Nothing to check."
+            exit 0
+          fi
+
+          for n in $issues; do
+            # Most recent time the 'responded' label was applied to this issue. Match
+            # case-insensitively: some issues' label-event history predates a rename from the
+            # legacy capitalized "Responded" to lowercase "responded" (see SKILL.md Phase 0).
+            labeled_at=$(gh api "repos/$REPO/issues/$n/events" --paginate | jq -s -r '
+              [.[][] | select(.event=="labeled" and (.label.name | ascii_downcase)=="responded") | .created_at]
+              | sort | last // empty')
+
+            if [ -z "$labeled_at" ]; then
+              echo "Issue #$n: no 'responded' label event found in history, skipping."
+              continue
+            fi
+
+            # Most recent comment from a non-bot user.
+            last_comment_at=$(gh api "repos/$REPO/issues/$n/comments" --paginate | jq -s -r '
+              [.[][] | select(.user.login != "github-actions[bot]") | .created_at]
+              | sort | last // empty')
+
+            if [ -z "$last_comment_at" ]; then
+              echo "Issue #$n: no non-bot comments, skipping."
+              continue
+            fi
+
+            # ISO-8601 'Z' timestamps sort lexically == chronologically.
+            if [[ "$last_comment_at" > "$labeled_at" ]]; then
+              echo "Issue #$n: comment at $last_comment_at is newer than 'responded' label ($labeled_at) -> needs attention"
+              gh issue edit "$n" --repo "$REPO" --remove-label "responded" --add-label "needs attention"
+            else
+              echo "Issue #$n: no comments newer than 'responded' label ($labeled_at). OK."
+            fi
+          done
