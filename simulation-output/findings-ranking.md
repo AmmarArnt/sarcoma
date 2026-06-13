@@ -7,7 +7,7 @@
 >
 > **Maintenance:** this file is a **standing deliverable** (ADR-0009). When a new sim, team output, or
 > analysis produces a result that deserves to be compared against the others, **add a row here** in the
-> same commit/PR that adds the artifact. See "Maintenance rule" at the bottom. Last updated: **2026-06-07**.
+> same commit/PR that adds the artifact. See "Maintenance rule" at the bottom. Last updated: **2026-06-13**.
 
 ## How to read the three axes
 - **Evidence tier** (what *kind* of evidence): `Established` › `Clinical-Trial` › `Preclinical-Animal` ›
@@ -57,6 +57,8 @@
 | **Throttle/cell-cycle/immune vectors are robust regardless of the unknown driver** (BETi top-robust 96.6% of priors) | Sim 8 | Mechanistic (decision model) | **Medium** | composite F1–F4 | What's safe to pursue before the driver is known. |
 | **Nectin CD155/CD112 is the highest-value *missing* biomarker** (not MHC-I; NK fallback covers antigen loss) | Sim 6; `biomarker-voi-stratification.md` | Mechanistic (decision model) | **Medium** | measurement **F1** (IHC/flow) | Tells you what to *measure*; HLA-E + NK-fitness select the immune route. |
 | **VoI depends on tissue source + timepoint, not just the marker** (archived-FFPE baseline vs fresh-relapse vs the *change*; cheap diagnosis/baseline reads are FFPE-front-loaded, immune markers want the *current* read) | `biomarker-voi-provenance-extension.md` (issue #7 follow-up; ADR-0011) | Theoretical/Mechanistic (methodology refinement) | **Medium** | composite (P1 archived IHC/methylation **F1**; long-read/fresh **F2**; ctDNA monitoring needs resolved junction) | Refines Sim 6: separates information value from acquisition burden; magnitudes illustrative (no new numeric model). |
+| **"Discontinued/withdrawn" ≠ biological invalidation** — attrition-reason annotation (R0 never-built / R1 target-invalidated / R2 trial-fail / R3 subgroup-dilution / R4 regulatory / R5 commercial); **only R1 (+ enriched R2) carries negative biology**. **None** of the catalog's closed-access agents closed for R1 in a CIC context. | `feasibility-attrition-reason-extension.md` (issue #9 follow-up; ADR-0013) | Theoretical/Mechanistic (methodology refinement) | **Medium-High** | annotation on F-axis (no band change) | Refines ADR-0003: separates *why access closed* from *whether mechanism works*; keeps R3/R4-commercial/R5 closures in the forward lane. |
+| **Regorafenib CIC cohort = results-pending, not negative** (REGOBONE Cohort E / NCT02389244 `ACTIVE_NOT_RECRUITING`, primary completion 2024-10-25, no results posted; SARC024/NCT02048371 has an n=1 CIC-DUX4 partial response) | `feasibility-attrition-reason-extension.md` §5 (issue #9 follow-up) | Clinical-Trial (registered; Cohort-E results unpublished) | **Medium** | **F2/F3** (trial closed to enrolment; multikinase anti-angiogenic, off-driver) | Not deprioritized for efficacy — results-pending + mechanism not driver-directed; verified 2026-06-13. |
 | **Build recipe: transformation = AND of 6 steps; MCL1 buffer non-substitutable; order matters** | Sim 7; `tumorigenesis-build-recipe.md` | Theoretical/Mechanistic (logic model) | **Low-Medium** | N/A (conceptual) | Structures forward hypotheses; reverse-engineers the construction; GIGO. |
 
 ### C. Immune-program findings (mechanistic reframes)
