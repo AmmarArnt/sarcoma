@@ -316,12 +316,19 @@ grounded thoughts/questions there. The workflow is **retrieve issue → apply la
 respond**, and some responses require team/sub-agent research using the same structure above.
 
 This is owned by the **`github-issue-runner` skill** (`.claude/skills/github-issue-runner`; see
-ADR-0002). Invoke it **manually** — it processes **one** issue per run (the oldest open issue labeled
-neither `running` nor `responded`), labels it `running`, does the work in an isolated worktree off
-latest `main`, opens a PR assigned to the maintainer, posts a findings comment, then relabels the issue
-`responded`. Run it again for the next issue (sequential, user-paced). Labels are lowercase
-(`running` / `responded`). Don't improvise issue handling in general sessions or build scheduled
-automation — defer to the skill. Use `gh` for GitHub operations.
+ADR-0002). Invoke it **manually** — it processes **one** issue per run, prioritizing the oldest open
+issue labeled `needs attention` (an author follow-up on something already answered) and otherwise the
+oldest open issue labeled neither `running`, `responded`, nor `needs attention`. It labels the issue
+`running`, does the work in an isolated worktree off latest `main`, opens a PR assigned to the
+maintainer, posts a findings comment, then relabels the issue `responded`. Run it again for the next
+issue (sequential, user-paced). Labels are lowercase (`running` / `responded` / `needs attention`).
+
+A nightly GitHub Action (`.github/workflows/issue-needs-attention.yml`, ADR-0010) is the **one**
+sanctioned piece of scheduled automation: it scans issues labeled `responded` for a newer non-bot
+comment (typically the original author replying) and swaps `responded` -> `needs attention` so the
+skill re-queues it. It does **not** do any analysis, commenting, or PR work itself. Don't improvise
+issue handling in general sessions or build other scheduled automation — defer to the skill and this
+one Action. Use `gh` for GitHub operations.
 
 ---
 
