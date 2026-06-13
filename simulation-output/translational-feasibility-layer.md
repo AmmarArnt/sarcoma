@@ -90,6 +90,15 @@ displayed with that label adjacent to its evidence tier, so a reader never mista
 attractive" for "obtainable." Uncertainty/closure on the feasibility axis attenuates *display
 prominence in the confirmatory lane*, not the idea's place in the forward lane.
 
+**Why an F3/F4 closure happened matters as much as the band (issue #9 follow-up).** An F4 band says
+*access is closed* but not *why* — and "discontinued/withdrawn" must never be read as **biological
+invalidation**. The companion [feasibility-attrition-reason extension](feasibility-attrition-reason-extension.md)
+(ADR-0013) adds an **attrition-reason annotation (R0–R5)** — never-developed (R0) / target-invalidated
+(R1) / trial-efficacy-failure (R2) / subgroup-dilution (R3) / regulatory action (R4) / commercial
+deprioritization (R5) — and the decoding rule that **only R1 (and a biomarker-enriched R2) carries
+negative biological information**; R3/R4-commercial/R5 are biology-silent. It is an annotation on this
+axis, **not a new scoring axis**.
+
 ---
 
 ## 4. Applied to `protocol-v1.md` (Clinical / Experimental track) — as of June 2026
@@ -122,9 +131,16 @@ benefit** — the clearest illustration of why feasibility must stay orthogonal 
 collapse into it.
 
 **Disease-specific trial note (rare positive):** a Phase II of **regorafenib** in metastatic bone/soft-tissue
-sarcomas (**NCT02389244**) includes a **CIC-rearranged cohort** — one of the very few registered trials
-to name this entity rather than fold it into an undifferentiated basket. Tier for regorafenib in
-CIC-rearranged: `Clinical-Trial`; status/recruitment **`[VERIFY current status]`**.
+sarcomas (**NCT02389244**, REGOBONE Cohort E) includes a **CIC-rearranged cohort** — one of the very few
+registered trials to name this entity rather than fold it into an undifferentiated basket. Tier for
+regorafenib in CIC-rearranged: `Clinical-Trial`. **Status updated 2026-06-13:** the trial is
+**`ACTIVE_NOT_RECRUITING`** (primary completion 2024-10-25; completion 2026-03-11; last update
+2025-09-16) and the **CIC Cohort-E efficacy results are not yet published / not posted** — so this entry
+is **results-pending**, *not* a negative result (ClinicalTrials.gov API, accessed 2026-06-13). For the
+full answer to "was it deprioritized?" — and the **attrition-reason taxonomy (R0–R5)** that distinguishes
+a commercial/safety/diluted closure from genuine biological invalidation — see the
+[feasibility-attrition-reason extension](feasibility-attrition-reason-extension.md) (issue #9 follow-up /
+ADR-0013). Short version: results-pending + mechanism not driver-directed, **not** negative efficacy.
 
 ---
 
