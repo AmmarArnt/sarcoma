@@ -87,6 +87,17 @@ Already on disk:
   fusion-unconfirmed / atypical-case / "unknown driver" / "what should we test first / value of resolving
   the diagnosis" questions. Key result: throttle/cell-cycle/immune vectors are driver-robust; the
   **DUX4/MCL1 "re-arm" hypothesis is driver-contingent** (hold until resolved).
+- `simulation-output/therapeutic-modality-layer.md` — cross-cutting **therapeutic-modality layer** (the
+  delivery-*format* axis M1–M8: systemic small-molecule / biologics / cellular (TIL·CAR-T·CAR-NK·TCR) /
+  gene-viral-oncolytic / vaccines / local-regional / physical-energy (hyperthermia·HIFU·radiation-immune
+  priming) / dietary-host-directed), orthogonal to the four vectors — **not a fifth vector** (issue #33 /
+  ADR-0018). Modality changes the **feasibility** axis, never the evidence tier. Maps catalog coverage
+  (headline gap: **M7 regional hyperthermia**, which has a positive phase-3 STS RCT) and carries two
+  hypothesis-sourcing sub-scans — **drug-repurposing** (reuses ADR-0003/0013; arsenic/thalidomide/colchicine/
+  ivermectin scored honestly) and **ethnopharmacology/phytotherapy** (admitted as a mechanism source, filtered
+  by concentration-mismatch + chemo-interaction). Reuse for "beyond systemic drugs / cellular / CAR / viral /
+  oncolytic / vaccine / local-regional / hyperthermia / repurposing / traditional-medicine / phytotherapy"
+  questions; **re-verify perishable feasibility bands live**.
 - `sims/01–08/` — executed in-silico experiments with `RESULTS.md` + data `MANIFEST.md` + grounding.
   (Sim 7 = Boolean **transformation-trajectory** behind the build recipe; Sim 8 = the **driver-uncertainty**
   decision model above.)
@@ -169,6 +180,7 @@ From `docs/00-README.md`, `docs/06-agent-architecture.md`, and the `sarcoma-cont
 | A cell-of-origin / pathogenesis / tumorigenesis question — "how/why does the cell get *into* this state," "what would you do to a stem cell to make this tumor," "reverse-engineer the construction," minimal-transformation-set / which build steps are necessary | **Reuse the tumorigenesis reverse-engineering layer** (`simulation-output/tumorigenesis-reverse-engineering/` + `sims/07-tumorigenesis-trajectory/` / ADR-0007); extend rather than re-deriving. It is the **forward/inverse** of V1–V4 (a build recipe mapped back onto the vectors), a supplementary team, **not a fifth vector**. |
 | A fusion-unconfirmed / atypical-case / "unknown driver" question — "the patient has no confirmed fusion," "which options are safe given we don't know the driver," "what should we test first / is it worth resolving the diagnosis" | **Reuse the driver-uncertainty decision model** (`simulation-output/tumorigenesis-reverse-engineering/driver-uncertainty-specialist.md` + `sims/08-driver-uncertainty/` / ADR-0008). Treats the driver as a latent variable, marginalizes for robustness, and computes EVSI of resolving it; re-condition the prior on any real testing the patient already had. **Not a diagnosis.** |
 | A **reasoning-process** question — human/clinician-in-the-loop steering, adversarial / red-team hypothesis testing, "actively try to disprove X," debiasing, premature-convergence, counterfactuals, or dynamic expansion/contraction of the search space | **Reuse the hypothesis-steering & adversarial-reasoning doc** (`docs/11-hypothesis-steering-and-adversarial-reasoning.md` / ADR-0017): map the ask onto the framework's existing debiasing surfaces, apply the **red-team self-challenge** (disconfirm / alternative / flip-test / steer-audit — also in `sarcoma-pre-output-check`), and use the expansion/contraction triggers. A **process** layer — **not a fifth vector**, not a biological layer; steering reframes the search but never supplies an evidence tier, and contraction never prunes the forward lane (golden rule #5). |
+| A **modality / delivery-format** question — "beyond systemic drugs," cellular therapy (TIL/CAR-T/CAR-NK/TCR), gene/viral/oncolytic-virus therapy, vaccines, local/regional delivery (intratumoral, regional perfusion), physical/energy-based (hyperthermia, focused ultrasound, radiation-immune priming), combination-modality; or a **drug-repurposing** ("approved drug in a new context") / **ethnopharmacology / phytotherapy / traditional-medicine / medicinal-mushroom** sourcing question | **Reuse the therapeutic-modality layer** (`simulation-output/therapeutic-modality-layer.md` / ADR-0018): place the candidate on the **modality axis (M1–M8)**, orthogonal to the four vectors — modality moves the **feasibility** axis, never the evidence tier or mechanism. Check the coverage map (M3/M4/M6/M7 are the catalog's thin spots; **M7 regional hyperthermia** has a positive phase-3 STS RCT). Run repurposing/phytotherapy candidates through the standard gauntlet (tier + Directness ADR-0014 + concentration-mismatch + `sarcoma-chemo-interactions`); junction-specific cellular/vaccine modalities are **fusion-contingent**. A cross-cutting axis — **not a fifth vector**; **re-verify perishable feasibility/regulatory facts live**. |
 
 Default to teams for analysis/research/simulation; default to a direct answer for everything else.
 A "thorough"-sounding multi-part question is not automatically a spawn — judge whether real
@@ -206,8 +218,11 @@ specialists catch what one pass misses. Always try an **existing team** first.
    host-biology (ADR-0005) + V4 immune-watchdog expansion (ADR-0006) + VoI immune ranking (Sim 6) +
    diagnostic-IG immune markers (ADR-0015); V3 ← driver-uncertainty contingency (ADR-0008) + tumorigenesis
    build-recipe (ADR-0007); V1/V2 ← feasibility/attrition (ADR-0003/0013) + transferability (ADR-0014, via
-   `sarcoma-contract`) + host-biology for tolerability. The **orchestrator** reconciles the catalog against
-   **all** layers + `findings-ranking.md`. **Layers condition/annotate — they never override real-data
+   `sarcoma-contract`) + host-biology for tolerability. **All vector leads ← the therapeutic-modality layer
+   (ADR-0018)** so each checks its hypotheses against the modality axis (V3/V4 esp. for cellular/viral/vaccine
+   M3–M5; V4/V2 for physical/energy M7; all for the repurposing & ethnopharmacology sub-scans). The
+   **orchestrator** reconciles the catalog against **all** layers + `findings-ranking.md` and runs the
+   ADR-0018 **modality-coverage audit**. **Layers condition/annotate — they never override real-data
    vector evidence (ADR-0009 bias note) and never prune the forward lane (golden rule #5); not a fifth
    vector (golden rule #8).** A fresh re-run writes the **next** protocol version, not over the baseline (§0).
 3. **Wave 1 (parallel):** `mrna-vaccine-lead`, `v1-lead`, `v3-lead`.
@@ -344,6 +359,7 @@ sims/01–08/              reproducible simulations (script + RESULTS.md + MANIF
 simulation-output/       protocol-v2.md (main catalog), findings-ranking.md (master register),
                          forward-simulation/ (oncologist briefs), biomarker-voi-stratification.md,
                          translational-feasibility-layer.md, host-biology-modifier-layer.md,
+                         therapeutic-modality-layer.md,
                          tumorigenesis-reverse-engineering/, per-vector outputs
 ```
 
