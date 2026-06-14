@@ -98,6 +98,16 @@ Already on disk:
   by concentration-mismatch + chemo-interaction). Reuse for "beyond systemic drugs / cellular / CAR / viral /
   oncolytic / vaccine / local-regional / hyperthermia / repurposing / traditional-medicine / phytotherapy"
   questions; **re-verify perishable feasibility bands live**.
+- `simulation-output/oncolytic-virotherapy-danger-signal-layer.md` — **M4 (gene/viral) deep-dive**: oncolytic
+  viruses as in-situ **"artificial danger-signal generators"** (PAMPs + DAMPs → convert a cold, MHC-I-low
+  CIC-DUX4 lesion to a visible one), deepening the modality layer's M4 cell through the V4/ADR-0006 ICD biology
+  (issue #11 follow-up / ADR-0019). Scores the named platforms (T-VEC, RP1/RP2/RP3, OH2, VG161,
+  reovirus/pelareorep, NDV, Seneca Valley Virus) and maps real-world accessibility. Honest headline: **one
+  positive sarcoma signal** (T-VEC+pembrolizumab phase-2 ORR 30%, NCT03069378) but the nearest data
+  (Ewing/round-cell) show *low* OV susceptibility and **no CIC-DUX4 OV data exist** → `Theoretical` for
+  CIC-DUX4; fusion-agnostic (good for the ~5%); deep/visceral anatomy + RP1's twice-rejected FDA path bound
+  feasibility. Reuse for oncolytic-virus / virotherapy / "artificial danger signal" / immune-visibility-via-virus
+  / OV-accessibility questions; **not a fifth vector; re-verify perishable status live**.
 - `sims/01–08/` — executed in-silico experiments with `RESULTS.md` + data `MANIFEST.md` + grounding.
   (Sim 7 = Boolean **transformation-trajectory** behind the build recipe; Sim 8 = the **driver-uncertainty**
   decision model above.)
@@ -181,6 +191,7 @@ From `docs/00-README.md`, `docs/06-agent-architecture.md`, and the `sarcoma-cont
 | A fusion-unconfirmed / atypical-case / "unknown driver" question — "the patient has no confirmed fusion," "which options are safe given we don't know the driver," "what should we test first / is it worth resolving the diagnosis" | **Reuse the driver-uncertainty decision model** (`simulation-output/tumorigenesis-reverse-engineering/driver-uncertainty-specialist.md` + `sims/08-driver-uncertainty/` / ADR-0008). Treats the driver as a latent variable, marginalizes for robustness, and computes EVSI of resolving it; re-condition the prior on any real testing the patient already had. **Not a diagnosis.** |
 | A **reasoning-process** question — human/clinician-in-the-loop steering, adversarial / red-team hypothesis testing, "actively try to disprove X," debiasing, premature-convergence, counterfactuals, or dynamic expansion/contraction of the search space | **Reuse the hypothesis-steering & adversarial-reasoning doc** (`docs/11-hypothesis-steering-and-adversarial-reasoning.md` / ADR-0017): map the ask onto the framework's existing debiasing surfaces, apply the **red-team self-challenge** (disconfirm / alternative / flip-test / steer-audit — also in `sarcoma-pre-output-check`), and use the expansion/contraction triggers. A **process** layer — **not a fifth vector**, not a biological layer; steering reframes the search but never supplies an evidence tier, and contraction never prunes the forward lane (golden rule #5). |
 | A **modality / delivery-format** question — "beyond systemic drugs," cellular therapy (TIL/CAR-T/CAR-NK/TCR), gene/viral/oncolytic-virus therapy, vaccines, local/regional delivery (intratumoral, regional perfusion), physical/energy-based (hyperthermia, focused ultrasound, radiation-immune priming), combination-modality; or a **drug-repurposing** ("approved drug in a new context") / **ethnopharmacology / phytotherapy / traditional-medicine / medicinal-mushroom** sourcing question | **Reuse the therapeutic-modality layer** (`simulation-output/therapeutic-modality-layer.md` / ADR-0018): place the candidate on the **modality axis (M1–M8)**, orthogonal to the four vectors — modality moves the **feasibility** axis, never the evidence tier or mechanism. Check the coverage map (M3/M4/M6/M7 are the catalog's thin spots; **M7 regional hyperthermia** has a positive phase-3 STS RCT). Run repurposing/phytotherapy candidates through the standard gauntlet (tier + Directness ADR-0014 + concentration-mismatch + `sarcoma-chemo-interactions`); junction-specific cellular/vaccine modalities are **fusion-contingent**. A cross-cutting axis — **not a fifth vector**; **re-verify perishable feasibility/regulatory facts live**. |
+| An **oncolytic-virus / virotherapy** question — "OV as an artificial danger signal / alarm system," "make the cold tumour hot with a virus," immune-visibility-via-virus, a specific platform (T-VEC, RP1/RP2/RP3, OH2, VG161, reovirus/pelareorep, NDV, Seneca Valley Virus), or "nearest real-world path to access an OV" | **Reuse the M4 oncolytic-virotherapy deep-dive** (`simulation-output/oncolytic-virotherapy-danger-signal-layer.md` / ADR-0019): it is the M4 cell of the modality layer (ADR-0018) worked through the V4 ICD/danger-signal biology (ADR-0006). OV acts mainly on the **recognition/visibility** axis (raises antigenicity **and** adjuvanticity), is **fusion-agnostic** (applies to the ~5%), but the nearest data (Ewing/round-cell) show **low OV susceptibility** and **CIC-DUX4 OV data are nil** → `Theoretical` for CIC-DUX4; the gating experiment is a tropism screen. Modality moves **feasibility**, not tier; deep/visceral anatomy and RP1's twice-rejected FDA path bound access. **Not a fifth vector; re-verify perishable regulatory/trial status live.** |
 
 Default to teams for analysis/research/simulation; default to a direct answer for everything else.
 A "thorough"-sounding multi-part question is not automatically a spawn — judge whether real
@@ -359,7 +370,7 @@ sims/01–08/              reproducible simulations (script + RESULTS.md + MANIF
 simulation-output/       protocol-v2.md (main catalog), findings-ranking.md (master register),
                          forward-simulation/ (oncologist briefs), biomarker-voi-stratification.md,
                          translational-feasibility-layer.md, host-biology-modifier-layer.md,
-                         therapeutic-modality-layer.md,
+                         therapeutic-modality-layer.md, oncolytic-virotherapy-danger-signal-layer.md,
                          tumorigenesis-reverse-engineering/, per-vector outputs
 ```
 

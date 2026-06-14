@@ -50,6 +50,7 @@ or amending an artifact. Those are just commits.
 | [0016](0016-full-cycle-ingests-analytical-layers.md) | Full-cycle re-runs ingest the standing analytical layers (orchestrator + vector leads) | 2026-06-14 | Accepted | Maintainer request / PR |
 | [0017](0017-hypothesis-steering-adversarial-reasoning.md) | Hypothesis-steering & adversarial-reasoning protocol (reasoning-process layer; standing red-team self-challenge) | 2026-06-14 | Accepted | Issue #32 / PR |
 | [0018](0018-therapeutic-modality-layer.md) | Therapeutic-modality layer (delivery-format axis M1–M8, cross-cutting — not a fifth vector) + repurposing & ethnopharmacology sub-scans | 2026-06-14 | Accepted | Issue #33 / PR |
+| [0019](0019-oncolytic-virotherapy-m4-deepdive.md) | Oncolytic-virotherapy M4 deep-dive (danger-signal generator) — deepens ADR-0018 via ADR-0006; not a fifth vector | 2026-06-14 | Accepted | Issue #11 follow-up / PR |
 
 ## Template
 
