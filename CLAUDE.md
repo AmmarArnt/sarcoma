@@ -130,7 +130,10 @@ From `docs/00-README.md`, `docs/06-agent-architecture.md`, and the `sarcoma-cont
    the molecule behaved as envisioned, whether the trial was underpowered/unselected/monotherapy.
    Generate mechanistically defensible **Forward Hypotheses** with explicit falsifiers. Be bold in
    *hypothesis* space (tag it `Theoretical`/`Mechanistic`) — but **never** dress speculation up as
-   evidence.
+   evidence. This generative lane is one half of the **two-lane / expand-contract rule** — the
+   adversarial counterpart (red-team self-challenge, premature-closure guard) is in
+   `docs/11-hypothesis-steering-and-adversarial-reasoning.md` (ADR-0017); contraction may prune the
+   confirmatory lane but **never** this one.
 6. **Distinguish "evidence in CIC-DUX4" from "evidence in cancer broadly."** Flag concentration
    mismatches (a 10 µM cell-line effect ≠ achievable dietary plasma level).
 7. **Flag standard-of-care interactions** (VDC/IE: vincristine, doxorubicin, cyclophosphamide,
@@ -165,6 +168,7 @@ From `docs/00-README.md`, `docs/06-agent-architecture.md`, and the `sarcoma-cont
 | A V4 immune-visibility / danger-signaling / ICD / DAMP / Nectin-TIGIT / NK-surveillance question, or "should the framework distinguish tumor-promoting inflammation vs. anti-tumor activation vs. treatment toxicity" | **Reuse the V4 expansion** (`simulation-output/v4-immune-watchdog/immune-watchdog-expansion.md` / ADR-0006) and the four V4 sub-agent files; extend rather than re-deriving. It is *inside* V4 — **not a fifth vector**; apply the inflammation-state lens (lowering inflammation ≠ improving anti-tumor immunity). |
 | A cell-of-origin / pathogenesis / tumorigenesis question — "how/why does the cell get *into* this state," "what would you do to a stem cell to make this tumor," "reverse-engineer the construction," minimal-transformation-set / which build steps are necessary | **Reuse the tumorigenesis reverse-engineering layer** (`simulation-output/tumorigenesis-reverse-engineering/` + `sims/07-tumorigenesis-trajectory/` / ADR-0007); extend rather than re-deriving. It is the **forward/inverse** of V1–V4 (a build recipe mapped back onto the vectors), a supplementary team, **not a fifth vector**. |
 | A fusion-unconfirmed / atypical-case / "unknown driver" question — "the patient has no confirmed fusion," "which options are safe given we don't know the driver," "what should we test first / is it worth resolving the diagnosis" | **Reuse the driver-uncertainty decision model** (`simulation-output/tumorigenesis-reverse-engineering/driver-uncertainty-specialist.md` + `sims/08-driver-uncertainty/` / ADR-0008). Treats the driver as a latent variable, marginalizes for robustness, and computes EVSI of resolving it; re-condition the prior on any real testing the patient already had. **Not a diagnosis.** |
+| A **reasoning-process** question — human/clinician-in-the-loop steering, adversarial / red-team hypothesis testing, "actively try to disprove X," debiasing, premature-convergence, counterfactuals, or dynamic expansion/contraction of the search space | **Reuse the hypothesis-steering & adversarial-reasoning doc** (`docs/11-hypothesis-steering-and-adversarial-reasoning.md` / ADR-0017): map the ask onto the framework's existing debiasing surfaces, apply the **red-team self-challenge** (disconfirm / alternative / flip-test / steer-audit — also in `sarcoma-pre-output-check`), and use the expansion/contraction triggers. A **process** layer — **not a fifth vector**, not a biological layer; steering reframes the search but never supplies an evidence tier, and contraction never prunes the forward lane (golden rule #5). |
 
 Default to teams for analysis/research/simulation; default to a direct answer for everything else.
 A "thorough"-sounding multi-part question is not automatically a spawn — judge whether real
@@ -329,6 +333,7 @@ docs/07-openmed-models.md       team -> NER model map (entity grounding)
 docs/08-evidence-confidence-scoring.md   confidence axis: 7-tier↔A–E crosswalk, 4-axis rubric, weak-signal register
 docs/09-verification-sources.md authoritative trial/regulatory/safety registries for live fact-checking (issue #9)
 docs/10-evidence-transferability-hierarchy.md   biological-proximity ladder (P0–P4) refining the confidence Directness sub-axis (issue #10 follow-up / ADR-0014)
+docs/11-hypothesis-steering-and-adversarial-reasoning.md   reasoning-process layer: steering, red-team self-challenge, search-space expand/contract (issue #32 / ADR-0017)
 docs/adr/                       Architecture Decision Records — framework-evolution timeline (read README first)
 scripts/dispatch.py      wave plan + prerequisite/gate checker
 scripts/openmed_ner.py   OpenMed NER grounding CLI (--team)

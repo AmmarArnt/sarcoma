@@ -48,6 +48,7 @@ or amending an artifact. Those are just commits.
 | [0014](0014-evidence-transferability-hierarchy.md) | Evidence-transferability hierarchy (biological-proximity ladder P0–P4) — refines the confidence axis (ADR-0004) | 2026-06-13 | Accepted | Issue #10 follow-up / PR |
 | [0015](0015-diagnostic-information-gain-layer.md) | Diagnostic strategy & expected-information-gain layer (test-level VoI, "what to learn next") | 2026-06-14 | Accepted | Issue #31 / PR |
 | [0016](0016-full-cycle-ingests-analytical-layers.md) | Full-cycle re-runs ingest the standing analytical layers (orchestrator + vector leads) | 2026-06-14 | Accepted | Maintainer request / PR |
+| [0017](0017-hypothesis-steering-adversarial-reasoning.md) | Hypothesis-steering & adversarial-reasoning protocol (reasoning-process layer; standing red-team self-challenge) | 2026-06-14 | Accepted | Issue #32 / PR |
 
 ## Template
 

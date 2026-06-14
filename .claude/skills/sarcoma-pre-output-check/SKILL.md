@@ -1,6 +1,6 @@
 ---
 name: sarcoma-pre-output-check
-description: Pre-flight self-audit a sub-agent or vector lead runs BEFORE finalizing its output in the CIC-rearranged sarcoma simulation. Walks through 9 failure modes (citation fabrication, concentration-mismatch, dose invention, stale regulatory status, etc.) and 9 mandatory-include items. Catches errors before they reach the orchestrator. Invoke as the second-to-last step of any agent task, immediately before writing the output file.
+description: Pre-flight self-audit a sub-agent or vector lead runs BEFORE finalizing its output in the CIC-rearranged sarcoma simulation. Walks through 9 failure modes (citation fabrication, concentration-mismatch, dose invention, stale regulatory status, etc.), 9 mandatory-include items, and a one-pass red-team self-challenge (disconfirm / alternative / flip-test / steer-audit; ADR-0017). Catches errors before they reach the orchestrator. Invoke as the second-to-last step of any agent task, immediately before writing the output file.
 ---
 
 # Pre-Output Self-Audit
@@ -62,6 +62,28 @@ If you are the **V1 Bioavailability Specialist**: the curcumin + piperine entry 
 If you are the **V2 Antioxidant Specialist**: include a `DO NOT RECOMMEND` section enumerating the high-dose supplement interventions the literature contraindicates.
 
 If you are the **Orchestrator**: separate the **Naturally Achievable Track** and the **Clinical / Experimental Track**; produce the **Standard-of-Care Interaction Map**; surface conflicts explicitly rather than papering over them.
+
+## Part D — Red-Team Self-Challenge (one pass, mandatory)
+
+Before writing, run a single adversarial pass against your **own** leading hypothesis (the
+reasoning-bias counterpart to Part A's evidence-hygiene checks). This is the standing red-team step from
+`docs/11-hypothesis-steering-and-adversarial-reasoning.md` (ADR-0017) — the machine analogue of
+Chain-of-Verification and Croskerry's "cognitive forcing function." Keep it to a few lines; record the
+results in your "What I Could Not Establish" section.
+
+1. **Load-bearing assumption.** Name the one input whose being-wrong would most change your conclusion.
+2. **Disconfirmation.** What is the strongest *published* evidence *against* the leading hypothesis — and did
+   I search for it as hard as for the supporting evidence? (counters confirmation bias)
+3. **Alternative.** What is the best hypothesis that fits the same data but sits *outside* my vector/lane?
+   If it names a real mechanism that fits none of V1–V4, flag it for a possible supplementary team
+   (do not force it into an existing vector). (counters anchoring)
+4. **Flip test.** If the load-bearing assumption (1) is wrong, does the conclusion survive? If not, tag the
+   entry **assumption-/driver-contingent** (as ADR-0008 tags fusion-contingent entries).
+5. **Steer audit.** If a human steer (an issue, a prompt) pointed me here, am I *confirming* it or *testing*
+   it? A steer reframes the search; it does **not** supply an evidence tier. (counters sycophancy)
+
+If any answer exposes a weakness, fix the entry (downgrade tier, add the contingency tag, add the
+alternative) before writing. Do not let the red-team pass induce over-hedging — one pass, then proceed.
 
 ## Final Check Before Writing
 

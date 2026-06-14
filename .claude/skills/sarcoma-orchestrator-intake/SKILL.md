@@ -74,7 +74,12 @@ the driver were known.
 
 ### 4. RESOLVE CONFLICTS
 
-Where two vectors recommend opposing things, surface the conflict explicitly. Do not paper over it. The canonical conflicts you should expect to see:
+Where two vectors recommend opposing things, surface the conflict explicitly. Do not paper over it. This
+is the orchestrator-level **red-team** pass (`docs/11-hypothesis-steering-and-adversarial-reasoning.md`,
+ADR-0017): challenge each high-leverage finding (would it change a top-tier ranking or a clinician-facing
+brief?) — run the flip-test on its load-bearing assumption and tag it **assumption-/driver-contingent** if
+it does not survive (the fusion-contingent MCL1/junction entries are the worked example, ADR-0008). The
+canonical conflicts you should expect to see:
 
 - **Antioxidants vs. ROS-dependent chemo.** V2 recommends antioxidant support; SOC chemo (doxorubicin, ifosfamide) uses ROS. State both, name the regimen, defer the decision to clinical judgment.
 - **β-carotene supplementation.** V3 may surface it for retinoid signaling; V2 must flag ATBC/CARET harm in smokers. Carry both flags.
