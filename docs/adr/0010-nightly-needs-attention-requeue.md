@@ -29,7 +29,8 @@ low-risk case.
    neither depends on a manual setup step.
 
 2. **New nightly Action** `.github/workflows/issue-needs-attention.yml`:
-   - Triggers on a nightly cron (`0 6 * * *` UTC) and `workflow_dispatch` (manual testing).
+   - Triggers on a nightly cron (`17 7 * * *` UTC — off the top of the hour to avoid GitHub's
+     scheduler pileup at `:00`) and `workflow_dispatch` (manual testing).
    - For each open issue labeled `responded`, compares the timestamp of the most recent
      `labeled: responded` event against the timestamp of the most recent comment **not** from
      `github-actions[bot]`.

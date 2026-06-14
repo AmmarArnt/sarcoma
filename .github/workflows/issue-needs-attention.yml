@@ -19,7 +19,7 @@ name: Issue needs-attention requeue
 
 on:
   schedule:
-    - cron: "0 6 * * *" # nightly, 06:00 UTC
+    - cron: "17 7 * * *" # nightly, 07:17 UTC (off the hour to avoid scheduler pileup at :00)
   workflow_dispatch: {} # allow manual runs for testing
 
 permissions:
