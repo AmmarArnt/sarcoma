@@ -89,7 +89,7 @@ Every claim or recommendation must carry exactly one of these tags:
 
 **Context files**: 00, 01, 02, 03, 04, 05 (this file 06 for protocol)
 
-**Additional inputs**: mRNA Vaccine Research Team output; Metastatic Disease Specialist output (generated as a sub-agent during orchestration)
+**Additional inputs**: mRNA Vaccine Research Team output; Metastatic Disease Specialist output (generated as a sub-agent during orchestration); the **standing analytical layers** in `simulation-output/` + `findings-ranking.md` (ADR-0016 — see intake step 1B)
 
 **Output file**: `simulation-output/protocol-v1.md`
 
@@ -126,6 +126,14 @@ a long list of confirmed findings restated in a new format.
 Your job, in order:
 
 1. INTAKE. Read all four vector outputs and the mRNA team output end-to-end.
+1B. INGEST THE STANDING ANALYTICAL LAYERS (ADR-0016). Read and reconcile against
+   the issue-driven layers in simulation-output/ (biomarker VoI + provenance,
+   diagnostic information-gain, translational feasibility + attrition, host-biology
+   modifiers, V4 immune-watchdog expansion, tumorigenesis/driver-uncertainty),
+   docs/10 transferability, and findings-ranking.md. Layers condition/annotate the
+   catalog — they never override real-data vector evidence and never prune the
+   forward lane; not a fifth vector. (Full procedure: sarcoma-orchestrator-intake
+   step 1B.)
 2. DEDUPLICATE. Many compounds appear in multiple vectors (Quercetin in V1+V2,
    sulforaphane in V1/V3/V4). Merge entries; preserve all evidence and the
    strongest tier.
@@ -195,6 +203,14 @@ Each bullet includes evidence tier in brackets.]
 | Intervention | Vector(s) | Mechanism | Evidence tier | Status FDA | Status EMA | Trial IDs | Notes |
 |---|---|---|---|---|---|---|---|
 
+Annotate each entry with its feasibility F-band (F1–F5) + attrition R-reason (R0–R5) (ADR-0003/0013, re-verify live) and Directness rung (ADR-0014) where the ranking turns on transferred evidence. Mark MCL1 "re-arm"/junction-specific entries driver-contingent (hold until the driver is resolved) for fusion-unconfirmed cases (ADR-0008).
+
+## Host-Biology & Treatment-Response Modifiers
+[From `host-biology-modifier-layer.md` (ADR-0005). Cross-cutting host-level
+modifiers (microbiome/SCFA, systemic inflammation, metabolic/sarcopenia, nutrition,
+activity, sleep/circadian, autonomic/PNEI, perioperative) that condition V4 immune
+competence and SOC tolerability. Weighted via the three axes; not a fifth vector.]
+
 ## mRNA COVID-19 Vaccine — Research Findings
 [Summary of what the mRNA Vaccine Research Team found. If relevant findings
 for immune or genomic context: describe and link to the affected vector(s).
@@ -225,6 +241,15 @@ establish a mechanism. Be specific.]
 ## Standard-of-Care Interaction Map
 [Each entry flagged in the dietary track that has a documented interaction
 with sarcoma chemotherapy regimens. Cite the interaction source.]
+
+## Missing-Data, Value-of-Information & Diagnostic Strategy (What to Learn Next)
+[From the VoI layer (ADR-0001/0011), the diagnostic information-gain layer
+(ADR-0015), and the driver-uncertainty model (ADR-0008): the missing-data taxonomy
++ VoI ranking of unknown biomarkers (with provenance/timepoint); the test-level
+"what to learn next" (diagnostic actions ranked by value ÷ acquisition burden, the
+sequencing rule, the low-yield register); and resolving the driver as the
+highest-value next action for the fusion-unconfirmed case. Documentation of
+uncertainty — NOT a testing recommendation.]
 
 ## What This Catalog Cannot Tell You
 [Limits. What was out of scope. What would require a clinician's input.]

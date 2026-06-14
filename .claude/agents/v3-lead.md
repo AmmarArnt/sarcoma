@@ -45,6 +45,12 @@ The Epigenetic Therapy Specialist's output must put a `MHC-I Upregulation Candid
 
 V4 cannot start Wave 2 until V3's `MHC-I Upregulation Candidates` section is on disk. As soon as the Epigenetic Therapy Specialist completes, write a preliminary version of `simulation-output/v3-hot-patching/v3-summary.md` containing at least the `MHC-I Upregulation Candidates` section at the top — even if the other specialists are still running. Update the file to the full summary after reconciliation. This makes the bridge an execution dependency on a section, not on the whole summary.
 
+## Standing analytical layers you must consume (ADR-0016)
+
+Before reconciling, read and apply the layers that condition V3 — they **annotate**, they do not override your sub-agents' evidence:
+- **Driver-uncertainty contingency** — `simulation-output/tumorigenesis-reverse-engineering/driver-uncertainty-specialist.md` + `sims/08-driver-uncertainty/` (ADR-0008). For the fusion-unconfirmed (~5%) case the throttle/cell-cycle/epigenetic vectors are **driver-robust**, but the **MCL1 "re-arm the DUX4 death program" and any junction-specific (ASO/PROTAC-on-fusion) lines are driver-contingent** — present them as **hold until the driver is resolved**, not as committed recommendations, and flag **resolving the driver as the highest-value next action** (long-read WGS+RNA-seq > DUX4 IHC > methylation, by EVSI).
+- **Tumorigenesis build-recipe** — `simulation-output/tumorigenesis-reverse-engineering/tumorigenesis-build-recipe.md` (ADR-0007): the forward/inverse "how the cell got here" mapped onto intervention points; mine it for V3 Forward Hypotheses (e.g. epigenetic-permissiveness / p300-CBP super-enhancer reversibility) without dressing logic-model steps as evidence.
+
 ## Track separation
 
 Keep DIETARY TRACK and CLINICAL/EXPERIMENTAL TRACK clearly separated in your summary. The PROTAC/ASO and most synthetic-lethality entries belong in the clinical track. Do not blur tracks.

@@ -197,16 +197,25 @@ specialists catch what one pass misses. Always try an **existing team** first.
 > Run this **only for a fresh full cycle** — reuse the existing outputs first (see §0). For incremental
 > work, spawn just the specific specialist/team needed and write a new artifact rather than re-running.
 1. `python scripts/dispatch.py` — prints the wave plan and validates prerequisites. **Run first.**
-2. **Wave 1 (parallel):** `mrna-vaccine-lead`, `v1-lead`, `v3-lead`.
-3. **Gate:** mRNA output on disk + V3's `MHC-I Upregulation Candidates` section written
+2. **Layer Intake (every full run — ADR-0016).** Before Wave 1, each agent additionally consults the
+   **standing analytical layers** relevant to its scope (the §0 reuse list / §2 routing table): V4 ←
+   host-biology (ADR-0005) + V4 immune-watchdog expansion (ADR-0006) + VoI immune ranking (Sim 6) +
+   diagnostic-IG immune markers (ADR-0015); V3 ← driver-uncertainty contingency (ADR-0008) + tumorigenesis
+   build-recipe (ADR-0007); V1/V2 ← feasibility/attrition (ADR-0003/0013) + transferability (ADR-0014, via
+   `sarcoma-contract`) + host-biology for tolerability. The **orchestrator** reconciles the catalog against
+   **all** layers + `findings-ranking.md`. **Layers condition/annotate — they never override real-data
+   vector evidence (ADR-0009 bias note) and never prune the forward lane (golden rule #5); not a fifth
+   vector (golden rule #8).** A fresh re-run writes the **next** protocol version, not over the baseline (§0).
+3. **Wave 1 (parallel):** `mrna-vaccine-lead`, `v1-lead`, `v3-lead`.
+4. **Gate:** mRNA output on disk + V3's `MHC-I Upregulation Candidates` section written
    (`python scripts/dispatch.py gate`).
-4. **Wave 2 (parallel):** `v2-lead`, `v4-lead` (consume mRNA output; V4 also consumes V3's MHC-I section).
-5. **Orchestrator** runs last (`dispatch.py ready` must pass), runs the Metastatic-Disease Specialist,
-   writes `simulation-output/protocol-v1.md`.
+5. **Wave 2 (parallel):** `v2-lead`, `v4-lead` (consume mRNA output; V4 also consumes V3's MHC-I section).
+6. **Orchestrator** runs last (`dispatch.py ready` must pass), ingests the standing layers (ADR-0016),
+   runs the Metastatic-Disease Specialist, writes the catalog (next `protocol-vN.md`, not over v1).
 
 Each lead **reconciles** its sub-agents (merges duplicate compounds, keeps the strongest evidence tier)
-— it does not just concatenate. Each agent loads the relevant skills (below) and runs
-`sarcoma-pre-output-check` before writing.
+— it does not just concatenate. Each agent loads the relevant skills (below), ingests its standing layers
+(step 2 / ADR-0016), and runs `sarcoma-pre-output-check` before writing.
 
 ### Recommending a NEW team
 If no existing team fits (e.g., "forward trial forensics," "in-silico experiment design," "regimen

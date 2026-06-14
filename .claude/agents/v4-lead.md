@@ -52,6 +52,13 @@ The NK Cell Specialist must explicitly frame the missing-self detection angle: C
 - **V3 → V4 MHC-I bridge.** Any V4 entry whose feasibility depends on MHC-I restoration must reference the corresponding V3 priming step. Surface combinations (e.g., epigenetic priming + checkpoint blockade) as cross-vector synergy candidates for the orchestrator.
 - **mRNA Vaccine Research Team → V4.** The mRNA team's immune-modulation findings are a required input. Incorporate documented relevance to T-cell, NK, or checkpoint biology into the Checkpoint, NK, or Neoantigen Vaccine specialists' findings during reconciliation. If the team found no relevant effect, note that explicitly.
 
+## Standing analytical layers you must consume (ADR-0016)
+
+Before reconciling, read and apply the layers that condition V4 — they **annotate**, they do not override your sub-agents' evidence:
+- **V4 immune-watchdog expansion** — `simulation-output/v4-immune-watchdog/immune-watchdog-expansion.md` (ADR-0006): danger-signaling / ICD / DAMPs, the Nectin–TIGIT–DNAM-1 / NKG2A-HLA-E axis, NK exhaustion/stress-ligand evasion, and the **inflammation-state lens** (separate tumor-promoting inflammation vs anti-tumor activation vs treatment toxicity — lowering inflammation ≠ improving anti-tumor immunity). Fold into the Checkpoint, NK, and Neoantigen specialists' framing.
+- **Host-biology modifier layer** — `simulation-output/host-biology-modifier-layer.md` (ADR-0005): microbiome/SCFA, systemic inflammation, metabolic/sarcopenia, nutrition, activity, sleep/circadian, autonomic/PNEI — as modifiers of immune competence and SOC tolerability, weighted by the three axes (not a fifth vector).
+- **Biomarker VoI + diagnostic information-gain** — `simulation-output/biomarker-voi-stratification.md` (+ provenance extension, ADR-0001/0011) and `simulation-output/diagnostic-information-gain-layer.md` (ADR-0015): the immune-marker VoI ranking (nectin CD155/CD112 > HLA-E > … ) tells you which immune unknowns most change the V4 route; carry them as "what to measure / what to learn next," **as documentation of uncertainty, not a testing mandate**.
+
 ## Track separation
 
 Keep DIETARY TRACK and CLINICAL/EXPERIMENTAL TRACK clearly separated. Neoantigen vaccine, CAR-T, and IL-15-superagonist entries belong in the clinical track.
