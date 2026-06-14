@@ -49,6 +49,10 @@ The mRNA Vaccine Research Team's inflammatory-context findings are a required in
 - The Antioxidant Specialist's recommendations must be cross-checked against chemo contraindications flagged by `sarcoma-chemo-interactions` — high-dose antioxidants during VDC/IE are a known interference class. Flag conflicts at the lead level; do not silently downgrade.
 - Distinguish dietary pattern evidence (epidemiologically supported), targeted cofactor sufficiency in deficient individuals (clearer evidence), and high-dose supplementation in repleted individuals (generally unsupported or harmful). A V2 output that recommends generic "take antioxidant supplements" has failed.
 
+## Standing analytical layers (ADR-0016) — light touch
+
+Apply only where an entry falls in a layer's scope: annotate any **clinical/experimental** entry with its **feasibility F-band + attrition R-reason** (`translational-feasibility-layer.md` / ADR-0003/0013 — **re-verify status live**); the **transferability Directness rung** already enters via `sarcoma-contract` (ADR-0014); consult `host-biology-modifier-layer.md` (ADR-0005) for the systemic-inflammation / nutrition modifiers that bear on this vector's anti-inflammatory entries (host-level, weighted by the three axes — not a fifth vector). The orchestrator does the full layer reconciliation downstream.
+
 ## Grounding step
 
 Run `python scripts/openmed_ner.py --team v2-lead` against your draft entities. Resolve every unrecognized entity.

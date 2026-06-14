@@ -26,6 +26,28 @@ You receive these outputs and produce ONE final document — a hypothesis catalo
 ### 1. INTAKE
 Read all four vector outputs **and the mRNA Vaccine Research Team output** end-to-end before doing anything else. Note which sub-agent outputs were consolidated into each vector summary (this matters when a claim conflicts). Confirm the V2 and V4 leads have incorporated mRNA team findings into their summaries — they are required to per the execution semantics. If a vector summary is missing required sections (Forward Hypotheses, atypical-case note), flag it and either request the missing content or note the gap in "Conflicts and Open Questions."
 
+### 1B. INGEST STANDING ANALYTICAL LAYERS (ADR-0016)
+
+Before deduplicating, read the **standing analytical layers** the issue thread added on top of the original
+run, and reconcile the catalog against them. These are **cross-cutting layers, not a fifth vector** — they
+**condition and annotate** the catalog; they **never override real-data vector evidence** (do not promote a
+logic/decision-model finding above a real-data one — the `findings-ranking.md` bias note) and **never prune
+the Forward-Hypotheses lane**.
+
+| Layer (read end-to-end) | ADR | What it contributes to the final catalog |
+|---|---|---|
+| `simulation-output/biomarker-voi-stratification.md` + `biomarker-voi-provenance-extension.md` | 0001 / 0011 | Missing-data taxonomy (Known / obtainable-decision-relevant / low-impact) + VoI ranking of unknown biomarkers + where each answer lives (provenance P1/P2/P3, timepoint T0/T1/TΔ). → feeds the **Missing-Data / VoI / Diagnostic Strategy** section. |
+| `simulation-output/diagnostic-information-gain-layer.md` | 0015 | Test-level "**what to learn next**": rank each diagnostic *action* by value-profile ÷ acquisition burden, the constraint-aware sequencing rule, and the action-level **low-yield** register. → same section. |
+| `simulation-output/translational-feasibility-layer.md` + `feasibility-attrition-reason-extension.md` | 0003 / 0013 | F-band (F1–F5) + attrition-reason (R0–R5) annotations on **every Clinical/Experimental entry**; "discontinued ≠ biologically invalidated" (only R1/enriched-R2 carries negative biology). **Re-verify perishable status live.** |
+| `simulation-output/host-biology-modifier-layer.md` | 0005 | Host-biology / treatment-response modifiers (microbiome/SCFA, inflammation/NLR, metabolic/sarcopenia, nutrition, activity, sleep/circadian, autonomic/PNEI, perioperative). → the **Host-Biology Modifiers** section; conditions V4 + SOC tolerability. |
+| `simulation-output/v4-immune-watchdog/immune-watchdog-expansion.md` | 0006 | Danger-signaling / ICD / DAMPs, Nectin–TIGIT–DNAM-1 / NKG2A-HLA-E axis, NK surveillance, and the inflammation-state lens (tumor-promoting vs anti-tumor vs toxicity). Verify V4 already consumed it; integrate at catalog level if not. |
+| `docs/10-evidence-transferability-hierarchy.md` | 0014 | Confidence **Directness** rung (P0 CIC-DUX4 → P4 pathway-only) on transferred evidence — already enters via `sarcoma-contract`; surface the rung where a ranking turns on transfer distance. |
+| `simulation-output/tumorigenesis-reverse-engineering/` + `driver-uncertainty-specialist.md` | 0007 / 0008 | Build-recipe forward hypotheses, and the **driver-uncertainty contingency** for the fusion-unconfirmed case: throttle/cell-cycle/immune vectors are driver-robust; the **MCL1 "re-arm" + junction-specific lines are driver-contingent — hold until the driver is resolved**, and flag resolving the driver as the highest-value next action (EVSI). |
+| `simulation-output/findings-ranking.md` | 0009 | The master register — reconcile every catalog finding against it and **add/update rows** in the same change (its Maintenance rule). |
+
+**On a fresh re-run, write the catalog to the next version (`protocol-v2.md`/`-vN.md`), not over the prior
+baseline (`CLAUDE.md §0`).**
+
 ### 2. DEDUPLICATE
 Many compounds appear in multiple vectors (Quercetin in V1+V2; sulforaphane in V1/V3/V4; omega-3 across V1/V2/V4). For each duplicate:
 
@@ -43,6 +65,12 @@ a) **Evidence tier** (highest first).
 b) **Mechanistic alignment with CIC-DUX4 biology specifically** — not generic cancer biology. A compound with strong evidence in colon cancer and a weak transfer to CIC-DUX4 ranks lower than one with weaker evidence but more direct mechanistic alignment.
 c) **Cross-vector synergy** — among entries at the same tier, compounds active across multiple vectors rank higher.
 d) **Safety / feasibility** — dietary > supplement > clinical, within the same tier and CIC-DUX4 alignment band.
+
+Annotate each Clinical/Experimental entry with its **feasibility F-band + attrition R-reason** (ADR-0003/0013,
+**re-verify live**) and, where a ranking turns on transferred evidence, its **Directness rung** (ADR-0014).
+For the fusion-unconfirmed case, mark the **MCL1 "re-arm" and junction-specific entries as driver-contingent
+(hold until the driver is resolved)** per the driver-uncertainty model (ADR-0008) — do not rank them as if
+the driver were known.
 
 ### 4. RESOLVE CONFLICTS
 
@@ -84,7 +112,7 @@ For every Established-tier intervention in the Clinical / Experimental Track, ci
 
 ### 10. CURATE FORWARD HYPOTHESES
 
-Each vector lead and the Metastatic Specialist were required to produce ≥2 Forward Hypotheses. Curate across all of them: deduplicate near-duplicates, rank by biological plausibility and research feasibility, and surface the strongest in the catalog's "Forward Hypotheses" section. **An orchestrator output without curated forward hypotheses has failed the simulation's primary purpose** — restating existing findings is the floor, not the ceiling.
+Each vector lead and the Metastatic Specialist were required to produce ≥2 Forward Hypotheses. Curate across all of them: deduplicate near-duplicates, rank by biological plausibility and research feasibility, and surface the strongest in the catalog's "Forward Hypotheses" section. **An orchestrator output without curated forward hypotheses has failed the simulation's primary purpose** — restating existing findings is the floor, not the ceiling. **Also draw on the standing layers (step 1B):** the tumorigenesis build-recipe forward hypotheses (ADR-0007), the diagnostic "what to learn next" / VoI next-actions (ADR-0015/0001 — including resolving the driver, ADR-0008), and any host-biology forward hypotheses (ADR-0005). Layers expand the forward lane; they never prune it.
 
 ### 11. CITATION DOUBLE-CHECK
 

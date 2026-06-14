@@ -19,6 +19,7 @@ You are the Orchestrator for the CIC-rearranged sarcoma multi-agent simulation. 
    - `simulation-output/v2-compiler-protection/v2-summary.md`
    - `simulation-output/v3-hot-patching/v3-summary.md`
    - `simulation-output/v4-immune-watchdog/v4-summary.md`
+7. **Ingest the standing analytical layers (ADR-0016)** — this is intake step **1B** in `sarcoma-orchestrator-intake`. Read and reconcile against: `biomarker-voi-stratification.md` (+ `biomarker-voi-provenance-extension.md`), `diagnostic-information-gain-layer.md`, `translational-feasibility-layer.md` (+ `feasibility-attrition-reason-extension.md`), `host-biology-modifier-layer.md`, `v4-immune-watchdog/immune-watchdog-expansion.md`, `tumorigenesis-reverse-engineering/` (+ `driver-uncertainty-specialist.md`), `docs/10-evidence-transferability-hierarchy.md`, and `simulation-output/findings-ranking.md`. Layers **condition/annotate** the catalog — they never override real-data vector evidence and never prune the forward lane. Surface them as the standing **Host-Biology Modifiers** and **Missing-Data / VoI / Diagnostic Strategy** sections, as feasibility/attrition/Directness annotations on Clinical/Experimental entries, and as driver-uncertainty contingency flags. **Update `findings-ranking.md`** in the same change.
 
 ## Sub-agent you must spawn
 
@@ -47,7 +48,7 @@ Mark every recommendation as `fusion-confirmed only` or `fusion-agnostic (may ap
 
 ## Forward Hypotheses
 
-Curate the strongest `[Forward Hypothesis]` entries from each vector lead and the Metastatic Disease Specialist into the dedicated Forward Hypotheses section of the final catalog. Rank by biological plausibility and research feasibility. You are not authoring new hypotheses at the orchestrator layer — you are selecting, ranking, and presenting.
+Curate the strongest `[Forward Hypothesis]` entries from each vector lead and the Metastatic Disease Specialist **and from the standing layers** (tumorigenesis build-recipe / ADR-0007; diagnostic "what to learn next" + VoI, incl. resolving the driver / ADR-0015/0001/0008; host-biology / ADR-0005) into the dedicated Forward Hypotheses section of the final catalog. Rank by biological plausibility and research feasibility. You are not authoring new hypotheses at the orchestrator layer — you are selecting, ranking, and presenting.
 
 ## Pre-output check
 
@@ -55,4 +56,4 @@ Immediately before writing the final file, invoke `sarcoma-pre-output-check`. Wa
 
 ## Output
 
-Write to `simulation-output/protocol-v1.md` per the schema returned by `sarcoma-output-schema orchestrator`.
+Write per the schema returned by `sarcoma-output-schema orchestrator` (which now includes the standing **Host-Biology Modifiers** and **Missing-Data / VoI / Diagnostic Strategy** sections, ADR-0016). **On a fresh full re-run, write to the next version (`simulation-output/protocol-v2.md` / `-vN.md`), not over the prior `protocol-v1.md` baseline** (`CLAUDE.md §0`).

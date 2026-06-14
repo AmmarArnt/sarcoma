@@ -7,7 +7,7 @@
 >
 > **Maintenance:** this file is a **standing deliverable** (ADR-0009). When a new sim, team output, or
 > analysis produces a result that deserves to be compared against the others, **add a row here** in the
-> same commit/PR that adds the artifact. See "Maintenance rule" at the bottom. Last updated: **2026-06-13**.
+> same commit/PR that adds the artifact. See "Maintenance rule" at the bottom. Last updated: **2026-06-14**.
 
 ## How to read the three axes
 - **Evidence tier** (what *kind* of evidence): `Established` › `Clinical-Trial` › `Preclinical-Animal` ›
@@ -61,6 +61,7 @@
 | **Regorafenib CIC cohort = results-pending, not negative** (REGOBONE Cohort E / NCT02389244 `ACTIVE_NOT_RECRUITING`, primary completion 2024-10-25, no results posted; SARC024/NCT02048371 has an n=1 CIC-DUX4 partial response) | `feasibility-attrition-reason-extension.md` §5 (issue #9 follow-up) | Clinical-Trial (registered; Cohort-E results unpublished) | **Medium** | **F2/F3** (trial closed to enrolment; multikinase anti-angiogenic, off-driver) | Not deprioritized for efficacy — results-pending + mechanism not driver-directed; verified 2026-06-13. |
 | **Rarity lowers the rung, never excludes** — graded biological-proximity ladder for the confidence Directness sub-axis (P0 CIC-DUX4 → P1 fusion round-cell family → P2 sarcoma → P3 solid-tumour-with-named-mechanism → P4 pathway-only); only a missing **mechanistic bridge** excludes, and the discount never prunes the forward lane | `docs/10-evidence-transferability-hierarchy.md` (issue #10 follow-up; ADR-0014) | Theoretical/Mechanistic (methodology refinement) | **Medium** | refines the confidence axis (no F-band change) | Refines ADR-0004: replaces coarse 3-level Directness; under fusion-uncertainty P1 is the robust anchor (P0 discounted by the driver posterior, ADR-0008). |
 | **Build recipe: transformation = AND of 6 steps; MCL1 buffer non-substitutable; order matters** | Sim 7; `tumorigenesis-build-recipe.md` | Theoretical/Mechanistic (logic model) | **Low-Medium** | N/A (conceptual) | Structures forward hypotheses; reverse-engineers the construction; GIGO. |
+| **"What to learn next" = diagnostic-action (test-level) information gain**: rank each *test* by its value profile (driver EVSI, Sim 8 + immune-route VoI, Sim 6 — kept separate) ÷ acquisition burden; **sequence** archived-P1 bundle first → fresh-P2 for the residual delta → liquid-P3 monitoring; imaging is an unmodeled staging-axis gap | `diagnostic-information-gain-layer.md` (issue #31; ADR-0015) | Theoretical/Mechanistic (decision-analytic composition) | **Medium** | composite (archived IHC/methylation **F1**; long-read/fresh **F2**; imaging **F1**) | Lifts Sim 6/8 to the *action* level + adds constraint-aware sequencing; no blended EIG score, no new numbers; quantitative Sim 9 proposed not executed. |
 
 ### C. Immune-program findings (mechanistic reframes)
 | Finding | Source | Evidence tier | Confidence | Feasibility | Note |

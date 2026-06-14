@@ -43,6 +43,10 @@ The Bioavailability Specialist must reproduce the Shoba 1998 caveat verbatim fro
 - Flag compounds that also serve V2 — those get cross-vector preference at the orchestrator layer.
 - Where evidence tiers conflict on the same compound, defer to the dedup rule in `sarcoma-orchestrator-intake` (your orchestrator will apply the same rule downstream — apply it locally so it is not reversed).
 
+## Standing analytical layers (ADR-0016) — light touch
+
+Do **not** load all the layers (over-stuffed context degrades smaller models). Apply only where an entry falls in a layer's scope: annotate any **clinical/experimental** entry (e.g. BETi, CDK4/6i) with its **feasibility F-band + attrition R-reason** (`translational-feasibility-layer.md` / ADR-0003/0013 — **re-verify status live**); the **transferability Directness rung** already enters via `sarcoma-contract` (ADR-0014); consult `host-biology-modifier-layer.md` (ADR-0005) only for tolerability/SOC-context items. The orchestrator does the full layer reconciliation downstream.
+
 ## Grounding step
 
 Before finalizing, run `python scripts/openmed_ner.py --team v1-lead` against your draft entities. Resolve every unrecognized entity.

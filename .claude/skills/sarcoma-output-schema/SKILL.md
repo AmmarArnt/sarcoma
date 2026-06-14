@@ -44,7 +44,13 @@ Output file: `simulation-output/protocol-v1.md`
 | Intervention | Vector(s) | Mechanism | Evidence tier | Status FDA | Status EMA | Trial IDs | Notes |
 |---|---|---|---|---|---|---|---|
 
-For every Established-tier intervention, cite both FDA and EMA status where they differ. Where only one authority has acted, say so explicitly.
+For every Established-tier intervention, cite both FDA and EMA status where they differ. Where only one authority has acted, say so explicitly. Annotate each entry with its **feasibility F-band (F1–F5) + attrition R-reason (R0–R5)** (ADR-0003/0013, re-verify live) and its **Directness rung** (ADR-0014) where the ranking turns on transferred evidence. Mark MCL1 "re-arm" / junction-specific entries **driver-contingent (hold until the driver is resolved)** for fusion-unconfirmed cases (ADR-0008).
+
+## Host-Biology & Treatment-Response Modifiers
+[From `host-biology-modifier-layer.md` (ADR-0005). Cross-cutting host-level modifiers
+ — microbiome/SCFA, systemic inflammation, metabolic/sarcopenia, nutrition, activity,
+ sleep/circadian, autonomic/PNEI, perioperative — that condition V4 immune competence
+ and SOC tolerability. Weighted via the three axes; not a fifth vector. Brief.]
 
 ## mRNA COVID-19 Vaccine — Research Findings
 [Summary of what the mRNA Vaccine Research Team found. If relevant findings
@@ -76,6 +82,17 @@ For every Established-tier intervention, cite both FDA and EMA status where they
 ## Standard-of-Care Interaction Map
 [Each entry flagged in the dietary track that has a documented interaction
  with sarcoma chemotherapy regimens. Cite the interaction source.]
+
+## Missing-Data, Value-of-Information & Diagnostic Strategy (What to Learn Next)
+[From the VoI layer (`biomarker-voi-stratification.md` + provenance extension,
+ ADR-0001/0011), the diagnostic information-gain layer (`diagnostic-information-gain-layer.md`,
+ ADR-0015), and the driver-uncertainty model (ADR-0008). Three parts:
+ (1) the missing-data taxonomy (Known / obtainable-decision-relevant / low-impact)
+     + VoI ranking of the unknown biomarkers, with provenance/timepoint;
+ (2) the test-level "what to learn next" — diagnostic actions ranked by value-profile
+     ÷ acquisition burden, the sequencing rule, and the low-yield register;
+ (3) resolving the driver as the highest-value next action for the fusion-unconfirmed case.
+ Documentation of uncertainty — NOT a testing recommendation.]
 
 ## What This Catalog Cannot Tell You
 [Limits. Scope exclusions. What would require a clinician's input.]
