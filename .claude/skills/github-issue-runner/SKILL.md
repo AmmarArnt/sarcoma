@@ -155,6 +155,27 @@ Produce the artifacts the issue calls for, in the worktree, following the contra
    affected `CLAUDE.md` rule, and add a row to the ADR index. Routine answers/sims/bug-fixes do **not**
    get an ADR.
 
+6. **Agent-wiring check (`ADR-0016` — make the judgment call, then ask).** Whenever the issue produced a
+   **new standing analytical layer or a refinement of an existing one** (a new `simulation-output/` layer,
+   a new scoring/annotation axis, a new sim *type*, a methodology that should color the catalog), ask:
+   *would a fresh full cycle (§3) actually pick this up, or would the orchestrator + vector leads
+   regenerate the catalog without it?* Per `ADR-0016` the leads/orchestrator only ingest layers that are
+   explicitly wired into the intake (`sarcoma-orchestrator-intake` step 1B, the relevant `v*-lead`, and
+   the output schema). So:
+   - **Make the judgment call yourself** about *what* wiring the new layer needs — typically a row in the
+     orchestrator-intake step-1B table + the vector lead(s) it conditions + (if it adds a catalog section)
+     the output schema in `docs/06` and `sarcoma-output-schema`. Layers **condition/annotate**, never
+     override real-data evidence or prune the forward lane; never a fifth vector.
+   - **Then ask the maintainer** with `AskUserQuestion` whether to **bake that wiring into this same PR**
+     (recommended when the layer is meant to inform future runs) or **defer it**. Present your judgment
+     (which files, which leads) as the default option so they can approve in one click. Do this **before
+     Phase 6** so the wiring rides along in the same PR and review.
+   - If the new layer slots cleanly into an existing ingestion path (just another row in the step-1B
+     table with no new behavior), you may wire it and note it in the PR body without a blocking question —
+     use judgment; ask whenever the wiring is non-trivial or architecturally significant.
+   - If there is **no** new layer/refinement (a plain answer, an existing-sim run, a bug fix), skip this
+     step.
+
 ---
 
 ## Phase 6 — Open the PR (assigned to the maintainer)
@@ -232,4 +253,7 @@ If you cannot complete the work after claiming it in Phase 2:
 - Isolated worktree off latest `main`; never touch the tree you were invoked from.
 - No fabricated citations; verify accessions; evidence tier + mechanism + "could not establish" on all research.
 - New artifacts, never clobber; ADR for framework-level changes only.
+- **New layer ⇒ wire it in (ADR-0016):** if the issue adds/refines a standing analytical layer, make the
+  judgment call on the orchestrator/lead/schema wiring and **ask the maintainer** (Phase 5 step 6) whether
+  to bake it into the same PR — so future full re-runs actually inherit it.
 - PR assigned to the maintainer, never auto-merged; findings posted to the issue; "not medical advice."

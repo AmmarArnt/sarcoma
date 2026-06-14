@@ -59,6 +59,10 @@ cross-cutting, **not a fifth vector**.
 - Files changed: `CLAUDE.md` (§3), `docs/06-agent-architecture.md` (orchestrator intake + schema),
   `.claude/agents/{orchestrator,v1,v2,v3,v4}-lead.md`, `.claude/skills/sarcoma-orchestrator-intake/SKILL.md`,
   `.claude/skills/sarcoma-output-schema/SKILL.md`, `docs/adr/README.md` (index).
+- **Enforcement going forward:** the `github-issue-runner` skill (Phase 5 step 6) now makes the wiring a
+  standing judgment call — whenever an issue adds/refines a standing layer, the skill decides what
+  orchestrator/lead/schema wiring it needs and **asks the maintainer** whether to bake it into the same PR,
+  so this ADR's obligation is applied to *future* layers automatically rather than by ad-hoc reminder.
 - **Token cost / smaller-model load:** vector leads run on `sonnet`; layer intake adds context. Mitigated by
   pointing each lead only at the layer(s) in its scope (not all of them) and keeping V1/V2 light (their
   prompts warn against over-stuffed context).
