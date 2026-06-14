@@ -27,32 +27,32 @@ run the simulation indicated in @docs/06-agent-architecture.md. focus specifical
   medicine:
     - curcumin (curcuma) + piperine
     - liposomal vitamin C
-    - black cumin seed oil (Nigella sativa /
+    - black cumin seed oil (Nigella sativa / thymoquinone)
     - vitamin D
     - honey
     - fresh juice of celery, ginger, carrot, broccoli, apple, and beetroot
-  During the year of NED he continued supplerine,
+  During the year of NED the patient continued curcumin + piperine,
   liposomal vitamin C, black cumin seed oil, vitamin D, and honey.
 
   Do not merely catalogue these — have the relevant vectors evaluate this actual
-  regimen as helping / neutral / potentially
+  regimen as helping / neutral / potentially harmful, and address the drug
   interactions head-on, especially:
-    - piperine as a CYP3A4 / P-gp inhibitor
+    - piperine as a CYP3A4 / P-gp inhibitor versus the
       ifosfamide prodrug (now imminent) and vincristine/etoposide/doxorubicin;
-      include the Shoba 1998 caveat for the lity claim
+      include the Shoba 1998 caveat for the bioavailability claim
     - high-dose antioxidants (liposomal vitamin C) during ROS-dependent chemo
       (doxorubicin, ifosfamide)
     - β-carotene from carrot juice and the ATBC/CARET harm signal
-    - sulforaphane from broccoli (myrosinaseI)
+    - sulforaphane from broccoli (myrosinase activity / effect of juicing)
     - thymoquinone, apigenin/luteolin (celery), 6-gingerol (ginger),
-      quercetin (apple), nitrate (beetroot) tors
+      quercetin (apple), and nitrate (beetroot) as candidate bioactive effectors
   The Orchestrator's final output should carry a dedicated
-  "Patient's Actual Self-Administered Regime
+  "Patient's Actual Self-Administered Regimen" section.
 
   === OUTPUT REQUIREMENT ===
   In the final output, clearly state at the top — as a key-map callout — what
-  each vector represents, so a later reader , V4
+  each vector represents, so a later reader knows what V1, V2, V3, and V4
   mean.
 
-  Do not use any memory stored about Ammar — this has to be a clean-slate
+  Do not use any memory stored about the patient — this has to be a clean-slate
   research exercise.
