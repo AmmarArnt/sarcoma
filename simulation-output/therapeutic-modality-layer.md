@@ -121,7 +121,7 @@ Honest audit of `protocol-v2.md` + the V4 outputs against the modality grid. Fea
 | **M1** systemic small-molecule | **Strong** — the bulk of V1/V3 (EZH2i, BETi, CDK4/6i, PROTAC/ASO) | covered | — |
 | **M2** biologics/antibodies | **Moderate** — V4 checkpoint mAbs, anti-PVR (ADR-0006) | covered | watch ADC payloads vs. CIC-DUX4 surface markers (forward) |
 | **M3** cellular (TIL/CAR-T/CAR-NK/TCR) | **Thin / conceptual** — V4 NK + neoantigen arms gesture at it; no executed CAR/TCR analysis | **gap** | scope a fusion-neoantigen **TCR** (intracellular junction ⇒ not CAR) + **CAR-NK** against a CIC-DUX4 surface ligand — **fusion-contingent** (§7) |
-| **M4** viral / oncolytic | **Absent** | **gap** | oncolytic virus as an **ICD/DAMP** route into the cold CIC-DUX4 microenvironment (links ADR-0006); `Theoretical` in CIC-DUX4 |
+| **M4** viral / oncolytic | **Deep-dived** — [`oncolytic-virotherapy-danger-signal-layer.md`](oncolytic-virotherapy-danger-signal-layer.md) (ADR-0019) | gap **worked through** | oncolytic virus as an **ICD/DAMP "artificial danger-signal generator"** (links ADR-0006); one positive sarcoma signal (T-VEC+pembro phase-2), but Ewing/round-cell lines resist OV and CIC-DUX4 data are nil → `Theoretical` in CIC-DUX4 |
 | **M5** vaccines | **Moderate** — neoantigen-vaccine + mRNA team exist | covered (fusion-contingent for junction vaccines) | — |
 | **M6** local / regional delivery | **Absent** | **gap (bounded)** | isolated limb/regional perfusion is **anatomy-limited** (most CIC-DUX4 is deep trunk/retroperitoneal/visceral, not extremity) — note as bounded, not headline |
 | **M7** physical / energy-based | **Absent** | **gap — highest value** | **regional hyperthermia + chemo** has a positive phase-3 STS RCT (below); radiation-immune priming / abscopal as a V2↔V4 bridge |
@@ -277,7 +277,9 @@ anatomy-limited, so the layer is not a blanket endorsement of every named format
   of the hypothesis is wrong and it reduces to a V2 sensitiser.
 - **[Forward / V4] Oncolytic virus or in-situ ICD (radiation/HIFU) + checkpoint** as a route to prime the
   cold microenvironment — `Theoretical` in CIC-DUX4; *falsifier:* no T-cell infiltration shift on paired
-  biopsy.
+  biopsy. **Worked through in the M4 deep-dive** ([`oncolytic-virotherapy-danger-signal-layer.md`](oncolytic-virotherapy-danger-signal-layer.md),
+  ADR-0019): gating experiment = a CIC-DUX4 tropism/permissiveness screen, since the nearest data
+  (Ewing/round-cell) show *low* OV susceptibility.
 - **[Forward / V3] Fusion-degrader repurposing concept.** The arsenic→PML-RARA precedent (§5) motivates a
   *molecular-glue / PROTAC* search for CIC-DUX4 degradation — already V3 territory; this sub-scan supplies
   the conceptual precedent, not a drug.
