@@ -7,8 +7,10 @@
 >
 > **Maintenance:** this file is a **standing deliverable** (ADR-0009). When a new sim, team output, or
 > analysis produces a result that deserves to be compared against the others, **add a row here** in the
-> same commit/PR that adds the artifact. See "Maintenance rule" at the bottom. Last updated: **2026-06-14**
-> (clean-slate run **v3**: `protocol-v3.md` + `metastatic-disease-considerations-v3.md` added; baselines v1/v2 preserved).
+> same commit/PR that adds the artifact. See "Maintenance rule" at the bottom. Last updated: **2026-06-22**
+> (evidence refresh `evidence-refresh-2026-06.md` + Sim 9 condensate/LLPS added; rows for the p300/CBP
+> multi-vector unification, DUX4-STAT1/ISG antagonism, dual-ICB case, MCL1 cardiotox flag, and the
+> condensate forward hypothesis appended. Baselines v1/v2/v3 preserved.)
 
 ## How to read the three axes
 - **Evidence tier** (what *kind* of evidence): `Established` › `Clinical-Trial` › `Preclinical-Animal` ›
@@ -50,6 +52,7 @@
 | **CDK4 (not CDK6) is the selective cell-cycle dependency** | Sims 1+2; Sim 8 (driver-robust) | Preclinical-Cell | **High** (convergent) | **F1** (CDK4/6i approved, breast) | Pair to prevent CCNE1 bypass; cytostatic. |
 | **IGF1R axis is a real, fusion-sarcoma-enriched dependency** | Sim 1 + Sim 2 + Kitra-SRS | Preclinical-Cell | **Medium-High** (3 lines) | F3/F4 (most IGF1R programs discontinued in Ewing) `[re-verify]` | Combine, don't solo; biomarker-selected subset. |
 | **p300/CBP is the CIC-DUX4-specific super-enhancer *writer* (reversible)** | Epigenetic brief; Sim 7; Bakaric 2024 (PMID 38275898) | Preclinical-Animal/Cell (CIC-DUX4-direct) | **Medium-High** | F3 (p300i clinical-stage early) | Restores MHC-I → V3→V4 bridge; "deep but drainable" attractor. |
+| **p300/CBP is a single node hitting THREE vectors** — drives transactivation (V1/V3), *stabilises* the fusion protein, **and suppresses MHC-I** (V4 priming) | `evidence-refresh-2026-06.md` §B; Mol Cancer 2025 `s12943-025-02485-6` `[VERIFY]`; Oncogenesis 2021 PMC8511258 | Preclinical-Cell/Animal (CIC-DUX4-direct) | **Medium** (snippet-sourced; 2 concordant) | F3 — inobrodib/CCS1477 `NCT04068597`/`NCT03568656`, TT125-802 `NCT06403436`; no CIC arm; broad-essential → window risk `[re-verify]` | **Reframes the MHC-I bridge from EZH2i (now F4-US) to p300/CBPi.** The most actionable refresh delta. |
 
 ### B. Strategic / decision / diagnostic findings
 | Finding | Source | Evidence tier | Confidence | Feasibility | Note |
@@ -72,6 +75,8 @@
 | **NK missing-self arm: the metastatic/relapsed clone is *more* likely MHC-I-low** | Sim 4; protocol #3 | Mechanistic / Clinical-Trial | **Medium** | NK transfer F2/F3; IL-15 (N-803) F1(US) `[re-verify]` | Turns the immune-evasion state into an NK vulnerability. |
 | **MCL1 dependency = "re-arm the DUX4 death program"** | Sim 7 driver-engineering brief; Nat Commun 2025 (PMID 40841513 / 40841360 — reconcile) | Preclinical-Cell/Animal (verified dependency) | **Medium** | F2/F3 (MCL1i clinical-stage; cardiac-tox caution) | Most promising *novel* target — but **driver-contingent** (Sim 8): hold for the unconfirmed patient. |
 | **Oncolytic virus as "artificial danger-signal generator" (M4 deep-dive)** — one positive sarcoma signal (T-VEC+pembro phase-2 ORR 30%, NCT03069378) **but** nearest data (Ewing/round-cell) are *low-susceptibility* and CIC-DUX4 data are nil | `oncolytic-virotherapy-danger-signal-layer.md` (issue #11 follow-up; ADR-0019) | Clinical-Trial (sarcoma, non-CIC) → **Theoretical** for CIC-DUX4 | **Low** (P2 sarcoma; Ewing-family resists OV; permissiveness untested) | T-VEC **F2** if a lesion is injectable; systemic OVs **F3**; **RP1 FDA-rejected twice** `[re-verify]` | Fusion-agnostic (good for the ~5%); deep/visceral anatomy is the access limiter; gating experiment = CIC-DUX4 tropism screen. Modality moves feasibility, not tier (ADR-0018). |
+| **DUX4 binds STAT1 and broadly inhibits interferon-stimulated genes (ISGs)** — a 2nd, MHC-I-independent immune-evasion arm | `evidence-refresh-2026-06.md` §C; bioRxiv 2022 `10.1101/2022.08.09.503314` `[VERIFY]` | Mechanistic (snippet-sourced) | **Low-Medium** | N/A (mechanism) | Explains the IFN-cold phenotype *beyond* MHC-I; predicts IFN-axis therapies are blunted at source. Fusion-relevant (DUX4 moiety). |
+| **Documented CIC::DUX4 response to dual ICB (anti-PD-1 + anti-LAG-3; nivolumab+relatlimab)** with post-treatment CD8 influx + PD-1/LAG-3 exhaustion | `evidence-refresh-2026-06.md` §C; npj Prec Onc 2025 `s41698-025-00878-w` `[VERIFY]` | Clinical (single case) | **Low-Medium** | checkpoint **F1**; LAG-3 doublet (nivo+rela) **F1-US** `[re-verify]` | Updates "modest *monotherapy*" → a **doublet incl. LAG-3** signal; supports priming-then-checkpoint sequencing (Sims 4/5). |
 
 ### D. Safety / current-regimen / contextual findings
 | Finding | Source | Evidence tier | Confidence | Feasibility | Note |
@@ -82,6 +87,8 @@
 | **Antioxidant-vs-ROS-chemo & antioxidant-vs-metastasis conflicts are genuine and unresolved** | protocol #9; antioxidant brief | Preclinical-Animal | **Medium** | **F1** (caution item) | High-dose antioxidants during ROS-chemo / with residual disease → caution. |
 | **mRNA COVID-19 vaccination is a null finding for this patient's current biology** | protocol #8; `mrna-vaccine-research/` | Clinical-observational | **Medium** | N/A | Carry-forward: anti-PEG could blunt a *future* LNP-mRNA cancer vaccine. |
 | **V2 (compiler-protection) is the least applicable vector to the current disease** | protocol #10 | Mechanistic | **Medium** | N/A | The relapsed lesion already carries the driver. |
+| **MCL1's cardiotoxicity stacks on this patient's prior anthracycline (doxorubicin)** — class-wide cardiac signal (S64315/AMG176 halted; ABBV-467 troponin; BRD-810 = next-gen lower-cardiac) | `evidence-refresh-2026-06.md` §D `[VERIFY]` | Clinical (class safety) | **Medium** | **F3–F4 cardio-gated** for THIS patient `[re-verify]` | Patient-conditioned down-weight the generic MCL1 row misses; an oncologist owns any cardiac-risk judgement. |
+| **[Forward] CIC-DUX4 may nucleate a p300/CBP-dependent transcriptional condensate via the junction-invariant DUX4 C-term IDR** | Sim 9 (`09-condensate-llps/`); FH-9.1 | **Theoretical** (no DUX4/CIC-DUX4 LLPS study exists) | **Low** (forward lane; not scored) | N/A — falsifier = p300/CBPi (A-485/inobrodib) condensate-dissolution test | Novel + fusion-agnostic (covers the ~5%) + anchored to an already-druggable node. Sim 9 pipeline runnable; biological run was network-blocked here. |
 
 ---
 

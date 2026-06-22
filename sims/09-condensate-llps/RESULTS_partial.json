@@ -1,0 +1,25 @@
+{
+  "failures": [
+    [
+      "DUX4",
+      "Q9UBX2",
+      "403 Client Error: Forbidden for url: https://rest.uniprot.org/uniprotkb/Q9UBX2.txt"
+    ],
+    [
+      "EWSR1",
+      "Q01844",
+      "403 Client Error: Forbidden for url: https://rest.uniprot.org/uniprotkb/Q01844.txt"
+    ],
+    [
+      "FUS",
+      "P35637",
+      "403 Client Error: Forbidden for url: https://rest.uniprot.org/uniprotkb/P35637.txt"
+    ],
+    [
+      "CIC",
+      "Q96RK0",
+      "403 Client Error: Forbidden for url: https://rest.uniprot.org/uniprotkb/Q96RK0.txt"
+    ]
+  ],
+  "date": "2026-06-22"
+}
