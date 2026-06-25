@@ -346,7 +346,7 @@ documented runnable entry point.** Don't add new dirs without assigning a tier (
 
 | Tier | Audience | Contents |
 |---|---|---|
-| **1 — Read first (human)** | Clinicians · patients · non-technical | `simulation-output/protocol-v2.md` (main catalog) · `simulation-output/findings-ranking.md` · `simulation-output/forward-simulation/*-brief.md` |
+| **1 — Read first (human)** | Clinicians · patients · non-technical | `simulation-output/protocol-v4.md` (main catalog; v1–v3 retained as baselines) · `simulation-output/findings-ranking.md` · `simulation-output/forward-simulation/*-brief.md` |
 | **2 — Hybrid** | Researchers · motivated readers | rest of `simulation-output/` (analytical layers + per-vector summaries) · `docs/00–05` |
 | **3 — Contributor / LLM** | Developers · AI agents | `docs/06–09` · `docs/adr/` · `sims/` · `CLAUDE.md` · `scripts/` |
 | **4 — Machine / tooling** | Script runner · configs · caches | `.claude/` · `.prompts/` · `.venv/` · `.gitignore` · gitignored `sims/*/data/` |
@@ -367,7 +367,7 @@ scripts/openmed_ner.py   OpenMed NER grounding CLI (--team)
 .claude/skills/          the 6 sarcoma-* content skills + github-issue-runner (workflow; ADR-0002)
 sims/00-INDEX.md         the in-silico simulations + convergent findings
 sims/01–08/              reproducible simulations (script + RESULTS.md + MANIFEST.md + grounding.tsv)
-simulation-output/       protocol-v2.md (main catalog), findings-ranking.md (master register),
+simulation-output/       protocol-v4.md (main catalog; v1–v3 baselines), findings-ranking.md (master register),
                          forward-simulation/ (oncologist briefs), biomarker-voi-stratification.md,
                          translational-feasibility-layer.md, host-biology-modifier-layer.md,
                          therapeutic-modality-layer.md, oncolytic-virotherapy-danger-signal-layer.md,

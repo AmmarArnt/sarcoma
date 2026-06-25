@@ -62,21 +62,30 @@ except Exception:
 UA = {"User-Agent": "cic-dux4-research/1.0 (in-silico Track B; research only)"}
 
 # UniProt accessions. Lengths are the canonical UniProt isoform lengths used only
-# as a sanity check; the authoritative gate is the CRC64 (below).  [VERIFY] lengths.
+# as a sanity check; the authoritative gate is the CRC64 (below).
+# Domain boundaries VERIFIED against live UniProt feature tables on 2026-06-25
+# (FT DOMAIN / REGION / DNA_BIND lines) — see MANIFEST.md "Boundary verification".
 TARGETS = {
     "DUX4":  dict(acc="Q9UBX2", length=424,
-                  # C-terminal transactivation domain (the module retained in CIC-DUX4).
-                  # Literature: transactivation maps to the C-terminal ~80 aa. [VERIFY]
-                  region=("C-term transactivation domain", 345, 424), role="test"),
+                  # C-terminal module retained in CIC-DUX4. UniProt FT REGION 327..424
+                  # = "Required for interaction with EP300 and CREBBP, and [transactivation]"
+                  # — i.e. the p300/CBP-recruiting transactivation domain itself. (was 345–424)
+                  region=("C-term transactivation / EP300-CREBBP-interaction domain", 327, 424), role="test"),
     "EWSR1": dict(acc="Q01844", length=656,
-                  # N-terminal SYGQ-rich prion-like LCD ("EAD") — the EWS-FLI1 LLPS driver.
-                  region=("N-term prion-like LCD (EAD)", 1, 264), role="positive-control"),  # [VERIFY]
+                  # N-terminal prion-like LCD. UniProt FT REGION 1..285 = "EAD (Gln/Pro/Thr-rich)" —
+                  # the EWS-FLI1 LLPS driver. (was 1–264)
+                  region=("N-term prion-like LCD (EAD)", 1, 285), role="positive-control"),
     "FUS":   dict(acc="P35637", length=526,
-                  # Canonical N-terminal QGSY-rich prion-like LCD — gold-standard LLPS benchmark.
-                  region=("N-term prion-like LCD", 1, 214), role="positive-control"),  # [VERIFY]
-    "CIC":   dict(acc="Q96RK0", length=1608,
+                  # Canonical FUS-LC prion-like LCD. UniProt marks 1..286 "Disordered"; the
+                  # field-standard FUS-LC construct (SYGQ-rich) is residues 1–214 — kept for
+                  # comparability with the LLPS literature (UniProt disorder extends to 286).
+                  region=("N-term prion-like LCD (FUS-LC)", 1, 214), role="positive-control"),
+    "CIC":   dict(acc="Q96RK0", length=2517,
                   # HMG-box DNA-binding domain — a FOLDED region; negative control.
-                  region=("HMG-box (folded)", 201, 280), role="negative-control"),  # [VERIFY]
+                  # UniProt FT DNA_BIND 1109..1177 "HMG box" in the current 2517-aa canonical
+                  # entry. (was wrongly 201–280 against a stale 1608-aa length — that slice hit a
+                  # disordered/low-complexity region, an invalid negative control.)
+                  region=("HMG-box (folded)", 1109, 1177), role="negative-control"),
 }
 
 
@@ -109,12 +118,13 @@ def verified_sequence(acc: str, expected_len: int) -> str:
     seq, sq_crc = parse_seq_and_crc(flat)
     if not seq:
         raise ValueError(f"{acc}: no sequence parsed")
-    got = crc64(seq)  # biopython, canonical SwissProt CRC64
-    if sq_crc and got.upper() != sq_crc.upper():
-        raise ValueError(f"{acc}: CRC64 mismatch (file {sq_crc} vs computed {got}) — refusing to use")
+    got = crc64(seq)  # biopython, canonical SwissProt CRC64 (returns a "CRC-XXXX..." string)
+    got_hex = got.upper().removeprefix("CRC-")  # UniProt SQ line carries the bare hex
+    if sq_crc and got_hex != sq_crc.upper():
+        raise ValueError(f"{acc}: CRC64 mismatch (file {sq_crc} vs computed {got_hex}) — refusing to use")
     if expected_len and len(seq) != expected_len:
         print(f"  [warn] {acc}: length {len(seq)} != expected {expected_len} (isoform drift?) [VERIFY]")
-    print(f"  [ok] {acc}: {len(seq)} aa, CRC64 {got} verified against UniProt SQ line")
+    print(f"  [ok] {acc}: {len(seq)} aa, CRC64 {got_hex} verified against UniProt SQ line")
     return seq
 
 

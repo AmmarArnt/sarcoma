@@ -1,0 +1,50 @@
+model	label	text	confidence	start	end
+oncology_detection_superclinical	Gene_or_gene_product	CIC-DUX4	0.946	0	8
+oncology_detection_superclinical	Cancer	CIC-rearranged sarcoma	0.827	31	53
+oncology_detection_superclinical	Gene_or_gene_product	DUX4	0.944	55	59
+oncology_detection_superclinical	Gene_or_gene_product	EP300	0.937	103	108
+oncology_detection_superclinical	Gene_or_gene_product	CREBBP	0.956	113	119
+oncology_detection_superclinical	Gene_or_gene_product	p300	0.946	121	125
+oncology_detection_superclinical	Gene_or_gene_product	CBP	0.948	126	129
+oncology_detection_superclinical	Gene_or_gene_product	EWSR1	0.940	132	137
+oncology_detection_superclinical	Gene_or_gene_product	EWS-FLI1	0.686	184	192
+oncology_detection_superclinical	Gene_or_gene_product	FUS	0.913	211	214
+oncology_detection_superclinical	Gene_or_gene_product	CIC HMG-box	0.613	283	294
+oncology_detection_superclinical	Cellular_component	DNA-binding	0.815	295	306
+oncology_detection_superclinical	Gene_or_gene_product	DUX4	0.939	348	352
+oncology_detection_superclinical	Gene_or_gene_product	p300	0.945	412	416
+oncology_detection_superclinical	Gene_or_gene_product	CBP histone acetyltransferase	0.934	417	446
+oncology_detection_superclinical	Simple_chemical	A-485	0.969	486	491
+oncology_detection_superclinical	Simple_chemical	inobrodib	0.967	496	505
+oncology_detection_superclinical	Gene_or_gene_product	p300	0.941	510	514
+oncology_detection_superclinical	Gene_or_gene_product	CBP	0.930	515	518
+genome_detection_bioclinical	GENE/PROTEIN	CIC-DUX4	0.930	0	8
+genome_detection_bioclinical	GENE/PROTEIN	DUX4 C-terminal transactivation domain	0.741	55	93
+genome_detection_bioclinical	GENE/PROTEIN	EP300	0.953	103	108
+genome_detection_bioclinical	GENE/PROTEIN	CREBBP	0.952	113	119
+genome_detection_bioclinical	GENE/PROTEIN	p300	0.945	121	125
+genome_detection_bioclinical	GENE/PROTEIN	CBP	0.941	126	129
+genome_detection_bioclinical	GENE/PROTEIN	EWSR1	0.947	132	137
+genome_detection_bioclinical	GENE/PROTEIN	EWS-FLI1	0.947	184	192
+genome_detection_bioclinical	GENE/PROTEIN	FUS	0.517	211	214
+genome_detection_bioclinical	GENE/PROTEIN	CIC HMG-box DNA-binding domain	0.744	283	313
+genome_detection_bioclinical	GENE/PROTEIN	DUX4 acidic activation domain	0.919	348	377
+genome_detection_bioclinical	GENE/PROTEIN	p300	0.948	412	416
+genome_detection_bioclinical	GENE/PROTEIN	CBP histone acetyltransferase	0.842	417	446
+genome_detection_bioclinical	GENE/PROTEIN	p300	0.951	510	514
+genome_detection_bioclinical	GENE/PROTEIN	CBP	0.928	515	518
+protein_detection_pubmed	protein	CIC-DUX4	0.928	0	8
+protein_detection_pubmed	protein	CIC-rearranged	0.912	31	45
+protein_detection_pubmed	protein	DUX4	0.914	55	59
+protein_detection_pubmed	protein	EP300	0.935	103	108
+protein_detection_pubmed	protein	CREBBP	0.928	113	119
+protein_detection_pubmed	protein	p300/CBP	0.921	121	129
+protein_detection_pubmed	protein	EWSR1	0.931	132	137
+protein_detection_pubmed	protein	EWS-FLI1	0.932	184	192
+protein_detection_pubmed	protein	FUS	0.927	211	214
+protein_detection_pubmed	protein	CIC	0.927	283	286
+protein_detection_pubmed	protein	DUX4	0.882	348	352
+protein_detection_pubmed	protein	p300	0.919	412	416
+protein_detection_pubmed	protein	CBP	0.487	417	420
+protein_detection_pubmed	protein_familiy_or_group	histone acetyltransferase	0.953	421	446
+protein_detection_pubmed	protein	p300/CBP	0.648	510	518
