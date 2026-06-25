@@ -21,7 +21,7 @@ tested yet, and small **computational experiments** anyone can re-run.
 
 | Document | What it is |
 |---|---|
-| [`simulation-output/protocol-v2.md`](simulation-output/protocol-v2.md) | The main deliverable — ranked, evidence-tiered hypothesis catalog (the full output of the simulation). Start here. |
+| [`simulation-output/protocol-v4.md`](simulation-output/protocol-v4.md) | **The main deliverable — ranked, evidence-tiered hypothesis catalog. Start here.** (v4, 2026-06-25: an evidence-verified update of v3 — adds the p300/CBP multi-vector MHC-I-restoring node + DUX4-STAT1 immune-evasion arm; `protocol-v1/v2/v3.md` retained as prior baselines.) |
 | [`simulation-output/findings-ranking.md`](simulation-output/findings-ranking.md) | One-page master register: every notable finding scored on three axes (evidence strength · confidence · real-world access). The honest summary and quick-scan table. |
 | [`simulation-output/forward-simulation/WEE1-ifosfamide-oncologist-brief.md`](simulation-output/forward-simulation/WEE1-ifosfamide-oncologist-brief.md) | Plain-language brief on the WEE1 + ifosfamide hypothesis — written to hand to an oncologist or molecular tumor board. |
 | [`simulation-output/forward-simulation/selective-clearance-oncologist-brief.md`](simulation-output/forward-simulation/selective-clearance-oncologist-brief.md) | Brief on selective immune clearance strategies — same format, same audience. |
@@ -80,7 +80,7 @@ entirely.
 
 | Tier | Audience | Directories / files |
 |---|---|---|
-| **1 — Read first** | Clinicians · patients · non-technical readers | `simulation-output/protocol-v2.md` (main catalog) · `simulation-output/findings-ranking.md` · `simulation-output/forward-simulation/*-brief.md` (plain-language discussion briefs) · this `README.md` |
+| **1 — Read first** | Clinicians · patients · non-technical readers | `simulation-output/protocol-v4.md` (main catalog; v1–v3 retained as baselines) · `simulation-output/findings-ranking.md` · `simulation-output/forward-simulation/*-brief.md` (plain-language discussion briefs) · this `README.md` |
 | **2 — Hybrid** | Researchers · motivated readers | rest of `simulation-output/` (analytical layers: biomarker VoI, feasibility, host-biology, metastatic, per-vector summaries, tumorigenesis reverse-engineering) · `docs/00–05` (framing + domain knowledge) |
 | **3 — Contributor / LLM** | Developers · AI agents | `docs/06–09` + `docs/adr/` (agent architecture, evidence-scoring, verification sources, ADRs) · `sims/` (reproducible in-silico experiments) · `CLAUDE.md` (session operating guide) · `scripts/` (orchestration + NER) |
 | **4 — Machine / tooling** | Script runner · configs · caches | `.claude/` · `.prompts/` · `.venv/` · `.gitignore` · gitignored `sims/*/data/` |

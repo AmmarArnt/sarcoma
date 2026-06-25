@@ -1,0 +1,8 @@
+CIC-DUX4 fusion oncoprotein in CIC-rearranged sarcoma.
+DUX4 C-terminal transactivation domain recruits EP300 and CREBBP (p300/CBP).
+EWSR1 prion-like low-complexity domain (EAD) drives EWS-FLI1 phase separation.
+FUS prion-like low-complexity domain is a gold-standard LLPS benchmark.
+CIC HMG-box DNA-binding domain is a folded negative control.
+The DUX4 acidic activation domain is disordered but not prion-like.
+p300/CBP histone acetyltransferase nucleates transcriptional condensates.
+A-485 and inobrodib are p300/CBP inhibitors.

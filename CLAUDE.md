@@ -125,6 +125,16 @@ When extending: spawn only the **specific** specialist or supplementary team nee
 artifact** (e.g. `protocol-v2.md`, a new `sims/NN-*/`, a dated file) rather than clobbering existing
 ones — unless the user asked for an overwrite. Preserve the prior run as the baseline.
 
+**Live evidence-refresh lane (ADR-0020).** To *inject new biology* between full cycles — without
+re-running §3 — run a dated `evidence-refresh-YYYY-MM.md` that adds new/updated literature (each claim
+tiered + cited). **Mandatory gate:** snippet/abstract-sourced claims are tagged `[VERIFY]` and **may not
+enter a protocol version until full-text/abstract-verified against a live source** (PubMed/PMC/GEO/registry
+per `docs/09`), PMID/accession inline, perishable status date-stamped; items that fail are **corrected or
+retracted in place** (this is what caught the 2026-06 WEE1 retraction). A verified refresh may produce the
+**next** `protocol-vN.md` (an incremental, evidence-verified update — baselines preserved) on a **user-gated**
+promotion; update `findings-ranking.md` + the README "Where to start" in the same change. The lane is
+**symmetric** (it can retract/refute, not only confirm) and never prunes the forward lane (golden rule #5).
+
 ---
 
 ## 1. Golden rules (non-negotiable — apply to every output, every agent)
@@ -192,6 +202,7 @@ From `docs/00-README.md`, `docs/06-agent-architecture.md`, and the `sarcoma-cont
 | A **reasoning-process** question — human/clinician-in-the-loop steering, adversarial / red-team hypothesis testing, "actively try to disprove X," debiasing, premature-convergence, counterfactuals, or dynamic expansion/contraction of the search space | **Reuse the hypothesis-steering & adversarial-reasoning doc** (`docs/11-hypothesis-steering-and-adversarial-reasoning.md` / ADR-0017): map the ask onto the framework's existing debiasing surfaces, apply the **red-team self-challenge** (disconfirm / alternative / flip-test / steer-audit — also in `sarcoma-pre-output-check`), and use the expansion/contraction triggers. A **process** layer — **not a fifth vector**, not a biological layer; steering reframes the search but never supplies an evidence tier, and contraction never prunes the forward lane (golden rule #5). |
 | A **modality / delivery-format** question — "beyond systemic drugs," cellular therapy (TIL/CAR-T/CAR-NK/TCR), gene/viral/oncolytic-virus therapy, vaccines, local/regional delivery (intratumoral, regional perfusion), physical/energy-based (hyperthermia, focused ultrasound, radiation-immune priming), combination-modality; or a **drug-repurposing** ("approved drug in a new context") / **ethnopharmacology / phytotherapy / traditional-medicine / medicinal-mushroom** sourcing question | **Reuse the therapeutic-modality layer** (`simulation-output/therapeutic-modality-layer.md` / ADR-0018): place the candidate on the **modality axis (M1–M8)**, orthogonal to the four vectors — modality moves the **feasibility** axis, never the evidence tier or mechanism. Check the coverage map (M3/M4/M6/M7 are the catalog's thin spots; **M7 regional hyperthermia** has a positive phase-3 STS RCT). Run repurposing/phytotherapy candidates through the standard gauntlet (tier + Directness ADR-0014 + concentration-mismatch + `sarcoma-chemo-interactions`); junction-specific cellular/vaccine modalities are **fusion-contingent**. A cross-cutting axis — **not a fifth vector**; **re-verify perishable feasibility/regulatory facts live**. |
 | An **oncolytic-virus / virotherapy** question — "OV as an artificial danger signal / alarm system," "make the cold tumour hot with a virus," immune-visibility-via-virus, a specific platform (T-VEC, RP1/RP2/RP3, OH2, VG161, reovirus/pelareorep, NDV, Seneca Valley Virus), or "nearest real-world path to access an OV" | **Reuse the M4 oncolytic-virotherapy deep-dive** (`simulation-output/oncolytic-virotherapy-danger-signal-layer.md` / ADR-0019): it is the M4 cell of the modality layer (ADR-0018) worked through the V4 ICD/danger-signal biology (ADR-0006). OV acts mainly on the **recognition/visibility** axis (raises antigenicity **and** adjuvanticity), is **fusion-agnostic** (applies to the ~5%), but the nearest data (Ewing/round-cell) show **low OV susceptibility** and **CIC-DUX4 OV data are nil** → `Theoretical` for CIC-DUX4; the gating experiment is a tropism screen. Modality moves **feasibility**, not tier; deep/visceral anatomy and RP1's twice-rejected FDA path bound access. **Not a fifth vector; re-verify perishable regulatory/trial status live.** |
+| A request to **refresh the evidence / inject new biology / update the catalog with newer literature** between full runs, or "is finding X still current / does this new paper change anything" | **Use the live evidence-refresh lane** (§0 / ADR-0020): run/extend a dated `evidence-refresh-YYYY-MM.md`, tier+cite each claim, and apply the **`[VERIFY]`→full-text-verify gate** before anything enters a protocol version (PMID/accession inline, perishable status date-stamped; correct or **retract** failures in place). A verified refresh may produce the **next** `protocol-vN.md` on a **user-gated** promotion (baselines preserved; update `findings-ranking.md` + README). Symmetric (can retract, not only confirm); never prunes the forward lane. |
 
 Default to teams for analysis/research/simulation; default to a direct answer for everything else.
 A "thorough"-sounding multi-part question is not automatically a spawn — judge whether real
@@ -346,7 +357,7 @@ documented runnable entry point.** Don't add new dirs without assigning a tier (
 
 | Tier | Audience | Contents |
 |---|---|---|
-| **1 — Read first (human)** | Clinicians · patients · non-technical | `simulation-output/protocol-v2.md` (main catalog) · `simulation-output/findings-ranking.md` · `simulation-output/forward-simulation/*-brief.md` |
+| **1 — Read first (human)** | Clinicians · patients · non-technical | `simulation-output/protocol-v4.md` (main catalog; v1–v3 retained as baselines) · `simulation-output/findings-ranking.md` · `simulation-output/forward-simulation/*-brief.md` |
 | **2 — Hybrid** | Researchers · motivated readers | rest of `simulation-output/` (analytical layers + per-vector summaries) · `docs/00–05` |
 | **3 — Contributor / LLM** | Developers · AI agents | `docs/06–09` · `docs/adr/` · `sims/` · `CLAUDE.md` · `scripts/` |
 | **4 — Machine / tooling** | Script runner · configs · caches | `.claude/` · `.prompts/` · `.venv/` · `.gitignore` · gitignored `sims/*/data/` |
@@ -367,7 +378,7 @@ scripts/openmed_ner.py   OpenMed NER grounding CLI (--team)
 .claude/skills/          the 6 sarcoma-* content skills + github-issue-runner (workflow; ADR-0002)
 sims/00-INDEX.md         the in-silico simulations + convergent findings
 sims/01–08/              reproducible simulations (script + RESULTS.md + MANIFEST.md + grounding.tsv)
-simulation-output/       protocol-v2.md (main catalog), findings-ranking.md (master register),
+simulation-output/       protocol-v4.md (main catalog; v1–v3 baselines), findings-ranking.md (master register),
                          forward-simulation/ (oncologist briefs), biomarker-voi-stratification.md,
                          translational-feasibility-layer.md, host-biology-modifier-layer.md,
                          therapeutic-modality-layer.md, oncolytic-virotherapy-danger-signal-layer.md,
