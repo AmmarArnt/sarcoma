@@ -7,7 +7,9 @@
 >
 > **Maintenance:** this file is a **standing deliverable** (ADR-0009). When a new sim, team output, or
 > analysis produces a result that deserves to be compared against the others, **add a row here** in the
-> same commit/PR that adds the artifact. See "Maintenance rule" at the bottom. Last updated: **2026-06-25**
+> same commit/PR that adds the artifact. See "Maintenance rule" at the bottom. Last updated: **2026-06-26**
+> (added the everyday-microplastics/leachate exposure analysis row — §D — a Low-confidence risk-context
+> near-null; see `microplastics-exposure-analysis.md`). Prior: **2026-06-25**
 > (evidence refresh `evidence-refresh-2026-06.md` **full-text-verified** + Sim 9 condensate/LLPS **executed**;
 > rows for the p300/CBP multi-vector unification, DUX4-STAT1/ISG antagonism, dual-ICB case, MCL1 cardiotox
 > flag, and the condensate forward hypothesis appended/updated with verified PMIDs. **One snippet-sourced
@@ -91,6 +93,7 @@
 | **V2 (compiler-protection) is the least applicable vector to the current disease** | protocol #10 | Mechanistic | **Medium** | N/A | The relapsed lesion already carries the driver. |
 | **MCL1's cardiotoxicity stacks on this patient's prior anthracycline (doxorubicin)** — class-wide cardiac signal (ABBV-467 troponin in 4/8 pts; AZD5991 cardiac-arrest AE-death; BRD-810 = next-gen optimised-clearance) | `evidence-refresh-2026-06.md` §D; **ABBV-467 PMID 37880389 ✅, AZD5991 PMID 39167622/PMC11528199 ✅, BRD-810 PMID 39179926 ✅** (verified 2026-06-25) | Clinical (class safety) | **Medium** | **F3–F4 cardio-gated** for THIS patient `[re-verify]` | Patient-conditioned down-weight the generic MCL1 row misses; an oncologist owns any cardiac-risk judgement. |
 | **[Forward] CIC-DUX4 may nucleate a p300/CBP-dependent transcriptional condensate via the junction-invariant DUX4 C-term IDR — *heterotypic*, not prion-like** | Sim 9 (`09-condensate-llps/`); FH-9.1 (executed 2026-06-25) | **Theoretical** (no DUX4/CIC-DUX4 LLPS study exists) | **Low** (forward lane; not scored) | N/A — falsifier = p300/CBPi (A-485/inobrodib) condensate-dissolution test | Novel + fusion-agnostic (covers the ~5%) + anchored to an already-druggable node. **Sim 9 now executed:** 3 predictor families (localcider + metapredict + PLAAC) converge — DUX4 C-term is a disordered **acidic activation domain, NOT a FET-type prion-like LCD** (PLAAC PRDscore 0 vs EWSR1 77.6 / FUS 113.7). Refutes the naive EWSR1-analogy homotypic model; **redirects the mechanism onto p300/CBP coactivator-condensate partitioning** — same node as the §B refresh delta. |
+| **Everyday microplastics/leachate (food, containers, bottled water, cosmetics) → CIC-DUX4: near-null; no sarcoma or CIC evidence** | `microplastics-exposure-analysis.md` (2026-06-26) | **Theoretical / Mechanistic** (generic particle/chemical toxicology) | **Low** (no CIC/sarcoma data; cell-line doses ≫ everyday exposure) | N/A (risk-context modifier) | Two narrow non-CIC-specific threads only: nanoplastic + clastogen-leachate (antimony/styrene) genotoxicity → **V2** translocation-risk substrate; particle NLRP3/ROS inflammation → **V4**/host-biology (tumour-*promoting* lens). **Classic plastic→sarcoma (foreign-body/Oppenheimer) needs large smooth *implanted* films in rodents — wrong geometry/route for ingested particles.** PFAS (PFOA Group 1) & endocrine disruptors carry no CIC bridge. Not a fifth vector; `[VERIFY]` PMIDs. |
 
 ---
 
