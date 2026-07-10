@@ -13,6 +13,8 @@
 > flag, and the condensate forward hypothesis appended/updated with verified PMIDs. **One snippet-sourced
 > WEE1/adavosertib claim was retracted on verification** (not in the Nat Commun MCL1 paper). Baselines
 > v1/v2/v3 preserved.)
+> **2026-07-10:** added `post-chemo-maintenance-strategy.md` (MRD/dormancy/consolidation lens on the four
+> vectors + the apricot-seed/amygdalin AVOID row, Cochrane/FDA/EFSA-verified).
 
 ## How to read the three axes
 - **Evidence tier** (what *kind* of evidence): `Established` › `Clinical-Trial` › `Preclinical-Animal` ›
@@ -87,6 +89,7 @@
 | **Dietary concentration mismatch; broccoli *juicing* destroys myrosinase → near-zero sulforaphane** | protocol #6 | Preclinical-Cell | **High** | **F1** | Most dietary mechanisms operate 10–500× above achievable plasma levels. |
 | **Omega-3 EPA/DHA is the best cross-vector dietary compound — and it's absent from the regimen** | protocol #7 | Dietary-Observational + Mechanistic | **Medium** | **F1** | Lowest chemo-interaction risk; addresses post-WLI lung inflammation. |
 | **Antioxidant-vs-ROS-chemo & antioxidant-vs-metastasis conflicts are genuine and unresolved** | protocol #9; antioxidant brief | Preclinical-Animal | **Medium** | **F1** (caution item) | High-dose antioxidants during ROS-chemo / with residual disease → caution. |
+| **Apricot seeds / amygdalin ("laetrile" / "vitamin B17") = AVOID — no anti-cancer efficacy + cyanide-toxicity risk, amplified by this patient's high-dose vitamin C and active ifosfamide** | `post-chemo-maintenance-strategy.md` §6; **Cochrane CD005476.pub4 (Milazzo & Horneber 2015) ✅**, FDA amygdalin warning ✅, EFSA 2016 opinion ✅ (all verified 2026-07-10); Moertel NEJM 1982 `[VERIFY 7033783]`; amygdalin+vitamin-C cyanide case report `[VERIFY]` | **Theoretical** (efficacy; negative Cochrane review) | **Low / negative** | N/A (risk–benefit negative) | Clearest AVOID in the catalog, with a *named* case-specific interaction (vitamin C ↑ cyanide release). Fusion-agnostic — atypical-case flag does not soften it. |
 | **mRNA COVID-19 vaccination is a null finding for this patient's current biology** | protocol #8; `mrna-vaccine-research/` | Clinical-observational | **Medium** | N/A | Carry-forward: anti-PEG could blunt a *future* LNP-mRNA cancer vaccine. |
 | **V2 (compiler-protection) is the least applicable vector to the current disease** | protocol #10 | Mechanistic | **Medium** | N/A | The relapsed lesion already carries the driver. |
 | **MCL1's cardiotoxicity stacks on this patient's prior anthracycline (doxorubicin)** — class-wide cardiac signal (ABBV-467 troponin in 4/8 pts; AZD5991 cardiac-arrest AE-death; BRD-810 = next-gen optimised-clearance) | `evidence-refresh-2026-06.md` §D; **ABBV-467 PMID 37880389 ✅, AZD5991 PMID 39167622/PMC11528199 ✅, BRD-810 PMID 39179926 ✅** (verified 2026-06-25) | Clinical (class safety) | **Medium** | **F3–F4 cardio-gated** for THIS patient `[re-verify]` | Patient-conditioned down-weight the generic MCL1 row misses; an oncologist owns any cardiac-risk judgement. |
