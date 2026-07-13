@@ -216,6 +216,81 @@ decision, flagged not prescribed. Tier: `Mechanistic`/`Preclinical`; **not medic
 
 ---
 
+## 5b. The NED / surveillance-window "immune boost" recommendation — reframed and staged
+
+**The word "boost" is the wrong mental model, and getting this right matters more than any single
+intervention.** Two reasons the framework rejects generic immune-stimulation as the goal:
+1. **The residual clone already escaped immunity once** (12 mo NED → relapse). It is a *selected* immune
+   escapee — most likely MHC-I-low (T-cell-invisible). Turning up a T-cell response it has already
+   learned to hide from is not obviously productive; you need the arm that *sees the escaped phenotype*.
+2. **The inflammation-state lens (ADR-0006):** "raising immune activity" and "raising inflammation" are
+   not the same thing. Tumour-promoting inflammation (NF-κB/IL-6/MDSC) helps the tumour; anti-tumour
+   activation (IFN-γ/CD8/NK) helps the patient. A blanket "immune booster" can push the wrong one. There
+   is **no CIC-DUX4 evidence for any over-the-counter immunostimulant**, and several plausibly do harm.
+
+So the honest recommendation is not "boost" — it is **"keep the watchdog competent, don't sabotage it,
+and have a tissue-informed plan ready if surveillance signals escape."** Staged by who owns it:
+
+### Tier A — In the patient's / GP's hands (supportive; keeps the watchdog competent — NOT antitumour)
+These are the only items that are both self-accessible and evidence-supported, and every one is a
+*condition-the-system* lever, not a *treat-the-cancer* lever. All `Mechanistic`/`Clinical-obs`, none
+CIC-DUX4-direct:
+- **Correct measured deficiencies — do not megadose.** Check and, if low, replete **vitamin D3** and
+  **zinc** (both gate NK maturation/competence; V4 D1/D4). Replete-state supplementation is null (VITAL
+  trial) and megadosing antioxidants re-triggers the §3-V2/§6 harm-direction concern. The rule is
+  *correct a deficiency, don't supra-dose a normal level.*
+- **Rebuild muscle / nutritional reserve after surgery** (reverse any sarcopenia). This is the
+  best-evidenced host lever — it drives immune competence *and* the ability to tolerate any future line.
+- **Graded, supervised physical activity** — modulates inflammation, supports NK trafficking.
+- **Microbiome:** diverse whole-plant fibre, avoid unnecessary antibiotics, add fermented foods **once
+  neutropenia has resolved** (sets baseline immune/checkpoint competence via the gut-immune axis).
+- **Sleep / circadian regularity and stress reduction** — chronic β-adrenergic/glucocorticoid tone is
+  immunosuppressive and (preclinically) pro-metastatic.
+- **Explicit AVOID list:** high-dose antioxidant megadosing (esp. the high-dose vitamin C, §3-V2),
+  apricot seeds / amygdalin (§6), and any "immune-boosting" supplement with no CIC/sarcoma data — absence
+  of evidence here is not neutrality, because the inflammation-state lens means some can help the wrong
+  compartment.
+- **Honest ceiling:** Tier A keeps a competent immune system competent. It does **not** specifically
+  target the escaped clone, and no Tier-A item has ever been shown to prevent sarcoma relapse.
+
+### Tier B — Oncologist / MTB / trial territory (where actual disease-directed immune leverage lives, if any)
+- **The gating step is diagnostic, not therapeutic: bank and phenotype tissue at the metastasectomy.**
+  The single highest-value action is to characterise the *resected* clone's immune phenotype — **MHC-I /
+  APM status (HLA-A/B/C, B2M, TAP1/2), NK stress ligands (MICA/MICB, ULBP, PVR/CD155), HLA-E, and TIL
+  density**. This answers the decisive fork — is the clone T-cell-targetable (MHC-I-retained),
+  NK-targetable (MHC-I-low but ligand-positive), or **doubly cold** (neither)? — and **without it every
+  immune recommendation is guesswork.** The surgery is the one guaranteed fresh-tissue opportunity; use it.
+- **The sequencing logic (why order matters):** NK killing wants MHC-I *low*; T-cell killing wants it
+  *high*; epigenetic MHC-I restoration helps T-cells but blunts NK and may raise the HLA-E brake. So the
+  framework's suggested order is **NK-first (exploit the MHC-I-low state) → MHC-I restoration (+anti-NKG2A)
+  → T-cell checkpoint** — not "everything at once."
+- **The timing window:** each cytotoxic course and the surgery are followed by lymphodepletion →
+  IL-7/IL-15 homeostatic reconstitution (wks ~4–8), the preferred slot for any NK/checkpoint step.
+- **The honest reality of the menu:** there is **no approved immunotherapy maintenance for CIC-rearranged
+  sarcoma.** Checkpoint *monotherapy* in sarcoma is modest (SARC028). The mechanistically strongest
+  non-obvious lever is the **NK missing-self arm** (IL-15 superagonist / anti-PVR / adoptive NK — all
+  trial-only, `Clinical-Trial`/`Preclinical`). The one CIC::DUX4-direct data point — a **dual-checkpoint
+  (nivolumab + relatlimab, anti-PD-1 + anti-LAG-3) response case** (PMID 40128305, verified) — is a
+  disease-class precedent only for this fusion-unconfirmed patient, but it shows these tumours are not
+  immunologically inert. All of this is **fusion-agnostic** → applicable despite the unconfirmed fusion.
+- **A window-of-opportunity trial, if one is reachable, is the highest-value route** — it is the only
+  setting where a disease-directed immune intervention would be both accessed and learned-from.
+
+### Tier C — The surveillance backbone (what actually runs during NED)
+- **Serial imaging on the oncology-set cadence** + **fusion-agnostic ctDNA monitoring** (§1) as the early
+  read on sub-imaging escape. In true NED the job of the whole plan is *equilibrium maintenance + early
+  detection of escape*, not eradication — so the monitor **is** a load-bearing part of the "recommendation,"
+  not an afterthought. If ctDNA/imaging signals escape, the Tier-B tissue phenotype (banked at surgery) is
+  what lets an immune response be designed rather than improvised.
+
+**One-line synthesis:** *the recommendation is deficiency-correction + reserve-rebuilding + not sabotaging
+a competent immune system (Tier A), riding on a tissue-informed, correctly-sequenced immune plan that only
+an oncologist/trial can deliver (Tier B), all under ctDNA + imaging surveillance (Tier C) — with the
+metastasectomy used as the one chance to bank the tissue that makes Tier B possible.* No "immune-booster"
+supplement is part of it, and that omission is deliberate.
+
+---
+
 ## 6. Apricot seeds (amygdalin / "laetrile" / "vitamin B17") — the specific question
 
 **Short answer: the evidence says apricot seeds do not treat cancer, and eating them poses a real
