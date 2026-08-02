@@ -1,9 +1,17 @@
 # CLAUDE.md — Operating Guide for Claude Code Sessions
 
-This repository is a **multi-agent research simulation** for CIC-rearranged sarcoma (CIC-DUX4 fusion),
-framed through a software/systems-engineering analogy. The deliverable is a **ranked, evidence-tiered
-hypothesis catalog plus forward (not-yet-tested) hypotheses and runnable in-silico experiments** — never
-a treatment plan. Read `docs/00-README.md` for full framing before substantial work.
+This repository is a **multi-agent research simulation** for a **small round-cell sarcoma that is
+clinically/histologically CIC-like and Ewing-like but has NO confirmed fusion**, framed through a
+software/systems-engineering analogy. The deliverable is a **ranked, evidence-tiered hypothesis catalog
+plus forward (not-yet-tested) hypotheses and runnable in-silico experiments** — never a treatment plan.
+
+> **⚠ READ `CASE-BASELINE.md` FIRST — it is the canonical, current case description (Era B, from
+> 2026-08-02) and it SUPERSEDES the case framing embedded in `protocol-v1..v4`, `sims/01–09`, `docs/`,
+> and `ADR-0001..0020`.** Those Era-A artifacts assumed canonical CIC-DUX4 biology; they are **preserved,
+> not rewritten**, and `CASE-BASELINE.md` §5 is the translation table for reading them. **Do not default
+> to CIC-DUX4 biology, and do not overclaim the reverse** — the driver is genuinely *unresolved*
+> (D4 phenocopy 0.386 > D1 cryptic CIC-DUX4 0.264; ADR-0021/0022). Read `docs/00-README.md` for the
+> analogy/vector framing, but take the **case** from `CASE-BASELINE.md`.
 
 **This is research and hypothesis generation only. No medical advice, no personal dosing, no
 start/stop instructions for any therapy.** Mechanisms, food sources, evidence tiers, and published
@@ -11,11 +19,22 @@ trial dose-ranges (with citations) are in scope; prescriptive numbers are not.
 
 ---
 
-## 0. Reuse the existing run first (cost discipline)
+## 0. Reuse the existing run first (cost discipline) — but read the baseline before you trust it
+
+**Step 0 for every task: read `CASE-BASELINE.md`.** It is short, it is the current case, and it tells you
+which of the artifacts below were written under the superseded assumption. Reuse is still the default —
+but reuse *through* the baseline, not around it.
 
 **An initial full simulation has already been run. Its artifacts live in `simulation-output/` and
 `sims/` — read and reuse them before spawning anything.** Re-running the whole multi-agent cycle every
 time is slow and token-expensive, and usually unnecessary.
+
+**Era tags (ADR-0022).** Everything in the list below marked **[Era A]** was authored 2026-06-02 →
+2026-08-01 under the canonical-CIC-DUX4 working assumption. Its *mechanism* content is still good; its
+*case framing* and its **Directness/transferability weighting** are not. Per `CASE-BASELINE.md` §5a this
+case has **no P0 anchor** — CIC-DUX4-direct evidence is discounted to the D1+D2 posterior (~0.36) rather
+than treated as "in this tumour," Ewing/round-cell-family evidence is up-weighted, and fusion-agnostic
+evidence keeps full weight. Items marked **[Era B]** were authored under the current baseline.
 
 Already on disk:
 - `simulation-output/findings-ranking.md` — **master register of every notable finding** across all sims/
@@ -199,7 +218,9 @@ From `docs/00-README.md`, `docs/06-agent-architecture.md`, and the `sarcoma-cont
 
 | If the prompt is… | Then… |
 |---|---|
-| A question the existing run already answers | **Read & cite `simulation-output/` / `sims/`.** Don't re-run the cycle (see §0). |
+| **Anything at all** | **First read `CASE-BASELINE.md`** (Era B, ADR-0022) — it is the canonical case and supersedes the framing in `protocol-v1..v4` / `sims/01–09` / `docs/` / `ADR-0001..0020`. Cheap, and it changes how you weight everything else. |
+| A question about **what the case actually is now**, whether it's still "CIC-DUX4", what changed, or which old findings still hold | **Answer from `CASE-BASELINE.md`** (§2 established-vs-inferred-vs-open, §3 driver posterior, §5 the Era-A translation table, §8 what would change it again). Do **not** re-derive, and do **not** state "it is not CIC-DUX4" — cryptic CIC-DUX4 still holds ~26%. |
+| A question the existing run already answers | **Read & cite `simulation-output/` / `sims/`.** Don't re-run the cycle (see §0) — but re-weight per `CASE-BASELINE.md` §5a before relying on a CIC-DUX4-direct claim. |
 | A simple factual / clarifying / "why" question | **Just answer.** No spawning, no repo-wide research. |
 | "Analyze X thoroughly," "from multiple angles," "what could be tried," "run a simulation" | **Spawn the appropriate team** (below) so the topic gets multiple perspectives. |
 | A research question with no fitting existing team | **Propose a new team** (lead + specialist sub-agents, same structure) and spawn **only after the user agrees.** |
@@ -373,13 +394,14 @@ documented runnable entry point.** Don't add new dirs without assigning a tier (
 
 | Tier | Audience | Contents |
 |---|---|---|
-| **1 — Read first (human)** | Clinicians · patients · non-technical | `simulation-output/protocol-v4.md` (main catalog; v1–v3 retained as baselines) · `simulation-output/findings-ranking.md` · `simulation-output/forward-simulation/*-brief.md` |
+| **1 — Read first (human)** | Clinicians · patients · non-technical | **`CASE-BASELINE.md` (the canonical case — read before anything else)** · `simulation-output/protocol-v4.md` (main catalog; v1–v3 retained as baselines) · `simulation-output/findings-ranking.md` · `simulation-output/chemosensitivity-ddr-cellstate-layer.md` · `simulation-output/forward-simulation/*-brief.md` |
 | **2 — Hybrid** | Researchers · motivated readers | rest of `simulation-output/` (analytical layers + per-vector summaries) · `docs/00–05` |
 | **3 — Contributor / LLM** | Developers · AI agents | `docs/06–09` · `docs/adr/` · `sims/` · `CLAUDE.md` · `scripts/` |
 | **4 — Machine / tooling** | Script runner · configs · caches | `.claude/` · `.prompts/` · `.venv/` · `.gitignore` · gitignored `sims/*/data/` |
 
 ```
-docs/00-README.md        framing + constraints + execution semantics (read first)
+CASE-BASELINE.md         THE CANONICAL CASE (Era B, ADR-0022) — read before anything else
+docs/00-README.md        analogy/vector framing + constraints + execution semantics (case framing = Era A)
 docs/01–05               domain knowledge, analogy model, the four attack vectors
 docs/06-agent-architecture.md   full agent prompts + output schemas
 docs/07-openmed-models.md       team -> NER model map (entity grounding)

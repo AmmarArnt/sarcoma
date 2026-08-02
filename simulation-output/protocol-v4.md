@@ -1,5 +1,16 @@
 # CIC-Rearranged Sarcoma — Multi-Vector Hypothesis Catalog (v4)
 
+> **⚠ ERA-A DOCUMENT (ADR-0022) — read `CASE-BASELINE.md` alongside it.** v4 was written 2026-06-25 under
+> the working assumption that the case was canonical **CIC-DUX4** sarcoma. On **2026-08-02** the baseline
+> was refreshed to **chemo-responsive, Ewing-like, driver-unresolved** (D4 phenocopy 0.386 > D1 cryptic
+> CIC-DUX4 0.264). This catalog is **preserved, not rewritten**. What that means for reading it:
+> **CIC-DUX4-direct entries are discounted to the D1+D2 posterior (~0.36), not excluded**;
+> **Ewing/round-cell-family evidence is up-weighted**; **fusion-agnostic entries are unchanged at full
+> weight**; and the **fusion-contingent lines (junction ASO/vaccine/TCR-T, MCL1 "re-arm") are held**.
+> Any reasoning below that leaned on "CIC-DUX4 is chemo-resistant" **does not describe this patient**.
+> Full translation table: `CASE-BASELINE.md` §5. There is no protocol-v5 yet — the Era-B evidence spine is
+> `[VERIFY]`-gated under ADR-0020.
+
 > **Incremental, evidence-verified update of v3 (2026-06-25).** v4 is **not** a fresh multi-agent run —
 > it carries v3 forward and applies the **2026-06 live evidence refresh** (`evidence-refresh-2026-06.md`,
 > full-text-verified against live PubMed/PMC/GEO/clinicaltrials.gov on 2026-06-25) plus the executed

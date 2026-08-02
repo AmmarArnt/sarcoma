@@ -1,11 +1,42 @@
 run the simulation indicated in @docs/06-agent-architecture.md. focus specifically on the following case.
 
+  FIRST, read @CASE-BASELINE.md — it is the canonical, current description of this
+  case (Era B, from 2026-08-02) and it supersedes the case framing embedded in
+  protocol-v1..v4, sims/01-09, docs/, and ADR-0001..0020. Those artifacts are
+  preserved, not rewritten; CASE-BASELINE.md §5 is the translation table for
+  reading them, including the fact that this case now has NO P0 anchor on the
+  evidence-transferability ladder (ADR-0014) and Directness must be
+  posterior-weighted across driver hypotheses.
+
   === PATIENT CASE ===
-  Soft-tissue CIC-rearranged sarcoma, diagnosed June 2024, WITHOUT a confirming
-  fusion match on genome sequencing — i.e. the ~5% genomically-uncharacterized
-  atypical subgroup (no confirmed CIC-DUX4/CIC-NUTM1/etc.). Any recommendation
+  Small round-cell sarcoma, clinically and histologically CIC-like / EWING-LIKE,
+  diagnosed June 2024, WITHOUT a confirming fusion match on genome sequencing —
+  i.e. the ~5% genomically-uncharacterized atypical subgroup (no confirmed
+  CIC-DUX4/CIC-NUTM1/CIC-FOXO4). THE DRIVER IS UNRESOLVED. Any recommendation
   that depends on the fusion being present (e.g. junction ASOs, junction-specific
-  neoantigen vaccines) must be flagged as possibly inapplicable to this patient.
+  neoantigen vaccines, the MCL1 "re-arm the DUX4 death program" line) must be
+  flagged as possibly inapplicable to this patient and held as driver-contingent.
+
+  Do NOT default to canonical CIC-DUX4 biology. Current driver posterior
+  (sims/10-chemoresponse-cellstate/): D4 phenocopy/misclassified 0.386 >
+  D1 cryptic CIC-DUX4 0.264 > D5 orphan 0.156 > D2 rare partner 0.100 >
+  D3 non-fusion CIC LOF 0.095.
+  Equally: do NOT overclaim the reverse. "Not CIC-DUX4" is NOT established —
+  cryptic CIC-DUX4 still holds ~26%, and "Ewing-like" is a morphological
+  descriptor covering several entities, not a molecular diagnosis. No EWSR1
+  fusion has been reported either.
+
+  === CHEMOTHERAPY RESPONSE (treat as EVIDENCE, not just history) ===
+  This tumour has now shown a deep response to conventional chemotherapy TWICE:
+  >95% necrosis at first-line resection, and a COMPLETE radiographic response of
+  relapsed lung nodules after 4 cycles of ifosfamide. That is atypical for
+  canonical CIC-DUX4 (repair-proficient/POLE-high; only ~30% respond well) and
+  matches the Ewing/round-cell family instead. Per ADR-0021 it implies a
+  cycling, apoptotically-primed, repair-limited (predicted SLFN11-competent)
+  cell state — resolved to ~94% posterior — and it means the unsolved problem
+  is the persister RESERVOIR, not the chemo-sensitive bulk. Caveat honestly:
+  the response is confounded with setting (burden, lesion size, dose intensity),
+  and the relapse CR is radiographic, not pathologic, in a post-WLI lung.
 
   - Primary tumor site: biceps femoris of the right thigh.
   - At diagnosis: 12 nodules of metastases across both lungs.
@@ -19,7 +50,14 @@ run the simulation indicated in @docs/06-agent-architecture.md. focus specifical
   - NED (no evidence of disease) from May 2025 until May 2026.
   - May 2026: a single cluster of metastases discovered on ONE lung
     (oligometastatic relapse after ~1 year NED).
-  - The patient is now getting ready to begin HIGH-DOSE IFOSFAMIDE therapy.
+  - Relapse treatment: HIGH-DOSE IFOSFAMIDE. After 4 cycles the lung nodules
+    have DISAPPEARED on imaging (complete radiographic response).
+  - CURRENT STATE: minimal residual disease / complete radiographic response
+    following chemotherapy. This is the second deep response this tumour has
+    produced. Note the timing consequence (ADR-0021): the post-chemotherapy
+    window — lowest tumour burden + lymphodepletion rebound + synchronous
+    antigen release, on top of the earlier whole-lung irradiation — is the
+    best immunological moment this patient has had, and it CLOSES on its own.
 
   === PATIENT'S SELF-ADMINISTERED NATURAL REGIMEN (must be assessed explicitly) ===
   During the first EURO EWING course, in the rest weeks between VDC/IE cycles

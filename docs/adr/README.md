@@ -53,6 +53,13 @@ or amending an artifact. Those are just commits.
 | [0019](0019-oncolytic-virotherapy-m4-deepdive.md) | Oncolytic-virotherapy M4 deep-dive (danger-signal generator) — deepens ADR-0018 via ADR-0006; not a fifth vector | 2026-06-14 | Accepted | Issue #11 follow-up / PR |
 | [0020](0020-live-evidence-refresh-lane.md) | Live evidence-refresh + verification lane (catalog updates between full runs; `[VERIFY]`→full-text gate; produced protocol-v4) | 2026-06-25 | Accepted | Maintainer request / issue #33 thread |
 | [0021](0021-chemoresponse-cellstate-layer.md) | Treatment-response phenotype as evidence — chemo-sensitivity / DDR cell-state layer (extends ADR-0008; not a fifth vector) | 2026-08-02 | Accepted | Maintainer question (relapse ifosfamide response) |
+| [0022](0022-case-baseline-refresh-era-b.md) | **Case-baseline refresh → Era B** (chemo-responsive, Ewing-like, driver-unresolved); establishes `CASE-BASELINE.md` as canonical; Directness becomes posterior-weighted | 2026-08-02 | Accepted | Maintainer instruction |
+
+> **⬆ Era boundary.** **ADR-0001–0020 were written under the Era-A working assumption** that the case was
+> canonical **CIC-DUX4** sarcoma. **ADR-0021 onward are Era B** — chemo-responsive, Ewing-like,
+> driver-unresolved (`CASE-BASELINE.md`). Per the append-only rule, **no Era-A ADR is retro-edited**: each
+> remains an honest record of what was decided under what was known at the time. ADR-0022 §Consequences
+> records exactly which Era-A positions changed and which carry forward unchanged.
 
 ## Template
 

@@ -1,5 +1,13 @@
 # Findings Ranking — Master Register of Simulation & Analysis Results
 
+> **⚠ Mixed-era register (ADR-0022).** Rows dated **before 2026-08-02** were scored under the earlier
+> canonical-**CIC-DUX4** case assumption (**Era A**); rows from the chemo-sensitivity/DDR layer are
+> **Era B**. The case baseline is now **chemo-responsive, Ewing-like, driver-unresolved** —
+> see **`CASE-BASELINE.md`**. Practical effect on the **confidence** column: this case has **no P0
+> anchor**, so CIC-DUX4-direct findings are **discounted (~0.36 posterior), not excluded**,
+> Ewing/round-cell-family findings are **up-weighted**, and fusion-agnostic findings keep **full weight**.
+> Rows are **not** retro-rescored; apply the shift when you read them.
+
 > **One place to see every notable finding in this repository, scored on the framework's three orthogonal
 > axes.** This is a *transparency and navigation aid*, not a validated instrument and **not medical advice**.
 > Ranking reflects research-simulation judgment; every entry links to the artifact that owns the detail and
