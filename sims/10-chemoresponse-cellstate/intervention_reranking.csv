@@ -1,0 +1,12 @@
+intervention,p_on_target_post,payoff_prior,payoff_posterior,delta,pursued_post,cls
+immune_MRD_window_NKfirst,0.72,1.688,1.688,0.0,True,immune in MRD window (V4)
+SLFN11_maintenance_EZH2i_HDACi,0.7095,0.4545,1.5994,1.1448,True,"DDR-state maintenance (V3, doubles as V4 priming)"
+CDK4_CCND1_i,0.7729,1.5021,1.4778,-0.0243,True,cell-cycle (V1)
+BRD4_BETi,0.7543,1.5653,1.4348,-0.1305,True,throttle (V1)
+GPX4_ferroptosis_persister,0.55,1.06,1.06,0.0,True,"persister-directed (V3, driver-agnostic)"
+immune_NK_checkpt,0.7,0.96,0.96,0.0,True,host/driver-agnostic (V4)
+p300_CBP_i,0.5285,0.992,0.6797,-0.3123,True,writer (V1/V3/V4)
+EZH2i_MHCI_prime,0.5705,0.802,0.6411,-0.1609,True,epigenetic bridge (V3->V4)
+ATR_CHK1i_synthlethal,0.2281,0.5544,-0.1615,-0.7159,False,DDR synthetic-lethal (V3)
+junction_ASO_vax,0.3273,0.3215,-0.7,-1.0215,False,junction-specific (contingent)
+MCL1i_reArm_DUX4,0.2294,-0.0575,-0.8532,-0.7957,False,DUX4-fragility (contingent)

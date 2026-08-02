@@ -52,6 +52,7 @@ or amending an artifact. Those are just commits.
 | [0018](0018-therapeutic-modality-layer.md) | Therapeutic-modality layer (delivery-format axis M1–M8, cross-cutting — not a fifth vector) + repurposing & ethnopharmacology sub-scans | 2026-06-14 | Accepted | Issue #33 / PR |
 | [0019](0019-oncolytic-virotherapy-m4-deepdive.md) | Oncolytic-virotherapy M4 deep-dive (danger-signal generator) — deepens ADR-0018 via ADR-0006; not a fifth vector | 2026-06-14 | Accepted | Issue #11 follow-up / PR |
 | [0020](0020-live-evidence-refresh-lane.md) | Live evidence-refresh + verification lane (catalog updates between full runs; `[VERIFY]`→full-text gate; produced protocol-v4) | 2026-06-25 | Accepted | Maintainer request / issue #33 thread |
+| [0021](0021-chemoresponse-cellstate-layer.md) | Treatment-response phenotype as evidence — chemo-sensitivity / DDR cell-state layer (extends ADR-0008; not a fifth vector) | 2026-08-02 | Accepted | Maintainer question (relapse ifosfamide response) |
 
 ## Template
 
