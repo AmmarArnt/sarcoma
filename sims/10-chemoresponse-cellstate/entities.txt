@@ -1,0 +1,39 @@
+SLFN11
+EZH2
+H3K27me3
+PRC2
+POLE
+EWSR1
+FLI1
+EWS-FLI1
+CIC
+DUX4
+CIC-DUX4
+BCOR
+ATR
+CHEK1
+GPX4
+KDM5A
+KDM5B
+MCL1
+ARID1A
+BRD4
+CDK4
+CCND1
+HLA-E
+MHC class I
+NKG2A
+ifosfamide
+cyclophosphamide
+doxorubicin
+vincristine
+etoposide
+entinostat
+romidepsin
+tazemetostat
+valemetostat
+decitabine
+CIC-rearranged sarcoma
+Ewing sarcoma
+drug-tolerant persister
+ferroptosis

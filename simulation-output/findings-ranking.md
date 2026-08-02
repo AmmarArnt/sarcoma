@@ -1,5 +1,13 @@
 # Findings Ranking — Master Register of Simulation & Analysis Results
 
+> **⚠ Mixed-era register (ADR-0022).** Rows dated **before 2026-08-02** were scored under the earlier
+> canonical-**CIC-DUX4** case assumption (**Era A**); rows from the chemo-sensitivity/DDR layer are
+> **Era B**. The case baseline is now **chemo-responsive, Ewing-like, driver-unresolved** —
+> see **`CASE-BASELINE.md`**. Practical effect on the **confidence** column: this case has **no P0
+> anchor**, so CIC-DUX4-direct findings are **discounted (~0.36 posterior), not excluded**,
+> Ewing/round-cell-family findings are **up-weighted**, and fusion-agnostic findings keep **full weight**.
+> Rows are **not** retro-rescored; apply the shift when you read them.
+
 > **One place to see every notable finding in this repository, scored on the framework's three orthogonal
 > axes.** This is a *transparency and navigation aid*, not a validated instrument and **not medical advice**.
 > Ranking reflects research-simulation judgment; every entry links to the artifact that owns the detail and
@@ -7,12 +15,15 @@
 >
 > **Maintenance:** this file is a **standing deliverable** (ADR-0009). When a new sim, team output, or
 > analysis produces a result that deserves to be compared against the others, **add a row here** in the
-> same commit/PR that adds the artifact. See "Maintenance rule" at the bottom. Last updated: **2026-06-25**
-> (evidence refresh `evidence-refresh-2026-06.md` **full-text-verified** + Sim 9 condensate/LLPS **executed**;
-> rows for the p300/CBP multi-vector unification, DUX4-STAT1/ISG antagonism, dual-ICB case, MCL1 cardiotox
-> flag, and the condensate forward hypothesis appended/updated with verified PMIDs. **One snippet-sourced
-> WEE1/adavosertib claim was retracted on verification** (not in the Nat Commun MCL1 paper). Baselines
-> v1/v2/v3 preserved.)
+> same commit/PR that adds the artifact. See "Maintenance rule" at the bottom. Last updated: **2026-08-02**
+> (**Sim 10 + ADR-0021** — the patient's observed chemotherapy response admitted as *evidence*: a new
+> chemo-sensitivity/DDR **cell-state layer** with five rows added across §B and §C, and two "Top picks"
+> entries updated. **Every citation in that layer is `[VERIFY]`** — PubMed/PMC/nature.com/EuropePMC/Crossref
+> all returned HTTP 403 this session, so the layer sits in the **forward lane** and is gated out of protocol
+> promotion by ADR-0020. Prior entry, 2026-06-25: evidence refresh **full-text-verified** + Sim 9
+> condensate/LLPS **executed**; p300/CBP multi-vector unification, DUX4-STAT1/ISG antagonism, dual-ICB case,
+> MCL1 cardiotox flag, condensate forward hypothesis appended with verified PMIDs; **one snippet-sourced
+> WEE1/adavosertib claim was retracted on verification**. Baselines v1/v2/v3 preserved.)
 
 ## How to read the three axes
 - **Evidence tier** (what *kind* of evidence): `Established` › `Clinical-Trial` › `Preclinical-Animal` ›
@@ -36,7 +47,8 @@
 | If you care about… | The most promising finding | Why |
 |---|---|---|
 | **Most immediately consequential for this patient today** | **CYP3A4 interaction screen** (piperine/thymoquinone × imminent ifosfamide) | Safety of the *current* regimen; actionable now; no new drug. |
-| **Highest-leverage *next action*** | **Resolve the driver first** (Sim 8 EVSI + protocol V3-FH3) | Two independent methods agree; a cheap test (DUX4 IHC) unlocks the whole contingent option set. |
+| **Highest-leverage *next action*** | **Resolve the driver first** (Sim 8 EVSI + protocol V3-FH3) — **now qualified by Sim 10** | Two independent methods agree; a cheap test (DUX4 IHC) unlocks the whole contingent option set. Sim 10 narrows the *reason*: the therapeutically decisive variable (DDR state) is already ~94% resolved by the clinical course, so driver-resolution now mainly serves to re-open the fusion-contingent options. |
+| **Most informative measurement already taken** | **The patient's own chemotherapy response** (Sim 10 / ADR-0021) | A deep, twice-repeated response is a *functional assay* on this tumour: it resolves the DDR/SLFN11 cell state to ~94% — more than any molecular test in the catalog has resolved anything — while leaving the driver a 39%/26% contest. |
 | **Best-evidenced / most corrective** | **EZH2 is *not* a survival dependency** (Sim 2, real DepMap CRISPR) | Real data overturning an assumption → reposition EZH2i as MHC-I priming, not cytotoxic. |
 | **Most convergent therapeutic target** | **WEE1 + ifosfamide** (Sims 2+3) / **CDK4** / **IGF1R** | Multiple orthogonal methods; WEE1 intersects the chemo backbone the patient is on. |
 | **Most promising *novel* target (fusion-confirmed)** | **MCL1 dependency** ("re-arm the DUX4 death program") | Verified dependency (Nat Commun 2025); but driver-contingent (Sim 8) — hold for the unconfirmed patient. |
@@ -59,7 +71,9 @@
 ### B. Strategic / decision / diagnostic findings
 | Finding | Source | Evidence tier | Confidence | Feasibility | Note |
 |---|---|---|---|---|---|
-| **Resolve the driver first (fusion-unconfirmed): long-read WGS+RNA-seq > DUX4 IHC > methylation array** | Sim 8; protocol V3-FH3 | Mechanistic (decision model); diagnostics Established | **Medium-High** (two independent methods agree) | DUX4 IHC **F1**; methylation **F1/F2**; long-read **F2** | Highest-leverage next action *for this patient*; unlocks the contingent option set. |
+| **Resolve the driver first (fusion-unconfirmed): long-read WGS+RNA-seq > DUX4 IHC > methylation array** | Sim 8; protocol V3-FH3 | Mechanistic (decision model); diagnostics Established | **Medium-High** (two independent methods agree) | DUX4 IHC **F1**; methylation **F1/F2**; long-read **F2** | Highest-leverage next action *for this patient*; unlocks the contingent option set. **Qualified by Sim 10** — still top-EVSI, but its purpose narrowed to re-opening the two fusion-contingent options. |
+| **The chemotherapy response resolves the CELL STATE (~94%) but makes the DRIVER question *harder* (entropy over D rises)** — most-likely driver flips D1→D4 in 75.2% of sweeps | Sim 10 (`10-chemoresponse-cellstate/`); `chemosensitivity-ddr-cellstate-layer.md` (ADR-0021) | Mechanistic (decision model) — clinical inputs are a pathology report + imaging, not molecular data | **Medium** (model's implied per-driver response rates 0.260/0.562 reproduce published ~0.30/~0.53 *without being fitted*; but `P(S_hi\|D1)` is the weakest parameter and O1/O2 independence is assumed) | N/A (belief model); the reads it points to are **F1** (SLFN11 IHC on archived FFPE) | **Treats treatment response as evidence** — new to the framework. Asymmetry is the point: it answers "what is the cell doing?", not "which fusion?". Response is **confounded with setting** (burden/lesion size/dose intensity); model attributes all signal to cell state. |
+| **SLFN11 IHC and BH3 profiling have ~0 EVSI *because the clinical course already bought that information*** (long-read WGS 1.297 > DUX4 IHC 1.129 > methylation 0.434 >> SLFN11 IHC 0.020 > BH3 0.000) | Sim 10 §Finding 4 | Mechanistic (decision model) | **Medium** | SLFN11 IHC **F1** (cheap, archived FFPE) | Refines ADR-0015: a *functional* clinical observation can pre-empt a diagnostic test's decision value. **Caveat stated in-artifact:** EVSI scores power to flip a decision under the model's assumptions, **not** power to catch the model being wrong — which is exactly why SLFN11 IHC is still the named falsifier. |
 | **Throttle/cell-cycle/immune vectors are robust regardless of the unknown driver** (BETi top-robust 96.6% of priors) | Sim 8 | Mechanistic (decision model) | **Medium** | composite F1–F4 | What's safe to pursue before the driver is known. |
 | **Nectin CD155/CD112 is the highest-value *missing* biomarker** (not MHC-I; NK fallback covers antigen loss) | Sim 6; `biomarker-voi-stratification.md` | Mechanistic (decision model) | **Medium** | measurement **F1** (IHC/flow) | Tells you what to *measure*; HLA-E + NK-fitness select the immune route. |
 | **VoI depends on tissue source + timepoint, not just the marker** (archived-FFPE baseline vs fresh-relapse vs the *change*; cheap diagnosis/baseline reads are FFPE-front-loaded, immune markers want the *current* read) | `biomarker-voi-provenance-extension.md` (issue #7 follow-up; ADR-0011) | Theoretical/Mechanistic (methodology refinement) | **Medium** | composite (P1 archived IHC/methylation **F1**; long-read/fresh **F2**; ctDNA monitoring needs resolved junction) | Refines Sim 6: separates information value from acquisition burden; magnitudes illustrative (no new numeric model). |
@@ -79,6 +93,9 @@
 | **Oncolytic virus as "artificial danger-signal generator" (M4 deep-dive)** — one positive sarcoma signal (T-VEC+pembro phase-2 ORR 30%, NCT03069378) **but** nearest data (Ewing/round-cell) are *low-susceptibility* and CIC-DUX4 data are nil | `oncolytic-virotherapy-danger-signal-layer.md` (issue #11 follow-up; ADR-0019) | Clinical-Trial (sarcoma, non-CIC) → **Theoretical** for CIC-DUX4 | **Low** (P2 sarcoma; Ewing-family resists OV; permissiveness untested) | T-VEC **F2** if a lesion is injectable; systemic OVs **F3**; **RP1 FDA-rejected twice** `[re-verify]` | Fusion-agnostic (good for the ~5%); deep/visceral anatomy is the access limiter; gating experiment = CIC-DUX4 tropism screen. Modality moves feasibility, not tier (ADR-0018). |
 | **DUX4 binds STAT1 and broadly inhibits interferon-stimulated genes (ISGs)** — a 2nd, MHC-I-independent immune-evasion arm; suppresses IFN-γ-induction of MHC-I via C-terminal (L)LxxL(L) motifs | `evidence-refresh-2026-06.md` §C; **eLife 2023;12:e82057 PMID 37092726** ✅ (peer-reviewed; upgraded from bioRxiv, verified 2026-06-25) | Preclinical-Cell (Mechanistic, peer-reviewed) | **Medium** | N/A (mechanism) | Explains the IFN-cold phenotype *beyond* MHC-I + is the mechanistic source of the IFN-γ-MHC-I block; predicts IFN-axis therapies are blunted at source. Fusion-relevant (DUX4 moiety). |
 | **Documented CIC::DUX4 response to dual ICB (anti-PD-1 + anti-LAG-3; nivolumab+relatlimab)** with post-treatment CD8 influx + PD-1/LAG-3 exhaustion | `evidence-refresh-2026-06.md` §C; **npj Precis Oncol 2025;9(1):85 PMID 40128305** ✅ (verified 2026-06-25, MSKCC) | Clinical (single case) | **Low-Medium** | checkpoint **F1**; LAG-3 doublet (nivo+rela) **F1-US** `[re-verify]` | Updates "modest *monotherapy*" → a **doublet incl. LAG-3** signal; supports priming-then-checkpoint sequencing (Sims 4/5). |
+| **[Forward] One epigenetic node serves TWO vectors in a chemo-sensitive patient: PRC2/EZH2→H3K27me3 silencing of *SLFN11* is the documented route to "chemosensitive relapse" — so blocking it both preserves chemo-sensitivity (V3) and de-represses MHC-I (V4)** | `chemosensitivity-ddr-cellstate-layer.md` §4 (ADR-0021); Sim 10 (biggest payoff mover, **+1.145**, pursue-set in 100% of sweeps) | **Preclinical-Animal** in SCLC → **Theoretical/Mechanistic** for this tumour | **Low-Medium** — **P3** transfer (solid tumour w/ named mechanism, ADR-0014); **never tested in any sarcoma**; **no SLFN11 data exist in CIC-DUX4 at all** | **F3** (valemetostat/entinostat, trials) — tazemetostat **F4-US**, withdrawn 2026-03-09 (**R4** regulatory, biology-silent) `[re-verify]` | Gives EZH2i a **second** rationale beyond MHC-I priming without contradicting Sim 2 (neither effect is cytotoxicity). **All sources `[VERIFY]` — snippet-level only, literature egress blocked 2026-08-02; gated out of protocol promotion by ADR-0020.** Falsifier: SLFN11 IHC negative. |
+| **[Forward] The relapse reservoir ≠ the chemo-sensitive bulk: drug-tolerant persisters are slow-cycling, epigenetically (KDM5A/B) defined, and GPX4-dependent → ferroptosis-vulnerable** | `chemosensitivity-ddr-cellstate-layer.md` §3 Read 4 / FH-10.2; Hangauer *Nature* 2017 **PMID 29088702** | Preclinical-Animal (class-level; panel did **not** include round-cell sarcoma) | **Low** (P4 — pathway-level transfer; competing explanation: pre-existing metastatic clone, since this tumour was metastatic at dx) | **F3/F5** (no clinical ferroptosis inducer) | Explains why chemo keeps working on the bulk yet disease returns; **warns that CDK4/6i also targets the cycling bulk, not the reservoir**. Falsifier: paired primary-vs-relapse sequencing showing a selected genetic clone. |
+| **[Forward] The post-ifosfamide MRD window is the best immunological moment — and it closes**: lowest burden + chemo-lymphodepletion rebound (IL-7/IL-15 sinks vacated, Tregs depleted) + synchronous antigen release + prior WLI/STING priming; **NK-first because NK reconstitutes before T** | `chemosensitivity-ddr-cellstate-layer.md` §5 / FH-10.3; reinforces Sims 4+5 NK-first ordering | Mechanistic (host immunology) — **no CIC-DUX4 data** | **Low-Medium** — generic immunology applied to an **assumed** reconstitution pattern; **this patient's actual lymphocyte kinetics unknown** | N-803 **F1-US** `[re-verify]`; NK transfer **F2/F3** | Adds a *timing* argument the V4 files lacked, and a new patient-specific reason for NK-first. Fusion-agnostic → applies to the ~5%. **Not a treatment recommendation.** |
 
 ### D. Safety / current-regimen / contextual findings
 | Finding | Source | Evidence tier | Confidence | Feasibility | Note |

@@ -5,6 +5,33 @@ description: Shared behavioral contract for every agent in the CIC-rearranged sa
 
 # Shared Behavioral Contract (Every Agent Reads This)
 
+## RULE 0 — Read `CASE-BASELINE.md` before you produce anything (ADR-0022)
+
+`CASE-BASELINE.md` is the **canonical, current description of the case** (Era B, from 2026-08-02). It
+**supersedes** the case framing embedded in `protocol-v1..v4`, `sims/01–09`, `docs/`, the older agent
+prompts, and `ADR-0001..0020` — all of which were written under a canonical-**CIC-DUX4** working
+assumption. Those artifacts are **preserved, not rewritten**; `CASE-BASELINE.md` §5 is the translation
+table.
+
+Three things this changes for your output:
+
+1. **Do not default to CIC-DUX4 biology.** The driver is **unresolved**: D4 phenocopy/misclassified 0.386
+   > D1 cryptic CIC-DUX4 0.264 > D5 0.156 > D2 0.100 > D3 0.095.
+2. **Do not overclaim the reverse either.** "Not CIC-DUX4" is **not** established — cryptic CIC-DUX4 holds
+   ~26%, CIC break-apart FISH runs 14–46% false-negative, and "Ewing-like" is a *morphological* descriptor
+   covering several entities, not a molecular diagnosis. No EWSR1 fusion has been reported either.
+3. **This case has NO P0 anchor on the transferability ladder** (`docs/10`, ADR-0014). Weight the
+   **Directness** sub-axis across the driver posterior instead of assuming P0 = CIC-DUX4:
+   **CIC-DUX4-direct evidence → discounted (~0.36), not excluded** · **Ewing / fusion-round-cell-family
+   evidence → up-weighted** · **fusion-agnostic evidence (host, immune, cell-cycle, danger-signalling) →
+   unchanged, full weight** · **anything premised on "CIC-DUX4 is chemo-resistant" → contradicted by this
+   patient's course.**
+
+The tumour has shown a **deep chemotherapy response twice** (>95% necrosis first-line; complete
+radiographic response of relapsed lung nodules after 4× ifosfamide). Treat that as **evidence about cell
+state** (ADR-0021), while stating honestly that it is confounded with setting (burden, lesion size, dose
+intensity) and that the relapse CR is radiographic, not pathologic.
+
 ## Evidence Tier Vocabulary (Mandatory)
 
 Every claim or recommendation must carry **exactly one** of these tags:

@@ -1,8 +1,19 @@
-# CIC-Rearranged Sarcoma — Multi-Agent Research Simulation
+# Ewing-like / CIC-like Round-Cell Sarcoma — Multi-Agent Research Simulation
+
+> **⚠ Era-A framing notice (ADR-0022).** This document was written under the earlier working assumption
+> that the case was canonical **CIC-DUX4** sarcoma. As of **2026-08-02** the case baseline was refreshed:
+> the driver is **unresolved** (no confirmed fusion) and the tumour has shown a **deep, twice-repeated
+> chemotherapy response** atypical for CIC-DUX4. **`CASE-BASELINE.md` is the canonical case description
+> and supersedes the case framing here.** The **analogy, the four vectors, the golden rules, and the
+> agent architecture below are unchanged and still current** — only the case framing moved. See
+> `CASE-BASELINE.md` §5 for the translation table.
 
 ## What This Project Is
 
-A structured, multi-agent thought experiment that maps the CIC-rearranged sarcoma (CIC-DUX4 fusion) oncogenic program onto a software-engineering analogy, then explores four parallel intervention "vectors" — most of them dietary/lifestyle, some clinical/experimental.
+A structured, multi-agent thought experiment that maps the oncogenic program of a **CIC-like / Ewing-like
+small round-cell sarcoma** (driver unresolved — see `CASE-BASELINE.md`) onto a software-engineering
+analogy, then explores four parallel intervention "vectors" — most of them dietary/lifestyle, some
+clinical/experimental.
 
 The deliverable is a **ranked hypothesis catalog with evidence tiers** — not a treatment plan. It is intended to support, in this order:
 

@@ -1,0 +1,26 @@
+## OpenMed NER grounding for Sim 10
+## STATUS: NOT RUN — huggingface.co blocked (HTTP 403) by this environment's egress
+## allow-list (verified 2026-08-02); OpenMed model weights could not be downloaded.
+## Per the no-fabrication rule (golden rule #1), no grounding scores are invented.
+##
+## Entities (see entities.txt) are standard biomedical terms. The gene/protein set
+## (SLFN11, EZH2, PRC2, POLE, EWSR1, FLI1, CIC, DUX4, BCOR, ATR, CHEK1, GPX4, KDM5A,
+## KDM5B, MCL1, ARID1A, BRD4, CDK4, CCND1, HLA-E), the drug set (ifosfamide,
+## cyclophosphamide, doxorubicin, vincristine, etoposide, entinostat, romidepsin,
+## tazemetostat, valemetostat, decitabine) and the disease terms (CIC-rearranged
+## sarcoma, Ewing sarcoma) were already grounded GENE/PROTEIN/Chemical/Cancer in
+## prior sims and vector outputs in this repository.
+##
+## NEW to this sim and NOT previously grounded anywhere in the repo — flagged so a
+## later grounding pass covers them explicitly:
+##   SLFN11        (Schlafen 11)                        — expected GENE/PROTEIN
+##   POLE          (DNA polymerase epsilon, cat. sub.)  — expected GENE/PROTEIN
+##   KDM5A / KDM5B (JARID1A / JARID1B demethylases)     — expected GENE/PROTEIN
+##   GPX4          (glutathione peroxidase 4)           — expected GENE/PROTEIN
+##   ferroptosis / drug-tolerant persister              — process terms, may not be in
+##                                                        the NER label set at all
+##
+## Re-run when huggingface.co is reachable:
+##   python scripts/openmed_ner.py --team v3-synthetic-lethality \
+##       --text-file sims/10-chemoresponse-cellstate/entities.txt --format tsv \
+##       > sims/10-chemoresponse-cellstate/grounding.tsv

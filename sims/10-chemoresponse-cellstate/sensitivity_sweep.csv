@@ -1,0 +1,11 @@
+metric,value
+n_samples,20000
+P_Shi_median,0.9357
+P_Shi_ci5,0.83
+P_Shi_ci95,0.9829
+pct_P_Shi_gt_0.80,98.01
+pct_D4_top_driver,72.28
+pct_driver_flip,75.17
+pct_SLFN11maint_in_pursue_set,100.0
+pct_SLFN11maint_beats_ATRi,100.0
+pct_MCL1_dropped_from_pursue_set,99.06

@@ -1,0 +1,6 @@
+driver,prior,likelihood_O_given_D,posterior,change
+D1_cryptic_CICDUX4,0.45,0.089,0.264,-0.186
+D2_rare_partner,0.12,0.126,0.0997,-0.0203
+D3_nonfusion_CIC_LOF,0.1,0.1445,0.0952,-0.0048
+D4_phenocopy_misclassified,0.2,0.2925,0.3856,0.1856
+D5_orphan,0.13,0.1815,0.1555,0.0255

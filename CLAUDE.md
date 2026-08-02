@@ -1,9 +1,17 @@
 # CLAUDE.md — Operating Guide for Claude Code Sessions
 
-This repository is a **multi-agent research simulation** for CIC-rearranged sarcoma (CIC-DUX4 fusion),
-framed through a software/systems-engineering analogy. The deliverable is a **ranked, evidence-tiered
-hypothesis catalog plus forward (not-yet-tested) hypotheses and runnable in-silico experiments** — never
-a treatment plan. Read `docs/00-README.md` for full framing before substantial work.
+This repository is a **multi-agent research simulation** for a **small round-cell sarcoma that is
+clinically/histologically CIC-like and Ewing-like but has NO confirmed fusion**, framed through a
+software/systems-engineering analogy. The deliverable is a **ranked, evidence-tiered hypothesis catalog
+plus forward (not-yet-tested) hypotheses and runnable in-silico experiments** — never a treatment plan.
+
+> **⚠ READ `CASE-BASELINE.md` FIRST — it is the canonical, current case description (Era B, from
+> 2026-08-02) and it SUPERSEDES the case framing embedded in `protocol-v1..v4`, `sims/01–09`, `docs/`,
+> and `ADR-0001..0020`.** Those Era-A artifacts assumed canonical CIC-DUX4 biology; they are **preserved,
+> not rewritten**, and `CASE-BASELINE.md` §5 is the translation table for reading them. **Do not default
+> to CIC-DUX4 biology, and do not overclaim the reverse** — the driver is genuinely *unresolved*
+> (D4 phenocopy 0.386 > D1 cryptic CIC-DUX4 0.264; ADR-0021/0022). Read `docs/00-README.md` for the
+> analogy/vector framing, but take the **case** from `CASE-BASELINE.md`.
 
 **This is research and hypothesis generation only. No medical advice, no personal dosing, no
 start/stop instructions for any therapy.** Mechanisms, food sources, evidence tiers, and published
@@ -11,11 +19,22 @@ trial dose-ranges (with citations) are in scope; prescriptive numbers are not.
 
 ---
 
-## 0. Reuse the existing run first (cost discipline)
+## 0. Reuse the existing run first (cost discipline) — but read the baseline before you trust it
+
+**Step 0 for every task: read `CASE-BASELINE.md`.** It is short, it is the current case, and it tells you
+which of the artifacts below were written under the superseded assumption. Reuse is still the default —
+but reuse *through* the baseline, not around it.
 
 **An initial full simulation has already been run. Its artifacts live in `simulation-output/` and
 `sims/` — read and reuse them before spawning anything.** Re-running the whole multi-agent cycle every
 time is slow and token-expensive, and usually unnecessary.
+
+**Era tags (ADR-0022).** Everything in the list below marked **[Era A]** was authored 2026-06-02 →
+2026-08-01 under the canonical-CIC-DUX4 working assumption. Its *mechanism* content is still good; its
+*case framing* and its **Directness/transferability weighting** are not. Per `CASE-BASELINE.md` §5a this
+case has **no P0 anchor** — CIC-DUX4-direct evidence is discounted to the D1+D2 posterior (~0.36) rather
+than treated as "in this tumour," Ewing/round-cell-family evidence is up-weighted, and fusion-agnostic
+evidence keeps full weight. Items marked **[Era B]** were authored under the current baseline.
 
 Already on disk:
 - `simulation-output/findings-ranking.md` — **master register of every notable finding** across all sims/
@@ -108,9 +127,24 @@ Already on disk:
   CIC-DUX4; fusion-agnostic (good for the ~5%); deep/visceral anatomy + RP1's twice-rejected FDA path bound
   feasibility. Reuse for oncolytic-virus / virotherapy / "artificial danger signal" / immune-visibility-via-virus
   / OV-accessibility questions; **not a fifth vector; re-verify perishable status live**.
-- `sims/01–08/` — executed in-silico experiments with `RESULTS.md` + data `MANIFEST.md` + grounding.
+- `simulation-output/chemosensitivity-ddr-cellstate-layer.md` — **treatment-response-as-evidence / DDR
+  cell-state layer** (issue-free user question / ADR-0021), backed by `sims/10-chemoresponse-cellstate/`.
+  Reads the patient's *observed chemotherapy response* as a likelihood-bearing observation via an explicit
+  `driver → DDR state → response` model. Headline: the response **resolves the DDR/SLFN11 cell state to
+  ~94%** while **entropy over the driver RISES** (it answers "what is the cell doing?", not "which
+  fusion?"); most-likely driver flips **D1→D4** in 75.2% of sweeps; **MCL1 "re-arm" drops out in 99.1%**
+  (a 2nd, phenotypic argument for Sim 8's demotion); **SLFN11 IHC / BH3 profiling have ~0 EVSI because the
+  clinical course already bought that information**. Its forward spine: the **PRC2/EZH2→SLFN11** silencing
+  axis makes one epigenetic node **dual-purpose** (preserve chemo-sensitivity **and** prime MHC-I → V3+V4),
+  the **persister reservoir ≠ the chemo-sensitive bulk** (GPX4/ferroptosis; CDK4/6i hits the bulk only), and
+  the **post-chemo MRD/lymphodepletion window is the best immunological moment and it closes** (NK-first,
+  because NK reconstitutes before T). Reuse for "what does the treatment response tell us / cell state /
+  chemo-sensitivity or resistance / SLFN11 / persister / relapse reservoir / when to give immunotherapy"
+  questions. **Not a fifth vector** — it re-weights V1/V3/V4. **All citations `[VERIFY]` (literature egress
+  blocked 2026-08-02) → forward lane only, gated out of protocol promotion by ADR-0020.**
+- `sims/01–10/` — executed in-silico experiments with `RESULTS.md` + data `MANIFEST.md` + grounding.
   (Sim 7 = Boolean **transformation-trajectory** behind the build recipe; Sim 8 = the **driver-uncertainty**
-  decision model above.)
+  decision model above; Sim 10 = the **chemo-response cell-state** update extending Sim 8.)
 
 **Default behavior:** answer from and cite these artifacts; extend incrementally. Do **not** re-run the
 waves in §3 (or re-execute a sim) to reproduce something already on disk.
@@ -184,7 +218,9 @@ From `docs/00-README.md`, `docs/06-agent-architecture.md`, and the `sarcoma-cont
 
 | If the prompt is… | Then… |
 |---|---|
-| A question the existing run already answers | **Read & cite `simulation-output/` / `sims/`.** Don't re-run the cycle (see §0). |
+| **Anything at all** | **First read `CASE-BASELINE.md`** (Era B, ADR-0022) — it is the canonical case and supersedes the framing in `protocol-v1..v4` / `sims/01–09` / `docs/` / `ADR-0001..0020`. Cheap, and it changes how you weight everything else. |
+| A question about **what the case actually is now**, whether it's still "CIC-DUX4", what changed, or which old findings still hold | **Answer from `CASE-BASELINE.md`** (§2 established-vs-inferred-vs-open, §3 driver posterior, §5 the Era-A translation table, §8 what would change it again). Do **not** re-derive, and do **not** state "it is not CIC-DUX4" — cryptic CIC-DUX4 still holds ~26%. |
+| A question the existing run already answers | **Read & cite `simulation-output/` / `sims/`.** Don't re-run the cycle (see §0) — but re-weight per `CASE-BASELINE.md` §5a before relying on a CIC-DUX4-direct claim. |
 | A simple factual / clarifying / "why" question | **Just answer.** No spawning, no repo-wide research. |
 | "Analyze X thoroughly," "from multiple angles," "what could be tried," "run a simulation" | **Spawn the appropriate team** (below) so the topic gets multiple perspectives. |
 | A research question with no fitting existing team | **Propose a new team** (lead + specialist sub-agents, same structure) and spawn **only after the user agrees.** |
@@ -199,6 +235,7 @@ From `docs/00-README.md`, `docs/06-agent-architecture.md`, and the `sarcoma-cont
 | A V4 immune-visibility / danger-signaling / ICD / DAMP / Nectin-TIGIT / NK-surveillance question, or "should the framework distinguish tumor-promoting inflammation vs. anti-tumor activation vs. treatment toxicity" | **Reuse the V4 expansion** (`simulation-output/v4-immune-watchdog/immune-watchdog-expansion.md` / ADR-0006) and the four V4 sub-agent files; extend rather than re-deriving. It is *inside* V4 — **not a fifth vector**; apply the inflammation-state lens (lowering inflammation ≠ improving anti-tumor immunity). |
 | A cell-of-origin / pathogenesis / tumorigenesis question — "how/why does the cell get *into* this state," "what would you do to a stem cell to make this tumor," "reverse-engineer the construction," minimal-transformation-set / which build steps are necessary | **Reuse the tumorigenesis reverse-engineering layer** (`simulation-output/tumorigenesis-reverse-engineering/` + `sims/07-tumorigenesis-trajectory/` / ADR-0007); extend rather than re-deriving. It is the **forward/inverse** of V1–V4 (a build recipe mapped back onto the vectors), a supplementary team, **not a fifth vector**. |
 | A fusion-unconfirmed / atypical-case / "unknown driver" question — "the patient has no confirmed fusion," "which options are safe given we don't know the driver," "what should we test first / is it worth resolving the diagnosis" | **Reuse the driver-uncertainty decision model** (`simulation-output/tumorigenesis-reverse-engineering/driver-uncertainty-specialist.md` + `sims/08-driver-uncertainty/` / ADR-0008). Treats the driver as a latent variable, marginalizes for robustness, and computes EVSI of resolving it; re-condition the prior on any real testing the patient already had. **Not a diagnosis.** |
+| A **treatment-response / cell-state** question — "the tumour responded (or didn't) to chemo, what does that tell us," chemo-sensitivity vs resistance, DNA-damage-response / SLFN11 / apoptotic priming, why disease relapses after a good response (persister reservoir), or **when** in the treatment course to deploy immunotherapy | **Reuse the chemo-sensitivity / DDR cell-state layer** (`simulation-output/chemosensitivity-ddr-cellstate-layer.md` + `sims/10-chemoresponse-cellstate/` / ADR-0021): treat the response as **evidence** via `driver → DDR state → response`, and report the **driver** and **cell-state** posteriors **separately** (they can move in opposite directions). Key reads: the response resolves *cell state*, not *driver*; **PRC2/EZH2→SLFN11** makes one epigenetic node serve V3+V4; the **persister reservoir ≠ the chemo-sensitive bulk**; the post-chemo **MRD window is perishable**. Response is **confounded with setting** (burden/lesion size/dose intensity) — say so. **Not a fifth vector**; **all citations `[VERIFY]`** → forward lane, ADR-0020 gate applies. |
 | A **reasoning-process** question — human/clinician-in-the-loop steering, adversarial / red-team hypothesis testing, "actively try to disprove X," debiasing, premature-convergence, counterfactuals, or dynamic expansion/contraction of the search space | **Reuse the hypothesis-steering & adversarial-reasoning doc** (`docs/11-hypothesis-steering-and-adversarial-reasoning.md` / ADR-0017): map the ask onto the framework's existing debiasing surfaces, apply the **red-team self-challenge** (disconfirm / alternative / flip-test / steer-audit — also in `sarcoma-pre-output-check`), and use the expansion/contraction triggers. A **process** layer — **not a fifth vector**, not a biological layer; steering reframes the search but never supplies an evidence tier, and contraction never prunes the forward lane (golden rule #5). |
 | A **modality / delivery-format** question — "beyond systemic drugs," cellular therapy (TIL/CAR-T/CAR-NK/TCR), gene/viral/oncolytic-virus therapy, vaccines, local/regional delivery (intratumoral, regional perfusion), physical/energy-based (hyperthermia, focused ultrasound, radiation-immune priming), combination-modality; or a **drug-repurposing** ("approved drug in a new context") / **ethnopharmacology / phytotherapy / traditional-medicine / medicinal-mushroom** sourcing question | **Reuse the therapeutic-modality layer** (`simulation-output/therapeutic-modality-layer.md` / ADR-0018): place the candidate on the **modality axis (M1–M8)**, orthogonal to the four vectors — modality moves the **feasibility** axis, never the evidence tier or mechanism. Check the coverage map (M3/M4/M6/M7 are the catalog's thin spots; **M7 regional hyperthermia** has a positive phase-3 STS RCT). Run repurposing/phytotherapy candidates through the standard gauntlet (tier + Directness ADR-0014 + concentration-mismatch + `sarcoma-chemo-interactions`); junction-specific cellular/vaccine modalities are **fusion-contingent**. A cross-cutting axis — **not a fifth vector**; **re-verify perishable feasibility/regulatory facts live**. |
 | An **oncolytic-virus / virotherapy** question — "OV as an artificial danger signal / alarm system," "make the cold tumour hot with a virus," immune-visibility-via-virus, a specific platform (T-VEC, RP1/RP2/RP3, OH2, VG161, reovirus/pelareorep, NDV, Seneca Valley Virus), or "nearest real-world path to access an OV" | **Reuse the M4 oncolytic-virotherapy deep-dive** (`simulation-output/oncolytic-virotherapy-danger-signal-layer.md` / ADR-0019): it is the M4 cell of the modality layer (ADR-0018) worked through the V4 ICD/danger-signal biology (ADR-0006). OV acts mainly on the **recognition/visibility** axis (raises antigenicity **and** adjuvanticity), is **fusion-agnostic** (applies to the ~5%), but the nearest data (Ewing/round-cell) show **low OV susceptibility** and **CIC-DUX4 OV data are nil** → `Theoretical` for CIC-DUX4; the gating experiment is a tropism screen. Modality moves **feasibility**, not tier; deep/visceral anatomy and RP1's twice-rejected FDA path bound access. **Not a fifth vector; re-verify perishable regulatory/trial status live.** |
@@ -357,13 +394,14 @@ documented runnable entry point.** Don't add new dirs without assigning a tier (
 
 | Tier | Audience | Contents |
 |---|---|---|
-| **1 — Read first (human)** | Clinicians · patients · non-technical | `simulation-output/protocol-v4.md` (main catalog; v1–v3 retained as baselines) · `simulation-output/findings-ranking.md` · `simulation-output/forward-simulation/*-brief.md` |
+| **1 — Read first (human)** | Clinicians · patients · non-technical | **`CASE-BASELINE.md` (the canonical case — read before anything else)** · `simulation-output/protocol-v4.md` (main catalog; v1–v3 retained as baselines) · `simulation-output/findings-ranking.md` · `simulation-output/chemosensitivity-ddr-cellstate-layer.md` · `simulation-output/forward-simulation/*-brief.md` |
 | **2 — Hybrid** | Researchers · motivated readers | rest of `simulation-output/` (analytical layers + per-vector summaries) · `docs/00–05` |
 | **3 — Contributor / LLM** | Developers · AI agents | `docs/06–09` · `docs/adr/` · `sims/` · `CLAUDE.md` · `scripts/` |
 | **4 — Machine / tooling** | Script runner · configs · caches | `.claude/` · `.prompts/` · `.venv/` · `.gitignore` · gitignored `sims/*/data/` |
 
 ```
-docs/00-README.md        framing + constraints + execution semantics (read first)
+CASE-BASELINE.md         THE CANONICAL CASE (Era B, ADR-0022) — read before anything else
+docs/00-README.md        analogy/vector framing + constraints + execution semantics (case framing = Era A)
 docs/01–05               domain knowledge, analogy model, the four attack vectors
 docs/06-agent-architecture.md   full agent prompts + output schemas
 docs/07-openmed-models.md       team -> NER model map (entity grounding)
@@ -377,12 +415,13 @@ scripts/openmed_ner.py   OpenMed NER grounding CLI (--team)
 .claude/agents/          the 6 lead agents
 .claude/skills/          the 6 sarcoma-* content skills + github-issue-runner (workflow; ADR-0002)
 sims/00-INDEX.md         the in-silico simulations + convergent findings
-sims/01–08/              reproducible simulations (script + RESULTS.md + MANIFEST.md + grounding.tsv)
+sims/01–10/              reproducible simulations (script + RESULTS.md + MANIFEST.md + grounding.tsv)
 simulation-output/       protocol-v4.md (main catalog; v1–v3 baselines), findings-ranking.md (master register),
                          forward-simulation/ (oncologist briefs), biomarker-voi-stratification.md,
                          translational-feasibility-layer.md, host-biology-modifier-layer.md,
                          therapeutic-modality-layer.md, oncolytic-virotherapy-danger-signal-layer.md,
-                         tumorigenesis-reverse-engineering/, per-vector outputs
+                         chemosensitivity-ddr-cellstate-layer.md, tumorigenesis-reverse-engineering/,
+                         per-vector outputs
 ```
 
 ---
