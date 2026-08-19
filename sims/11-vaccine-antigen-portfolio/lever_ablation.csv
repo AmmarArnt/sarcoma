@@ -1,0 +1,8 @@
+ablation,mean_utility,delta_vs_full,pct_loss
+remove_NK_arm,0.0255,-0.2133,-89.3
+deploy_outside_MRD_window,0.1148,-0.1239,-51.9
+halve_epitope_breadth,0.2307,-0.0081,-3.4
+remove_PD1_blockade,0.2338,-0.005,-2.1
+remove_epigenetic_priming,0.2483,0.0095,4.0
+drop_shared_antigens_keep_private,0.2704,0.0316,13.2
+drop_to_mutanome_only_antigens,0.2708,0.032,13.4

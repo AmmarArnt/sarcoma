@@ -1,0 +1,6 @@
+test,provenance,burden,voi,gates
+Long-read WGS + RNA-seq (junction resolution),P1/P2,3,0.00352,whether a public junction neoantigen (lowest escape hazard) can be designed
+"CTA panel IHC/RNA (PRAME, NY-ESO-1/CTAG1B, MAGE-A4) on ARCHIVED FFPE",P1 archived,1,0.0,whether the off-the-shelf shared-antigen core exists at all
+MHC-I / B2M IHC (+ HLA typing) on ARCHIVED FFPE,P1 archived,1,0.0,whether epitopes can be SEEN; decides if epigenetic priming is required
+Tumour/germline WES + RNA-seq (TMB + private mutanome),P2 fresh preferred,3,0.0,whether the intismeran-style private-mutanome arm is fillable at all
+Immunopeptidomics (MS) for non-canonical/cryptic epitopes,"P2 fresh, high burden",5,0.0,access to the dark-antigen space that low-TMB tumours still have

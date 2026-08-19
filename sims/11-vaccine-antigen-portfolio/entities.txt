@@ -1,0 +1,58 @@
+intismeran autogene
+mRNA-4157
+V940
+autogene cevumeran
+BNT122
+pembrolizumab
+CIC-DUX4
+CIC::NUTM1
+CIC::FOXO4
+EWSR1
+FLI1
+BCOR
+DUX4
+CIC
+NY-ESO-1
+CTAG1B
+PRAME
+MAGE-A4
+XAGE1
+STEAP1
+CHM1
+LECT1
+GPR64
+ADGRG2
+LIPI
+EZH2
+DNMT1
+HDAC1
+SLFN11
+B2M
+HLA-A
+HLA-B
+HLA-C
+HLA-E
+TAP1
+NLRC5
+STAT1
+interferon gamma
+PD-1
+PD-L1
+TIGIT
+CD155
+IL-15
+N-803
+ifosfamide
+vincristine
+doxorubicin
+cyclophosphamide
+etoposide
+tazemetostat
+entinostat
+azacitidine
+talimogene laherparepvec
+HERV-K
+GPX4
+Ewing sarcoma
+CIC-rearranged sarcoma
+melanoma

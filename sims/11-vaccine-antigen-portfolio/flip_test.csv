@@ -1,0 +1,5 @@
+scenario,required_effective_epitopes,nk_arm_median_p
+"as modelled (primed, narrow construct)",unreachable,0.293
++ presentation fully restored (MHC-I=1.0),unreachable,0.293
++ presentation restored AND escape-proof antigens,unreachable,0.293
++ all of the above AND a mature platform (readiness=0.9),3.45,0.293

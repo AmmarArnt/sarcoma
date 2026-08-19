@@ -1,0 +1,8 @@
+architecture,mean_utility,p95,mean_effective_epitopes,relative_to_best
+V-D_hybrid_primed_polyepitope,0.02552,0.08049,0.9,1.0
+V-F_narrow_high_specificity,0.02257,0.077,0.73,0.884
+V-E_in_situ_antigen_agnostic,0.02252,0.0619,0.46,0.882
+V-D2_hybrid_no_priming_no_window,0.00651,0.02476,0.9,0.255
+V-C_shared_offtheshelf_polyepitope,0.00329,0.01418,0.28,0.129
+V-A_mutanome_only_INT_transplant,0.00061,0.00371,0.14,0.024
+V-B_junction_only,0.0,0.0,0.0,0.0

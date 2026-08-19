@@ -1,0 +1,9 @@
+architecture,mean_utility,median_utility,p05,p95,mean_effective_epitopes,mean_slots_used,mean_vaccine_arm_p,note,pct_top_ranked,delta_vs_no_vaccine
+V-E_in_situ_antigen_agnostic,0.2726,0.2738,0.0969,0.4435,0.46,0.0,0.0258,in-situ vaccination (OV / lysate-DC): tumour supplies its own antigen repertoire,0.3064,0.0026
+V-0_context_only_NO_vaccine,0.27,0.271,0.082,0.4537,0.0,0.0,0.0,BASELINE: everything except the vaccine — priming + MRD window + NK arm + PD-1,0.4321,0.0
+V-F_narrow_high_specificity,0.2696,0.2712,0.095,0.4405,0.73,6.7,0.0267,only antigen classes with tumour-restricted expression (spec-risk <=0.07): private mutanome + junction + DUX4-as-CTA + cryptic ORFs; no shared self-antigens,0.2119,-0.0004
+V-D_hybrid_primed_polyepitope,0.2388,0.2372,0.0865,0.3968,0.9,11.6,0.0359,portfolio antigens + epigenetic MHC-I/antigen priming + MRD window + NK arm + PD-1,0.0496,-0.0312
+V-D2_hybrid_no_priming_no_window,0.0065,0.0031,0.0,0.0248,0.9,11.6,0.0085,"ablation of V-D: same antigens, none of the context engineering",0.0,-0.2635
+V-C_shared_offtheshelf_polyepitope,0.0033,0.001,0.0,0.0142,0.28,3.7,0.0038,off-the-shelf CTA + lineage-programme mRNA polyepitope; no per-patient discovery,0.0,-0.2667
+V-A_mutanome_only_INT_transplant,0.0006,0.0,0.0,0.0037,0.14,1.1,0.0006,"literal intismeran-style transplant: private mutanome + PD-1, adjuvant setting",0.0,-0.2694
+V-B_junction_only,0.0,0.0,0.0,0.0,0.0,0.0,0.0,fusion-junction vaccine; requires the driver AND the junction to be resolved,0.0,-0.27

@@ -1,0 +1,5 @@
+stress,mean_candidate,P_fills_34,P_ge_5,mean_immunogenic
+TMB x3 (sarcoma TMB tripled),6.09,0.0231,0.3701,0.491
+TMB x10 (sarcoma TMB order-of-magnitude higher),20.25,0.1642,0.6982,1.631
+HLA-binder rate x2,3.85,0.008,0.2552,0.308
+immunogenicity rate x3,2.02,0.0014,0.1235,0.481

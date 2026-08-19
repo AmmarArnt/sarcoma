@@ -1,0 +1,6 @@
+driver,posterior,median_TMB_mut_per_Mb,mean_candidate_epitopes,P_fills_34_slots,P_ge_5_design_min,mean_immunogenic_epitopes
+D1_cryptic_CICDUX4,0.2637362637362638,0.804,2.77,0.0025,0.1862,0.223
+D2_rare_CIC_partner,0.09990009990009992,0.798,2.72,0.0022,0.182,0.217
+D3_nonfusion_CIC_LOF,0.09490509490509491,0.897,3.07,0.0035,0.2057,0.242
+D4_phenocopy_misclassified,0.38561438561438566,0.298,1.01,0.0,0.043,0.083
+D5_orphan_epigenetic,0.15584415584415587,0.599,2.06,0.0011,0.1285,0.17
