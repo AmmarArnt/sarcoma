@@ -96,6 +96,19 @@ not exotic assays.
 
 ## 4. Which factors have sufficient evidence (Q3): the catalog
 
+> **⚠ Additive update 2026-09-17 (ADR-0024) — the `Physical activity / exercise` row below is
+> superseded on its *outcome* claim.** That row reads tier "Clinical-Trial (tolerability/fatigue/QoL);
+> **Mechanistic** for outcome." **CHALLENGE (CCTG CO.21)** — phase 3, n=889, structured exercise *after*
+> adjuvant chemotherapy in resected colon cancer — reported **DFS HR 0.72** (5-yr DFS 80.3% vs 73.9%;
+> 8-yr OS 90% vs 83%; *NEJM* 2025, DOI 10.1056/NEJMoa2502760, PMID 40450658) `[VERIFY — snippet-level,
+> concordant across several independent sources]`. That **upgrades the outcome claim to Clinical-Trial
+> (phase 3, DFS *and* OS)** in colon cancer. The row's "**not sarcoma**" caveat stands unchanged — sarcoma
+> exercise data remain function/gait/QoL only. The row is **not retro-edited** (Era-A preservation rule,
+> ADR-0022); see `simulation-output/surveillance-window-host-mitochondrial-lane.md` §4, which also
+> surfaces a conflict with the **autonomic / β-adrenergic** row below (chronic tone is pro-metastatic, yet
+> the *acute* epinephrine pulse is **required** for exercise's NK mobilisation — proposed resolution:
+> tonic vs pulsatile, FH-11.3).
+
 Each factor: dominant **mechanism** (molecular, not analogy), **evidence tier** (contract vocabulary),
 **transfer/confidence** to CIC-DUX4 specifically, **what it modifies**, and **direction**. "Sufficient
 to *include*" means there is a real, tiered mechanism worth carrying as a conditioning factor — **not**

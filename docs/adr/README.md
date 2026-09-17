@@ -55,6 +55,7 @@ or amending an artifact. Those are just commits.
 | [0021](0021-chemoresponse-cellstate-layer.md) | Treatment-response phenotype as evidence — chemo-sensitivity / DDR cell-state layer (extends ADR-0008; not a fifth vector) | 2026-08-02 | Accepted | Maintainer question (relapse ifosfamide response) |
 | [0022](0022-case-baseline-refresh-era-b.md) | **Case-baseline refresh → Era B** (chemo-responsive, Ewing-like, driver-unresolved); establishes `CASE-BASELINE.md` as canonical; Directness becomes posterior-weighted | 2026-08-02 | Accepted | Maintainer instruction |
 | [0023](0023-mitochondrial-endosymbiotic-layer.md) | Mitochondrial / endosymbiotic layer (alarm · commons · reservoir) — extends ADR-0021's persister spine; commons constraint + "alarm over target" rule; not a fifth vector | 2026-09-17 | Accepted | Maintainer question (mitochondria / rogue-bacteria framing, post-NED) |
+| [0024](0024-surveillance-window-host-mitochondrial-lane.md) | **Surveillance-window host/mitochondrial lane** (autophagy · food · natural agents while NED and off treatment) — M8 working of ADR-0023; adds the **wrong-signed register**; **upgrades ADR-0005's exercise row** to phase-3 (CHALLENGE); not a fifth vector | 2026-09-17 | Accepted | Maintainer question (autophagy/food/natural remedies, control arm) |
 
 > **⬆ Era boundary.** **ADR-0001–0020 were written under the Era-A working assumption** that the case was
 > canonical **CIC-DUX4** sarcoma. **ADR-0021 onward are Era B** — chemo-responsive, Ewing-like,
