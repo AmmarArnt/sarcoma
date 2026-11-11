@@ -8,16 +8,27 @@ The models are *Named Entity Recognition* models — they label spans, not gener
 
 ## Install (one-time)
 
-Apple Silicon Mac (this machine):
-
 ```bash
 python3.13 -m venv .venv
-.venv/bin/pip install --upgrade pip 'openmed[mlx]' torch
+.venv/bin/pip install --upgrade pip 'openmed[mlx]' torch   # Apple Silicon
+.venv/bin/pip install --upgrade pip 'openmed[hf]' torch    # Linux / cloud sessions
 ```
 
-`torch` is required because the MLX backend uses HuggingFace's `AutoModelForTokenClassification` once per model to fetch and convert weights to MLX format; after conversion, inference runs on MLX-Metal without torch.
+On Apple Silicon the MLX backend uses HuggingFace's `AutoModelForTokenClassification` once per model to fetch and convert weights; after that, inference runs on MLX-Metal. Elsewhere the PyTorch backend is used. `scripts/openmed_ner.py` picks the backend automatically (`--backend` overrides).
 
-Models download from HuggingFace on first use and are cached under `~/.cache/openmed/` (MLX-converted weights) and `~/.cache/huggingface/` (tokenizers/configs).
+Weights download from the Hugging Face Hub on first use and are cached under `~/.cache/huggingface/hub/` (plus MLX-converted weights under `~/.cache/openmed/` on Apple Silicon). Run `scripts/openmed_ner.py --prefetch` once while the Hub is reachable to warm every team model.
+
+### When the Hub is unreachable
+
+`scripts/openmed_ner.py` is offline-first: if every model a call needs is already cached it sets `HF_HUB_OFFLINE=1` and never contacts the Hub, so a blocked or rate-limited Hub cannot break grounding on a machine that has run it before. It also finds the main checkout's `.venv` from a git worktree (or use `SARCOMA_VENV=/path/to/venv`).
+
+Network-restricted sessions (e.g. Claude Code on the web with a default allowlist) return HTTP 403 for huggingface.co and have an empty cache. There the CLI exits with **code 3** and a diagnostic. Check first with:
+
+```bash
+python scripts/openmed_ner.py --check     # venv, backend, per-model cache status, Hub reachability
+```
+
+Fix by allowing `huggingface.co`, `*.hf.co` and `cas-bridge.xethub.hf.co` in the environment's network policy, or by copying a warmed cache from a machine that ran `--prefetch`. Until then the agent records grounding as **NOT RUN** (see `sims/10-chemoresponse-cellstate/grounding.tsv` for the format) — it never invents scores.
 
 ---
 
@@ -28,7 +39,7 @@ The simplest call pattern (Python — for agents that shell out via `Bash`):
 ```python
 from openmed import analyze_text, OpenMedConfig
 
-cfg = OpenMedConfig(backend="mlx")
+cfg = OpenMedConfig()   # backend auto-detected: MLX on Apple Silicon, PyTorch elsewhere
 result = analyze_text(
     "EZH2 inhibition with tazemetostat depletes H3K27me3 and may restore MHC-I.",
     model_name="oncology_detection_superclinical",   # registry alias

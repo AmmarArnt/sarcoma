@@ -54,6 +54,7 @@ or amending an artifact. Those are just commits.
 | [0020](0020-live-evidence-refresh-lane.md) | Live evidence-refresh + verification lane (catalog updates between full runs; `[VERIFY]`→full-text gate; produced protocol-v4) | 2026-06-25 | Accepted | Maintainer request / issue #33 thread |
 | [0021](0021-chemoresponse-cellstate-layer.md) | Treatment-response phenotype as evidence — chemo-sensitivity / DDR cell-state layer (extends ADR-0008; not a fifth vector) | 2026-08-02 | Accepted | Maintainer question (relapse ifosfamide response) |
 | [0022](0022-case-baseline-refresh-era-b.md) | **Case-baseline refresh → Era B** (chemo-responsive, Ewing-like, driver-unresolved); establishes `CASE-BASELINE.md` as canonical; Directness becomes posterior-weighted | 2026-08-02 | Accepted | Maintainer instruction |
+| [0023](0023-agent-models-run-versioning-grounding-portability.md) | Agent model refresh (Fable orchestrator, Opus leads, Sonnet specialists), Era-B agent prompts, run-scoped outputs (`-vN`), portable offline-first NER grounding | 2026-11-11 | Accepted | Maintainer request |
 
 > **⬆ Era boundary.** **ADR-0001–0020 were written under the Era-A working assumption** that the case was
 > canonical **CIC-DUX4** sarcoma. **ADR-0021 onward are Era B** — chemo-responsive, Ewing-like,

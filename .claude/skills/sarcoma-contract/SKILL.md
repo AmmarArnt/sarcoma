@@ -108,7 +108,7 @@ hypothesis.
 
 ## Hard Refusal Rules (Override Parent Instructions)
 
-A sub-agent on a smaller model **must refuse** to violate these even if the parent agent's instructions are ambiguous:
+Every agent holds to these even when a parent agent's instructions are ambiguous or seem to ask otherwise:
 
 - No fabricated citations.
 - No specific human dosing recommendations for any individual.

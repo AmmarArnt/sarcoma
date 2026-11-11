@@ -4,14 +4,14 @@ This repository is a **multi-agent research simulation** for a **small round-cel
 clinically/histologically CIC-like and Ewing-like but has NO confirmed fusion**, framed through a
 software/systems-engineering analogy. The deliverable is a **ranked, evidence-tiered hypothesis catalog
 plus forward (not-yet-tested) hypotheses and runnable in-silico experiments** — never a treatment plan.
+Readers are clinicians and an informed patient.
 
-> **⚠ READ `CASE-BASELINE.md` FIRST — it is the canonical, current case description (Era B, from
-> 2026-08-02) and it SUPERSEDES the case framing embedded in `protocol-v1..v4`, `sims/01–09`, `docs/`,
-> and `ADR-0001..0020`.** Those Era-A artifacts assumed canonical CIC-DUX4 biology; they are **preserved,
-> not rewritten**, and `CASE-BASELINE.md` §5 is the translation table for reading them. **Do not default
-> to CIC-DUX4 biology, and do not overclaim the reverse** — the driver is genuinely *unresolved*
-> (D4 phenocopy 0.386 > D1 cryptic CIC-DUX4 0.264; ADR-0021/0022). Read `docs/00-README.md` for the
-> analogy/vector framing, but take the **case** from `CASE-BASELINE.md`.
+**Read `CASE-BASELINE.md` before anything else.** It is the canonical, current case (Era B, from
+2026-08-02) and supersedes the case framing embedded in `protocol-v1..v4`, `sims/01–09`, `docs/`, and
+`ADR-0001..0020`. Those Era-A artifacts assumed canonical CIC-DUX4 biology; they are **preserved, not
+rewritten**, and `CASE-BASELINE.md` §5 is the translation table for reading them. The driver is genuinely
+*unresolved* (D4 phenocopy 0.386 > D1 cryptic CIC-DUX4 0.264; ADR-0021/0022): do not default to CIC-DUX4
+biology, and do not overclaim the reverse — "not CIC-DUX4" is not established.
 
 **This is research and hypothesis generation only. No medical advice, no personal dosing, no
 start/stop instructions for any therapy.** Mechanisms, food sources, evidence tiers, and published
@@ -19,478 +19,275 @@ trial dose-ranges (with citations) are in scope; prescriptive numbers are not.
 
 ---
 
-## 0. Reuse the existing run first (cost discipline) — but read the baseline before you trust it
+## 0. Reuse the existing run first
 
-**Step 0 for every task: read `CASE-BASELINE.md`.** It is short, it is the current case, and it tells you
-which of the artifacts below were written under the superseded assumption. Reuse is still the default —
-but reuse *through* the baseline, not around it.
+A full simulation and many analytical layers already exist in `simulation-output/` and `sims/`.
+**Answer from them and extend incrementally** — re-running the multi-agent cycle is slow and expensive and
+usually unnecessary. Reuse *through* the baseline: per `CASE-BASELINE.md` §5a this case has **no P0
+anchor**, so CIC-DUX4-direct evidence is discounted to the D1+D2 posterior (~0.36), Ewing/round-cell-family
+evidence is up-weighted, and fusion-agnostic evidence keeps full weight.
 
-**An initial full simulation has already been run. Its artifacts live in `simulation-output/` and
-`sims/` — read and reuse them before spawning anything.** Re-running the whole multi-agent cycle every
-time is slow and token-expensive, and usually unnecessary.
+**Era tags (ADR-0022).** Artifacts authored 2026-06-02 → 2026-08-01 are **Era A** (canonical-CIC-DUX4
+working assumption): their *mechanism* content holds, their *case framing* and *Directness weighting* do
+not. Artifacts from 2026-08-02 on are **Era B**.
 
-**Era tags (ADR-0022).** Everything in the list below marked **[Era A]** was authored 2026-06-02 →
-2026-08-01 under the canonical-CIC-DUX4 working assumption. Its *mechanism* content is still good; its
-*case framing* and its **Directness/transferability weighting** are not. Per `CASE-BASELINE.md` §5a this
-case has **no P0 anchor** — CIC-DUX4-direct evidence is discounted to the D1+D2 posterior (~0.36) rather
-than treated as "in this tumour," Ewing/round-cell-family evidence is up-weighted, and fusion-agnostic
-evidence keeps full weight. Items marked **[Era B]** were authored under the current baseline.
+Run a fresh full cycle (§3) or re-execute a sim **only** when the user asks for a clean/fresh run or an
+overwrite; when the question needs scope or parameters the artifacts don't cover (a new case, compound,
+target or angle); or when findings need updating with newer evidence. Otherwise spawn only the specific
+specialist or team needed and **write a new artifact** (`protocol-vN.md`, a new `sims/NN-*/`, a dated
+file) rather than clobbering — the prior run stays as the baseline.
 
-Already on disk:
-- `simulation-output/findings-ranking.md` — **master register of every notable finding** across all sims/
-  teams/analyses, scored on the three axes (evidence tier / confidence / feasibility) with "top picks by
-  criterion." One place to compare results (ADR-0009). **MAINTAIN IT:** whenever a new sim, team output, or
-  analysis produces a result worth comparing against the others — or a perishable feasibility band changes —
-  **add/update its row in the same commit/PR** (the file's "Maintenance rule" has the steps). Do not promote
-  a logic/decision-model finding above a real-data finding on evidence strength.
-- `simulation-output/protocol-v1.md` — the ranked, evidence-tiered hypothesis catalog (headline output).
-- `simulation-output/{v1-rate-limiting,v2-compiler-protection,v3-hot-patching,v4-immune-watchdog,mrna-vaccine-research}/`
-  — each vector/team lead's summary plus its sub-agent outputs.
-- `simulation-output/metastatic-disease-considerations.md` and `.../supplementary-pulsed-adjunct/`.
-- `simulation-output/forward-simulation/` — counterfactual trial forensics, in-silico experiment
-  designs, the grounded citation index, and the oncologist/MTB discussion briefs.
-- `simulation-output/biomarker-voi-stratification.md` — three-tier missing-data taxonomy
-  (Known / Missing-decision-relevant / Missing-low-impact) + value-of-information ranking of unknown
-  biomarkers (from Sim 6). Reuse this for "what's unknown / what would change the recommendation" questions.
-  Extended by `simulation-output/biomarker-voi-provenance-extension.md` (issue #7 follow-up / ADR-0011),
-  which adds two axes inside Tier B — **acquisition provenance** (P1 archived FFPE / P2 fresh biopsy /
-  P3 liquid) and **temporal state** (T0 baseline / T1 current / TΔ change-under-treatment). Reuse it for
-  "where does the answer come from / archived vs fresh tissue / clonal evolution / did the marker change
-  under treatment / what's the cheapest source" questions.
-- `simulation-output/diagnostic-information-gain-layer.md` — **diagnostic-action (test-level)
-  expected-information-gain layer** answering *"what should we **learn** next?"* (from issue #31 / ADR-0015).
-  Composes the variable-level VoI (Sim 6), provenance/burden axes (ADR-0011), and driver-resolution EVSI
-  (Sim 8) into a per-**test** value profile (driver EVSI + immune-route VoI, kept separate — no blended
-  score), an action-level **low-yield** register, and a constraint-aware **sequencing** rule (archived P1
-  bundle first → fresh P2 only for the residual delta → liquid P3 monitoring → imaging on its own staging
-  cadence, re-ranked after each result). Reuse for "which test next / value of a diagnostic / information
-  gain / what's low-yield / how to sequence tests under tissue/budget/time" questions. Imaging VoI is named
-  as an unmodeled gap; a quantitative Sim 9 is proposed, not executed. Not a testing recommendation.
-- `simulation-output/translational-feasibility-layer.md` — five-band feasibility scheme (F1 Accessible-now
-  … F5 Concept-only) applied to every Clinical/Experimental entry in `protocol-v1.md`, with live-verified,
-  date-stamped regulatory/trial status (from issue #9 / ADR-0003). Reuse for "is it approved / in a trial /
-  discontinued / how soon could a patient reach it" questions — **re-verify before external use; bands are
-  perishable** (e.g. tazemetostat was withdrawn from US indications 2026-03-09).
-  Extended by `simulation-output/feasibility-attrition-reason-extension.md` (issue #9 follow-up / ADR-0013),
-  which adds an **attrition-reason annotation (R0–R5)** — *why* an F3/F4 program's access closed
-  (R0 never-built · R1 target-invalidated · R2 trial-fail · R3 subgroup-dilution · R4 regulatory ·
-  R5 commercial) — and the rule that **only R1 (and a biomarker-enriched R2) carries negative biology**;
-  R3/R4-commercial/R5 are biology-silent. Reuse for "does discontinued/withdrawn mean it failed
-  biologically," "why was X deprioritized," and the regorafenib CIC-cohort (REGOBONE/NCT02389244 =
-  results-pending, not negative) questions. **Not a new axis** — an annotation on the feasibility axis.
-- `simulation-output/host-biology-modifier-layer.md` — cross-cutting **host-biology modifier layer**
-  (gut microbiome/SCFA, systemic inflammation/NLR/mGPS, metabolic/sarcopenia, nutrition, physical
-  activity, sleep/circadian, autonomic/β-adrenergic, PNEI, placebo-nocebo, perioperative conditioning).
-  Not a fifth vector — it conditions V4 and SOC tolerability and is weighted via the existing three axes
-  (confidence/transfer does the down-weighting). Reuse for host-level / lifestyle / "does host biology
-  explain variability or tolerance" questions (from issue #10 / ADR-0005).
-- `simulation-output/v4-immune-watchdog/immune-watchdog-expansion.md` — V4 conceptual expansion covering
-  innate **danger recognition** (DAMPs, immunogenic cell death, HSP/HMGB1/calreticulin/ATP), the
-  **Nectin–TIGIT–DNAM-1 / NKG2A-HLA-E** axis (incl. NTX1088 anti-PVR and the failed anti-TIGIT phase-3
-  programs), NK exhaustion/stress-ligand evasion, and the standing **inflammation-state lens** (separating
-  tumor-promoting inflammation vs. anti-tumor activation vs. treatment-related toxicity). Inside V4 — not a
-  fifth vector (from issue #11 / ADR-0006). Reuse for immune-visibility / danger-signaling / ICD /
-  Nectin-axis / NK-surveillance questions.
-- `simulation-output/tumorigenesis-reverse-engineering/` — the **forward / "steps to reproduce" build
-  recipe** (the INVERSE of the four attack vectors): how a normal mesenchymal progenitor *becomes* a
-  CIC-DUX4 cell, reverse-engineered into intervention points. Lead `tumorigenesis-build-recipe.md`
-  (headline) + four specialist briefs (cell-of-origin, driver-engineering, cooperating-lesions,
-  epigenetic-permissiveness). A supplementary team, **not a fifth vector**. Reuse for cell-of-origin /
-  pathogenesis / "how/why does the cell get into this state" / "reverse-engineer the construction" /
-  minimal-transformation-set questions (from ADR-0007).
-- `simulation-output/tumorigenesis-reverse-engineering/driver-uncertainty-specialist.md` + `sims/08-driver-uncertainty/`
-  — the **fusion-unconfirmed / "unknown driver" decision model** (ADR-0008). Treats the driver of the ~5%
-  fusion-unconfirmed patient as a latent variable (D1 cryptic CIC-DUX4 … D5 orphan), marginalizes the
-  catalog over a literature-anchored prior (robustness), computes the **value of resolving the driver**
-  (EVSI: long-read WGS+RNA-seq > DUX4 IHC > methylation array), and sweeps the prior. Reuse for
-  fusion-unconfirmed / atypical-case / "unknown driver" / "what should we test first / value of resolving
-  the diagnosis" questions. Key result: throttle/cell-cycle/immune vectors are driver-robust; the
-  **DUX4/MCL1 "re-arm" hypothesis is driver-contingent** (hold until resolved).
-- `simulation-output/therapeutic-modality-layer.md` — cross-cutting **therapeutic-modality layer** (the
-  delivery-*format* axis M1–M8: systemic small-molecule / biologics / cellular (TIL·CAR-T·CAR-NK·TCR) /
-  gene-viral-oncolytic / vaccines / local-regional / physical-energy (hyperthermia·HIFU·radiation-immune
-  priming) / dietary-host-directed), orthogonal to the four vectors — **not a fifth vector** (issue #33 /
-  ADR-0018). Modality changes the **feasibility** axis, never the evidence tier. Maps catalog coverage
-  (headline gap: **M7 regional hyperthermia**, which has a positive phase-3 STS RCT) and carries two
-  hypothesis-sourcing sub-scans — **drug-repurposing** (reuses ADR-0003/0013; arsenic/thalidomide/colchicine/
-  ivermectin scored honestly) and **ethnopharmacology/phytotherapy** (admitted as a mechanism source, filtered
-  by concentration-mismatch + chemo-interaction). Reuse for "beyond systemic drugs / cellular / CAR / viral /
-  oncolytic / vaccine / local-regional / hyperthermia / repurposing / traditional-medicine / phytotherapy"
-  questions; **re-verify perishable feasibility bands live**.
-- `simulation-output/oncolytic-virotherapy-danger-signal-layer.md` — **M4 (gene/viral) deep-dive**: oncolytic
-  viruses as in-situ **"artificial danger-signal generators"** (PAMPs + DAMPs → convert a cold, MHC-I-low
-  CIC-DUX4 lesion to a visible one), deepening the modality layer's M4 cell through the V4/ADR-0006 ICD biology
-  (issue #11 follow-up / ADR-0019). Scores the named platforms (T-VEC, RP1/RP2/RP3, OH2, VG161,
-  reovirus/pelareorep, NDV, Seneca Valley Virus) and maps real-world accessibility. Honest headline: **one
-  positive sarcoma signal** (T-VEC+pembrolizumab phase-2 ORR 30%, NCT03069378) but the nearest data
-  (Ewing/round-cell) show *low* OV susceptibility and **no CIC-DUX4 OV data exist** → `Theoretical` for
-  CIC-DUX4; fusion-agnostic (good for the ~5%); deep/visceral anatomy + RP1's twice-rejected FDA path bound
-  feasibility. Reuse for oncolytic-virus / virotherapy / "artificial danger signal" / immune-visibility-via-virus
-  / OV-accessibility questions; **not a fifth vector; re-verify perishable status live**.
-- `simulation-output/chemosensitivity-ddr-cellstate-layer.md` — **treatment-response-as-evidence / DDR
-  cell-state layer** (issue-free user question / ADR-0021), backed by `sims/10-chemoresponse-cellstate/`.
-  Reads the patient's *observed chemotherapy response* as a likelihood-bearing observation via an explicit
-  `driver → DDR state → response` model. Headline: the response **resolves the DDR/SLFN11 cell state to
-  ~94%** while **entropy over the driver RISES** (it answers "what is the cell doing?", not "which
-  fusion?"); most-likely driver flips **D1→D4** in 75.2% of sweeps; **MCL1 "re-arm" drops out in 99.1%**
-  (a 2nd, phenotypic argument for Sim 8's demotion); **SLFN11 IHC / BH3 profiling have ~0 EVSI because the
-  clinical course already bought that information**. Its forward spine: the **PRC2/EZH2→SLFN11** silencing
-  axis makes one epigenetic node **dual-purpose** (preserve chemo-sensitivity **and** prime MHC-I → V3+V4),
-  the **persister reservoir ≠ the chemo-sensitive bulk** (GPX4/ferroptosis; CDK4/6i hits the bulk only), and
-  the **post-chemo MRD/lymphodepletion window is the best immunological moment and it closes** (NK-first,
-  because NK reconstitutes before T). Reuse for "what does the treatment response tell us / cell state /
-  chemo-sensitivity or resistance / SLFN11 / persister / relapse reservoir / when to give immunotherapy"
-  questions. **Not a fifth vector** — it re-weights V1/V3/V4. **All citations `[VERIFY]` (literature egress
-  blocked 2026-08-02) → forward lane only, gated out of protocol promotion by ADR-0020.**
-- `sims/01–10/` — executed in-silico experiments with `RESULTS.md` + data `MANIFEST.md` + grounding.
-  (Sim 7 = Boolean **transformation-trajectory** behind the build recipe; Sim 8 = the **driver-uncertainty**
-  decision model above; Sim 10 = the **chemo-response cell-state** update extending Sim 8.)
+### Where each kind of question is already answered
 
-**Default behavior:** answer from and cite these artifacts; extend incrementally. Do **not** re-run the
-waves in §3 (or re-execute a sim) to reproduce something already on disk.
+None of these is a fifth vector (golden rule 8); layers condition and annotate, they never override
+real-data vector evidence (ADR-0009) and never prune the forward lane (golden rule 5). Every layer says
+"not a testing / treatment recommendation" where relevant. Perishable regulatory/trial facts must be
+**re-verified live** before reuse.
 
-**Only run a fresh full cycle (§3) — or re-execute a sim — when one of these holds:**
-- the user explicitly asks for a clean/fresh run or to **overwrite** existing outputs;
-- the question needs **scope or parameters the existing artifacts don't cover** (a different patient
-  case, a new compound/target, a different angle); or
-- the findings need **expansion or updating** with newer evidence.
-
-When extending: spawn only the **specific** specialist or supplementary team needed, and **write a new
-artifact** (e.g. `protocol-v2.md`, a new `sims/NN-*/`, a dated file) rather than clobbering existing
-ones — unless the user asked for an overwrite. Preserve the prior run as the baseline.
-
-**Live evidence-refresh lane (ADR-0020).** To *inject new biology* between full cycles — without
-re-running §3 — run a dated `evidence-refresh-YYYY-MM.md` that adds new/updated literature (each claim
-tiered + cited). **Mandatory gate:** snippet/abstract-sourced claims are tagged `[VERIFY]` and **may not
-enter a protocol version until full-text/abstract-verified against a live source** (PubMed/PMC/GEO/registry
-per `docs/09`), PMID/accession inline, perishable status date-stamped; items that fail are **corrected or
-retracted in place** (this is what caught the 2026-06 WEE1 retraction). A verified refresh may produce the
-**next** `protocol-vN.md` (an incremental, evidence-verified update — baselines preserved) on a **user-gated**
-promotion; update `findings-ranking.md` + the README "Where to start" in the same change. The lane is
-**symmetric** (it can retract/refute, not only confirm) and never prunes the forward lane (golden rule #5).
+| Question | Artifact (ADR) | What to carry over |
+|---|---|---|
+| What is the case now / is it still "CIC-DUX4" / what changed / which old findings hold | `CASE-BASELINE.md` (0022) | §2 established-vs-inferred-vs-open, §3 driver posterior, §5 Era-A translation table, §8 what would change it. Never state "it is not CIC-DUX4" — cryptic CIC-DUX4 still holds ~26%. |
+| Compare findings across sims/teams; which result is strongest | `simulation-output/findings-ranking.md` (0009) | Master register scored on tier / confidence / feasibility. **Maintain it**: add/update a row in the same change whenever a new result or a perishable feasibility band changes (its "Maintenance rule"). Never rank a logic/decision-model finding above a real-data one on evidence strength. |
+| The catalog itself | `protocol-v4.md` (v1–v3 retained as baselines); per-vector folders; `metastatic-disease-considerations.md`; `supplementary-pulsed-adjunct/`; `forward-simulation/` (trial forensics, in-silico designs, citation index, oncologist/MTB briefs) | Era-A framing — re-weight per §5a. |
+| What's unknown / which unmeasured biomarker would change the recommendation | `biomarker-voi-stratification.md` (Sim 6, 0001) + `biomarker-voi-provenance-extension.md` (0011) | Known / missing-decision-relevant / low-impact taxonomy + VoI ranking. Provenance P1 archived FFPE / P2 fresh biopsy / P3 liquid; temporal T0 baseline / T1 current / TΔ change-under-treatment. Realizable VoI is bounded by recoverability from an accessible source. |
+| Which test next / value of a diagnostic / low-yield tests / sequencing under tissue-budget-time limits | `diagnostic-information-gain-layer.md` (0015) | Per-test value *profile* — driver EVSI (Sim 8) and immune-route VoI (Sim 6) kept separate, no blended score — ÷ acquisition burden. Sequence: archived P1 bundle → fresh P2 for the residual delta → liquid P3 monitoring → imaging on its own staging cadence; re-rank after each result. Imaging VoI is an unmodeled gap. |
+| Is X approved / in a trial / discontinued; FDA vs EMA; how soon could a patient reach it | `translational-feasibility-layer.md` (0003) | F1 accessible-now … F5 concept-only, date-stamped. Bands are perishable (tazemetostat's US indications were withdrawn 2026-03-09). |
+| Why did a program close / does "withdrawn" mean it failed biologically | `feasibility-attrition-reason-extension.md` (0013) | R0 never-built · R1 target-invalidated · R2 trial-fail · R3 subgroup-dilution · R4 regulatory · R5 commercial. Only R1 (and biomarker-enriched R2) carries negative biology. REGOBONE/NCT02389244 CIC cohort = results pending, not negative. An annotation on feasibility, not a new axis. |
+| Host-level / lifestyle: microbiome, inflammation (NLR/mGPS), metabolic/sarcopenia, nutrition, exercise, sleep/circadian, autonomic/PNEI, placebo-nocebo, perioperative | `host-biology-modifier-layer.md` (0005) | Conditions V4 and SOC tolerability; weighted through the existing three axes. |
+| How transfer distance is weighted / is broader evidence excluded because the tumour is rare | `docs/10-evidence-transferability-hierarchy.md` (0014) | Directness ladder P0 CIC-DUX4 → P1 fusion round-cell family → P2 sarcoma → P3 solid tumour with named mechanism → P4 pathway-only. Rarity lowers the rung, never excludes; only a missing mechanistic bridge excludes. Era B: no P0 anchor (§5a). |
+| Immune visibility, danger signalling, ICD/DAMPs, Nectin–TIGIT–DNAM-1 / NKG2A–HLA-E, NK surveillance | `v4-immune-watchdog/immune-watchdog-expansion.md` (0006) | Includes NTX1088 anti-PVR and the failed anti-TIGIT phase-3 programs. Apply the inflammation-state lens: tumour-promoting inflammation vs anti-tumour activation vs treatment toxicity — lowering inflammation ≠ improving anti-tumour immunity. |
+| Cell of origin / pathogenesis / "how does a cell get into this state" / minimal transformation set | `tumorigenesis-reverse-engineering/` + `sims/07-tumorigenesis-trajectory/` (0007) | The forward "build recipe" (inverse of V1–V4) mapped back onto intervention points. |
+| No confirmed fusion / unknown driver / which options are safe without the driver / is resolving it worth it | `tumorigenesis-reverse-engineering/driver-uncertainty-specialist.md` + `sims/08-driver-uncertainty/` (0008) | Driver as latent variable (D1 cryptic CIC-DUX4 … D5 orphan); EVSI: long-read WGS+RNA-seq > DUX4 IHC > methylation array. Throttle / cell-cycle / immune vectors are driver-robust; the DUX4/MCL1 "re-arm" line is driver-contingent (hold). Re-condition the prior on any testing the patient already had. Not a diagnosis. |
+| What does the chemo response tell us; chemo-sensitivity/resistance; SLFN11; persister reservoir; when to deploy immunotherapy | `chemosensitivity-ddr-cellstate-layer.md` + `sims/10-chemoresponse-cellstate/` (0021) | Response as evidence via `driver → DDR state → response`; report driver and cell-state posteriors **separately**. Cell state resolves to ~94% while driver entropy *rises*; most-likely driver flips D1→D4 in 75.2% of sweeps; MCL1 "re-arm" drops out in 99.1%; SLFN11 IHC / BH3 profiling ≈ 0 EVSI (the clinical course already bought that information). PRC2/EZH2→SLFN11 makes one node serve V3+V4; persister reservoir ≠ chemo-sensitive bulk (GPX4/ferroptosis; CDK4/6i hits the bulk); the post-chemo MRD window is the best immunological moment and it closes (NK first). Response is confounded with setting — say so. **All citations `[VERIFY]`** → forward lane only (ADR-0020). |
+| Reasoning process: clinician steering, red-team / "try to disprove X", debiasing, premature convergence, expanding or contracting the search | `docs/11-hypothesis-steering-and-adversarial-reasoning.md` (0017) | Red-team self-challenge (disconfirm / alternative / flip-test / steer-audit — also in `sarcoma-pre-output-check`). Steering reframes the search but never supplies an evidence tier; contraction never prunes the forward lane. |
+| Beyond systemic drugs: cellular (TIL/CAR-T/CAR-NK/TCR), gene/viral, vaccines, local-regional, physical (hyperthermia, HIFU, radiation priming), dietary; drug repurposing; ethnopharmacology / phytotherapy | `therapeutic-modality-layer.md` (0018) | Modality axis M1–M8, orthogonal to the vectors: it moves **feasibility**, never tier or mechanism. Thin spots M3/M4/M6/M7 — **M7 regional hyperthermia** has a positive phase-3 STS RCT. Repurposing and phytotherapy candidates go through tier + Directness + concentration-mismatch + `sarcoma-chemo-interactions`. Junction-specific cellular/vaccine modalities are fusion-contingent. |
+| Oncolytic viruses / "make the cold tumour hot with a virus" / a named platform (T-VEC, RP1/2/3, OH2, VG161, pelareorep, NDV, Seneca Valley) | `oncolytic-virotherapy-danger-signal-layer.md` (0019) | OV as an artificial danger-signal generator (visibility axis). One positive sarcoma signal (T-VEC + pembrolizumab ORR 30%, NCT03069378); Ewing/round-cell data show *low* susceptibility and no CIC-DUX4 OV data exist → `Theoretical`; fusion-agnostic; RP1's twice-rejected FDA path and visceral anatomy bound feasibility. Gating experiment: a tropism screen. |
+| Refresh the evidence / does a new paper change anything / is finding X still current | Live evidence-refresh lane (0020): dated `evidence-refresh-YYYY-MM.md` | Tier and cite each claim. Snippet/abstract-sourced claims are `[VERIFY]` and may not enter a protocol version until verified against a live source (PubMed/PMC/GEO/registry per `docs/09`), PMID/accession inline, perishable status date-stamped; failures are corrected or **retracted in place** (this caught the 2026-06 WEE1 retraction). A verified refresh may produce the next `protocol-vN.md` on a **user-gated** promotion (update `findings-ranking.md` + README "Where to start"). Symmetric: it can refute as well as confirm. |
+| Executed in-silico experiments | `sims/01–10/` (see `sims/00-INDEX.md`) | Each has `RESULTS.md`, a data `MANIFEST.md`, and grounding. |
 
 ---
 
-## 1. Golden rules (non-negotiable — apply to every output, every agent)
+## 1. Golden rules (apply to every output, every agent)
 
-From `docs/00-README.md`, `docs/06-agent-architecture.md`, and the `sarcoma-contract` skill.
+Canonical wording lives in the `sarcoma-contract` skill; this is the summary.
 
-1. **No fabricated citations. Ever.** If you can't point to a real PMID / NCT / DOI / dataset, write
+1. **No fabricated citations.** If you can't point to a real PMID / NCT / DOI / dataset, write
    `[no direct citation; mechanism inferred from {what}]`. Plausible-looking fake references are the
-   single worst failure mode. **Verify accessions/PMIDs against live sources when you can** (WebSearch/
-   WebFetch); if you can't verify, label it `[VERIFY]` rather than asserting it. Regulatory/trial/safety
-   status is **perishable** — verify it live and never carry it across sessions unchecked (operative rule +
-   source registry: `sarcoma-contract` and `docs/09-verification-sources.md`).
-2. **Evidence tier on every claim.** Use exactly one: `Established` › `Clinical-Trial` ›
+   worst failure mode this project has. Verify accessions/PMIDs against live sources when you can; if you
+   can't, label the claim `[VERIFY]`. Regulatory/trial/safety status is **perishable** — verify it live and
+   never carry it across sessions unchecked (`sarcoma-contract`, `docs/09-verification-sources.md`).
+2. **Evidence tier on every claim**, exactly one of: `Established` › `Clinical-Trial` ›
    `Preclinical-Animal` › `Preclinical-Cell` › `Mechanistic` › `Dietary-Observational` › `Theoretical`.
-   Tier is the first of three orthogonal axes (tier / confidence / feasibility) — see `sarcoma-contract`
-   for when to also carry confidence and translational-feasibility reads.
+   Tier is the first of three orthogonal axes (tier / confidence / feasibility) — see `sarcoma-contract`.
 3. **Mechanism before recommendation.** State the molecular mechanism, not an analogy and not
-   "antioxidant properties." The engineering analogy (docs/04) is shorthand — always translate it back
-   to biology.
-4. **Cite with calibrated confidence; say what you could not establish.** A short, honest output beats
-   a long padded one. Every research output needs a "what I could not establish" section.
-5. **Known research is the FLOOR, not the ceiling.** Do not stop at "X was tried and didn't work."
-   Ask *why* it failed, what's mechanistically different here, what could be tried differently, whether
-   the molecule behaved as envisioned, whether the trial was underpowered/unselected/monotherapy.
-   Generate mechanistically defensible **Forward Hypotheses** with explicit falsifiers. Be bold in
-   *hypothesis* space (tag it `Theoretical`/`Mechanistic`) — but **never** dress speculation up as
-   evidence. This generative lane is one half of the **two-lane / expand-contract rule** — the
-   adversarial counterpart (red-team self-challenge, premature-closure guard) is in
-   `docs/11-hypothesis-steering-and-adversarial-reasoning.md` (ADR-0017); contraction may prune the
-   confirmatory lane but **never** this one.
-6. **Distinguish "evidence in CIC-DUX4" from "evidence in cancer broadly."** Flag concentration
-   mismatches (a 10 µM cell-line effect ≠ achievable dietary plasma level).
+   "antioxidant properties." The engineering analogy (docs/04) is shorthand — translate it back to biology.
+4. **Calibrated confidence; say what you could not establish.** A short, honest output beats a long
+   padded one. Every research output has a "what I could not establish" section.
+5. **Known research is the floor, not the ceiling.** Don't stop at "X was tried and didn't work" — ask
+   why it failed, what is mechanistically different here, whether the trial was underpowered, unselected
+   or monotherapy. Generate mechanistically defensible **Forward Hypotheses** with explicit falsifiers,
+   tagged `Theoretical`/`Mechanistic` — bold in hypothesis space, never dressed up as evidence. The
+   adversarial counterpart (red-team, premature-closure guard) is in `docs/11` (ADR-0017); contraction may
+   prune the confirmatory lane but never this one.
+6. **Distinguish evidence in this tumour from evidence in cancer broadly.** Flag concentration mismatches
+   (a 10 µM cell-line effect ≠ an achievable dietary plasma level).
 7. **Flag standard-of-care interactions** (VDC/IE: vincristine, doxorubicin, cyclophosphamide,
-   ifosfamide, etoposide; CYP3A4/P-gp; ROS-dependent chemo). Use the `sarcoma-chemo-interactions` skill.
-8. **The four attack vectors are FIXED** (V1 Rate-Limiting, V2 Compiler-Protection, V3 Hot-Patching,
-   V4 Immune-Watchdog). New topics are **supplementary teams or sub-agents**, never a "fifth vector."
-9. **Atypical-case flag (~5%).** Some clinically/histologically CIC-rearranged tumors have no confirmed
-   fusion. Flag any fusion-dependent recommendation (junction ASOs, junction-specific vaccines/CAR-T)
-   as possibly inapplicable; mark fusion-agnostic ones (EZH2i, BETi, CDK4/6i, differentiation, epigenetic
+   ifosfamide, etoposide; CYP3A4/P-gp; ROS-dependent chemo) with the `sarcoma-chemo-interactions` skill.
+8. **The four attack vectors are fixed** (V1 Rate-Limiting, V2 Compiler-Protection, V3 Hot-Patching,
+   V4 Immune-Watchdog). New topics are supplementary teams or sub-agents, never a fifth vector.
+9. **Driver applicability.** This patient has no confirmed fusion. Flag every fusion-dependent idea
+   (junction ASOs, junction-specific vaccines / CAR-T, the MCL1 "re-arm" line) as possibly inapplicable and
+   driver-contingent; mark fusion-agnostic ones (epigenetic, BETi, CDK4/6i, differentiation, epigenetic
    MHC-I priming, dietary, immune) as still applicable.
-10. **Clinician-facing briefs must carry honest clinical status** (what's approved vs experimental vs
-    failed in trials) and a "revisit when…" trigger. Tag everything "not medical advice."
+10. **Clinician-facing briefs carry honest clinical status** (approved vs experimental vs failed in trials),
+    a "revisit when…" trigger, and "not medical advice."
 
 ---
 
-## 2. Gauge the effort before acting (use judgement)
+## 2. Gauge the effort before acting
 
 | If the prompt is… | Then… |
 |---|---|
-| **Anything at all** | **First read `CASE-BASELINE.md`** (Era B, ADR-0022) — it is the canonical case and supersedes the framing in `protocol-v1..v4` / `sims/01–09` / `docs/` / `ADR-0001..0020`. Cheap, and it changes how you weight everything else. |
-| A question about **what the case actually is now**, whether it's still "CIC-DUX4", what changed, or which old findings still hold | **Answer from `CASE-BASELINE.md`** (§2 established-vs-inferred-vs-open, §3 driver posterior, §5 the Era-A translation table, §8 what would change it again). Do **not** re-derive, and do **not** state "it is not CIC-DUX4" — cryptic CIC-DUX4 still holds ~26%. |
-| A question the existing run already answers | **Read & cite `simulation-output/` / `sims/`.** Don't re-run the cycle (see §0) — but re-weight per `CASE-BASELINE.md` §5a before relying on a CIC-DUX4-direct claim. |
-| A simple factual / clarifying / "why" question | **Just answer.** No spawning, no repo-wide research. |
-| "Analyze X thoroughly," "from multiple angles," "what could be tried," "run a simulation" | **Spawn the appropriate team** (below) so the topic gets multiple perspectives. |
-| A research question with no fitting existing team | **Propose a new team** (lead + specialist sub-agents, same structure) and spawn **only after the user agrees.** |
-| A coding/repo task (run a sim, fix a script, write a doc) | Do it directly; spawn only if it genuinely needs parallel research. |
-| A question about which unknown/unmeasured biomarkers matter, "what should we measure," or stratifying a new case | **Reuse the VoI layer** (`simulation-output/biomarker-voi-stratification.md` / Sim 6); extend it rather than re-deriving. |
-| A question about **where** a missing biomarker's answer comes from / archived FFPE vs fresh biopsy vs liquid biopsy / clonal evolution / whether a marker **changed under treatment** / the cheapest source for a measurement | **Reuse the VoI provenance extension** (`simulation-output/biomarker-voi-provenance-extension.md` / ADR-0011): classify on **provenance** (P1 archived / P2 fresh / P3 liquid) and **temporal state** (T0 baseline / T1 current / TΔ change). Realizable VoI is bounded by recoverability from an accessible source; **not a testing recommendation**. |
-| A **diagnostic-strategy** question — "what test should we do / learn next," the value/information-gain of a diagnostic, which investigations are **low-yield**, or how to **sequence** tests under tissue/budget/time constraints | **Reuse the diagnostic information-gain layer** (`simulation-output/diagnostic-information-gain-layer.md` / ADR-0015): score each **action** by its value *profile* (driver EVSI from Sim 8 + immune-route VoI from Sim 6, kept separate — no blended score) ÷ acquisition burden (ADR-0011), and apply the greedy sequencing rule (archived P1 first → fresh P2 for the residual delta → liquid P3 monitoring → imaging on its own staging axis). Imaging VoI is an unmodeled gap; **not a testing recommendation**. |
-| A question about whether a candidate is approved / in a recruiting trial / discontinued / on hold, its FDA-vs-EMA status, repurposing path, or "how soon could a patient access it" | **Reuse the feasibility layer** (`simulation-output/translational-feasibility-layer.md` / ADR-0003); **re-verify the regulatory/trial facts live** before relying on them — bands are date-stamped and perishable. |
-| A question about **why** a program closed / "does discontinued or withdrawn mean it failed biologically" / "was X deprioritized for negative data" / preserving subgroup signals in rare-tumor baskets | **Reuse the feasibility-attrition-reason extension** (`simulation-output/feasibility-attrition-reason-extension.md` / ADR-0013): classify the closure (R0 never-built / R1 target-invalidated / R2 trial-fail / R3 subgroup-dilution / R4 regulatory / R5 commercial); **only R1 (+ enriched R2) argues against the mechanism** — R3/R4-commercial/R5 keep it in the forward lane. **Annotation, not a new axis**; re-verify perishable statuses live. |
-| A host-level / lifestyle question (microbiome, inflammation, metabolic/sarcopenia, nutrition, exercise, sleep/circadian, autonomic/stress/PNEI, placebo-nocebo, perioperative conditioning) — "does host biology explain variability / tolerance / immune competence," "should it be its own layer" | **Reuse the host-biology modifier layer** (`simulation-output/host-biology-modifier-layer.md` / ADR-0005); extend it rather than re-deriving. It is a cross-cutting modifier (conditions V4 + SOC), **not a fifth vector**, weighted via the existing three axes. |
-| A question about **how transfer distance is weighted** / "is broader (sarcoma / solid-tumour / host-biology) evidence being excluded just because CIC-DUX4 is rare" / "should we admit conserved-mechanism evidence at lower confidence" | **Reuse the evidence-transferability hierarchy** (`docs/10-evidence-transferability-hierarchy.md` / ADR-0014): score the confidence **Directness** sub-axis on the graded proximity ladder (P0 CIC-DUX4 → P1 fusion round-cell family → P2 sarcoma → P3 solid-tumour-with-named-mechanism → P4 pathway-only). **Rarity lowers the rung (lower confidence), never excludes; only a missing mechanistic bridge excludes.** A refinement of the confidence axis (ADR-0004), **not a new axis**; never prunes the forward lane. |
-| A V4 immune-visibility / danger-signaling / ICD / DAMP / Nectin-TIGIT / NK-surveillance question, or "should the framework distinguish tumor-promoting inflammation vs. anti-tumor activation vs. treatment toxicity" | **Reuse the V4 expansion** (`simulation-output/v4-immune-watchdog/immune-watchdog-expansion.md` / ADR-0006) and the four V4 sub-agent files; extend rather than re-deriving. It is *inside* V4 — **not a fifth vector**; apply the inflammation-state lens (lowering inflammation ≠ improving anti-tumor immunity). |
-| A cell-of-origin / pathogenesis / tumorigenesis question — "how/why does the cell get *into* this state," "what would you do to a stem cell to make this tumor," "reverse-engineer the construction," minimal-transformation-set / which build steps are necessary | **Reuse the tumorigenesis reverse-engineering layer** (`simulation-output/tumorigenesis-reverse-engineering/` + `sims/07-tumorigenesis-trajectory/` / ADR-0007); extend rather than re-deriving. It is the **forward/inverse** of V1–V4 (a build recipe mapped back onto the vectors), a supplementary team, **not a fifth vector**. |
-| A fusion-unconfirmed / atypical-case / "unknown driver" question — "the patient has no confirmed fusion," "which options are safe given we don't know the driver," "what should we test first / is it worth resolving the diagnosis" | **Reuse the driver-uncertainty decision model** (`simulation-output/tumorigenesis-reverse-engineering/driver-uncertainty-specialist.md` + `sims/08-driver-uncertainty/` / ADR-0008). Treats the driver as a latent variable, marginalizes for robustness, and computes EVSI of resolving it; re-condition the prior on any real testing the patient already had. **Not a diagnosis.** |
-| A **treatment-response / cell-state** question — "the tumour responded (or didn't) to chemo, what does that tell us," chemo-sensitivity vs resistance, DNA-damage-response / SLFN11 / apoptotic priming, why disease relapses after a good response (persister reservoir), or **when** in the treatment course to deploy immunotherapy | **Reuse the chemo-sensitivity / DDR cell-state layer** (`simulation-output/chemosensitivity-ddr-cellstate-layer.md` + `sims/10-chemoresponse-cellstate/` / ADR-0021): treat the response as **evidence** via `driver → DDR state → response`, and report the **driver** and **cell-state** posteriors **separately** (they can move in opposite directions). Key reads: the response resolves *cell state*, not *driver*; **PRC2/EZH2→SLFN11** makes one epigenetic node serve V3+V4; the **persister reservoir ≠ the chemo-sensitive bulk**; the post-chemo **MRD window is perishable**. Response is **confounded with setting** (burden/lesion size/dose intensity) — say so. **Not a fifth vector**; **all citations `[VERIFY]`** → forward lane, ADR-0020 gate applies. |
-| A **reasoning-process** question — human/clinician-in-the-loop steering, adversarial / red-team hypothesis testing, "actively try to disprove X," debiasing, premature-convergence, counterfactuals, or dynamic expansion/contraction of the search space | **Reuse the hypothesis-steering & adversarial-reasoning doc** (`docs/11-hypothesis-steering-and-adversarial-reasoning.md` / ADR-0017): map the ask onto the framework's existing debiasing surfaces, apply the **red-team self-challenge** (disconfirm / alternative / flip-test / steer-audit — also in `sarcoma-pre-output-check`), and use the expansion/contraction triggers. A **process** layer — **not a fifth vector**, not a biological layer; steering reframes the search but never supplies an evidence tier, and contraction never prunes the forward lane (golden rule #5). |
-| A **modality / delivery-format** question — "beyond systemic drugs," cellular therapy (TIL/CAR-T/CAR-NK/TCR), gene/viral/oncolytic-virus therapy, vaccines, local/regional delivery (intratumoral, regional perfusion), physical/energy-based (hyperthermia, focused ultrasound, radiation-immune priming), combination-modality; or a **drug-repurposing** ("approved drug in a new context") / **ethnopharmacology / phytotherapy / traditional-medicine / medicinal-mushroom** sourcing question | **Reuse the therapeutic-modality layer** (`simulation-output/therapeutic-modality-layer.md` / ADR-0018): place the candidate on the **modality axis (M1–M8)**, orthogonal to the four vectors — modality moves the **feasibility** axis, never the evidence tier or mechanism. Check the coverage map (M3/M4/M6/M7 are the catalog's thin spots; **M7 regional hyperthermia** has a positive phase-3 STS RCT). Run repurposing/phytotherapy candidates through the standard gauntlet (tier + Directness ADR-0014 + concentration-mismatch + `sarcoma-chemo-interactions`); junction-specific cellular/vaccine modalities are **fusion-contingent**. A cross-cutting axis — **not a fifth vector**; **re-verify perishable feasibility/regulatory facts live**. |
-| An **oncolytic-virus / virotherapy** question — "OV as an artificial danger signal / alarm system," "make the cold tumour hot with a virus," immune-visibility-via-virus, a specific platform (T-VEC, RP1/RP2/RP3, OH2, VG161, reovirus/pelareorep, NDV, Seneca Valley Virus), or "nearest real-world path to access an OV" | **Reuse the M4 oncolytic-virotherapy deep-dive** (`simulation-output/oncolytic-virotherapy-danger-signal-layer.md` / ADR-0019): it is the M4 cell of the modality layer (ADR-0018) worked through the V4 ICD/danger-signal biology (ADR-0006). OV acts mainly on the **recognition/visibility** axis (raises antigenicity **and** adjuvanticity), is **fusion-agnostic** (applies to the ~5%), but the nearest data (Ewing/round-cell) show **low OV susceptibility** and **CIC-DUX4 OV data are nil** → `Theoretical` for CIC-DUX4; the gating experiment is a tropism screen. Modality moves **feasibility**, not tier; deep/visceral anatomy and RP1's twice-rejected FDA path bound access. **Not a fifth vector; re-verify perishable regulatory/trial status live.** |
-| A request to **refresh the evidence / inject new biology / update the catalog with newer literature** between full runs, or "is finding X still current / does this new paper change anything" | **Use the live evidence-refresh lane** (§0 / ADR-0020): run/extend a dated `evidence-refresh-YYYY-MM.md`, tier+cite each claim, and apply the **`[VERIFY]`→full-text-verify gate** before anything enters a protocol version (PMID/accession inline, perishable status date-stamped; correct or **retract** failures in place). A verified refresh may produce the **next** `protocol-vN.md` on a **user-gated** promotion (baselines preserved; update `findings-ranking.md` + README). Symmetric (can retract, not only confirm); never prunes the forward lane. |
-
-Default to teams for analysis/research/simulation; default to a direct answer for everything else.
-A "thorough"-sounding multi-part question is not automatically a spawn — judge whether real
-multi-angle research adds value.
+| Anything | Read `CASE-BASELINE.md` first. |
+| A question an artifact in §0 already answers | Read and cite it (re-weighted per §5a). Don't re-run the cycle. |
+| A simple factual / clarifying / "why" question | Just answer. |
+| "Analyze X thoroughly," "from multiple angles," "what could be tried," "run a simulation" | Spawn the appropriate existing team (§3) so the topic gets several perspectives. A thorough-sounding question is not automatically a spawn — judge whether multi-angle research adds value. |
+| A research question no team fits | Propose a new supplementary team (lead + 2–4 specialists) and spawn only after the user agrees. |
+| A coding / repo task (run a sim, fix a script, write a doc) | Do it directly. |
 
 ---
 
 ## 3. Teams, agents, and sub-agents
 
-The model: **a team of humans, each with strengths/weaknesses, attacking a topic from several angles;
-a lead reconciles and writes the report.** Prefer this over a single context window — parallel
-specialists catch what one pass misses. Always try an **existing team** first.
+The model: a team of specialists attacks a topic from several angles; a lead reconciles (merges
+duplicates, keeps the strongest evidence tier — not concatenation) and writes the report. Try an existing
+team first.
 
-### Existing project agents (`.claude/agents/`)
-| Agent | Role | Spawns these sub-agents (parallel) |
-|---|---|---|
-| `v1-lead` | V1 Rate Limiting (throttle the oncogenic loop) | Food, Supplement, Bioavailability specialists |
-| `v2-lead` | V2 Compiler Protection (reduce new-translocation risk) | Antioxidant, DNA-Repair, Anti-Inflammatory |
-| `v3-lead` | V3 Hot Patching (restore suppressor/differentiation) | Epigenetic, Differentiation, PROTAC/ASO, Synthetic-Lethality |
-| `v4-lead` | V4 Immune Watchdog (visibility + clearance) | Checkpoint/T-cell, NK, Microbiome-Immune, Neoantigen-Vaccine |
-| `mrna-vaccine-lead` | Supplementary: BNT162b2 immune/inflammatory/genomic relevance | mrna-immune-effects, mrna-oncogenic-risk (optional) |
-| `orchestrator` | Synthesis: dedupe, rank, resolve conflicts, write final catalog | Metastatic-Disease Specialist |
+### Project agents (`.claude/agents/`)
 
-**Supplementary teams (ad-hoc, no committed `.claude/agents/` file — reuse the written artifacts first):**
-| Team | Role | Spawned specialists (parallel) | Output |
+Model and effort are set in each agent's frontmatter; leads pass `model` when they spawn specialists
+(ADR-0023).
+
+| Agent | Model | Role | Spawns (parallel) |
 |---|---|---|---|
-| Tumorigenesis / Cell-of-Origin Reverse-Engineering (ADR-0007) | **Forward/inverse** of V1–V4: the "build recipe" for how a progenitor becomes a CIC-DUX4 cell, mapped back onto the vectors | Cell-of-Origin, Driver-Engineering, Cooperating-Lesions, Epigenetic-Permissiveness | `simulation-output/tumorigenesis-reverse-engineering/` + `sims/07-tumorigenesis-trajectory/` |
+| `v1-lead` | Opus | V1 Rate Limiting | Food, Supplement, Bioavailability (Sonnet) |
+| `v2-lead` | Opus | V2 Compiler Protection | Antioxidant, DNA-Repair, Anti-Inflammatory (Sonnet) |
+| `v3-lead` | Opus | V3 Hot Patching | Epigenetic, Differentiation, PROTAC/ASO, Synthetic-Lethality (Sonnet) |
+| `v4-lead` | Opus | V4 Immune Watchdog | Checkpoint/T-cell, NK, Microbiome-Immune, Neoantigen-Vaccine (Sonnet) |
+| `mrna-vaccine-lead` | Sonnet | Supplementary: BNT162b2 immune/inflammatory/genomic relevance | mrna-immune-effects, mrna-oncogenic-risk (optional, Sonnet) |
+| `orchestrator` | Fable | Synthesis: dedupe, rank, resolve conflicts, write the catalog | Metastatic-Disease Specialist (Opus) |
 
-### Execution order (the standard full run)
-> Run this **only for a fresh full cycle** — reuse the existing outputs first (see §0). For incremental
-> work, spawn just the specific specialist/team needed and write a new artifact rather than re-running.
-1. `python scripts/dispatch.py` — prints the wave plan and validates prerequisites. **Run first.**
-2. **Layer Intake (every full run — ADR-0016).** Before Wave 1, each agent additionally consults the
-   **standing analytical layers** relevant to its scope (the §0 reuse list / §2 routing table): V4 ←
-   host-biology (ADR-0005) + V4 immune-watchdog expansion (ADR-0006) + VoI immune ranking (Sim 6) +
-   diagnostic-IG immune markers (ADR-0015); V3 ← driver-uncertainty contingency (ADR-0008) + tumorigenesis
-   build-recipe (ADR-0007); V1/V2 ← feasibility/attrition (ADR-0003/0013) + transferability (ADR-0014, via
-   `sarcoma-contract`) + host-biology for tolerability. **All vector leads ← the therapeutic-modality layer
-   (ADR-0018)** so each checks its hypotheses against the modality axis (V3/V4 esp. for cellular/viral/vaccine
-   M3–M5; V4/V2 for physical/energy M7; all for the repurposing & ethnopharmacology sub-scans). The
-   **orchestrator** reconciles the catalog against **all** layers + `findings-ranking.md` and runs the
-   ADR-0018 **modality-coverage audit**. **Layers condition/annotate — they never override real-data
-   vector evidence (ADR-0009 bias note) and never prune the forward lane (golden rule #5); not a fifth
-   vector (golden rule #8).** A fresh re-run writes the **next** protocol version, not over the baseline (§0).
+Supplementary team without a committed agent file — reuse its artifacts first: **Tumorigenesis /
+Cell-of-Origin Reverse-Engineering** (ADR-0007; Cell-of-Origin, Driver-Engineering, Cooperating-Lesions,
+Epigenetic-Permissiveness specialists) → `simulation-output/tumorigenesis-reverse-engineering/` +
+`sims/07-tumorigenesis-trajectory/`.
+
+### Full-run sequence (fresh cycle only — see §0)
+
+Runs are versioned so nothing is overwritten: run N writes `<vector-dir>/<lead>-summary-vN.md`,
+specialist files under `<vector-dir>/vN/`, and `simulation-output/protocol-vN.md`. `scripts/dispatch.py`
+derives N (next protocol version; override with `SARCOMA_RUN`) and gates on run-scoped files.
+`.prompts/run-sim.prompt` is the patient-anchored launch prompt.
+
+1. `python scripts/dispatch.py` (plan + output paths) and `python scripts/dispatch.py check`.
+2. **Layer intake (ADR-0016).** Each lead reads the standing layers in its scope (named in its agent
+   file); the orchestrator reconciles against all of them plus `findings-ranking.md` and runs the
+   ADR-0018 modality-coverage audit.
 3. **Wave 1 (parallel):** `mrna-vaccine-lead`, `v1-lead`, `v3-lead`.
-4. **Gate:** mRNA output on disk + V3's `MHC-I Upregulation Candidates` section written
-   (`python scripts/dispatch.py gate`).
-5. **Wave 2 (parallel):** `v2-lead`, `v4-lead` (consume mRNA output; V4 also consumes V3's MHC-I section).
-6. **Orchestrator** runs last (`dispatch.py ready` must pass), ingests the standing layers (ADR-0016),
-   runs the Metastatic-Disease Specialist, writes the catalog (next `protocol-vN.md`, not over v1).
+4. **Gate:** `python scripts/dispatch.py gate` — this run's mRNA summary exists and V3's summary has its
+   `MHC-I Upregulation Candidates` section.
+5. **Wave 2 (parallel):** `v2-lead`, `v4-lead`.
+6. **Orchestrator** after `python scripts/dispatch.py ready`; it runs the Metastatic-Disease Specialist and
+   writes `protocol-vN.md`.
 
-Each lead **reconciles** its sub-agents (merges duplicate compounds, keeps the strongest evidence tier)
-— it does not just concatenate. Each agent loads the relevant skills (below), ingests its standing layers
-(step 2 / ADR-0016), and runs `sarcoma-pre-output-check` before writing.
+Each agent loads its skills (§6) and runs `sarcoma-pre-output-check` before writing.
 
-### Recommending a NEW team
-If no existing team fits (e.g., "forward trial forensics," "in-silico experiment design," "regimen
-timing," "immune-state modeling" — all done previously), describe a lead + 2–4 specialists with distinct
-angles, get the user's OK, then spawn. New work is a **supplementary team**, not a new vector.
+If background sub-agents keep returning with 0 tool uses (transient API overload), run the work directly in
+the main thread — same scripts, data, grounding and no-fabrication rule.
 
-### Practical caveat (learned)
-Background sub-agent dispatch can hit transient API-overload windows (agents return with 0 tool-uses).
-If retries keep failing, **run the work directly in the main thread** — same scripts, same data, same
-grounding, same no-fabrication rule. The substance matters more than the delivery vehicle.
-
-### Anchoring to a patient case
-Runs can be anchored to a specific case (see `.prompts/run-sim.prompt`). When asked for a "clean-slate"
-exercise, do **not** use stored personal memory. Always honor the atypical fusion-unconfirmed flag.
+When asked for a clean-slate exercise, don't use stored personal memory.
 
 ---
 
 ## 4. Running the Python simulations
 
-Interpreter: the repo venv at `.venv/bin/python` (relative to the repo root). It has pandas, numpy,
-scipy, networkx, requests, GEOparse, and `openmed` (mlx backend). `scripts/openmed_ner.py`
-self-bootstraps into the venv.
+Interpreter: the repo venv at `.venv/bin/python` (from a git worktree, the main checkout's venv). It has
+pandas, numpy, scipy, networkx, requests, GEOparse, and `openmed`. `scripts/openmed_ner.py` and
+`scripts/dispatch.py` find the venv themselves.
 
-```bash
-# Orchestration helper — prints wave plan; subcommands validate state
-python scripts/dispatch.py            # wave plan
-python scripts/dispatch.py check      # prerequisite checks
-python scripts/dispatch.py gate       # Wave-1 gate (mRNA + V3 MHC-I section)
-python scripts/dispatch.py ready      # orchestrator preconditions
+Each sim is run as `.venv/bin/python sims/NN-*/<script>.py`; `sims/00-INDEX.md` lists them with their
+convergent findings.
 
-# In-silico simulations (real public data; reproducible):
-.venv/bin/python sims/01-signature-reversal/run_signature_reversal.py   # GSE60740 -> L1000CDS2
-.venv/bin/python sims/02-dependency-mining/run_dependency_mining.py     # DepMap 24Q4 CRISPR
-.venv/bin/python sims/03-network-model/boolean_model.py                 # + ode_model.py
-.venv/bin/python sims/04-immune-state-model/immune_state_model.py       # nectins + immune markers
-.venv/bin/python sims/05-systemstate-sequencing/system_state_sequencing.py
-.venv/bin/python sims/06-biomarker-value-of-information/run_voi.py        # missing-biomarker value-of-information
-```
-
-**Simulation conventions (follow these when adding a sim):**
-- Real data only. Each sim caches raw downloads under its own `data/` (gitignored) and writes a
-  `MANIFEST.md` with source URLs, accession IDs, access date, and sha256. **Never invent a dataset,
-  accession, gene-effect value, or compound** — if a download/API fails, report the failure.
-- Each sim writes a `RESULTS.md` (real numbers + honest limitations), an `entities.txt`, and a
-  `grounding.tsv` from OpenMed NER.
-- See `sims/00-INDEX.md` for the current set and their convergent findings.
-- **Update `simulation-output/findings-ranking.md`** in the same change when a sim produces a result worth
-  comparing against the others (the file's "Maintenance rule" + ADR-0009 have the steps).
-- **Isolate experimental runs in a git worktree** off the current good branch so the baseline state is
-  not polluted (`git worktree add -b sim-<topic> ../sarcoma-<topic> <base>`). Branch names: `sim-*`.
+Conventions for a new sim:
+- **Real data only.** Cache raw downloads under the sim's own `data/` (gitignored) and write a
+  `MANIFEST.md` with source URLs, accession IDs, access date, and sha256. Never invent a dataset, accession,
+  gene-effect value, or compound — if a download or API fails, report the failure.
+- Write `RESULTS.md` (real numbers + honest limitations), `entities.txt`, and `grounding.tsv` (§5).
+- Add a row to `sims/00-INDEX.md` and update `findings-ranking.md` in the same change when the result is
+  worth comparing (ADR-0009).
+- Isolate experimental runs in a worktree: `git worktree add -b sim-<topic> ../sarcoma-<topic> <base>`.
 
 ---
 
 ## 5. Grounding with OpenMed NER
 
-Every agent/sim **grounds** the biomedical entities it names (genes, drugs, diseases) with the OpenMed
-NER ensemble before finalizing — confirming the named entities are recognized biomedical terms. It is
-**for grounding only** — not for evidence tiering, mechanism, or citation discipline (those stay the
-agent's responsibility).
+Every agent and sim grounds the biomedical entities it names (genes, drugs, diseases) with OpenMed NER
+before finalizing — confirming the names are recognized biomedical terms. Grounding is **not**
+fact-checking: it cannot tell you a drug was withdrawn or a trial closed (use `docs/09` for that), and it is
+not evidence tiering.
 
 ```bash
-python scripts/openmed_ner.py --list-teams                 # team -> model map (also in docs/07)
+python scripts/openmed_ner.py --list-teams                 # team -> model map (also docs/07)
+python scripts/openmed_ner.py --check                      # can grounding run here?
 python scripts/openmed_ner.py --team v3-synthetic-lethality \
     --text-file sims/02-dependency-mining/entities.txt --format tsv > grounding.tsv
-echo "WEE1 and EZH2 in CIC-DUX4." | python scripts/openmed_ner.py --team v1-lead
 ```
 
-Pick the `--team` whose model set fits the entity types (genes/proteins → `v3-synthetic-lethality`;
-drugs+genes → `v1-lead`; immune → `v4-lead`). Note any entity NER did **not** recognize. Models
-download from HuggingFace on first use. See `docs/07-openmed-models.md`.
-
-**Entity grounding (this) is not fact-checking.** OpenMed NER confirms a *name* is a recognized
-biomedical term; it cannot tell you a drug was withdrawn or a trial closed. For verifying any
-**status / approval / trial / safety / citation** *claim*, use the authoritative registries in
-**`docs/09-verification-sources.md`** (the standing source list from issue #9) and date-stamp what you read.
+Pick the `--team` whose models fit the entity types (genes/proteins → `v3-synthetic-lethality`;
+drugs+genes → `v1-lead`; immune → `v4-lead`) and note any entity NER did not recognize. The CLI is
+offline-first (cached weights never touch the Hub) and auto-selects MLX or PyTorch. **Exit code 3** means
+the weights aren't cached and huggingface.co is unreachable (typical in network-restricted cloud
+sessions): record grounding as `NOT RUN` with the reason, as in
+`sims/10-chemoresponse-cellstate/grounding.tsv`, and never invent scores. Fixes are in `docs/07`.
 
 ---
 
 ## 6. Skills (`.claude/skills/`)
 
-Invoke these instead of re-deriving the rules:
-- **`sarcoma-contract`** — evidence-tier vocabulary, the three scoring axes (tier / confidence /
-  feasibility), citation + live-verification rules (incl. the perishable-status rule → `docs/09`),
-  avoid/include lists. Load at the start of any vector-lead / sub-agent / orchestrator task.
-- **`sarcoma-vector-context`** (`v1`|`v2`|`v3`|`v4`) — one vector's compound list, targets, caveats.
-- **`sarcoma-chemo-interactions`** — screen any dietary/supplement candidate against VDC/IE.
-- **`sarcoma-output-schema`** `<role>` — the output-file schema for a given agent role.
-- **`sarcoma-pre-output-check`** — 9-failure-mode + 9-mandatory-include self-audit; run before writing.
-- **`sarcoma-orchestrator-intake`** — orchestrator-only intake/dedupe/rank/conflict protocol.
+- **`sarcoma-contract`** — tier vocabulary, the three scoring axes, citation + live-verification rules,
+  avoid/include lists. Load at the start of any lead / sub-agent / orchestrator task.
+- **`sarcoma-vector-context`** (`v1`|`v2`|`v3`|`v4`) — one vector's compounds, targets, caveats.
+- **`sarcoma-chemo-interactions`** — screen dietary/supplement candidates against VDC/IE.
+- **`sarcoma-output-schema`** `<role>` — the output schema for an agent role.
+- **`sarcoma-pre-output-check`** — failure-mode + mandatory-include self-audit and red-team pass; run
+  before writing.
+- **`sarcoma-orchestrator-intake`** — orchestrator intake / dedupe / rank / conflict protocol.
+- **`github-issue-runner`** — the issue workflow (§8).
 
 ---
 
 ## 7. Repository map
 
-The tree is organized in four audience tiers. **Convention: dot-prefixed = Tier 4 (machine/config);
-plain names tiered by how human-facing. `scripts/` is the one un-dotted Tier-4 exception — it's a
-documented runnable entry point.** Don't add new dirs without assigning a tier (see §9).
+Four audience tiers. Dot-prefixed = Tier 4 (machine/config); plain names are tiered by how human-facing.
+`scripts/` is the one un-dotted Tier-4 exception (a documented entry point).
 
 | Tier | Audience | Contents |
 |---|---|---|
-| **1 — Read first (human)** | Clinicians · patients · non-technical | **`CASE-BASELINE.md` (the canonical case — read before anything else)** · `simulation-output/protocol-v4.md` (main catalog; v1–v3 retained as baselines) · `simulation-output/findings-ranking.md` · `simulation-output/chemosensitivity-ddr-cellstate-layer.md` · `simulation-output/forward-simulation/*-brief.md` |
-| **2 — Hybrid** | Researchers · motivated readers | rest of `simulation-output/` (analytical layers + per-vector summaries) · `docs/00–05` |
-| **3 — Contributor / LLM** | Developers · AI agents | `docs/06–09` · `docs/adr/` · `sims/` · `CLAUDE.md` · `scripts/` |
-| **4 — Machine / tooling** | Script runner · configs · caches | `.claude/` · `.prompts/` · `.venv/` · `.gitignore` · gitignored `sims/*/data/` |
+| **1 — Read first** | Clinicians · patients | `CASE-BASELINE.md` · `simulation-output/protocol-v4.md` (v1–v3 baselines) · `findings-ranking.md` · `chemosensitivity-ddr-cellstate-layer.md` · `forward-simulation/*-brief.md` |
+| **2 — Hybrid** | Researchers | rest of `simulation-output/` (layers + per-vector outputs) · `docs/00–05` |
+| **3 — Contributor / LLM** | Developers · agents | `docs/06–11` · `docs/adr/` · `sims/` · `CLAUDE.md` · `scripts/` |
+| **4 — Machine** | Tooling | `.claude/` · `.prompts/` · `.venv/` · `.gitignore` · gitignored `sims/*/data/` |
 
-```
-CASE-BASELINE.md         THE CANONICAL CASE (Era B, ADR-0022) — read before anything else
-docs/00-README.md        analogy/vector framing + constraints + execution semantics (case framing = Era A)
-docs/01–05               domain knowledge, analogy model, the four attack vectors
-docs/06-agent-architecture.md   full agent prompts + output schemas
-docs/07-openmed-models.md       team -> NER model map (entity grounding)
-docs/08-evidence-confidence-scoring.md   confidence axis: 7-tier↔A–E crosswalk, 4-axis rubric, weak-signal register
-docs/09-verification-sources.md authoritative trial/regulatory/safety registries for live fact-checking (issue #9)
-docs/10-evidence-transferability-hierarchy.md   biological-proximity ladder (P0–P4) refining the confidence Directness sub-axis (issue #10 follow-up / ADR-0014)
-docs/11-hypothesis-steering-and-adversarial-reasoning.md   reasoning-process layer: steering, red-team self-challenge, search-space expand/contract (issue #32 / ADR-0017)
-docs/adr/                       Architecture Decision Records — framework-evolution timeline (read README first)
-scripts/dispatch.py      wave plan + prerequisite/gate checker
-scripts/openmed_ner.py   OpenMed NER grounding CLI (--team)
-.claude/agents/          the 6 lead agents
-.claude/skills/          the 6 sarcoma-* content skills + github-issue-runner (workflow; ADR-0002)
-sims/00-INDEX.md         the in-silico simulations + convergent findings
-sims/01–10/              reproducible simulations (script + RESULTS.md + MANIFEST.md + grounding.tsv)
-simulation-output/       protocol-v4.md (main catalog; v1–v3 baselines), findings-ranking.md (master register),
-                         forward-simulation/ (oncologist briefs), biomarker-voi-stratification.md,
-                         translational-feasibility-layer.md, host-biology-modifier-layer.md,
-                         therapeutic-modality-layer.md, oncolytic-virotherapy-danger-signal-layer.md,
-                         chemosensitivity-ddr-cellstate-layer.md, tumorigenesis-reverse-engineering/,
-                         per-vector outputs
-```
+Key paths: `docs/06-agent-architecture.md` (full agent prompts + schemas) · `docs/07-openmed-models.md`
+(NER map + install/offline) · `docs/08` (confidence axis) · `docs/09` (verification registries) ·
+`docs/10` (transferability ladder) · `docs/11` (steering + adversarial reasoning) · `docs/adr/` (decision
+log) · `scripts/dispatch.py` (wave plan + gates) · `scripts/openmed_ner.py` (grounding CLI).
 
 ---
 
-## 8. GitHub Issues (light note — a dedicated skill will own this)
+## 8. GitHub Issues
 
-The repo is hosted on GitHub and the **Issues** section is the collaboration surface: people post
-grounded thoughts/questions there. The workflow is **retrieve issue → apply labels → have Claude Code
-respond**, and some responses require team/sub-agent research using the same structure above.
+Issues are the collaboration surface. The **`github-issue-runner` skill** (ADR-0002) owns them: invoked
+manually, it processes **one** issue per run — the oldest open issue labeled `needs attention`, else the
+oldest labeled none of `running` / `responded` / `needs attention`. It labels it `running`, works in an
+isolated worktree off latest `main`, opens a PR assigned to the maintainer, posts a findings comment, then
+relabels `responded`.
 
-This is owned by the **`github-issue-runner` skill** (`.claude/skills/github-issue-runner`; see
-ADR-0002). Invoke it **manually** — it processes **one** issue per run, prioritizing the oldest open
-issue labeled `needs attention` (an author follow-up on something already answered) and otherwise the
-oldest open issue labeled neither `running`, `responded`, nor `needs attention`. It labels the issue
-`running`, does the work in an isolated worktree off latest `main`, opens a PR assigned to the
-maintainer, posts a findings comment, then relabels the issue `responded`. Run it again for the next
-issue (sequential, user-paced). Labels are lowercase (`running` / `responded` / `needs attention`).
-
-A nightly GitHub Action (`.github/workflows/issue-needs-attention.yml`, ADR-0010, heuristic refined in
-ADR-0012) is the **one** sanctioned piece of scheduled automation: it scans issues labeled `responded`
-for a newer comment **from someone other than the responder** — i.e. excluding both `github-actions[bot]`
-**and** the maintainer/repo-owner account (the skill and manual follow-ups post as that account, so
-counting them caused a false-positive requeue on #11) — and swaps `responded` -> `needs attention` so the
-skill re-queues it. It does **not** do any analysis, commenting, or PR work itself. Don't improvise
-issue handling in general sessions or build other scheduled automation — defer to the skill and this
-one Action. Use `gh` for GitHub operations.
+A nightly Action (`.github/workflows/issue-needs-attention.yml`, ADR-0010/0012) is the one sanctioned piece
+of scheduled automation: it moves `responded` → `needs attention` when someone other than
+`github-actions[bot]` and the maintainer account comments. It does no analysis itself. Don't improvise
+issue handling in general sessions or build other scheduled automation. Use `gh` for GitHub operations.
 
 ---
 
 ## 9. Conventions
 
-- **Branches:** `sim-*` for simulation/forward work; commit experimental runs to their own branch/worktree.
-  Don't merge to `main` or push outward unless asked.
-- **Commits:** end messages with `Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>`.
-- **Don't pollute a state the user likes** — branch/worktree first.
-- **Honesty over completeness**, always. When in doubt, exclude rather than pad.
+- **Branches:** `sim-*` for simulation/forward work; experimental runs go on their own branch/worktree.
+  Don't merge to `main` or push unless asked; don't pollute a state the user likes.
+- **Commits:** end messages with the `Co-Authored-By` trailer for the model you are running as.
+- **Honesty over completeness.** When in doubt, exclude rather than pad.
 
-### Directory tiering — keep the tree streamlined
+### Directory tiering
 
-Every new directory or top-level file gets a tier assignment before it lands on `main`. Use this table:
+Every new directory or top-level file gets a tier before it lands on `main`:
 
-| What you're adding | Tier | Where it goes | Extra step |
+| Adding | Tier | Where | Extra step |
 |---|---|---|---|
-| Ranked catalog, oncologist brief, or master register (human deliverable) | **1** | `simulation-output/` (catalog/brief) or root (index) | **Link it** from the README "Where to start" block in the same PR |
-| Analytical layer, per-vector summary, domain output, biomarker/VoI file | **2** | `simulation-output/` | — |
-| In-silico sim, agent/architecture doc, ADR, dev doc, evidence reference | **3** | `sims/`, `docs/` | Add row to `sims/00-INDEX.md` or `docs/adr/` as appropriate |
-| Machine scratch, cache, config, secret, or purely-tool dir | **4** | **Dot-prefix it** (e.g. `.scratch/`) **or** add to `.gitignore` | Never drop machine scratch into a Tier 1/2 dir |
+| Catalog, oncologist brief, master register | 1 | `simulation-output/` (or root for an index) | Link it from the README "Where to start" block in the same PR |
+| Analytical layer, per-vector summary, VoI file | 2 | `simulation-output/` | — |
+| Sim, agent/architecture doc, ADR, evidence reference | 3 | `sims/`, `docs/` | Row in `sims/00-INDEX.md` or `docs/adr/` |
+| Scratch, cache, config, secret | 4 | Dot-prefix it or `.gitignore` it | Never in a Tier 1/2 dir |
 
-**Rules:**
-- Never mass-rename existing core dirs to add dots — it breaks 130+ path references and
-  `scripts/dispatch.py`. The README is the navigation layer; the filesystem is secondary.
-- `scripts/` stays un-dotted — it's a documented, externally runnable entry point.
-- When in doubt, ask: "would a clinician or patient be confused to see this in the GitHub tree?"
-  If yes → Tier 3/4; hide it behind the README nav layer.
+Don't mass-rename core dirs to add dots — it breaks 130+ path references and `scripts/dispatch.py`; the
+README is the navigation layer. Test: would a clinician be confused to see this in the GitHub tree? If yes,
+Tier 3/4.
 
 ---
 
 ## 10. Architecture Decision Records (`docs/adr/`)
 
-The framework evolves — new analytical layers, new teams, contract changes, conventions. Each such
-**framework-level decision is recorded as a dated, numbered ADR** in `docs/adr/`, so the project carries
-an honest historical timeline rather than silently mutating. CLAUDE.md holds the *current* rules; the
-ADR log holds *why and when* they changed. Keep the log in `docs/adr/`, **not** inline here.
-
-- **Read** `docs/adr/README.md` (the index) when you need the rationale or history behind a rule, or
-  before proposing a change that may contradict a past decision.
-- **Append** a new ADR (copy the template in the README, next number, status `Accepted`) when a change
-  is **framework-level**: a new standing deliverable/sim *type*, a new team or agent, a change to the
-  golden rules / contract / conventions, or a notable methodology choice. Link the originating issue/PR.
-  Then update CLAUDE.md's current-state rules to match and cross-reference the ADR number.
-- **Don't** write an ADR for routine work (answering a question, running an existing sim, a bug fix) —
-  only for decisions that change how the framework itself operates.
+CLAUDE.md holds the current rules; the ADR log holds why and when they changed. Read `docs/adr/README.md`
+for the rationale behind a rule or before proposing a change that may contradict a past decision. Append a
+new ADR (next number, template in the README) for **framework-level** changes — a new standing
+deliverable or sim type, a new team or agent, a change to the golden rules / contract / conventions /
+agent models, or a notable methodology choice — and update this file to match. Routine work gets no ADR.

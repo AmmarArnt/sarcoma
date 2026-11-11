@@ -44,7 +44,7 @@ Typical orchestrator flow:
 4. `/sarcoma-output-schema orchestrator`
 5. Synthesize.
 6. `/sarcoma-pre-output-check`.
-7. Write `simulation-output/protocol-v1.md`.
+7. Write `simulation-output/protocol-vN.md`.
 
 ## Dispatcher
 

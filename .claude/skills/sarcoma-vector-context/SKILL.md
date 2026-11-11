@@ -126,7 +126,7 @@ Affect tumor cells already carrying the fusion · quantify individual risk reduc
 |---|---|---|---|
 | 3a | CRISPR (excise junction) | Not clinically feasible for solid tumors (delivery problem) | Theoretical |
 | 3b | ASOs targeting CIC-DUX4 mRNA junction | No clinical-stage CIC-DUX4 ASO published; ASOs established for SMA/DMD | Theoretical / Preclinical |
-| 3c | EZH2i (tazemetostat) | FDA approved 2020-01-23 for **epithelioid sarcoma**, NOT CIC-rearranged. CIC rationale extrapolates from PRC2 dependency in BAF-disrupted fusion sarcomas. | Established (epithelioid) / Clinical-Trial (other) |
+| 3c | EZH2i (tazemetostat; valemetostat) | Tazemetostat: FDA accelerated approval 2020-01-23 for **epithelioid sarcoma**; **US indications withdrawn 2026-03-09** (R4 regulatory, biology-silent — re-verify live). Never approved for any round-cell sarcoma; rationale here is extrapolated from PRC2 dependency. | Clinical-Trial (epithelioid) / Mechanistic (this tumour) |
 | 3d | BETi (JQ1 preclinical; OTX015, BMS-986158, AZD5153 clinical) | Strong preclinical; modest monotherapy results so far | Clinical-Trial |
 | 3e | CDK4/6i (palbociclib, ribociclib, abemaciclib) | FDA-approved HR+ breast; sarcoma trials smaller and mixed | Established (breast) / Clinical-Trial (sarcoma) |
 | 3f | PROTACs (BET-PROTACs ARV-771, dBET6) | No published CIC-DUX4-specific PROTAC | Preclinical / Theoretical |
@@ -144,7 +144,7 @@ Affect tumor cells already carrying the fusion · quantify individual risk reduc
 
 ### V3 → V4 Bridge — MANDATORY OUTPUT SECTION
 
-Several V3 interventions upregulate MHC-I on tumor cells, a prerequisite for V4 immune clearance. **Every V3 intervention with documented MHC-I upregulation must be flagged at the top of the V3 output for orchestrator and V4 lead.** Cleanest examples: EZH2i and clinical HDACi. Whether sulforaphane / dietary butyrate achieve sufficient tumor exposure to upregulate MHC-I clinically is **unestablished** — say so.
+Several V3 interventions upregulate MHC-I on tumor cells, a prerequisite for V4 immune clearance. **Every V3 intervention with documented MHC-I upregulation must be flagged at the top of the V3 output for orchestrator and V4 lead.** Cleanest examples: p300/CBP inhibition (the multi-vector node verified in `protocol-v4.md`), EZH2i, and clinical HDACi. Whether sulforaphane / dietary butyrate achieve sufficient tumor exposure to upregulate MHC-I clinically is **unestablished** — say so.
 
 ### What V3 Cannot Do via Diet Alone
 
@@ -172,7 +172,7 @@ CIC-DUX4-specific data on each is limited. Do not transfer melanoma findings wit
 | # | Approach | Notes | Tier |
 |---|---|---|---|
 | 4a | Checkpoint inhibitors (pembrolizumab, nivolumab) | Modest sarcoma response (SARC028 etc.); better in UPS/DDLPS; CIC too rare for dedicated trials | Established (multi) / Clinical-Trial (sarcoma) / no direct CIC-DUX4 data |
-| 4b | Epigenetic priming bridge (V3 → V4) | EZH2i/HDACi restore MHC-I; most active area in sarcoma immuno-trials. Dietary analogues (sulforaphane, butyrate) mechanistically aligned but much weaker exposure | Clinical-Trial |
+| 4b | Epigenetic priming bridge (V3 → V4) | p300/CBPi, EZH2i and HDACi restore MHC-I; most active area in sarcoma immuno-trials. Dietary analogues (sulforaphane, butyrate) mechanistically aligned but much weaker exposure | Clinical-Trial |
 | 4c | NK cell activation | **NK targets MHC-I-LOW cells — the same evasion CIC uses against T-cells, paradoxically increases NK visibility.** Clinical IL-15 agonists, NK engagers. Diet: correct vit D / zinc deficiency; microbiome diversity | Mechanistic / Clinical-Trial |
 | 4d | CAR-T | Solid-tumor penetration unsolved; no CIC-DUX4-specific CAR-T published | Theoretical |
 | 4e | Neoantigen vaccine | Junction sequence **varies across patients** (see file 02) — pan-CIC-DUX4 vaccine needs multiple variants | Theoretical / Preclinical |
