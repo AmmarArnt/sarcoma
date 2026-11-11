@@ -9,7 +9,7 @@ Walk through every numbered check below. For each one, answer **yes/no/N-A** in 
 
 ## Part A — 9 Failure Modes to Guard Against
 
-These are the failure modes most likely from a Sonnet-tier model. Guard your own output and flag them when reviewing others' outputs.
+These are the failure modes this simulation has actually produced. Guard your own output and flag them when reviewing others' outputs.
 
 1. **Citation fabrication.** For every citation in my output, can I point to a real PMID, NCT ID, FDA label, or recognized guideline? If not, did I write `[no direct citation; mechanism inferred from {related work}]` instead? ("Smith et al., 2019" with no PMID is a fabrication risk.)
 

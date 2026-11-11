@@ -188,7 +188,7 @@ git commit -m "<concise title> (issue #N)
 
 <what + why, a few lines>
 
-Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>"
+<the Co-Authored-By trailer for the model you are running as, per CLAUDE.md §9>"
 git push -u origin issue-N-$SLUG
 gh pr create --base main --head issue-N-$SLUG \
   --assignee <maintainer-login> \

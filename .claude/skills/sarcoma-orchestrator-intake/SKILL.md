@@ -44,10 +44,11 @@ the Forward-Hypotheses lane**.
 | `docs/10-evidence-transferability-hierarchy.md` | 0014 | Confidence **Directness** rung (P0 CIC-DUX4 → P4 pathway-only) on transferred evidence — already enters via `sarcoma-contract`; surface the rung where a ranking turns on transfer distance. |
 | `simulation-output/tumorigenesis-reverse-engineering/` + `driver-uncertainty-specialist.md` | 0007 / 0008 | Build-recipe forward hypotheses, and the **driver-uncertainty contingency** for the fusion-unconfirmed case: throttle/cell-cycle/immune vectors are driver-robust; the **MCL1 "re-arm" + junction-specific lines are driver-contingent — hold until the driver is resolved**, and flag resolving the driver as the highest-value next action (EVSI). |
 | `simulation-output/therapeutic-modality-layer.md` | 0018 | The **modality axis (M1–M8)** — delivery format, orthogonal to the four vectors (not a fifth vector). Run a **modality-coverage audit**: tag each catalog entry with its M-class and flag any vector whose hypotheses collapse into one or two formats (the systemic-pharmacology default). Modality moves the **feasibility** annotation, never the evidence tier. Surface the M3/M4/M6/M7 gaps (esp. **M7 regional hyperthermia**, positive phase-3 STS RCT) in the forward lane. Apply the repurposing & ethnopharmacology sub-scans' gauntlet (tier + Directness + concentration-mismatch + chemo-interaction) to any candidate sourced that way. The **M4 (gene/viral) cell has a dedicated deep-dive** — `simulation-output/oncolytic-virotherapy-danger-signal-layer.md` (ADR-0019): oncolytic virus as an "artificial danger-signal generator" (`Theoretical` for CIC-DUX4 — nearest Ewing/round-cell data show *low* OV susceptibility). |
+| `simulation-output/chemosensitivity-ddr-cellstate-layer.md` + `sims/10-chemoresponse-cellstate/` | 0021 | The patient's chemotherapy response read as evidence: report the **driver** and **cell-state** posteriors separately (they move in opposite directions). Carries the PRC2/EZH2→SLFN11 dual-purpose node (V3+V4), the **persister reservoir ≠ chemo-sensitive bulk** distinction, and the perishable post-chemo MRD / immunological window. All its citations are `[VERIFY]` → forward lane only until verified (ADR-0020). |
 | `simulation-output/findings-ranking.md` | 0009 | The master register — reconcile every catalog finding against it and **add/update rows** in the same change (its Maintenance rule). |
 
-**On a fresh re-run, write the catalog to the next version (`protocol-v2.md`/`-vN.md`), not over the prior
-baseline (`CLAUDE.md §0`).**
+**On a fresh re-run, write the catalog to the run's own version (`protocol-vN.md`, N from
+`scripts/dispatch.py`), never over a prior baseline (`CLAUDE.md §0`).**
 
 ### 2. DEDUPLICATE
 Many compounds appear in multiple vectors (Quercetin in V1+V2; sulforaphane in V1/V3/V4; omega-3 across V1/V2/V4). For each duplicate:
@@ -63,9 +64,9 @@ Many compounds appear in multiple vectors (Quercetin in V1+V2; sulforaphane in V
 Apply these criteria, in this order:
 
 a) **Evidence tier** (highest first).
-b) **Mechanistic alignment with CIC-DUX4 biology specifically** — not generic cancer biology. A compound with strong evidence in colon cancer and a weak transfer to CIC-DUX4 ranks lower than one with weaker evidence but more direct mechanistic alignment.
+b) **Mechanistic alignment with this tumour's biology** — not generic cancer biology. The driver is unresolved, so weight Directness across the driver posterior (`CASE-BASELINE.md` §5a): CIC-DUX4-direct evidence counts at roughly the D1+D2 share (~0.36), Ewing/round-cell-family evidence is up-weighted, and fusion-agnostic mechanisms keep full weight. A compound with strong evidence in colon cancer and a weak transfer ranks lower than one with weaker evidence but more direct mechanistic alignment.
 c) **Cross-vector synergy** — among entries at the same tier, compounds active across multiple vectors rank higher.
-d) **Safety / feasibility** — dietary > supplement > clinical, within the same tier and CIC-DUX4 alignment band.
+d) **Safety / feasibility** — dietary > supplement > clinical, within the same tier and alignment band.
 
 Annotate each Clinical/Experimental entry with its **feasibility F-band + attrition R-reason** (ADR-0003/0013,
 **re-verify live**) and, where a ranking turns on transferred evidence, its **Directness rung** (ADR-0014).
@@ -110,11 +111,11 @@ The mRNA team output has its own dedicated section in the final catalog. If the 
 
 ### 8. RUN THE METASTATIC DISEASE SPECIALIST SUB-AGENT
 
-After steps 1–7 produce a stable view of the catalog, launch the Metastatic Disease Specialist as a sub-agent (see `06-agent-architecture.md` § "ORCHESTRATOR SUB-AGENT: Metastatic Disease Specialist", or `/sarcoma-output-schema metastatic-specialist` for the schema). Pass it the four Vector Lead summaries and the mRNA team output as input — **not** the full sub-agent outputs. Incorporate its `simulation-output/metastatic-disease-considerations.md` as the "Metastatic Disease Considerations" section of the final protocol.
+After steps 1–7 produce a stable view of the catalog, launch the Metastatic Disease Specialist as a sub-agent (see `06-agent-architecture.md` § "ORCHESTRATOR SUB-AGENT: Metastatic Disease Specialist", or `/sarcoma-output-schema metastatic-specialist` for the schema). Pass it the four Vector Lead summaries and the mRNA team output as input — **not** the full sub-agent outputs. Incorporate its `simulation-output/metastatic-disease-considerations-vN.md` as the "Metastatic Disease Considerations" section of the final protocol.
 
 ### 9. REGULATORY COVERAGE — FDA + EMA
 
-For every Established-tier intervention in the Clinical / Experimental Track, cite both **FDA** and **EMA** status. Where they differ (e.g., tazemetostat for epithelioid sarcoma — FDA accelerated approval 2020-01-23, EMA status separate and must be verified), surface both. Where only one authority has acted, say so explicitly — a compound FDA-approved but not EMA-approved (or vice versa) has a different practical access profile for patients in different jurisdictions.
+For every Established-tier intervention in the Clinical / Experimental Track, cite both **FDA** and **EMA** status. Where they differ, surface both (tazemetostat is the worked example: its US indications were withdrawn 2026-03-09 while EU status differs — re-verify live, `translational-feasibility-layer.md`). Where only one authority has acted, say so explicitly — a compound FDA-approved but not EMA-approved (or vice versa) has a different practical access profile for patients in different jurisdictions.
 
 ### 10. CURATE FORWARD HYPOTHESES
 
@@ -122,7 +123,7 @@ Each vector lead and the Metastatic Specialist were required to produce ≥2 For
 
 ### 11. CITATION DOUBLE-CHECK
 
-Before writing the final document, scan every citation for fabrication risk. The most common Sonnet-tier failure mode is a plausible-looking "Smith et al., 2019" with no real PMID. If you cannot verify a citation, demote it to `[no direct citation; mechanism inferred from {description}]` or remove the claim entirely. This check is **mandatory** for the orchestrator — sub-agents may have missed it.
+Before writing the final document, scan every citation for fabrication risk. The most common failure is a plausible-looking "Smith et al., 2019" with no real PMID. If you cannot verify a citation, demote it to `[no direct citation; mechanism inferred from {description}]` or remove the claim entirely. This check is **mandatory** for the orchestrator — sub-agents may have missed it.
 
 ### 12. WRITE FINAL PROTOCOL
 
@@ -135,13 +136,13 @@ Use the orchestrator output schema. Invoke `/sarcoma-output-schema` with argumen
 These are documented synergies in the source material that the orchestrator should expect to see and amplify in the catalog:
 
 - **V1 ↔ V2:** Many compounds (Quercetin, Omega-3, Selenium, Zinc) hit both. Reducing transcriptional load (V1) reduces Topo II DSBs at active loci (V2).
-- **V3 → V4 bridge (mandatory section):** EZH2i and clinical HDACi restore MHC-I → enables V4 immune clearance. Dietary analogues (sulforaphane, butyrate) are weaker; flag the exposure-mismatch honestly.
+- **V3 → V4 bridge (mandatory section):** p300/CBP inhibition (the multi-vector node verified in `protocol-v4.md`), EZH2i and clinical HDACi restore MHC-I → enables V4 immune clearance. Dietary analogues (sulforaphane, butyrate) are weaker; flag the exposure-mismatch honestly.
 - **V1 ↔ V3 (downstream):** CDK4/6 axis (V1.C) overlaps with V3 clinical CDK4/6 inhibitors — same target, different track.
 - **V4 NK arm:** NK cells target MHC-I-LOW cells, which is the same evasion mechanism CIC-DUX4 cells use against T-cells. This is a non-obvious therapeutic angle and belongs in the Top-Level Findings if it survives the evidence-tier check.
 
 ## Sub-Agent Failure Modes the Orchestrator Must Catch
 
-Sub-agents on Sonnet-tier models often produce these failures. Scan for them:
+Scan sub-agent outputs for these failures:
 
 1. **Fabricated citations** (highest priority).
 2. **Concentration mismatch** — cell-line concentrations presented without noting they're unachievable from diet.

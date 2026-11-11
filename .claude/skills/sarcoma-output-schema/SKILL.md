@@ -13,7 +13,7 @@ If you cannot determine your role, write back to your invoker and ask. **Do not 
 
 ## orchestrator
 
-Output file: `simulation-output/protocol-v1.md`
+Output file: `simulation-output/protocol-vN.md`
 
 ```markdown
 # CIC-Rearranged Sarcoma — Multi-Vector Hypothesis Catalog (v1)
@@ -105,7 +105,7 @@ For every Established-tier intervention, cite both FDA and EMA status where they
 
 ## v1-lead, v2-lead, v3-lead, v4-lead
 
-Output file: `simulation-output/v{N}-{vector-name}/v{N}-summary.md`
+Output file: `simulation-output/<vector-dir>/v<K>-summary-vN.md` (K = vector number; N = run number from `scripts/dispatch.py`; specialist files go under `<vector-dir>/vN/`)
 (`v1-rate-limiting`, `v2-compiler-protection`, `v3-hot-patching`, `v4-immune-watchdog`)
 
 ```markdown
@@ -296,7 +296,7 @@ Cover: personalized neoantigen platforms (BNT122, mRNA-4157, NEO-PV-01) · wheth
 
 ## mrna-vaccine-lead
 
-Output: `simulation-output/mrna-vaccine-research/mrna-vaccine-summary.md`
+Output: `simulation-output/mrna-vaccine-research/mrna-vaccine-summary-vN.md`
 
 ```markdown
 # mRNA Vaccine Research Team — Summary

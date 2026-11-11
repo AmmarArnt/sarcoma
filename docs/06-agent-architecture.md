@@ -1,6 +1,6 @@
 # 06 — Agent Architecture: Multi-Agent Simulation Design
 
-> **Important for sub-agents on smaller models (Sonnet-tier and below):** the prompts in this file are written to be self-contained. If something in your assigned context is ambiguous or you do not have enough information to make a claim, **say so explicitly in your output** rather than filling the gap with plausible-sounding content. This simulation values calibrated honesty over completeness. A short output with three well-grounded hypotheses is better than a long output where two of the ten entries are made up.
+> **For every agent:** read `CASE-BASELINE.md` before your role section — it is the current case (driver unresolved, chemo-responsive, Ewing-like) and supersedes the CIC-DUX4 framing written into the prompts below (ADR-0022). The prompts are self-contained. If something in your assigned context is ambiguous or you do not have enough information to make a claim, **say so explicitly in your output** rather than filling the gap with plausible-sounding content. This simulation values calibrated honesty over completeness. A short output with three well-grounded hypotheses is better than a long output where two of the ten entries are made up.
 
 ---
 
@@ -91,7 +91,7 @@ Every claim or recommendation must carry exactly one of these tags:
 
 **Additional inputs**: mRNA Vaccine Research Team output; Metastatic Disease Specialist output (generated as a sub-agent during orchestration); the **standing analytical layers** in `simulation-output/` + `findings-ranking.md` (ADR-0016 — see intake step 1B)
 
-**Output file**: `simulation-output/protocol-v1.md`
+**Output file**: `simulation-output/protocol-vN.md`
 
 ### System Prompt
 
@@ -172,7 +172,7 @@ Mechanistic or Preclinical-Cell tier. Say so. The value of the output is in
 the structure and the honest grounding — not in the number of entries.
 ```
 
-### Output Schema for `protocol-v1.md`
+### Output Schema for `protocol-vN.md`
 
 ```markdown
 # CIC-Rearranged Sarcoma — Multi-Vector Hypothesis Catalog (v1)
@@ -302,7 +302,7 @@ Mandatory:
   - Refuse to invent doses. Cite trial doses with NCT IDs where possible;
     otherwise refer to food sources.
 
-Output file: simulation-output/v1-rate-limiting/v1-summary.md
+Output file: simulation-output/v1-rate-limiting/v1-summary-vN.md
 Use the schema below.
 ```
 
@@ -353,7 +353,7 @@ Role: For each Vector 1 candidate compound, identify:
   - Preparation-dependent activation (e.g., sulforaphane requires myrosinase —
     chop broccoli sprouts and let stand 40 min before heating)
 
-Output: simulation-output/v1-rate-limiting/food-sources.md
+Output: simulation-output/v1-rate-limiting/vN/food-sources.md
 
 Schema:
 | Compound | Best food source | Realistic serving | Preparation note | Bioactive form |
@@ -381,7 +381,7 @@ curcumin, etc.), document:
   - Documented interactions with chemo: doxorubicin, vincristine, etoposide,
     ifosfamide, cyclophosphamide
 
-Output: simulation-output/v1-rate-limiting/supplement-protocol.md
+Output: simulation-output/v1-rate-limiting/vN/supplement-protocol.md
 
 Hard constraints:
   - DO NOT prescribe doses. Report trial doses with citations.
@@ -406,7 +406,7 @@ distribution constraints:
   - Tissue distribution: does the compound reach mesenchymal tumor tissue
     at meaningful concentrations? (Often: no.)
 
-Output: simulation-output/v1-rate-limiting/bioavailability.md
+Output: simulation-output/v1-rate-limiting/vN/bioavailability.md
 
 Hard constraint: the curcumin + piperine entry must reproduce the Shoba 1998
 caveat (n=10, single dose, control arm below LOD) — the "2000% boost"
@@ -455,7 +455,7 @@ You coordinate three sub-agents:
   - DNA Repair Specialist
   - Anti-Inflammatory Specialist
 
-Output: simulation-output/v2-compiler-protection/v2-summary.md
+Output: simulation-output/v2-compiler-protection/v2-summary-vN.md
 Schema: same as V1 Lead with a "harms / null trials" section and a "Forward Hypotheses" section.
 ```
 
@@ -476,7 +476,7 @@ Cover:
   - NAC-and-metastasis literature (Sayin 2014, follow-up work)
   - Antioxidant + chemo interaction concerns
 
-Output: simulation-output/v2-compiler-protection/antioxidant-protocol.md
+Output: simulation-output/v2-compiler-protection/vN/antioxidant-protocol.md
 
 Final output must include a "DO NOT RECOMMEND" section listing high-dose
 supplement interventions that the literature contraindicates.
@@ -499,7 +499,7 @@ Cover:
   - NAD+ precursors (nicotinamide, NR, NMN) — PARP and sirtuin substrates;
     document the very thin clinical evidence honestly
 
-Output: simulation-output/v2-compiler-protection/dna-repair-support.md
+Output: simulation-output/v2-compiler-protection/vN/dna-repair-support.md
 
 For every cofactor, distinguish:
   - Correcting documented deficiency (clearer evidence)
@@ -522,7 +522,7 @@ Cover:
   - Polyphenols with NF-κB modulating activity at achievable concentrations
   - Mediterranean-pattern diet evidence vs. isolated compound evidence
 
-Output: simulation-output/v2-compiler-protection/anti-inflammatory-protocol.md
+Output: simulation-output/v2-compiler-protection/vN/anti-inflammatory-protocol.md
 
 Hard constraint: every claim about "anti-inflammatory diet reduces cancer
 risk" must distinguish epidemiology from mechanistic studies, and must
@@ -574,7 +574,7 @@ You coordinate four sub-agents:
   - PROTAC/ASO Specialist (clinical/experimental track)
   - Synthetic Lethality Specialist
 
-Output: simulation-output/v3-hot-patching/v3-summary.md
+Output: simulation-output/v3-hot-patching/v3-summary-vN.md
 With a clearly separated DIETARY TRACK and CLINICAL TRACK, plus a FORWARD HYPOTHESES section.
 ```
 
@@ -592,7 +592,7 @@ For each:
   - Mechanism via H3K27me3, H3K27ac, DNA methylation, etc.
   - Documented MHC-I upregulation? FLAG FOR V4.
 
-Output: simulation-output/v3-hot-patching/epigenetic-reprogramming.md
+Output: simulation-output/v3-hot-patching/vN/epigenetic-reprogramming.md
 
 MHC-I upregulation section is mandatory and goes at the top of the output.
 ```
@@ -617,7 +617,7 @@ Cover:
     are high; systemic exposure is much lower
   - Combination differentiation + epigenetic strategies
 
-Output: simulation-output/v3-hot-patching/differentiation-therapy.md
+Output: simulation-output/v3-hot-patching/vN/differentiation-therapy.md
 ```
 
 ### V3 Sub-Agent: PROTAC/ASO Specialist (Clinical/Experimental Track)
@@ -637,7 +637,7 @@ Cover:
     BETi (OTX015, BMS-986158, AZD5153, etc.), CDK4/6i in sarcoma
   - For each: NCT ID where available, current phase, indication
 
-Output: simulation-output/v3-hot-patching/clinical-experimental.md
+Output: simulation-output/v3-hot-patching/vN/clinical-experimental.md
 
 Tag the entire output as "Clinical / Experimental — not naturally
 achievable; for awareness only." This output exists so the orchestrator
@@ -658,7 +658,7 @@ Cover:
   - Any documented synthetic-lethal CRISPR screen hits in CIC-DUX4
     cell lines (search Cellosaurus / DepMap if available — if not, say so)
 
-Output: simulation-output/v3-hot-patching/synthetic-lethality.md
+Output: simulation-output/v3-hot-patching/vN/synthetic-lethality.md
 
 For each dependency, list clinical drug + dietary modulator (with the
 honest caveat about exposure mismatch).
@@ -702,7 +702,7 @@ You coordinate four sub-agents:
   - Microbiome-Immune Specialist
   - Neoantigen Vaccine Specialist (clinical / experimental track)
 
-Output: simulation-output/v4-immune-watchdog/v4-summary.md
+Output: simulation-output/v4-immune-watchdog/v4-summary-vN.md
 With dietary and clinical tracks clearly separated, plus a FORWARD HYPOTHESES section.
 ```
 
@@ -721,7 +721,7 @@ Cover:
     cell-line, evidence in patients is essentially zero
   - V3 → V4 bridge: epigenetic priming, MHC-I restoration
 
-Output: simulation-output/v4-immune-watchdog/tcell-surveillance.md
+Output: simulation-output/v4-immune-watchdog/vN/tcell-surveillance.md
 ```
 
 ### V4 Sub-Agent: NK Cell Specialist
@@ -744,7 +744,7 @@ Cover:
   - NK engager bispecific antibodies in trials
   - Adoptive NK transfer status
 
-Output: simulation-output/v4-immune-watchdog/nk-cell-activation.md
+Output: simulation-output/v4-immune-watchdog/vN/nk-cell-activation.md
 ```
 
 ### V4 Sub-Agent: Microbiome-Immune Specialist
@@ -766,7 +766,7 @@ Cover:
   - Probiotic use during cancer therapy: mixed/controversial; some trials
     showed reduced CPI response with broad probiotics
 
-Output: simulation-output/v4-immune-watchdog/microbiome-immune.md
+Output: simulation-output/v4-immune-watchdog/vN/microbiome-immune.md
 ```
 
 ### V4 Sub-Agent: Neoantigen Vaccine Specialist (Clinical/Experimental Track)
@@ -785,7 +785,7 @@ Cover:
   - Per-patient vs. pan-CIC-DUX4 vaccine design: junction sequence
     variability constraint (see file 02)
 
-Output: simulation-output/v4-immune-watchdog/neoantigen-vaccine.md
+Output: simulation-output/v4-immune-watchdog/vN/neoantigen-vaccine.md
 
 Tag the entire output as "Clinical / Experimental — not naturally achievable;
 for awareness only."
@@ -801,7 +801,7 @@ for awareness only."
 
 **Runs**: As a sub-agent launched by the Orchestrator after all vector and mRNA team outputs are available.
 
-**Output file**: `simulation-output/metastatic-disease-considerations.md`
+**Output file**: `simulation-output/metastatic-disease-considerations-vN.md`
 
 ### System Prompt
 
@@ -871,7 +871,7 @@ Output structure:
 
 **Runs**: In parallel with the four vector leads. Output must be available before V2 and V4 finalize.
 
-**Output file**: `simulation-output/mrna-vaccine-research/mrna-vaccine-summary.md`
+**Output file**: `simulation-output/mrna-vaccine-research/mrna-vaccine-summary-vN.md`
 
 ### System Prompt
 
@@ -939,7 +939,7 @@ Mandatory:
     section, even if the content of those sections is "no documented
     relevant effect."
 
-Output: simulation-output/mrna-vaccine-research/mrna-vaccine-summary.md
+Output: simulation-output/mrna-vaccine-research/mrna-vaccine-summary-vN.md
 ```
 
 ### Sub-Agents (optional, run in parallel if used)
@@ -949,7 +949,7 @@ The mRNA Vaccine Research Team may optionally run two sub-agents:
 **Immunological Effects Specialist**
 ```
 Focus: peer-reviewed literature on persistent immune effects of BNT162b2.
-Output: simulation-output/mrna-vaccine-research/immune-effects.md
+Output: simulation-output/mrna-vaccine-research/vN/immune-effects.md
 Apply the same evidence tier vocabulary. Do not speculate beyond the literature.
 ```
 
@@ -958,7 +958,7 @@ Apply the same evidence tier vocabulary. Do not speculate beyond the literature.
 Focus: pharmacovigilance data and peer-reviewed oncogenesis literature.
 Specifically: is there a signal, and if not, how large is the studied
 population and what is the detection limit?
-Output: simulation-output/mrna-vaccine-research/oncogenic-risk.md
+Output: simulation-output/mrna-vaccine-research/vN/oncogenic-risk.md
 ```
 
 ---
@@ -967,66 +967,63 @@ Output: simulation-output/mrna-vaccine-research/oncogenic-risk.md
 
 ### For Claude Code / Cowork (recommended)
 
-Run `python scripts/dispatch.py` first — it validates the venv, the output tree, and OpenMed grounding, then prints the strict wave plan.
+Run `python scripts/dispatch.py` first — it validates the venv, the output tree, and OpenMed grounding, names the run number N, and prints the run-scoped output paths (`<lead>-summary-vN.md`, specialist files under `vN/`, `protocol-vN.md`). A fresh run never overwrites an earlier one.
 
-1. **Wave 1 — parallel:** create one task each for the mRNA Vaccine Research Team Lead, V1 Lead, V3 Lead. Assign each its listed context files. Do not over-assign — small models drift when over-stuffed.
+1. **Wave 1 — parallel:** create one task each for the mRNA Vaccine Research Team Lead, V1 Lead, V3 Lead. Pass each the run number and its listed context files.
 2. Each Vector Lead spawns its sub-agents as parallel tasks (except where noted, e.g., synthesis happens after sub-agents complete).
 3. **Gate:** the V3 Epigenetic Therapy Specialist's MHC-I Upregulation Candidates section is published at the top of the V3 summary as soon as that sub-agent completes — V4 reads from there. The mRNA Vaccine Research Team's output file must be complete on disk.
 4. **Wave 2 — parallel:** create one task each for V2 Lead, V4 Lead. Both consume the mRNA team output; V4 additionally consumes V3's MHC-I section. Wave 2 must not start before the wave-1 gate clears.
 5. The Orchestrator task is BLOCKED BY all four Vector Lead outputs AND the mRNA Vaccine Research Team output.
-6. The Orchestrator launches the Metastatic Disease Specialist as a sub-agent, then writes the final `simulation-output/protocol-v1.md`.
+6. The Orchestrator launches the Metastatic Disease Specialist as a sub-agent, then writes `simulation-output/protocol-vN.md`.
 
 ### Recommended Models
 
-- **Orchestrator**: highest-tier model available (synthesis, conflict resolution, citation discipline). Opus or equivalent recommended.
-- **Vector Leads**: Sonnet-tier acceptable; they are coordinators not deep researchers.
-- **mRNA Vaccine Research Team Lead**: Sonnet-tier acceptable; the prompts are self-contained.
-- **Sub-agents**: Sonnet-tier acceptable; prompts in this file are designed for that.
-- **Metastatic Disease Specialist**: Sonnet-tier acceptable; runs within the orchestrator session.
+Model and effort are set in each agent's frontmatter (`.claude/agents/*.md`); the leads pass `model` when they spawn specialists. Rationale in ADR-0023.
 
-If running on Sonnet across the board, the most important guardrails are: (a) the "no fabricated citations" rule, (b) the "say what you could not establish" requirement, (c) the per-entry evidence tier, and (d) the V3 / V4 clinical-track separation. The orchestrator must double-check citations.
+| Role | Model | Why |
+|---|---|---|
+| Orchestrator | Fable (`model: fable`, effort high) | One run per cycle; the heaviest judgment — cross-output reconciliation, conflict resolution, citation double-check |
+| Vector Leads (V1–V4) | Opus (`model: opus`, effort high) | Evidence reconciliation and dedup, where a fabricated or mis-tiered citation does the most damage |
+| Metastatic Disease Specialist | Opus | Synthesis over the five summaries, not primary literature search |
+| mRNA Vaccine Research Team Lead | Sonnet | Narrow, well-bounded question; "no effect" is a valid answer |
+| Literature specialists (sub-agents) | Sonnet | Tool-heavy literature search inside a tightly scoped brief |
+
+Whatever the model, the guardrails that matter most are unchanged: (a) no fabricated citations, (b) say what you could not establish, (c) an evidence tier on every entry, (d) clean separation of the dietary and clinical tracks. The orchestrator double-checks citations.
 
 ---
 
 ## Expected Output Directory
 
+Run N (from `scripts/dispatch.py`) writes run-scoped files so no run overwrites another (ADR-0023):
+
 ```
 simulation-output/
-├── protocol-v1.md                       ← Orchestrator's master output
-├── metastatic-disease-considerations.md ← Metastatic Disease Specialist output
+├── protocol-vN.md                          ← Orchestrator's catalog for run N
+├── metastatic-disease-considerations-vN.md ← Metastatic Disease Specialist
 ├── mrna-vaccine-research/
-│   ├── mrna-vaccine-summary.md          ← mRNA Vaccine Team Lead output
-│   ├── immune-effects.md                ← optional sub-agent
-│   └── oncogenic-risk.md                ← optional sub-agent
+│   ├── mrna-vaccine-summary-vN.md          ← mRNA Vaccine Team Lead
+│   └── vN/immune-effects.md, oncogenic-risk.md   ← optional specialists
 ├── v1-rate-limiting/
-│   ├── v1-summary.md                    ← V1 Lead's consolidated output
-│   ├── food-sources.md
-│   ├── supplement-protocol.md
-│   └── bioavailability.md
+│   ├── v1-summary-vN.md                    ← V1 Lead's consolidated output
+│   └── vN/food-sources.md, supplement-protocol.md, bioavailability.md
 ├── v2-compiler-protection/
-│   ├── v2-summary.md
-│   ├── antioxidant-protocol.md
-│   ├── dna-repair-support.md
-│   └── anti-inflammatory-protocol.md
+│   ├── v2-summary-vN.md
+│   └── vN/antioxidant-protocol.md, dna-repair-support.md, anti-inflammatory-protocol.md
 ├── v3-hot-patching/
-│   ├── v3-summary.md
-│   ├── epigenetic-reprogramming.md
-│   ├── differentiation-therapy.md
-│   ├── clinical-experimental.md         ← clinical track, flagged
-│   └── synthetic-lethality.md
+│   ├── v3-summary-vN.md                    ← MHC-I Upregulation Candidates section at the top
+│   └── vN/epigenetic-reprogramming.md, differentiation-therapy.md,
+│          clinical-experimental.md (clinical track), synthetic-lethality.md
 └── v4-immune-watchdog/
-    ├── v4-summary.md
-    ├── tcell-surveillance.md
-    ├── nk-cell-activation.md
-    ├── microbiome-immune.md
-    └── neoantigen-vaccine.md            ← clinical track, flagged
+    ├── v4-summary-vN.md
+    └── vN/tcell-surveillance.md, nk-cell-activation.md, microbiome-immune.md,
+           neoantigen-vaccine.md (clinical track)
 ```
 
 ---
 
 ## Common Failure Modes for Sub-Agents (Read Before Starting)
 
-These are the failure modes most likely from a Sonnet-tier model. Guard against them in your own output and flag them when reviewing others.
+These are the failure modes this simulation has actually produced. Guard against them in your own output and flag them when reviewing others.
 
 1. **Citation fabrication.** "Smith et al., 2019" with a plausible journal name and no PMID. If you cannot find the source on PubMed or a real preprint server, write "no direct citation."
 2. **Concentration-mismatch claims.** "EGCG inhibits BRD4" without specifying that the cited concentration was 50 µM in HEK293 cells, which corresponds to dietary plasma levels of ~0.1–0.5 µM at best.
